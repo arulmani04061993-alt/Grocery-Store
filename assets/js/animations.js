@@ -990,7 +990,20 @@ window.StacklyAnimations = {
    * Section 17: Number Counter Animations (ScrollTrigger / IntersectionObserver Count-Up)
    */
   initCounterAnimations() {
-    const counterElements = document.querySelectorAll('.counter-number, [data-counter], .eco-metric-val');
+    const selector = [
+      '.counter-number',
+      '[data-counter]',
+      '.eco-metric-val',
+      '.kpi-value',
+      '.stat-num',
+      '.about-pstat-num',
+      '.cat-count-badge',
+      '.process-step-number',
+      '.about-process-step-num',
+      '.story-badge-number'
+    ].join(', ');
+
+    const counterElements = document.querySelectorAll(selector);
     if (!counterElements.length) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -998,21 +1011,37 @@ window.StacklyAnimations = {
     counterElements.forEach(el => {
       if (el.dataset.counterInit === 'true') return;
 
-      const originalText = el.textContent.trim();
-      let target = parseFloat(el.getAttribute('data-counter'));
+      // Extract raw text content without child badges if any
+      let rawText = '';
+      // If element contains child spans/elements, check for a leading text node or full text
+      const childNodes = Array.from(el.childNodes);
+      const textNodes = childNodes.filter(n => n.nodeType === Node.TEXT_NODE);
+      if (textNodes.length > 0 && textNodes[0].textContent.trim().length > 0) {
+        rawText = textNodes[0].textContent.trim();
+      } else {
+        rawText = el.textContent.trim();
+      }
+
+      let explicitTarget = el.getAttribute('data-counter');
+      let target = explicitTarget !== null ? parseFloat(explicitTarget) : NaN;
       let suffix = el.getAttribute('data-suffix');
       let prefix = el.getAttribute('data-prefix') || '';
       let useComma = el.getAttribute('data-comma') === 'true';
+      let decimalPlaces = 0;
 
       // Auto-parse from existing text if data attributes are absent
       if (isNaN(target)) {
-        const cleanStr = originalText.replace(/,/g, '');
-        const match = cleanStr.match(/^([^0-9.]*)(\d+(?:\.\d+)?)(.*)$/);
+        const cleanStr = rawText.replace(/,/g, '');
+        // Match: prefix (optional non-digits), number (with optional decimals), suffix (trailing non-digits/symbols)
+        const match = cleanStr.match(/^([^0-9.]*?)(\d+(?:\.\d+)?)(.*)$/);
         if (match) {
           prefix = prefix || match[1] || '';
           target = parseFloat(match[2]);
           suffix = (suffix !== null && suffix !== undefined) ? suffix : (match[3] || '');
-          if (originalText.includes(',')) useComma = true;
+          if (rawText.includes(',')) useComma = true;
+          if (match[2].includes('.')) {
+            decimalPlaces = match[2].split('.')[1].length;
+          }
         } else {
           return;
         }
@@ -1026,70 +1055,87 @@ window.StacklyAnimations = {
       }
 
       const formatVal = (num) => {
-        const rounded = Math.floor(num);
-        const str = useComma ? rounded.toLocaleString('en-US') : rounded.toString();
+        let str = '';
+        if (decimalPlaces > 0) {
+          const fixedNum = Number(num).toFixed(decimalPlaces);
+          if (useComma) {
+            const parts = fixedNum.split('.');
+            parts[0] = parseInt(parts[0], 10).toLocaleString('en-US');
+            str = parts.join('.');
+          } else {
+            str = fixedNum;
+          }
+        } else {
+          const rounded = Math.floor(num);
+          str = useComma ? rounded.toLocaleString('en-US') : rounded.toString();
+        }
         return `${prefix}${str}${suffix}`;
       };
 
+      // Preserve any existing non-text elements (like badges/subtext inside kpi-value)
+      const nonTextChildren = Array.from(el.children).map(child => child.cloneNode(true));
+
+      const applyToElement = (formattedValue) => {
+        el.textContent = formattedValue;
+        if (nonTextChildren.length > 0) {
+          el.appendChild(document.createTextNode(' '));
+          nonTextChildren.forEach(child => el.appendChild(child.cloneNode(true)));
+        }
+      };
+
       if (prefersReducedMotion) {
-        let finalVal = Math.round(target);
-        let finalStr = useComma ? finalVal.toLocaleString('en-US') : finalVal.toString();
-        el.textContent = `${prefix}${finalStr}${suffix}`;
+        applyToElement(formatVal(target));
         return;
       }
 
-      // Start counter at 0
-      el.textContent = formatVal(0);
+      // Initialize counter at 0
+      applyToElement(formatVal(0));
 
       // Trigger animation using GSAP ScrollTrigger if available
       if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
         const state = { count: 0 };
         ScrollTrigger.create({
           trigger: el,
-          start: 'top 92%',
+          start: 'top 95%',
           once: true,
           onEnter: () => {
             gsap.to(state, {
               count: target,
-              duration: target >= 1000 ? 2.0 : 1.5,
+              duration: target >= 1000 ? 1.8 : 1.2,
               ease: 'power2.out',
               onUpdate: () => {
-                el.textContent = formatVal(state.count);
+                applyToElement(formatVal(state.count));
               },
               onComplete: () => {
-                let finalVal = Math.round(target);
-                let finalStr = useComma ? finalVal.toLocaleString('en-US') : finalVal.toString();
-                el.textContent = `${prefix}${finalStr}${suffix}`;
+                applyToElement(formatVal(target));
               }
             });
           }
         });
       } else {
-        // Fallback: 60fps requestAnimationFrame with IntersectionObserver
+        // High-performance requestAnimationFrame fallback with IntersectionObserver
         const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               obs.unobserve(entry.target);
-              const duration = target >= 1000 ? 2000 : 1500;
+              const duration = target >= 1000 ? 1800 : 1200;
               const startTime = performance.now();
               const step = (currentTime) => {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const ease = 1 - Math.pow(1 - progress, 3);
-                const current = Math.floor(target * ease);
-                el.textContent = formatVal(current);
+                const current = target * ease;
+                applyToElement(formatVal(current));
                 if (progress < 1) {
                   requestAnimationFrame(step);
                 } else {
-                  let finalVal = Math.round(target);
-                  let finalStr = useComma ? finalVal.toLocaleString('en-US') : finalVal.toString();
-                  el.textContent = `${prefix}${finalStr}${suffix}`;
+                  applyToElement(formatVal(target));
                 }
               };
               requestAnimationFrame(step);
             }
           });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
         observer.observe(el);
       }
     });
@@ -1132,3 +1178,16 @@ window.StacklyAnimations = {
     });
   }
 };
+
+// Auto-initialize when document is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.StacklyAnimations && typeof window.StacklyAnimations.init === 'function') {
+      window.StacklyAnimations.init();
+    }
+  });
+} else {
+  if (window.StacklyAnimations && typeof window.StacklyAnimations.init === 'function') {
+    window.StacklyAnimations.init();
+  }
+}

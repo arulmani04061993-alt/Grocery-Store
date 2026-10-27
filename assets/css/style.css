@@ -5481,8 +5481,8 @@ body.error-page-body {
 
 .service-cards-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
 }
 
 .service-feature-card {
@@ -5531,6 +5531,16 @@ body.error-page-body {
 .service-card-icon-wrap.icon-blue {
   background: #E0F2FE;
   color: #0284C7;
+}
+
+.service-card-icon-wrap.icon-purple {
+  background: #F3E8FF;
+  color: #9333EA;
+}
+
+.service-card-icon-wrap.icon-orange {
+  background: #FFEDD5;
+  color: #EA580C;
 }
 
 .service-card-title {
@@ -5799,10 +5809,394 @@ body.error-page-body {
   transform: translateY(-2px);
 }
 
+/* 7. SERVICE PLANS COMPARISON TABLE — Premium Luxury Styling */
+.service-plans-section {
+  padding: 5rem 0 4rem;
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+}
+
+.service-table-responsive-wrap {
+  overflow-x: auto;
+  border-radius: 28px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08);
+  margin-top: 3rem;
+  padding: 0.5rem;
+}
+
+.service-comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 820px;
+}
+
+.service-comparison-table th,
+.service-comparison-table td {
+  padding: 1.35rem 1.65rem;
+  text-align: left;
+  border-bottom: 1px solid #F1F5F9;
+  font-size: 0.94rem;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.service-comparison-table thead tr th {
+  background: #FAFCFE;
+  border-bottom: 2px solid #E2E8F0;
+  vertical-align: top;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.table-th-subtitle {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #14B8A6;
+  margin-bottom: 0.35rem;
+}
+
+.table-th-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.table-tier-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tier-pill-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.tier-pill-name.corporate {
+  color: #0284C7;
+  background: #E0F2FE;
+}
+
+.tier-heading {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0.2rem 0;
+}
+
+.text-teal-dark {
+  color: #0D9488 !important;
+}
+
+/* Featured Column Spotlight */
+.service-comparison-table th.featured-plan {
+  background: #F0FDFA !important;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-left: 2.5px solid #14B8A6;
+  border-right: 2.5px solid #14B8A6;
+  border-bottom: 2px solid #14B8A6;
+  position: relative;
+  box-shadow: inset 0 3px 0 #14B8A6;
+}
+
+.service-comparison-table td.featured-plan {
+  background: #F0FDFA !important;
+  border-left: 2.5px solid #14B8A6;
+  border-right: 2.5px solid #14B8A6;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.service-comparison-table tbody tr:last-child td.featured-plan {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom: 2.5px solid #14B8A6;
+}
+
+.plan-popular-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  width: fit-content;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.35);
+}
+
+.table-group-header td {
+  background: #F8FAFC !important;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  color: #475569 !important;
+  padding: 0.95rem 1.65rem;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.feature-label strong {
+  display: block;
+  font-family: var(--font-heading);
+  color: #0F172A;
+  font-size: 0.98rem;
+  margin-bottom: 0.15rem;
+}
+
+.feature-subtext {
+  display: block;
+  font-size: 0.78rem;
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.table-highlight-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  color: #0D9488;
+  background: #CCFBF1;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.86rem;
+}
+
+.badge-neutral {
+  display: inline-block;
+  background: #F1F5F9;
+  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+}
+
+.badge-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #E6FFFA;
+  color: #0D9488;
+  border: 1px solid #14B8A6;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+}
+
+.badge-corporate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #F0F9FF;
+  color: #0284C7;
+  border: 1px solid #BAE6FD;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+}
+
+.discount-pill {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+.discount-pill.highlight {
+  background: #14B8A6;
+  color: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(20, 184, 166, 0.25);
+}
+
+.discount-pill.corporate {
+  background: #0284C7;
+  color: #FFFFFF;
+}
+
+.table-cross-dash {
+  color: #CBD5E1;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.table-price-tag {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0.4rem 0 0.8rem;
+  letter-spacing: -0.5px;
+}
+
+.table-price-tag .price-period {
+  font-size: 0.82rem;
+  color: #64748B;
+  font-weight: 500;
+  letter-spacing: normal;
+}
+
+.btn-table-enroll {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.45rem;
+  background: #14B8A6;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1.5px solid #14B8A6;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.25);
+}
+
+.btn-table-enroll:hover {
+  background: #0D9488;
+  border-color: #0D9488;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 184, 166, 0.4);
+}
+
+.btn-table-enroll.premium-glow {
+  background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+  box-shadow: 0 6px 18px rgba(20, 184, 166, 0.35);
+}
+
+.btn-table-enroll.outline {
+  background: #FFFFFF;
+  color: #0F172A !important;
+  border-color: #CBD5E1;
+  box-shadow: none;
+}
+
+.btn-table-enroll.outline:hover {
+  background: #F8FAFC;
+  border-color: #14B8A6;
+  color: #14B8A6 !important;
+}
+
+/* 8. FAQ ACCORDION SECTION */
+.service-faq-section {
+  padding: 5rem 0 4rem;
+}
+
+.service-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.service-faq-desc {
+  font-size: 0.95rem;
+  color: #64748B;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.faq-chef-card-wrap {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(17, 26, 45, 0.08);
+}
+
+.faq-chef-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.faq-chef-quote-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(17, 26, 45, 0.12);
+}
+
+.smaller {
+  font-size: 0.76rem;
+}
+
+.service-faq-accordion-wrap .accordion-item.faq-item {
+  border: 1px solid #EDF2F7;
+  border-radius: 16px !important;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(17, 26, 45, 0.02);
+  transition: all 0.25s ease;
+}
+
+.service-faq-accordion-wrap .accordion-item.faq-item:hover {
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.faq-btn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: #111A2E !important;
+  background: #FFFFFF !important;
+  padding: 1.35rem 1.5rem;
+  box-shadow: none !important;
+}
+
+.faq-btn:not(.collapsed) {
+  color: #0D9488 !important;
+  background: #F0FDFA !important;
+}
+
+.faq-body {
+  font-size: 0.92rem;
+  color: #64748B;
+  line-height: 1.7;
+  padding: 0.5rem 1.5rem 1.5rem;
+  background: #FFFFFF;
+}
+
 /* RESPONSIVE BREAKPOINTS */
 @media (max-width: 991.98px) {
   .service-hero-grid,
-  .service-feature-row-grid {
+  .service-feature-row-grid,
+  .service-faq-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
