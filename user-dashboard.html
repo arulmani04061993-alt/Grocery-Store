@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard | STACKLY Premium Organic Grocery</title>
-  <meta name="description" content="Manage your STACKLY organic grocery orders, track live deliveries, view loyalty points, and update your account.">
+  <meta name="description"
+    content="Manage your STACKLY organic grocery orders, track live deliveries, view loyalty points, and update your account.">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
 
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,13 +31,14 @@
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
+
 <body class="dashboard-body preloader-active">
 
   <!-- ==========================================================================
        SIDEBAR: FULL STATIC DATA (Customer Portal)
        ========================================================================== -->
   <aside class="dash-sidebar" id="dashSidebar">
-    
+
     <!-- Sidebar Header & Logo -->
     <div class="sidebar-header">
       <a href="index.html" class="sidebar-brand">
@@ -43,7 +49,7 @@
 
     <!-- Sidebar Navigation Links -->
     <div class="sidebar-nav-container">
-      
+
       <p class="sidebar-heading">Main Menu</p>
       <ul class="sidebar-menu-list">
         <li class="sidebar-menu-item">
@@ -123,10 +129,11 @@
 
     <!-- Top Sticky Navbar -->
     <header class="dash-topbar">
-      
+
       <!-- Left: Mobile Toggle & Page Title -->
       <div class="topbar-left">
-        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation Sidebar" onclick="toggleMobileSidebar()">
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation Sidebar"
+          onclick="toggleMobileSidebar()">
           <i class="bi bi-list"></i>
         </button>
         <h1 class="topbar-page-title">
@@ -135,52 +142,14 @@
         </h1>
       </div>
 
-      <!-- Right: User Email Shown Prominently, Notifications, Store Link -->
+      <!-- Right: User Email Shown Prominently -->
       <div class="topbar-right">
-        
-        <!-- Storefront Link -->
-        <a href="index.html" class="topbar-store-btn" title="Go to Store Homepage">
-          <i class="bi bi-shop"></i>
-          <span>Shop Fresh</span>
-        </a>
-
-        <!-- Notification Bell -->
-        <button class="topbar-icon-btn" title="View Notifications" onclick="showDashToast('You have 1 active delivery arriving soon!')">
-          <i class="bi bi-bell"></i>
-          <span class="topbar-ping-dot"></span>
-        </button>
 
         <!-- USER EMAIL DISPLAYED PROMINENTLY ON NAVBAR RIGHT -->
-        <div class="dropdown">
-          <div class="nav-email-pill" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/images/customer-sarah.webp" alt="Avatar" class="nav-email-avatar" id="navAvatarImg" onerror="this.src='assets/images/customer-emily.webp'">
-            <span class="nav-email-text" id="navUserEmail">user@stacklyfresh.com</span>
-            <span class="nav-role-badge">Customer</span>
-            <i class="bi bi-chevron-down text-muted" style="font-size: 0.75rem;"></i>
-          </div>
-
-          <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2 mt-2">
-            <li class="px-3 py-2 border-bottom mb-2">
-              <small class="text-muted d-block">Signed in as</small>
-              <strong class="text-dark d-block text-truncate" id="dropdownUserEmail" style="max-width: 200px;">user@stacklyfresh.com</strong>
-            </li>
-            <li>
-              <a class="dropdown-item rounded-3 py-2" href="index.html">
-                <i class="bi bi-cart3 text-teal me-2"></i> Browse Groceries
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item rounded-3 py-2" href="login.html?role=admin">
-                <i class="bi bi-shield-lock text-warning me-2"></i> Switch to Admin
-              </a>
-            </li>
-            <li><hr class="dropdown-divider my-1"></li>
-            <li>
-              <button class="dropdown-item rounded-3 py-2 text-danger" onclick="handleLogout()">
-                <i class="bi bi-box-arrow-right me-2"></i> Sign Out
-              </button>
-            </li>
-          </ul>
+        <div class="nav-email-pill">
+          <span class="nav-email-icon user-icon"><i class="bi bi-person-fill"></i></span>
+          <span class="nav-email-text" id="navUserEmail">user@stacklyfresh.com</span>
+          <span class="nav-role-badge">Customer</span>
         </div>
 
       </div>
@@ -201,10 +170,11 @@
             <span>100% Organic & Farm Fresh Guarantee</span>
           </div>
           <h2 class="dash-hero-title">
-            Welcome back, <span id="welcomeUserName">Organic Shopper</span>! 🌿
+            Welcome back, <span id="welcomeUserName">User</span>! 🌿
           </h2>
           <p class="dash-hero-subtitle">
-            Your active delivery is on its way. Track your courier in real time, view order history, or reorder weekly farm staples in one click.
+            Your active delivery is on its way. Track your courier in real time, view order history, or reorder weekly
+            farm staples in one click.
           </p>
           <div class="dash-hero-actions">
             <a href="#orders" class="btn-hero-primary" onclick="switchTab(event, 'orders')">
@@ -218,7 +188,7 @@
 
         <!-- 2. KPI Stat Cards Grid (Static Data) -->
         <section class="dash-kpi-grid" aria-label="Account Summary Metrics">
-          
+
           <!-- Card 1: Total Orders -->
           <div class="kpi-card">
             <div class="kpi-header">
@@ -244,7 +214,8 @@
                 <i class="bi bi-truck"></i>
               </div>
             </div>
-            <div class="kpi-value">1 <span style="font-size: 0.9rem; font-weight: 600; color: #10B981;">In-Transit</span></div>
+            <div class="kpi-value">1 <span
+                style="font-size: 0.9rem; font-weight: 600; color: #10B981;">In-Transit</span></div>
             <div class="kpi-footer">
               <span class="kpi-trend-pill kpi-trend-up">
                 <i class="bi bi-clock-history"></i> ETA: 14m
@@ -297,14 +268,17 @@
                 <h3 class="table-card-title mb-0">
                   <i class="bi bi-clock-history text-teal"></i> Latest Activity
                 </h3>
-                <a href="#orders" class="text-teal fw-bold" style="font-size: 0.85rem;" onclick="switchTab(event, 'orders')">View All</a>
+                <a href="#orders" class="text-teal fw-bold" style="font-size: 0.85rem;"
+                  onclick="switchTab(event, 'orders')">View All</a>
               </div>
               <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
                 <li class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light">
                   <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-wrap kpi-icon-teal" style="width: 38px; height: 38px;"><i class="bi bi-truck"></i></div>
+                    <div class="kpi-icon-wrap kpi-icon-teal" style="width: 38px; height: 38px;"><i
+                        class="bi bi-truck"></i></div>
                     <div>
-                      <strong class="text-dark d-block" style="font-size: 0.88rem;">Order #STK-9021 is out for delivery</strong>
+                      <strong class="text-dark d-block" style="font-size: 0.88rem;">Order #STK-9021 is out for
+                        delivery</strong>
                       <small class="text-muted">Estimated arrival 2:15 PM today</small>
                     </div>
                   </div>
@@ -312,7 +286,8 @@
                 </li>
                 <li class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light">
                   <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-wrap kpi-icon-amber" style="width: 38px; height: 38px;"><i class="bi bi-award"></i></div>
+                    <div class="kpi-icon-wrap kpi-icon-amber" style="width: 38px; height: 38px;"><i
+                        class="bi bi-award"></i></div>
                     <div>
                       <strong class="text-dark d-block" style="font-size: 0.88rem;">Earned +120 Green Points</strong>
                       <small class="text-muted">From Farm Fresh Produce Box</small>
@@ -322,7 +297,8 @@
                 </li>
                 <li class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light">
                   <div class="d-flex align-items-center gap-3">
-                    <div class="kpi-icon-wrap kpi-icon-green" style="width: 38px; height: 38px;"><i class="bi bi-check-circle"></i></div>
+                    <div class="kpi-icon-wrap kpi-icon-green" style="width: 38px; height: 38px;"><i
+                        class="bi bi-check-circle"></i></div>
                     <div>
                       <strong class="text-dark d-block" style="font-size: 0.88rem;">Order #STK-8942 Delivered</strong>
                       <small class="text-muted">Delivered to Home Porch on Oct 12</small>
@@ -338,7 +314,8 @@
               <h3 class="table-card-title mb-3">
                 <i class="bi bi-star-fill text-warning"></i> Membership Status
               </h3>
-              <div class="p-3 rounded-4 text-white mb-3" style="background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);">
+              <div class="p-3 rounded-4 text-white mb-3"
+                style="background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);">
                 <div class="d-flex justify-content-between align-items-center">
                   <span class="fw-bold fs-6">Gold VIP Member</span>
                   <i class="bi bi-patch-check-fill fs-5"></i>
@@ -372,9 +349,10 @@
               </h3>
               <small class="text-muted">All past and current grocery orders with live fulfillment status</small>
             </div>
-            
+
             <div class="table-actions-group">
-              <input type="text" class="table-search-input" id="orderSearchInput" placeholder="Search orders..." onkeyup="filterOrdersTable()">
+              <input type="text" class="table-search-input" id="orderSearchInput" placeholder="Search orders..."
+                onkeyup="filterOrdersTable()">
               <button class="table-filter-btn" onclick="showDashToast('Orders filtered by date')">
                 <i class="bi bi-filter me-1"></i> Filter
               </button>
@@ -501,7 +479,7 @@
           <!-- 4-step Timeline -->
           <div class="stepper-progress-wrap">
             <div class="stepper-progress-line" style="width: 66%;"></div>
-            
+
             <div class="stepper-step completed">
               <div class="step-circle"><i class="bi bi-check-lg"></i></div>
               <span class="step-label">Order Confirmed</span>
@@ -531,7 +509,8 @@
             <div class="d-flex align-items-center gap-3">
               <i class="bi bi-pin-map-fill text-danger fs-4"></i>
               <div>
-                <strong class="d-block text-dark" style="font-size: 0.88rem;">Delivering to: 742 Evergreen Terrace, San Francisco, CA</strong>
+                <strong class="d-block text-dark" style="font-size: 0.88rem;">Delivering to: 742 Evergreen Terrace, San
+                  Francisco, CA</strong>
                 <small class="text-muted">Delivery Instructions: Leave on front porch near door.</small>
               </div>
             </div>
@@ -549,12 +528,15 @@
             </h4>
             <span class="badge bg-success bg-opacity-15 text-success fw-bold">Live GPS Ping: 5s ago</span>
           </div>
-          <div class="rounded-4 p-5 text-center text-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <div class="rounded-4 p-5 text-center text-white position-relative overflow-hidden"
+            style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <i class="bi bi-geo-alt-fill text-danger fs-1 mb-2 animate-bounce"></i>
             <h5 class="fw-bold mb-1">Van #01 is 1.2 miles away</h5>
-            <p class="text-white-50 mb-3" style="max-width: 420px; font-size: 0.88rem;">Passing Market St & 4th Ave &bull; Speed 25mph &bull; Ambient Temperature Refrigerated at 38°F</p>
+            <p class="text-white-50 mb-3" style="max-width: 420px; font-size: 0.88rem;">Passing Market St & 4th Ave
+              &bull; Speed 25mph &bull; Ambient Temperature Refrigerated at 38°F</p>
             <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-teal text-white rounded-3" onclick="showDashToast('Courier location refreshed')">
+              <button class="btn btn-sm btn-teal text-white rounded-3"
+                onclick="showDashToast('Courier location refreshed')">
                 <i class="bi bi-arrow-clockwise me-1"></i> Refresh Map
               </button>
               <button class="btn btn-sm btn-light rounded-3" onclick="showDashToast('Sent delivery note to driver')">
@@ -582,10 +564,11 @@
           </div>
 
           <div class="dash-products-grid mt-3">
-            
+
             <!-- Product 1 -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-avocados.webp" alt="Organic Hass Avocados" class="dash-prod-img" onerror="this.src='assets/images/category-vegetables.webp'">
+              <img src="assets/images/product-avocados.webp" alt="Organic Hass Avocados" class="dash-prod-img"
+                onerror="this.src='assets/images/category-vegetables.webp'">
               <h4 class="dash-prod-title">Organic Hass Avocados</h4>
               <div class="dash-prod-price">$4.99 <small class="text-muted fs-7">/ 3 pcs</small></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Hass Avocados to basket!')">
@@ -595,7 +578,8 @@
 
             <!-- Product 2 -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-strawberries.webp" alt="Fresh Organic Strawberries" class="dash-prod-img" onerror="this.src='assets/images/category-fruits.webp'">
+              <img src="assets/images/product-strawberries.webp" alt="Fresh Organic Strawberries" class="dash-prod-img"
+                onerror="this.src='assets/images/category-fruits.webp'">
               <h4 class="dash-prod-title">Fresh Strawberries</h4>
               <div class="dash-prod-price">$5.49 <small class="text-muted fs-7">/ 400g</small></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Strawberries to basket!')">
@@ -605,7 +589,8 @@
 
             <!-- Product 3 -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-almond-milk.webp" alt="Artisan Almond Milk" class="dash-prod-img" onerror="this.src='assets/images/category-dairy.webp'">
+              <img src="assets/images/product-almond-milk.webp" alt="Artisan Almond Milk" class="dash-prod-img"
+                onerror="this.src='assets/images/category-dairy.webp'">
               <h4 class="dash-prod-title">Artisan Almond Milk</h4>
               <div class="dash-prod-price">$3.89 <small class="text-muted fs-7">/ 1L</small></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Almond Milk to basket!')">
@@ -615,7 +600,8 @@
 
             <!-- Product 4 -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-honey.webp" alt="Raw Forest Honey" class="dash-prod-img" onerror="this.src='assets/images/category-bakery.webp'">
+              <img src="assets/images/product-honey.webp" alt="Raw Forest Honey" class="dash-prod-img"
+                onerror="this.src='assets/images/category-bakery.webp'">
               <h4 class="dash-prod-title">Raw Wild Honey</h4>
               <div class="dash-prod-price">$8.20 <small class="text-muted fs-7">/ 500g</small></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Raw Honey to basket!')">
@@ -649,7 +635,8 @@
                 <i class="bi bi-ticket-perforated-fill text-teal fs-2"></i>
                 <h5 class="fw-bold mt-2">$15 Off Voucher</h5>
                 <p class="text-muted small mb-3">Redeemable on orders over $50</p>
-                <button class="btn btn-sm btn-teal text-white w-100" onclick="showDashToast('Voucher FRESH15 copied to clipboard!')">Redeem for 1,000 pts</button>
+                <button class="btn btn-sm btn-teal text-white w-100"
+                  onclick="showDashToast('Voucher FRESH15 copied to clipboard!')">Redeem for 1,000 pts</button>
               </div>
             </div>
             <div class="col-md-4">
@@ -657,7 +644,8 @@
                 <i class="bi bi-truck text-success fs-2"></i>
                 <h5 class="fw-bold mt-2">Free Express Delivery</h5>
                 <p class="text-muted small mb-3">Valid for next 3 deliveries</p>
-                <button class="btn btn-sm btn-teal text-white w-100" onclick="showDashToast('Free Delivery pass applied to next 3 orders!')">Redeem for 500 pts</button>
+                <button class="btn btn-sm btn-teal text-white w-100"
+                  onclick="showDashToast('Free Delivery pass applied to next 3 orders!')">Redeem for 500 pts</button>
               </div>
             </div>
             <div class="col-md-4">
@@ -665,7 +653,8 @@
                 <i class="bi bi-basket2-fill text-warning fs-2"></i>
                 <h5 class="fw-bold mt-2">Free Organic Avocado Box</h5>
                 <p class="text-muted small mb-3">Complimentary gift box of 4</p>
-                <button class="btn btn-sm btn-teal text-white w-100" onclick="showDashToast('Gift Avocado Box added to your next delivery!')">Redeem for 750 pts</button>
+                <button class="btn btn-sm btn-teal text-white w-100"
+                  onclick="showDashToast('Gift Avocado Box added to your next delivery!')">Redeem for 750 pts</button>
               </div>
             </div>
           </div>
@@ -719,7 +708,8 @@
               </h3>
               <small class="text-muted">Manage your home, office, and family delivery destinations</small>
             </div>
-            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Add address modal opened')">+ Add New Address</button>
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Add address modal opened')">+ Add New
+              Address</button>
           </div>
 
           <div class="row g-3">
@@ -735,7 +725,8 @@
                 <p class="text-muted small mb-3">Phone: +1 (555) 234-5678</p>
                 <div class="d-flex gap-2">
                   <button class="action-btn-sm" onclick="showDashToast('Edit address form opened')">Edit</button>
-                  <button class="action-btn-sm text-danger" onclick="showDashToast('Primary address cannot be deleted')">Delete</button>
+                  <button class="action-btn-sm text-danger"
+                    onclick="showDashToast('Primary address cannot be deleted')">Delete</button>
                 </div>
               </div>
             </div>
@@ -752,7 +743,8 @@
                 <p class="text-muted small mb-3">Phone: +1 (555) 987-6543</p>
                 <div class="d-flex gap-2">
                   <button class="action-btn-sm" onclick="showDashToast('Edit address form opened')">Edit</button>
-                  <button class="action-btn-sm" onclick="showDashToast('Address set as default')">Set as Default</button>
+                  <button class="action-btn-sm" onclick="showDashToast('Address set as default')">Set as
+                    Default</button>
                 </div>
               </div>
             </div>
@@ -773,7 +765,8 @@
               </h3>
               <small class="text-muted">Securely manage your credit cards and digital wallets</small>
             </div>
-            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Add card modal opened')">+ Add Card</button>
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Add card modal opened')">+ Add
+              Card</button>
           </div>
 
           <div class="row g-3">
@@ -790,7 +783,8 @@
                 <p class="text-muted small mb-3">Cardholder Name: Sarah Jenkins</p>
                 <div class="d-flex gap-2">
                   <button class="action-btn-sm" onclick="showDashToast('Card details opened')">Manage</button>
-                  <button class="action-btn-sm text-danger" onclick="showDashToast('Cannot remove default card')">Remove</button>
+                  <button class="action-btn-sm text-danger"
+                    onclick="showDashToast('Cannot remove default card')">Remove</button>
                 </div>
               </div>
             </div>
@@ -808,7 +802,8 @@
                 <p class="text-muted small mb-3">Auto-recharge enabled for instant 1-click checkout</p>
                 <div class="d-flex gap-2">
                   <button class="action-btn-sm" onclick="showDashToast('Apple Pay settings updated')">Configure</button>
-                  <button class="action-btn-sm" onclick="showDashToast('Apple Pay set as default payment')">Make Default</button>
+                  <button class="action-btn-sm" onclick="showDashToast('Apple Pay set as default payment')">Make
+                    Default</button>
                 </div>
               </div>
             </div>
@@ -932,11 +927,11 @@
       }
 
       // Default fallback if user visited directly without login
-      const defaultEmail = 'sarah.shopper@stacklyfresh.com';
-      const defaultName = 'Sarah Jenkins';
+      const defaultEmail = 'user@stacklyfresh.com';
+      const defaultName = 'User';
 
       const email = (user && user.email) ? user.email : defaultEmail;
-      const name = (user && user.name) ? user.name : (user && user.email ? user.email.split('@')[0] : defaultName);
+      const name = (user && user.name) ? user.name : 'User';
 
       // Populate Navbar Email prominently (as explicitly requested)
       const navEmail = document.getElementById('navUserEmail');
@@ -945,15 +940,15 @@
       const dropdownEmail = document.getElementById('dropdownUserEmail');
       if (dropdownEmail) dropdownEmail.textContent = email;
 
-      // Welcome Banner
+      // Welcome Banner: Always "Welcome back, User"
       const welcome = document.getElementById('welcomeUserName');
-      if (welcome) welcome.textContent = name;
+      if (welcome) welcome.textContent = 'User';
     }
 
     // Tab switcher helper
     function switchTab(e, tabId) {
       if (e) e.preventDefault();
-      
+
       // Update active sidebar link
       document.querySelectorAll('.sidebar-link').forEach(link => {
         link.classList.remove('active');
@@ -1030,4 +1025,5 @@
   </script>
 
 </body>
+
 </html>
