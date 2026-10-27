@@ -23,11 +23,48 @@ window.StacklyComponents = {
         const component = doc.querySelector('header, footer') || doc.body.firstElementChild;
         if (component) {
           targetElement.innerHTML = component.outerHTML;
+          if (filePath.includes('navbar')) {
+            this.highlightCurrentPageNav();
+          }
         }
       }
     } catch (e) {
       console.warn(`[StacklyComponents] Note: ${filePath} loaded from inline template (${e.message}).`);
     }
+  },
+
+  highlightCurrentPageNav() {
+    let currentPage = window.location.pathname.split('/').pop().toLowerCase();
+    if (!currentPage || currentPage === '' || currentPage === '/') {
+      currentPage = 'index.html';
+    }
+    // Also decode in case of URI encoding (e.g. service%20page.html)
+    const decodedCurrent = decodeURIComponent(currentPage);
+
+    // Process all nav links in site header and mobile menu
+    const navLinks = document.querySelectorAll('.site-header .nav-text-link, .site-header .header-signup-btn, #mobileMenuDrawer .nav-link');
+    navLinks.forEach(link => {
+      const rawHref = link.getAttribute('href');
+      if (!rawHref) return;
+
+      const cleanHref = decodeURIComponent(rawHref.split('#')[0].split('?')[0]);
+      if (!cleanHref) return;
+
+      const isMatch = (
+        cleanHref === currentPage ||
+        cleanHref === decodedCurrent ||
+        (cleanHref === 'index.html' && (currentPage === '' || currentPage === 'index.html'))
+      );
+
+      if (isMatch) {
+        link.classList.add('active');
+        if (link.classList.contains('header-signup-btn')) {
+          link.classList.add('active');
+        }
+      } else {
+        link.classList.remove('active');
+      }
+    });
   }
 };
 
@@ -54,6 +91,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.StacklyAnimations && typeof window.StacklyAnimations.initCounterAnimations === 'function') {
       window.StacklyAnimations.initCounterAnimations();
     }
+  }
+
+  // Highlight active page link immediately (for pages with static or dynamic navbars)
+  if (window.StacklyComponents && typeof window.StacklyComponents.highlightCurrentPageNav === 'function') {
+    window.StacklyComponents.highlightCurrentPageNav();
   }
 
   // 2. Initialize interactive features (cart, storage, timer, search)

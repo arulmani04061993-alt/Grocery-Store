@@ -73,19 +73,6 @@
         <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img" width="145" height="43">
       </a>
 
-      <!-- Center: Wide Rounded Pill Search Bar -->
-      <div class="header-search-wrap" role="search">
-        <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
-        <input type="text" 
-               id="headerSearchInput" 
-               class="header-search-input" 
-               placeholder="Search for groceries, snacks, or drinks..." 
-               aria-label="Search for groceries, snacks, or drinks">
-        <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
-          <i class="bi bi-x-circle-fill"></i>
-        </button>
-      </div>
-
       <!-- Right Nav Actions -->
       <nav class="header-actions" aria-label="Main Navigation">
         <!-- 1. Home Link with House Icon -->
@@ -94,36 +81,53 @@
           <span>Home</span>
         </a>
 
-        <!-- 2. Categories with Indicator Dot & Dropdown -->
-        <div class="dropdown d-none d-lg-block">
-          <a href="index.html#categories-section" 
-             class="nav-text-link has-indicator dropdown-toggle" 
-             role="button" 
-             data-bs-toggle="dropdown" 
-             aria-expanded="false" 
-             aria-label="Categories">
-            <span>Categories</span>
-          </a>
-          <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2 mt-2">
-            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=fruits"><i class="bi bi-apple text-danger me-2"></i> Fresh Fruits</a></li>
-            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=vegetables"><i class="bi bi-flower1 text-success me-2"></i> Vegetables</a></li>
-            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=dairy"><i class="bi bi-cup-hot text-primary me-2"></i> Dairy &amp; Eggs</a></li>
-            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=bakery"><i class="bi bi-cake2 text-warning me-2"></i> Bakery</a></li>
-            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=meat"><i class="bi bi-egg-fried text-danger me-2"></i> Meat &amp; Fish</a></li>
-            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=snacks"><i class="bi bi-box2-heart text-info me-2"></i> Snacks</a></li>
-          </ul>
-        </div>
-
-        <!-- 3. Deals with HOT Badge -->
-        <a href="index.html#deal-of-the-day" class="nav-text-link d-none d-lg-flex" aria-label="Deals">
-          <span>Deals</span>
-          <span class="deals-hot-badge">HOT</span>
+        <!-- 2. About Us -->
+        <a href="about.html" class="nav-text-link" aria-label="About Us">
+          <i class="bi bi-info-circle"></i>
+          <span>About Us</span>
         </a>
+
+        <!-- 3. Services -->
+        <a href="service%20page.html" class="nav-text-link" aria-label="Services">
+          <i class="bi bi-gear-wide-connected"></i>
+          <span>Services</span>
+        </a>
+
+        <!-- 4. Blog -->
+        <a href="blog.html" class="nav-text-link" aria-label="Blog">
+          <i class="bi bi-journal-text"></i>
+          <span>Blog</span>
+        </a>
+
+        <!-- 5. Contact -->
+        <a href="contact.html" class="nav-text-link" aria-label="Contact">
+          <i class="bi bi-telephone"></i>
+          <span>Contact</span>
+        </a>
+
+        <!-- Right Side: Search Bar -->
+        <div class="header-search-wrap" role="search">
+          <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
+          <input type="text" 
+                 id="headerSearchInput" 
+                 class="header-search-input" 
+                 placeholder="Search groceries..." 
+                 aria-label="Search for groceries, snacks, or drinks">
+          <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+            <i class="bi bi-x-circle-fill"></i>
+          </button>
+        </div>
 
         <!-- 4. Account with User Circle Icon (Active on login.html) -->
         <a href="login.html" class="nav-text-link header-account-link active" style="color: var(--primary-teal);" aria-label="Open User Account & Login">
           <i class="bi bi-person-circle text-teal" style="color: var(--primary-teal);"></i>
           <span>Account</span>
+        </a>
+
+        <!-- Sign Up Button -->
+        <a href="signup.html" class="header-signup-btn d-none d-sm-inline-flex" aria-label="Sign Up">
+          <i class="bi bi-person-plus-fill"></i>
+          <span>Sign Up</span>
         </a>
 
         <!-- 5. Cart Button with Teal Badge Count -->
@@ -720,14 +724,15 @@
         </div>
       </div>
 
-      <h6 class="text-uppercase text-teal fw-bold small mb-3" style="color: var(--primary-teal);">Navigation</h6>
+      <h6 class="text-uppercase text-teal fw-bold small mb-3">Navigation</h6>
       <ul class="nav flex-column gap-2 mb-4">
         <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html"><i class="bi bi-house me-2"></i> Home</a></li>
-        <li class="nav-item"><a class="nav-link text-teal fw-semibold" href="login.html" style="color: var(--primary-teal);"><i class="bi bi-person-circle me-2"></i> Account / Sign In</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#featured-products"><i class="bi bi-grid me-2"></i> Featured Products</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#deal-of-the-day"><i class="bi bi-stopwatch text-warning me-2"></i> Deal of the Day</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#why-shop-with-us"><i class="bi bi-shield-check text-success me-2"></i> Why Shop With Us</a></li>
-        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#testimonials"><i class="bi bi-chat-quote me-2"></i> Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="about.html"><i class="bi bi-info-circle me-2"></i> About Us</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="service%20page.html"><i class="bi bi-gear-wide-connected me-2"></i> Services</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="blog.html"><i class="bi bi-journal-text me-2"></i> Blog</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="contact.html"><i class="bi bi-telephone me-2"></i> Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="login.html"><i class="bi bi-person-circle me-2"></i> Account / Sign In</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="signup.html"><i class="bi bi-person-plus me-2"></i> Sign Up</a></li>
       </ul>
     </div>
   </div>
