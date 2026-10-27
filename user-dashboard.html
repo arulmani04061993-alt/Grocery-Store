@@ -145,6 +145,12 @@
       <!-- Right: User Email Shown Prominently -->
       <div class="topbar-right">
 
+        <!-- WELCOME GREETING IN NAVBAR -->
+        <div class="nav-welcome-pill" id="navWelcomeGreetingWrapper">
+          <i class="bi bi-hand-thumbs-up-fill text-warning"></i>
+          <span class="nav-welcome-text">Welcome back, <strong id="topbarUserName">User</strong>!</span>
+        </div>
+
         <!-- USER EMAIL DISPLAYED PROMINENTLY ON NAVBAR RIGHT -->
         <div class="nav-email-pill">
           <span class="nav-email-icon user-icon"><i class="bi bi-person-fill"></i></span>
@@ -159,32 +165,18 @@
     <!-- Main Content Area -->
     <main class="dash-content">
 
+      <!-- MOBILE WELCOME BANNER (Shown at the very top of Dashboard Body on Mobile View) -->
+      <div class="mobile-body-welcome" id="mobileBodyWelcome">
+        <div class="mobile-welcome-pill">
+          <i class="bi bi-hand-thumbs-up-fill text-warning"></i>
+          <span>Welcome back, <strong id="mobileWelcomeUserName">User</strong>!</span>
+        </div>
+      </div>
+
       <!-- ====================================================================
            TAB PANE 1: OVERVIEW (Default Active)
            ==================================================================== -->
       <div class="dash-tab-pane active" id="overview-pane">
-        <!-- 1. Welcome Hero Banner -->
-        <section class="dash-hero-card" aria-label="Welcome User">
-          <div class="dash-hero-badge">
-            <i class="bi bi-shield-check text-warning"></i>
-            <span>100% Organic & Farm Fresh Guarantee</span>
-          </div>
-          <h2 class="dash-hero-title">
-            Welcome back, <span id="welcomeUserName">User</span>! 🌿
-          </h2>
-          <p class="dash-hero-subtitle">
-            Your active delivery is on its way. Track your courier in real time, view order history, or reorder weekly
-            farm staples in one click.
-          </p>
-          <div class="dash-hero-actions">
-            <a href="#orders" class="btn-hero-primary" onclick="switchTab(event, 'orders')">
-              <i class="bi bi-bag-check-fill"></i> View My Orders
-            </a>
-            <a href="index.html" class="btn-hero-glass">
-              <i class="bi bi-basket2-fill"></i> Continue Shopping
-            </a>
-          </div>
-        </section>
 
         <!-- 2. KPI Stat Cards Grid (Static Data) -->
         <section class="dash-kpi-grid" aria-label="Account Summary Metrics">
@@ -967,9 +959,67 @@
       const dropdownEmail = document.getElementById('dropdownUserEmail');
       if (dropdownEmail) dropdownEmail.textContent = email;
 
-      // Welcome Banner: Always "Welcome back, User"
+      // Check if user logged in with a registered email from signup or has registered name
+      let isRegistered = false;
+      let registeredName = '';
+
+      if (user && user.email) {
+        const cleanEmail = user.email.trim().toLowerCase();
+        try {
+          const dbStr = localStorage.getItem('stackly_users_db');
+          if (dbStr) {
+            const db = JSON.parse(dbStr);
+            if (db && db[cleanEmail]) {
+              isRegistered = true;
+              registeredName = db[cleanEmail].name;
+            }
+          }
+          if (!isRegistered) {
+            const single = localStorage.getItem('stackly_registered_user');
+            if (single) {
+              const parsed = JSON.parse(single);
+              if (parsed && parsed.email && parsed.email.trim().toLowerCase() === cleanEmail) {
+                isRegistered = true;
+                registeredName = parsed.name;
+              }
+            }
+          }
+        } catch (e) {}
+      }
+
+      // Priority determination for displayed Name:
+      // 1. If registered match in db/single -> registeredName
+      // 2. If user.isRegisteredMatch is true and user.name exists -> user.name
+      // 3. If user.name exists and is NOT a default role placeholder ('User', 'Admin', 'Customer') -> user.name
+      // 4. Otherwise -> default to "User"
+      let finalName = 'User';
+      if (isRegistered && registeredName) {
+        finalName = registeredName;
+      } else if (user && user.isRegisteredMatch && user.name) {
+        finalName = user.name;
+      } else if (user && user.name && user.name !== 'User' && user.name !== 'Admin' && user.name !== 'Customer') {
+        finalName = user.name;
+      } else {
+        finalName = 'User';
+      }
+
+      // Update Hero Banner Greeting
       const welcome = document.getElementById('welcomeUserName');
-      if (welcome) welcome.textContent = 'User';
+      if (welcome) {
+        welcome.textContent = finalName;
+      }
+
+      // Update Topbar Greeting
+      const topbarName = document.getElementById('topbarUserName');
+      if (topbarName) {
+        topbarName.textContent = finalName;
+      }
+
+      // Update Mobile Body Topbar Greeting
+      const mobileBodyName = document.getElementById('mobileWelcomeUserName');
+      if (mobileBodyName) {
+        mobileBodyName.textContent = finalName;
+      }
     }
 
     // Tab switcher helper

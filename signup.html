@@ -192,7 +192,7 @@
                 <input type="text" 
                        id="signupName" 
                        class="mockup-input" 
-                       placeholder="name@example.com" 
+                       placeholder="John Doe" 
                        required 
                        autocomplete="name">
               </div>
@@ -826,20 +826,33 @@
 
       setTimeout(() => {
         const isAdmin = (role === 'admin');
-        const targetDashboard = isAdmin ? 'admin-dashboard.html' : 'user-dashboard.html';
+
+        // Store user in registered users list and record as last registered user
+        let registeredUsers = {};
+        try {
+          const existing = localStorage.getItem('stackly_users_db');
+          if (existing) registeredUsers = JSON.parse(existing);
+        } catch (err) {}
 
         const userData = {
           name: name,
-          email: email,
+          email: email.toLowerCase(),
           role: isAdmin ? 'admin' : 'user',
-          loginTime: new Date().toISOString()
+          registeredPassword: password,
+          registeredAt: new Date().toISOString()
         };
-        localStorage.setItem('stackly_current_user', JSON.stringify(userData));
 
-        showToast(`🎉 Account created for ${name}! Welcome to STACKLY!`, 'success');
+        // Key by lowercased email for exact match
+        registeredUsers[email.toLowerCase()] = userData;
+        localStorage.setItem('stackly_users_db', JSON.stringify(registeredUsers));
+        localStorage.setItem('stackly_registered_user', JSON.stringify(userData));
 
+        showToast(`🎉 Registration successful for ${name}! Redirecting to Login page...`, 'success');
+
+        // Automatically move to login page
         setTimeout(() => {
-          window.location.href = targetDashboard;
+          const redirectUrl = `login.html?registered=true&email=${encodeURIComponent(email)}&role=${encodeURIComponent(isAdmin ? 'admin' : 'customer')}`;
+          window.location.href = redirectUrl;
         }, 800);
       }, 600);
     }

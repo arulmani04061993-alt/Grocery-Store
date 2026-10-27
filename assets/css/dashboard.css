@@ -516,6 +516,65 @@ body.dashboard-body {
   box-shadow: 0 2px 10px rgba(20, 184, 166, 0.15);
 }
 
+/* Nav Welcome Pill */
+.nav-welcome-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  background: rgba(20, 184, 166, 0.08);
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  border-radius: 9999px;
+  font-size: 0.84rem;
+  color: var(--dash-dark-teal);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-welcome-pill.admin-welcome {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #92400E;
+}
+
+.nav-welcome-pill strong {
+  color: #0F172A;
+  font-weight: 700;
+}
+
+/* Mobile Body Welcome Banner (Top of Dashboard Content) */
+.mobile-body-welcome {
+  display: none; /* Hidden by default on desktop view */
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.mobile-welcome-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.15rem;
+  background: #E6FFFA;
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  border-radius: 9999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--dash-dark-teal);
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.12);
+}
+
+.mobile-welcome-pill.admin-welcome {
+  background: #FFFBEB;
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #92400E;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+}
+
+.mobile-welcome-pill strong {
+  color: #0F172A;
+  font-weight: 700;
+}
+
 .nav-email-avatar {
   width: 28px;
   height: 28px;
@@ -1534,6 +1593,17 @@ body.dashboard-body {
   /* Hide role badge in mobile view so email is front and center */
   .nav-role-badge {
     display: none !important;
+  }
+
+  /* On mobile view, hide the cramped pill in topbar and show it prominently in dashboard body top */
+  .topbar-right .nav-welcome-pill {
+    display: none !important;
+  }
+
+  .mobile-body-welcome {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
   }
 }
 

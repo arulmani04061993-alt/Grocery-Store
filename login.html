@@ -817,21 +817,53 @@
         // Strictly determine destination based on chosen role
         const isAdmin = (role === 'admin');
         const targetDashboard = isAdmin ? 'admin-dashboard.html' : 'user-dashboard.html';
-        const displayName = isAdmin ? 'Store Administrator' : (email.split('@')[0] || 'Valued Customer');
+
+        // Check if entered email matches any registered account in stackly_users_db
+        let registeredUser = null;
+        const cleanEmail = email ? email.trim().toLowerCase() : '';
+        try {
+          const dbStr = localStorage.getItem('stackly_users_db');
+          if (dbStr) {
+            const db = JSON.parse(dbStr);
+            if (db && db[cleanEmail]) {
+              registeredUser = db[cleanEmail];
+            }
+          }
+          // Also check single stackly_registered_user fallback
+          if (!registeredUser) {
+            const single = localStorage.getItem('stackly_registered_user');
+            if (single) {
+              const parsed = JSON.parse(single);
+              if (parsed && parsed.email && parsed.email.trim().toLowerCase() === cleanEmail) {
+                registeredUser = parsed;
+              }
+            }
+          }
+        } catch (err) {}
+
+        // If same email as registered in signup: show registered Name
+        // If different email: fallback strictly to "Admin" (for admin) and "User" (for user dashboard)
+        let displayName;
+        let isRegisteredMatch = false;
+
+        if (registeredUser && registeredUser.name) {
+          displayName = registeredUser.name;
+          isRegisteredMatch = true;
+        } else {
+          displayName = isAdmin ? 'Admin' : 'User';
+          isRegisteredMatch = false;
+        }
 
         const userData = {
           name: displayName,
+          isRegisteredMatch: isRegisteredMatch,
           email: email,
           role: isAdmin ? 'admin' : 'user',
           loginTime: new Date().toISOString()
         };
         localStorage.setItem('stackly_current_user', JSON.stringify(userData));
 
-        if (isAdmin) {
-          showToast('🛡️ Welcome Admin! Redirecting to Admin Dashboard...', 'success');
-        } else {
-          showToast(`🎉 Welcome back, ${displayName}! Redirecting to User Dashboard...`, 'success');
-        }
+        showToast(`🎉 Welcome back, ${displayName}! Redirecting to Dashboard...`, 'success');
 
         setTimeout(() => {
           window.location.href = targetDashboard;
@@ -904,6 +936,44 @@
         input.value = '';
       }
     }
+
+    // Auto-prefill if redirected from Signup page
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('registered') === 'true') {
+        const registeredEmail = urlParams.get('email');
+        const role = urlParams.get('role');
+
+        if (registeredEmail) {
+          const emailInput = document.getElementById('loginEmail');
+          if (emailInput) {
+            emailInput.value = registeredEmail;
+            emailInput.focus();
+          }
+        }
+
+        if (role) {
+          const roleSelect = document.getElementById('roleSelect');
+          if (roleSelect) {
+            roleSelect.value = (role === 'admin') ? 'admin' : 'customer';
+            handleRoleChange();
+          }
+        }
+
+        const registeredData = localStorage.getItem('stackly_registered_user');
+        if (registeredData) {
+          try {
+            const parsed = JSON.parse(registeredData);
+            if (parsed.registeredPassword) {
+              const passInput = document.getElementById('loginPassword');
+              if (passInput) passInput.value = parsed.registeredPassword;
+            }
+          } catch (err) {}
+        }
+
+        showToast('🎉 Account registered successfully! Please sign in.', 'success');
+      }
+    });
   </script>
 </body>
 </html>

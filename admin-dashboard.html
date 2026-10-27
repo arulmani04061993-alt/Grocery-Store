@@ -146,9 +146,15 @@
       <!-- Right: Admin Email Shown Prominently -->
       <div class="topbar-right">
 
+        <!-- WELCOME GREETING IN NAVBAR -->
+        <div class="nav-welcome-pill admin-welcome" id="navAdminWelcomeGreetingWrapper">
+          <i class="bi bi-shield-check text-warning"></i>
+          <span class="nav-welcome-text">Welcome back, <strong id="topbarAdminName">Admin</strong>!</span>
+        </div>
+
         <!-- Live System Operational Pill -->
         <div
-          class="d-none d-md-flex align-items-center gap-2 px-3 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded-pill text-success fw-bold"
+          class="d-none d-xl-flex align-items-center gap-2 px-3 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded-pill text-success fw-bold"
           style="font-size: 0.78rem;">
           <span class="spinner-grow spinner-grow-sm text-success" style="width: 8px; height: 8px;"></span>
           <span>Store Live &bull; Orders Syncing</span>
@@ -168,37 +174,18 @@
     <!-- Main Content Area -->
     <main class="dash-content">
 
+      <!-- MOBILE WELCOME BANNER (Shown at the very top of Dashboard Body on Mobile View) -->
+      <div class="mobile-body-welcome" id="mobileBodyAdminWelcome">
+        <div class="mobile-welcome-pill admin-welcome">
+          <i class="bi bi-shield-check text-warning"></i>
+          <span>Welcome back, <strong id="mobileWelcomeAdminName">Admin</strong>!</span>
+        </div>
+      </div>
+
       <!-- ====================================================================
            TAB PANE 1: OVERVIEW (Default Active)
            ==================================================================== -->
       <div class="dash-tab-pane active" id="overview-pane">
-        <!-- 1. Executive Welcome Hero Banner -->
-        <section class="dash-hero-card admin-hero" aria-label="Admin Executive Summary">
-          <div class="dash-hero-badge">
-            <i class="bi bi-shield-shaded text-warning"></i>
-            <span>STACKLY SuperAdmin Portal &bull; Store Hub #04</span>
-          </div>
-          <h2 class="dash-hero-title">
-            Welcome back, <span id="welcomeAdminName">Admin</span>! 🛡️
-          </h2>
-          <p class="dash-hero-subtitle">
-            Real-time grocery logistics, store revenues, active couriers, and stock replenishment console. Today's
-            fulfillment rate is running at <strong>91.4%</strong>.
-          </p>
-          <div class="dash-hero-actions">
-            <button type="button" class="btn-hero-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
-              <i class="bi bi-plus-circle-fill"></i> Add New Product
-            </button>
-            <button type="button" class="btn-hero-glass"
-              onclick="showDashToast('Daily financial report generated & downloaded!')">
-              <i class="bi bi-download"></i> Export Sales CSV
-            </button>
-            <button type="button" class="btn-hero-glass"
-              onclick="showDashToast('Courier dispatch route optimized for 14 vans!')">
-              <i class="bi bi-lightning-charge-fill text-warning"></i> Auto-Dispatch Vans
-            </button>
-          </div>
-        </section>
 
         <!-- 2. KPI Executive Stat Cards Grid (Static Data) -->
         <section class="dash-kpi-grid" aria-label="Store KPI Metrics">
@@ -1129,9 +1116,67 @@
       const dropdownEmail = document.getElementById('dropdownAdminEmail');
       if (dropdownEmail) dropdownEmail.textContent = email;
 
-      // Welcome Banner: Always "Welcome back, Admin"
+      // Check if admin logged in with a registered email from signup or has registered name
+      let isRegistered = false;
+      let registeredName = '';
+
+      if (user && user.email) {
+        const cleanEmail = user.email.trim().toLowerCase();
+        try {
+          const dbStr = localStorage.getItem('stackly_users_db');
+          if (dbStr) {
+            const db = JSON.parse(dbStr);
+            if (db && db[cleanEmail]) {
+              isRegistered = true;
+              registeredName = db[cleanEmail].name;
+            }
+          }
+          if (!isRegistered) {
+            const single = localStorage.getItem('stackly_registered_user');
+            if (single) {
+              const parsed = JSON.parse(single);
+              if (parsed && parsed.email && parsed.email.trim().toLowerCase() === cleanEmail) {
+                isRegistered = true;
+                registeredName = parsed.name;
+              }
+            }
+          }
+        } catch (e) {}
+      }
+
+      // Priority determination for displayed Name:
+      // 1. If registered match in db/single -> registeredName
+      // 2. If user.isRegisteredMatch is true and user.name exists -> user.name
+      // 3. If user.name exists and is NOT a default role placeholder ('Admin', 'User', 'Customer') -> user.name
+      // 4. Otherwise -> default to "Admin"
+      let finalName = 'Admin';
+      if (isRegistered && registeredName) {
+        finalName = registeredName;
+      } else if (user && user.isRegisteredMatch && user.name) {
+        finalName = user.name;
+      } else if (user && user.name && user.name !== 'Admin' && user.name !== 'User' && user.name !== 'Customer') {
+        finalName = user.name;
+      } else {
+        finalName = 'Admin';
+      }
+
+      // Update Hero Banner Greeting
       const welcome = document.getElementById('welcomeAdminName');
-      if (welcome) welcome.textContent = 'Admin';
+      if (welcome) {
+        welcome.textContent = finalName;
+      }
+
+      // Update Topbar Greeting
+      const topbarName = document.getElementById('topbarAdminName');
+      if (topbarName) {
+        topbarName.textContent = finalName;
+      }
+
+      // Update Mobile Body Topbar Greeting
+      const mobileBodyName = document.getElementById('mobileWelcomeAdminName');
+      if (mobileBodyName) {
+        mobileBodyName.textContent = finalName;
+      }
     }
 
     // Tab switcher helper
