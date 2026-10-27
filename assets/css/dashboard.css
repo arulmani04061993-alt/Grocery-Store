@@ -433,28 +433,31 @@ body.dashboard-body {
   min-width: 0;
   max-width: 100%;
   width: 100%;
-  overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   transition: margin-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Top Navbar */
+/* Top Navbar — Solid Fixed Header */
 .dash-topbar {
   height: var(--navbar-height);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: var(--sidebar-width);
+  right: 0;
   z-index: 1030;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--dash-border);
   padding: 0 1.75rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  box-shadow: 0 1px 10px rgba(15, 23, 42, 0.04);
+  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .topbar-left {
@@ -607,7 +610,7 @@ body.dashboard-body {
    DASHBOARD CONTENT SECTIONS
    ========================================================================== */
 .dash-content {
-  padding: 1.75rem;
+  padding: calc(var(--navbar-height) + 1.75rem) 1.75rem 2rem;
   flex: 1;
   max-width: 100%;
   width: 100%;
@@ -1492,6 +1495,9 @@ body.dashboard-body {
   }
 
   .dash-topbar {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
     padding: 0 1rem;
     gap: 0.75rem;
   }
@@ -1554,7 +1560,7 @@ body.dashboard-body {
   }
 
   .dash-content {
-    padding: 0.85rem;
+    padding: calc(var(--navbar-height) + 1rem) 0.85rem 1.5rem;
     max-width: 100vw;
     box-sizing: border-box;
     overflow-x: hidden;

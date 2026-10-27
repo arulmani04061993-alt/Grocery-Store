@@ -721,7 +721,7 @@ html, body {
     gap: 0.5rem;
   }
   .dash-content {
-    padding: 1rem 0.75rem;
+    padding: calc(64px + 1rem) 0.75rem 1.5rem;
   }
   .dash-hero-title {
     font-size: 1.25rem;
