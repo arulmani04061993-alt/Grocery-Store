@@ -17,7 +17,7 @@
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
   <!-- AOS CSS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
@@ -177,8 +177,8 @@
                 </div>
                 <div class="position-relative">
                   <select id="signupRole" class="mockup-input pe-4" onchange="handleSignupRoleChange(this.value)" style="cursor: pointer; appearance: none; -webkit-appearance: none; font-weight: 600;">
-                    <option value="user" selected>👤 User (Customer / Shopper)</option>
-                    <option value="admin">🛡️ Admin (Store Manager / Executive)</option>
+                    <option value="user" selected>User (Customer / Shopper)</option>
+                    <option value="admin">Admin (Store Manager / Executive)</option>
                   </select>
                   <i class="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-muted pointer-events-none" style="pointer-events: none;"></i>
                 </div>
@@ -847,7 +847,7 @@
         localStorage.setItem('stackly_users_db', JSON.stringify(registeredUsers));
         localStorage.setItem('stackly_registered_user', JSON.stringify(userData));
 
-        showToast(`🎉 Registration successful for ${name}! Redirecting to Login page...`, 'success');
+        showToast(`Registration successful for ${name}! Redirecting to Login page...`, 'success');
 
         // Automatically move to login page
         setTimeout(() => {
@@ -880,7 +880,7 @@
       e.preventDefault();
       const email = prompt('Enter your registered email address to receive password reset instructions:');
       if (email) {
-        showToast(`📬 Password reset link sent to ${email}`, 'success');
+        showToast(`Password reset link sent to ${email}`, 'success');
       }
     }
 
@@ -888,7 +888,7 @@
     function handleSocialSignup(provider) {
       showToast(`Connecting to ${provider} Secure OAuth...`, 'success');
       setTimeout(() => {
-        showToast(`✅ ${provider} authorization successful! Redirecting...`, 'success');
+        showToast(`${provider} authorization successful! Redirecting...`, 'success');
         setTimeout(() => {
           const userData = {
             name: `${provider} Shopper`,
@@ -907,7 +907,7 @@
       e.preventDefault();
       const input = document.getElementById('newsletterEmailInput');
       if (input && input.value) {
-        showToast(`🎉 Thank you for subscribing! Your $10 coupon has been sent to ${input.value}`, 'success');
+        showToast(`Thank you for subscribing! Your $10 coupon has been sent to ${input.value}`, 'success');
         input.value = '';
       }
     }

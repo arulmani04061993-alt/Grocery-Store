@@ -17,7 +17,7 @@
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
   <!-- AOS CSS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
@@ -178,8 +178,8 @@
                 </div>
                 <div class="position-relative">
                   <select id="roleSelect" class="mockup-input pe-4" onchange="handleRoleSelectChange(this.value)" style="cursor: pointer; appearance: none; -webkit-appearance: none; font-weight: 600;">
-                    <option value="user" selected>👤 User (Customer / Shopper)</option>
-                    <option value="admin">🛡️ Admin (Store Manager / Executive)</option>
+                    <option value="user" selected>User (Customer / Shopper)</option>
+                    <option value="admin">Admin (Store Manager / Executive)</option>
                   </select>
                   <i class="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-muted pointer-events-none" style="pointer-events: none;"></i>
                 </div>
@@ -763,13 +763,13 @@
         handleRoleSelectChange('admin');
         emailInput.value = 'admin@stacklyfresh.com';
         passInput.value = 'AdminPass2026!';
-        showToast('🛡️ Admin credentials populated! Sign in to open Admin Dashboard.', 'success');
+        showToast('Admin credentials populated! Sign in to open Admin Dashboard.', 'success');
       } else {
         if (roleSelect) roleSelect.value = 'user';
         handleRoleSelectChange('user');
         emailInput.value = 'user@stacklyfresh.com';
         passInput.value = 'Welcome2026!';
-        showToast('👤 Customer credentials populated! Sign in to open User Dashboard.', 'success');
+        showToast('Customer credentials populated! Sign in to open User Dashboard.', 'success');
       }
     }
 
@@ -863,7 +863,7 @@
         };
         localStorage.setItem('stackly_current_user', JSON.stringify(userData));
 
-        showToast(`🎉 Welcome back, ${displayName}! Redirecting to Dashboard...`, 'success');
+        showToast(`Welcome back, ${displayName}! Redirecting to Dashboard...`, 'success');
 
         setTimeout(() => {
           window.location.href = targetDashboard;
@@ -894,7 +894,7 @@
       e.preventDefault();
       const email = prompt('Enter your registered email address to receive password reset instructions:', 'user@stacklyfresh.com');
       if (email) {
-        showToast(`📬 Password reset link sent to ${email}`, 'success');
+        showToast(`Password reset link sent to ${email}`, 'success');
       }
     }
 
@@ -902,7 +902,7 @@
     function handleSocialLogin(provider) {
       showToast(`Connecting to ${provider} Secure OAuth...`, 'success');
       setTimeout(() => {
-        showToast(`✅ ${provider} authorization successful! Redirecting to User Dashboard...`, 'success');
+        showToast(`${provider} authorization successful! Redirecting to User Dashboard...`, 'success');
         setTimeout(() => {
           const userData = {
             name: `${provider} Shopper`,
@@ -921,7 +921,7 @@
       e.preventDefault();
       const newEmail = prompt('Create your free FreshCart account. Enter your email:');
       if (newEmail) {
-        showToast(`🎉 Account created for ${newEmail}! Welcome to FreshCart!`, 'success');
+        showToast(`Account created for ${newEmail}! Welcome to FreshCart!`, 'success');
         document.getElementById('loginEmail').value = newEmail;
         document.getElementById('loginPassword').value = 'Welcome2026!';
       }
@@ -932,7 +932,7 @@
       e.preventDefault();
       const input = document.getElementById('newsletterEmailInput');
       if (input && input.value) {
-        showToast(`🎉 Thank you for subscribing! Your $10 coupon has been sent to ${input.value}`, 'success');
+        showToast(`Thank you for subscribing! Your $10 coupon has been sent to ${input.value}`, 'success');
         input.value = '';
       }
     }
@@ -971,7 +971,7 @@
           } catch (err) {}
         }
 
-        showToast('🎉 Account registered successfully! Please sign in.', 'success');
+        showToast('Account registered successfully! Please sign in.', 'success');
       }
     });
   </script>
