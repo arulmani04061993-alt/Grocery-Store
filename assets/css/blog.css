@@ -447,17 +447,27 @@
   text-decoration: underline;
 }
 
-/* 4. Right Sidebar Components */
+/* Ensure body overflow does not break position sticky */
+html, body {
+  overflow-x: clip;
+}
+
+/* 4. Right Sidebar Components — Desktop Layout */
 .blog-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
+  gap: 1.5rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 85px;
+  align-self: flex-start;
+  z-index: 10;
 }
 
 .sidebar-widget-card {
   background: #FFFFFF;
   border-radius: 20px;
-  padding: 1.65rem;
+  padding: 1.35rem 1.45rem;
   border: 1px solid #F1F5F9;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
 }
@@ -625,6 +635,11 @@
   .blog-main-layout {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+  .blog-sidebar {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
   }
   .blog-featured-content {
     padding: 2.25rem;
