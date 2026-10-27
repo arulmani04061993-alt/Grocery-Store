@@ -600,15 +600,20 @@ window.StacklyInteractions = {
       return;
     }
 
-    // Success response with demo coupon
+    // Success response matching the mockup pill design
     msgBox.innerHTML = `
-      <div class="alert alert-success border-0 rounded-4 mt-3 py-3 px-4 shadow-sm" style="background: rgba(255, 255, 255, 0.95); color: #0F5132;">
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        <strong>Welcome to the family!</strong> Your 20% discount code is <strong class="badge bg-dark text-warning fs-6">FRESH20</strong>. Check your inbox for seasonal specials!
+      <div class="alert border-0 rounded-4 mt-3 py-3 px-4 shadow-sm text-center d-inline-block animate__animated animate__fadeInUp" style="background: rgba(255, 255, 255, 0.95); color: #0F5132; max-width: 600px;">
+        <i class="bi bi-check-circle-fill text-success me-2 fs-5 align-middle"></i>
+        <strong style="color: #044E45;">Welcome to the family!</strong> Your 20% discount code is <strong class="badge bg-dark text-warning fs-6 px-2 py-1 mx-1" style="letter-spacing: 0.5px;">FRESH20</strong>. Check your inbox for seasonal specials!
       </div>
     `;
     emailInput.value = '';
     this.playChime(750);
+
+    // Redirect to 404 page after brief display
+    setTimeout(() => {
+      window.location.href = '404.html';
+    }, 1500);
   },
 
   /* ==========================================================================
