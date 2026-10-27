@@ -1409,12 +1409,82 @@ body.dashboard-body {
    ========================================================================== */
 @media (max-width: 991.98px) {
   .dash-sidebar {
+    width: 285px;
+    max-width: 84vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1060;
     transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .dash-sidebar.mobile-open {
     transform: translateX(0);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 70px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Close button inside sidebar header for mobile */
+  .sidebar-close-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #F1F5F9;
+    border: none;
+    color: #475569;
+    font-size: 1.15rem;
+    cursor: pointer;
+    margin-left: auto;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-close-btn:hover {
+    background: #EF4444;
+    color: #FFFFFF;
+  }
+
+  /* Backdrop Overlay: Hides and dims background, locks background interactions */
+  .dash-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .dash-sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+
+  /* When mobile sidebar is open, bulletproof lock html and body from scrolling */
+  html.sidebar-locked,
+  body.sidebar-locked {
+    overflow: hidden !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    position: fixed !important;
+    width: 100% !important;
+    touch-action: none !important;
+    -webkit-overflow-scrolling: auto !important;
+  }
+
+  body.sidebar-locked .dash-main-layout {
+    pointer-events: none !important;
+    user-select: none !important;
   }
 
   .dash-main-layout {
