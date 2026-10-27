@@ -174,12 +174,9 @@ window.StacklyAnimations = {
   },
 
   /**
-   * Continuous Scroll Tracking to preserve exact user location
+   * Continuous Scroll Tracking to preserve exact user location (across all pages)
    */
   initScrollTracking() {
-    const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/') || window.location.pathname === '';
-    if (!isIndex) return;
-
     window.addEventListener('scroll', () => {
       if (!this._isRestoringScroll) {
         const y = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
@@ -206,12 +203,9 @@ window.StacklyAnimations = {
   },
 
   /**
-   * Restore exact scroll position and section when returning from 404 or other pages
+   * Restore exact scroll position and section when returning from 404 or other pages (across all pages)
    */
   restoreSavedScrollPosition() {
-    const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/') || window.location.pathname === '';
-    if (!isIndex) return;
-
     try {
       // If user navigated to Home (e.g. via GO TO HOME), explicitly scroll to top and clear scroll cache
       if (sessionStorage.getItem('stackly_scroll_to_top') === 'true') {
@@ -237,24 +231,21 @@ window.StacklyAnimations = {
       this._isRestoringScroll = true;
 
       const performScroll = () => {
-        // Priority 1: target anchor/section element (e.g. #newsletter, #featured-products)
+        // Priority 1: target anchor/section element (e.g. #newsletter, #featured-products, #curated-bundles, #siteFooter, etc.)
         if (savedAnchor) {
           const targetEl = document.querySelector(savedAnchor);
           if (targetEl) {
             targetEl.scrollIntoView({ behavior: 'instant', block: 'center' });
-            // Ensure target and all internal animated children (heading, words, desc, form, button) are 100% visible
-            const panel = targetEl.querySelector('.newsletter-panel') || targetEl;
-            if (panel) {
-              panel.style.opacity = '1';
-              panel.style.transform = 'none';
-              panel.style.visibility = 'visible';
+            // Ensure target section and all internal animated children are 100% visible
+            targetEl.style.opacity = '1';
+            targetEl.style.transform = 'none';
+            targetEl.style.visibility = 'visible';
 
-              panel.querySelectorAll('.newsletter-heading, .newsletter-desc, .newsletter-form-wrap, .gsap-text-word, form, input, button').forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-                el.style.visibility = 'visible';
-              });
-            }
+            targetEl.querySelectorAll('.newsletter-panel, .newsletter-heading, .newsletter-desc, .newsletter-form-wrap, .gsap-text-word, form, input, button, .product-card, .bundle-card, .story-team-card, .story-team-social, .story-value-card, .footer-col-brand, .footer-col-links, .footer-col-contact').forEach(el => {
+              el.style.opacity = '1';
+              el.style.transform = 'none';
+              el.style.visibility = 'visible';
+            });
             return;
           }
         }
