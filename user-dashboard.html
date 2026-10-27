@@ -466,19 +466,22 @@
           <div class="tracker-header">
             <div>
               <h3 class="tracker-title">
-                <i class="bi bi-geo-alt-fill text-teal"></i>
-                <span>Live Delivery Tracking: Order #STK-9021</span>
+                <span class="live-tracking-pulse-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                <span class="live-tracking-order-txt">Live Delivery Tracking: <span class="order-id-highlight">Order #STK-9021</span></span>
+                <span class="live-pulse-dot" title="Live GPS Tracking Active"></span>
               </h3>
-              <small class="text-muted">Estimated Delivery: Today at 2:15 PM &bull; Driver: David K. (4.9 ★)</small>
+              <small class="text-muted"><i class="bi bi-clock-history me-1"></i>Estimated Delivery: <strong>Today at 2:15 PM</strong> &bull; Driver: David K. (4.9 ★)</small>
             </div>
-            <span class="tracker-badge">
-              <i class="bi bi-broadcast me-1"></i> Out for Delivery
+            <span class="tracker-badge live-out-for-delivery">
+              <i class="bi bi-broadcast me-1 live-broadcast-icon"></i> Out for Delivery
             </span>
           </div>
 
-          <!-- 4-step Timeline -->
-          <div class="stepper-progress-wrap">
-            <div class="stepper-progress-line" style="width: 66%;"></div>
+          <!-- 4-step Timeline with Animated Delivery Van -->
+          <div class="stepper-progress-wrap animated-tracker-progress">
+            <div class="stepper-progress-line animated-progress-bar" style="width: 66%;">
+              <span class="animated-van-marker"><i class="bi bi-truck"></i></span>
+            </div>
 
             <div class="stepper-step completed">
               <div class="step-circle"><i class="bi bi-check-lg"></i></div>
@@ -492,7 +495,7 @@
               <span class="step-subtext">1:30 PM</span>
             </div>
 
-            <div class="stepper-step active">
+            <div class="stepper-step active current-in-motion">
               <div class="step-circle"><i class="bi bi-truck"></i></div>
               <span class="step-label">On Delivery Van</span>
               <span class="step-subtext">Arriving in 14 mins</span>
@@ -520,28 +523,44 @@
           </div>
         </section>
 
-        <!-- Driver Map Mock Card -->
+        <!-- Driver Map Card with Real Live Interactive Map -->
         <div class="dash-table-card p-4 mt-3">
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h4 class="fw-bold fs-6 mb-0 text-dark">
               <i class="bi bi-compass-fill text-teal me-2"></i> Live Courier GPS Map
             </h4>
-            <span class="badge bg-success bg-opacity-15 text-success fw-bold">Live GPS Ping: 5s ago</span>
+            <span class="gps-ping-badge">
+              <span class="gps-ping-dot"></span>
+              <span>Live GPS Ping: 5s ago</span>
+            </span>
           </div>
-          <div class="rounded-4 p-5 text-center text-white position-relative overflow-hidden"
-            style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <i class="bi bi-geo-alt-fill text-danger fs-1 mb-2 animate-bounce"></i>
-            <h5 class="fw-bold mb-1">Van #01 is 1.2 miles away</h5>
-            <p class="text-white-50 mb-3" style="max-width: 420px; font-size: 0.88rem;">Passing Market St & 4th Ave
-              &bull; Speed 25mph &bull; Ambient Temperature Refrigerated at 38°F</p>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-teal text-white rounded-3"
-                onclick="showDashToast('Courier location refreshed')">
-                <i class="bi bi-arrow-clockwise me-1"></i> Refresh Map
-              </button>
-              <button class="btn btn-sm btn-light rounded-3" onclick="showDashToast('Sent delivery note to driver')">
-                <i class="bi bi-chat-dots me-1"></i> Message Driver
-              </button>
+
+          <!-- Real Interactive Map Container -->
+          <div class="live-map-card-container">
+            <iframe class="live-map-iframe"
+              src="https://maps.google.com/maps?q=Market+Street,+San+Francisco,+CA&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"
+              title="Live Delivery Courier GPS Location"></iframe>
+
+            <div class="live-map-overlay-info">
+              <div class="d-flex align-items-center gap-3">
+                <div class="kpi-icon-wrap kpi-icon-teal" style="width: 44px; height: 44px; flex-shrink: 0;">
+                  <i class="bi bi-truck fs-5"></i>
+                </div>
+                <div>
+                  <strong class="d-block text-white" style="font-size: 0.95rem;">Courier David K. &bull; Electric Van #01</strong>
+                  <small class="text-white-50">Market St & 4th Ave &bull; 1.2 miles away &bull; ETA 14 mins (38°F Refrigerated)</small>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-teal text-white rounded-3 px-3"
+                  onclick="showDashToast('Courier GPS ping refreshed: 1.2 miles away')">
+                  <i class="bi bi-arrow-clockwise me-1"></i> Refresh GPS
+                </button>
+                <button class="btn btn-sm btn-light rounded-3 px-3 text-dark fw-bold" onclick="showDashToast('Calling Courier David K...')">
+                  <i class="bi bi-telephone-fill text-teal me-1"></i> Call Driver
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -675,19 +694,19 @@
                   <td>Today, 1:10 PM</td>
                   <td>Grocery Purchase #STK-9021</td>
                   <td><strong class="text-success">+385 pts</strong></td>
-                  <td><span class="badge bg-success bg-opacity-15 text-success">Earned</span></td>
+                  <td><span class="status-badge status-badge-success"><i class="bi bi-check-circle-fill"></i> Earned</span></td>
                 </tr>
                 <tr>
                   <td>Oct 12, 2026</td>
                   <td>Grocery Purchase #STK-8942</td>
                   <td><strong class="text-success">+268 pts</strong></td>
-                  <td><span class="badge bg-success bg-opacity-15 text-success">Earned</span></td>
+                  <td><span class="status-badge status-badge-success"><i class="bi bi-check-circle-fill"></i> Earned</span></td>
                 </tr>
                 <tr>
                   <td>Oct 01, 2026</td>
                   <td>Redeemed $10 Voucher</td>
                   <td><strong class="text-danger">-500 pts</strong></td>
-                  <td><span class="badge bg-secondary bg-opacity-15 text-secondary">Redeemed</span></td>
+                  <td><span class="status-badge status-badge-secondary"><i class="bi bi-tag-fill"></i> Redeemed</span></td>
                 </tr>
               </tbody>
             </table>

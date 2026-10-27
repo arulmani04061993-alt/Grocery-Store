@@ -709,6 +709,13 @@ html, body {
   /* Dashboards Mobile Layout */
   .dash-topbar {
     height: 64px;
+    padding: 0 1rem !important;
+  }
+  .topbar-page-title {
+    display: none !important;
+  }
+  .nav-role-badge {
+    display: none !important;
   }
   .dash-topbar-inner {
     gap: 0.5rem;
