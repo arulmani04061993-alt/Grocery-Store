@@ -3233,14 +3233,24 @@ body.error-page-body {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: var(--warning-orange);
-  color: var(--white);
-  font-size: 0.78rem;
+  background: #FF6B16 !important;
+  background: linear-gradient(135deg, #FF6B16 0%, #EA580C 100%) !important;
+  color: #FFFFFF !important;
+  font-size: 0.8rem;
   font-weight: 800;
-  padding: 0.35rem 0.85rem;
+  padding: 0.4rem 0.95rem;
   border-radius: var(--radius-full);
-  letter-spacing: 0.4px;
-  box-shadow: 0 4px 12px rgba(255, 107, 22, 0.4);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 14px rgba(255, 107, 22, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  z-index: 2;
+}
+
+.bundle-save-badge .counter-number {
+  color: #FFFFFF !important;
+  font-weight: 800;
 }
 
 .bundle-body {
@@ -4968,6 +4978,8 @@ body.error-page-body {
   background: #0F172A;
   transform: translateY(-1px);
 }
+
+.contact-map-bottom-bar {
   padding: 1.15rem 1.45rem;
   display: flex;
   align-items: center;
