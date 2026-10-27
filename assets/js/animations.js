@@ -237,15 +237,28 @@ window.StacklyAnimations = {
       this._isRestoringScroll = true;
 
       const performScroll = () => {
-        // First priority: target anchor/section if saved
+        // Priority 1: target anchor/section element (e.g. #newsletter, #featured-products)
         if (savedAnchor) {
           const targetEl = document.querySelector(savedAnchor);
           if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'instant', block: 'end' });
+            targetEl.scrollIntoView({ behavior: 'instant', block: 'center' });
+            // Ensure target and all internal animated children (heading, words, desc, form, button) are 100% visible
+            const panel = targetEl.querySelector('.newsletter-panel') || targetEl;
+            if (panel) {
+              panel.style.opacity = '1';
+              panel.style.transform = 'none';
+              panel.style.visibility = 'visible';
+
+              panel.querySelectorAll('.newsletter-heading, .newsletter-desc, .newsletter-form-wrap, .gsap-text-word, form, input, button').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+                el.style.visibility = 'visible';
+              });
+            }
             return;
           }
         }
-        // Second priority: exact pixel scroll position
+        // Priority 2: exact pixel scroll position
         if (savedY !== null && !isNaN(savedY) && savedY > 0) {
           window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
           if (document.documentElement) document.documentElement.scrollTop = savedY;
@@ -253,20 +266,25 @@ window.StacklyAnimations = {
         }
       };
 
-      // Perform immediately and repeatedly across progressive layout phases
+      // Perform immediately and repeatedly across progressive layout phases and after preloader finishes
       performScroll();
       requestAnimationFrame(performScroll);
       setTimeout(performScroll, 50);
-      setTimeout(performScroll, 150);
-      setTimeout(performScroll, 350);
-      setTimeout(performScroll, 700);
-      setTimeout(performScroll, 1200);
-      setTimeout(performScroll, 1800);
+      setTimeout(performScroll, 200);
+      setTimeout(performScroll, 500);
+      setTimeout(performScroll, 1000);
+      setTimeout(performScroll, 2050);
       setTimeout(() => {
         performScroll();
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }, 2100);
+      setTimeout(performScroll, 2300);
+      setTimeout(() => {
+        performScroll();
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
         this._isRestoringScroll = false;
         sessionStorage.removeItem('stackly_should_restore_scroll');
-      }, 2100);
+      }, 2600);
     } catch (e) {
       console.warn('Scroll restore error:', e);
     }
@@ -398,16 +416,26 @@ window.StacklyAnimations = {
     // Force reflow
     void preloader.offsetWidth;
 
+    // Determine exact target URL
+    let targetDest = '';
+    try {
+      targetDest = sessionStorage.getItem('stackly_saved_scroll_url') || '';
+    } catch (e) {}
+
+    if (!targetDest && document.referrer && document.referrer.includes(window.location.host)) {
+      targetDest = document.referrer;
+    }
+
     // Small delay so user immediately sees wave loading on current page before navigation starts
     setTimeout(() => {
-      if (window.history.length > 1) {
+      if (targetDest && !targetDest.includes('404.html')) {
+        window.location.href = targetDest;
+      } else if (window.history.length > 1) {
         window.history.back();
-      } else if (document.referrer && document.referrer.includes(window.location.host)) {
-        window.location.href = document.referrer;
       } else {
         window.location.href = 'index.html';
       }
-    }, 350);
+    }, 250);
 
     // Failsafe reset
     setTimeout(() => {

@@ -13,12 +13,24 @@ window.StacklyInteractions = {
   carouselOffset: 0,
 
   init() {
+    this.clearNewsletterFeedback();
     this.loadStateFromStorage();
     this.initDealCountdown();
     this.bindEvents();
     this.updateCartBadge();
     this.renderProducts();
     this.updateUserSessionUI();
+
+    // Listen to pageshow/popstate when navigating back so feedback is never shown
+    window.addEventListener('pageshow', () => this.clearNewsletterFeedback());
+    window.addEventListener('popstate', () => this.clearNewsletterFeedback());
+  },
+
+  clearNewsletterFeedback() {
+    const msgBox = document.getElementById('newsletterFeedback');
+    if (msgBox) {
+      msgBox.innerHTML = '';
+    }
   },
 
   updateUserSessionUI() {
@@ -600,20 +612,24 @@ window.StacklyInteractions = {
       return;
     }
 
-    // Success response matching the mockup pill design
-    msgBox.innerHTML = `
-      <div class="alert border-0 rounded-4 mt-3 py-3 px-4 shadow-sm text-center d-inline-block animate__animated animate__fadeInUp" style="background: rgba(255, 255, 255, 0.95); color: #0F5132; max-width: 600px;">
-        <i class="bi bi-check-circle-fill text-success me-2 fs-5 align-middle"></i>
-        <strong style="color: #044E45;">Welcome to the family!</strong> Your 20% discount code is <strong class="badge bg-dark text-warning fs-6 px-2 py-1 mx-1" style="letter-spacing: 0.5px;">FRESH20</strong>. Check your inbox for seasonal specials!
-      </div>
-    `;
+    // Directly navigate to 404 with exact scroll position preservation
+    msgBox.innerHTML = '';
     emailInput.value = '';
-    this.playChime(750);
 
-    // Redirect to 404 page after brief display
-    setTimeout(() => {
+    const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+    try {
+      sessionStorage.setItem('stackly_saved_scroll_y', currentY.toString());
+      sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
+      sessionStorage.setItem('stackly_should_restore_scroll', 'true');
+      sessionStorage.setItem('stackly_saved_anchor', '#newsletter');
+    } catch (err) {}
+
+    const submitBtn = e.target.querySelector('button[type="submit"]') || e.target;
+    if (window.StacklyAnimations && typeof window.StacklyAnimations.triggerPageTransition === 'function') {
+      window.StacklyAnimations.triggerPageTransition('404.html', submitBtn);
+    } else {
       window.location.href = '404.html';
-    }, 1500);
+    }
   },
 
   /* ==========================================================================
