@@ -190,381 +190,699 @@
     <!-- Main Content Area -->
     <main class="dash-content">
 
-      <!-- 1. Welcome Hero Banner -->
-      <section class="dash-hero-card" aria-label="Welcome User">
-        <div class="dash-hero-badge">
-          <i class="bi bi-shield-check text-warning"></i>
-          <span>100% Organic & Farm Fresh Guarantee</span>
-        </div>
-        <h2 class="dash-hero-title">
-          Welcome back, <span id="welcomeUserName">Organic Shopper</span>! 🌿
-        </h2>
-        <p class="dash-hero-subtitle">
-          Your active delivery is on its way. Track your courier in real time, view order history, or reorder weekly farm staples in one click.
-        </p>
-        <div class="dash-hero-actions">
-          <a href="#orders" class="btn-hero-primary" onclick="switchTab(event, 'orders')">
-            <i class="bi bi-bag-check-fill"></i> View My Orders
-          </a>
-          <a href="index.html" class="btn-hero-glass">
-            <i class="bi bi-basket2-fill"></i> Continue Shopping
-          </a>
-        </div>
-      </section>
+      <!-- ====================================================================
+           TAB PANE 1: OVERVIEW (Default Active)
+           ==================================================================== -->
+      <div class="dash-tab-pane active" id="overview-pane">
+        <!-- 1. Welcome Hero Banner -->
+        <section class="dash-hero-card" aria-label="Welcome User">
+          <div class="dash-hero-badge">
+            <i class="bi bi-shield-check text-warning"></i>
+            <span>100% Organic & Farm Fresh Guarantee</span>
+          </div>
+          <h2 class="dash-hero-title">
+            Welcome back, <span id="welcomeUserName">Organic Shopper</span>! 🌿
+          </h2>
+          <p class="dash-hero-subtitle">
+            Your active delivery is on its way. Track your courier in real time, view order history, or reorder weekly farm staples in one click.
+          </p>
+          <div class="dash-hero-actions">
+            <a href="#orders" class="btn-hero-primary" onclick="switchTab(event, 'orders')">
+              <i class="bi bi-bag-check-fill"></i> View My Orders
+            </a>
+            <a href="index.html" class="btn-hero-glass">
+              <i class="bi bi-basket2-fill"></i> Continue Shopping
+            </a>
+          </div>
+        </section>
 
-      <!-- 2. KPI Stat Cards Grid (Static Data) -->
-      <section class="dash-kpi-grid" aria-label="Account Summary Metrics">
-        
-        <!-- Card 1: Total Orders -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Total Orders</span>
-            <div class="kpi-icon-wrap kpi-icon-teal">
-              <i class="bi bi-bag-heart-fill"></i>
-            </div>
-          </div>
-          <div class="kpi-value">28</div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-arrow-up-short"></i> +4
-            </span>
-            <span class="kpi-footer-text">orders this month</span>
-          </div>
-        </div>
-
-        <!-- Card 2: Active Deliveries -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Active Delivery</span>
-            <div class="kpi-icon-wrap kpi-icon-green">
-              <i class="bi bi-truck"></i>
-            </div>
-          </div>
-          <div class="kpi-value">1 <span style="font-size: 0.9rem; font-weight: 600; color: #10B981;">In-Transit</span></div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-clock-history"></i> ETA: 14m
-            </span>
-            <span class="kpi-footer-text">Courier David K.</span>
-          </div>
-        </div>
-
-        <!-- Card 3: Loyalty Rewards -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Green Points</span>
-            <div class="kpi-icon-wrap kpi-icon-amber">
-              <i class="bi bi-trophy-fill"></i>
-            </div>
-          </div>
-          <div class="kpi-value">1,450</div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-tag-fill"></i> $15 Off
-            </span>
-            <span class="kpi-footer-text">Voucher available</span>
-          </div>
-        </div>
-
-        <!-- Card 4: Monthly Savings -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Organic Savings</span>
-            <div class="kpi-icon-wrap kpi-icon-purple">
-              <i class="bi bi-piggy-bank-fill"></i>
-            </div>
-          </div>
-          <div class="kpi-value">$184.50</div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-check-all"></i> 22%
-            </span>
-            <span class="kpi-footer-text">saved vs retail supermarkets</span>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- 3. Live Delivery Stepper Tracker (Static Data) -->
-      <section class="dash-tracker-card" id="tracking" aria-label="Live Order Tracking">
-        <div class="tracker-header">
-          <div>
-            <h3 class="tracker-title">
-              <i class="bi bi-geo-alt-fill text-teal"></i>
-              <span>Live Delivery Tracking: Order #STK-9021</span>
-            </h3>
-            <small class="text-muted">Estimated Delivery: Today at 2:15 PM &bull; Driver: David K. (4.9 ★)</small>
-          </div>
-          <span class="tracker-badge">
-            <i class="bi bi-broadcast me-1"></i> Out for Delivery
-          </span>
-        </div>
-
-        <!-- 4-step Timeline -->
-        <div class="stepper-progress-wrap">
-          <div class="stepper-progress-line" style="width: 66%;"></div>
+        <!-- 2. KPI Stat Cards Grid (Static Data) -->
+        <section class="dash-kpi-grid" aria-label="Account Summary Metrics">
           
-          <div class="stepper-step completed">
-            <div class="step-circle"><i class="bi bi-check-lg"></i></div>
-            <span class="step-label">Order Confirmed</span>
-            <span class="step-subtext">1:10 PM</span>
+          <!-- Card 1: Total Orders -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Total Orders</span>
+              <div class="kpi-icon-wrap kpi-icon-teal">
+                <i class="bi bi-bag-heart-fill"></i>
+              </div>
+            </div>
+            <div class="kpi-value">28</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-arrow-up-short"></i> +4
+              </span>
+              <span class="kpi-footer-text">orders this month</span>
+            </div>
           </div>
 
-          <div class="stepper-step completed">
-            <div class="step-circle"><i class="bi bi-box-seam"></i></div>
-            <span class="step-label">Farm Packed</span>
-            <span class="step-subtext">1:30 PM</span>
+          <!-- Card 2: Active Deliveries -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Active Delivery</span>
+              <div class="kpi-icon-wrap kpi-icon-green">
+                <i class="bi bi-truck"></i>
+              </div>
+            </div>
+            <div class="kpi-value">1 <span style="font-size: 0.9rem; font-weight: 600; color: #10B981;">In-Transit</span></div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-clock-history"></i> ETA: 14m
+              </span>
+              <span class="kpi-footer-text">Courier David K.</span>
+            </div>
           </div>
 
-          <div class="stepper-step active">
-            <div class="step-circle"><i class="bi bi-truck"></i></div>
-            <span class="step-label">On Delivery Van</span>
-            <span class="step-subtext">Arriving in 14 mins</span>
+          <!-- Card 3: Loyalty Rewards -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Green Points</span>
+              <div class="kpi-icon-wrap kpi-icon-amber">
+                <i class="bi bi-trophy-fill"></i>
+              </div>
+            </div>
+            <div class="kpi-value">1,450</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-tag-fill"></i> $15 Off
+              </span>
+              <span class="kpi-footer-text">Voucher available</span>
+            </div>
           </div>
 
-          <div class="stepper-step">
-            <div class="step-circle"><i class="bi bi-door-closed"></i></div>
-            <span class="step-label">Delivered</span>
-            <span class="step-subtext">Doorstep Drop</span>
+          <!-- Card 4: Monthly Savings -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Organic Savings</span>
+              <div class="kpi-icon-wrap kpi-icon-purple">
+                <i class="bi bi-piggy-bank-fill"></i>
+              </div>
+            </div>
+            <div class="kpi-value">$184.50</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-check-all"></i> 22%
+              </span>
+              <span class="kpi-footer-text">saved vs retail supermarkets</span>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Quick Summary Row -->
+        <div class="row g-3">
+          <div class="col-lg-7">
+            <div class="dash-table-card p-4 h-100 mb-0">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="table-card-title mb-0">
+                  <i class="bi bi-clock-history text-teal"></i> Latest Activity
+                </h3>
+                <a href="#orders" class="text-teal fw-bold" style="font-size: 0.85rem;" onclick="switchTab(event, 'orders')">View All</a>
+              </div>
+              <ul class="list-unstyled mb-0 d-flex flex-column gap-3">
+                <li class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-wrap kpi-icon-teal" style="width: 38px; height: 38px;"><i class="bi bi-truck"></i></div>
+                    <div>
+                      <strong class="text-dark d-block" style="font-size: 0.88rem;">Order #STK-9021 is out for delivery</strong>
+                      <small class="text-muted">Estimated arrival 2:15 PM today</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-success">Active</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-wrap kpi-icon-amber" style="width: 38px; height: 38px;"><i class="bi bi-award"></i></div>
+                    <div>
+                      <strong class="text-dark d-block" style="font-size: 0.88rem;">Earned +120 Green Points</strong>
+                      <small class="text-muted">From Farm Fresh Produce Box</small>
+                    </div>
+                  </div>
+                  <span class="text-muted" style="font-size: 0.8rem;">Yesterday</span>
+                </li>
+                <li class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-light">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="kpi-icon-wrap kpi-icon-green" style="width: 38px; height: 38px;"><i class="bi bi-check-circle"></i></div>
+                    <div>
+                      <strong class="text-dark d-block" style="font-size: 0.88rem;">Order #STK-8942 Delivered</strong>
+                      <small class="text-muted">Delivered to Home Porch on Oct 12</small>
+                    </div>
+                  </div>
+                  <span class="text-muted" style="font-size: 0.8rem;">Oct 12</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="dash-table-card p-4 h-100 mb-0">
+              <h3 class="table-card-title mb-3">
+                <i class="bi bi-star-fill text-warning"></i> Membership Status
+              </h3>
+              <div class="p-3 rounded-4 text-white mb-3" style="background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);">
+                <div class="d-flex justify-content-between align-items-center">
+                  <span class="fw-bold fs-6">Gold VIP Member</span>
+                  <i class="bi bi-patch-check-fill fs-5"></i>
+                </div>
+                <div class="mt-3">
+                  <div class="fs-4 fw-bold">1,450 Points</div>
+                  <small class="text-white-50">50 more points until next $20 voucher</small>
+                </div>
+                <div class="progress mt-2" style="height: 6px; background: rgba(255,255,255,0.25);">
+                  <div class="progress-bar bg-warning" style="width: 90%;"></div>
+                </div>
+              </div>
+              <button class="btn btn-outline-teal w-100 rounded-3" onclick="switchTab(event, 'rewards')">
+                <i class="bi bi-gift me-1"></i> View Rewards & Perks
+              </button>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="p-3 bg-light rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-2 mt-3">
-          <div class="d-flex align-items-center gap-3">
-            <i class="bi bi-pin-map-fill text-danger fs-4"></i>
+      <!-- ====================================================================
+           TAB PANE 2: MY ORDERS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="orders-pane">
+        <section class="dash-table-card" aria-label="Customer Orders History">
+          <div class="table-card-header">
             <div>
-              <strong class="d-block text-dark" style="font-size: 0.88rem;">Delivering to: 742 Evergreen Terrace, San Francisco, CA</strong>
-              <small class="text-muted">Delivery Instructions: Leave on front porch near door.</small>
-            </div>
-          </div>
-          <button class="action-btn-sm" onclick="showDashToast('Calling Courier David K...')">
-            <i class="bi bi-telephone text-teal"></i> Call Driver
-          </button>
-        </div>
-      </section>
-
-      <!-- 4. Recent Orders Table (Static Data) -->
-      <section class="dash-table-card" id="orders" aria-label="Customer Orders History">
-        <div class="table-card-header">
-          <h3 class="table-card-title">
-            <i class="bi bi-receipt text-teal"></i>
-            <span>Recent Orders</span>
-          </h3>
-          
-          <div class="table-actions-group">
-            <input type="text" class="table-search-input" id="orderSearchInput" placeholder="Search orders..." onkeyup="filterOrdersTable()">
-            <button class="table-filter-btn" onclick="showDashToast('Orders filtered by date')">
-              <i class="bi bi-filter me-1"></i> Filter
-            </button>
-          </div>
-        </div>
-
-        <div class="table-responsive">
-          <table class="dash-custom-table" id="userOrdersTable">
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Date & Time</th>
-                <th>Items Summary</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong class="text-teal">#STK-9021</strong></td>
-                <td>Today, 1:10 PM</td>
-                <td>Organic Hass Avocados (3), Crisp Apples (1kg), Almond Milk (2)</td>
-                <td><strong class="text-dark">$38.50</strong></td>
-                <td>
-                  <span class="badge-status badge-status-transit">
-                    <i class="bi bi-truck"></i> In Transit
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Tracking Order #STK-9021')">
-                    <i class="bi bi-geo-alt"></i> Track
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td><strong class="text-teal">#STK-8942</strong></td>
-                <td>Oct 12, 2026</td>
-                <td>Artisan Sourdough Loaf, Raw Forest Honey, Fresh Strawberries</td>
-                <td><strong class="text-dark">$26.80</strong></td>
-                <td>
-                  <span class="badge-status badge-status-delivered">
-                    <i class="bi bi-check-circle-fill"></i> Delivered
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Reorder #STK-8942 added to your basket!')">
-                    <i class="bi bi-arrow-repeat"></i> Reorder
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td><strong class="text-teal">#STK-8819</strong></td>
-                <td>Oct 05, 2026</td>
-                <td>Free-Range Eggs (12pk), Fresh Baby Spinach, Greek Yogurt</td>
-                <td><strong class="text-dark">$34.20</strong></td>
-                <td>
-                  <span class="badge-status badge-status-delivered">
-                    <i class="bi bi-check-circle-fill"></i> Delivered
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Receipt for #STK-8819 sent to your email!')">
-                    <i class="bi bi-receipt"></i> Receipt
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td><strong class="text-teal">#STK-8720</strong></td>
-                <td>Sep 28, 2026</td>
-                <td>Organic Bananas Bunch, Wild Blueberries, Chia Seeds</td>
-                <td><strong class="text-dark">$29.90</strong></td>
-                <td>
-                  <span class="badge-status badge-status-delivered">
-                    <i class="bi bi-check-circle-fill"></i> Delivered
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Reorder #STK-8720 added to your basket!')">
-                    <i class="bi bi-arrow-repeat"></i> Reorder
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- 5. Quick Reorder & Weekly Favorites (Static Data) -->
-      <section class="mb-4" id="reorder" aria-label="Favorite Produce Reorder">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-          <h3 class="table-card-title">
-            <i class="bi bi-heart-fill text-danger"></i>
-            <span>Frequent Farm Reorders</span>
-          </h3>
-          <a href="index.html" class="text-teal fw-bold" style="font-size: 0.85rem;">View All Products &rarr;</a>
-        </div>
-
-        <div class="dash-products-grid">
-          
-          <!-- Product 1 -->
-          <div class="dash-prod-card">
-            <img src="assets/images/product-avocados.webp" alt="Organic Hass Avocados" class="dash-prod-img" onerror="this.src='assets/images/category-vegetables.webp'">
-            <h4 class="dash-prod-title">Organic Hass Avocados</h4>
-            <div class="dash-prod-price">$4.99 <small class="text-muted fs-7">/ 3 pcs</small></div>
-            <button class="dash-prod-btn" onclick="showDashToast('Added Hass Avocados to basket!')">
-              <i class="bi bi-cart-plus me-1"></i> Add to Basket
-            </button>
-          </div>
-
-          <!-- Product 2 -->
-          <div class="dash-prod-card">
-            <img src="assets/images/product-strawberries.webp" alt="Fresh Organic Strawberries" class="dash-prod-img" onerror="this.src='assets/images/category-fruits.webp'">
-            <h4 class="dash-prod-title">Fresh Strawberries</h4>
-            <div class="dash-prod-price">$5.49 <small class="text-muted fs-7">/ 400g</small></div>
-            <button class="dash-prod-btn" onclick="showDashToast('Added Strawberries to basket!')">
-              <i class="bi bi-cart-plus me-1"></i> Add to Basket
-            </button>
-          </div>
-
-          <!-- Product 3 -->
-          <div class="dash-prod-card">
-            <img src="assets/images/product-almond-milk.webp" alt="Artisan Almond Milk" class="dash-prod-img" onerror="this.src='assets/images/category-dairy.webp'">
-            <h4 class="dash-prod-title">Artisan Almond Milk</h4>
-            <div class="dash-prod-price">$3.89 <small class="text-muted fs-7">/ 1L</small></div>
-            <button class="dash-prod-btn" onclick="showDashToast('Added Almond Milk to basket!')">
-              <i class="bi bi-cart-plus me-1"></i> Add to Basket
-            </button>
-          </div>
-
-          <!-- Product 4 -->
-          <div class="dash-prod-card">
-            <img src="assets/images/product-honey.webp" alt="Raw Forest Honey" class="dash-prod-img" onerror="this.src='assets/images/category-bakery.webp'">
-            <h4 class="dash-prod-title">Raw Wild Honey</h4>
-            <div class="dash-prod-price">$8.20 <small class="text-muted fs-7">/ 500g</small></div>
-            <button class="dash-prod-btn" onclick="showDashToast('Added Raw Honey to basket!')">
-              <i class="bi bi-cart-plus me-1"></i> Add to Basket
-            </button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- 6. Saved Addresses & Payment Preview Cards -->
-      <div class="row g-3 mb-4">
-        
-        <!-- Saved Addresses -->
-        <div class="col-lg-6" id="addresses">
-          <div class="dash-table-card p-3 h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="fw-bold fs-6 mb-0 text-dark">
-                <i class="bi bi-house-door-fill text-teal me-2"></i> Saved Addresses
-              </h4>
-              <button class="btn btn-sm btn-outline-teal" onclick="showDashToast('Add address form opened')">+ Add New</button>
+              <h3 class="table-card-title">
+                <i class="bi bi-receipt text-teal"></i>
+                <span>My Orders History</span>
+              </h3>
+              <small class="text-muted">All past and current grocery orders with live fulfillment status</small>
             </div>
             
-            <div class="border rounded-3 p-3 mb-2 bg-light">
-              <div class="d-flex justify-content-between">
-                <strong class="text-dark" style="font-size: 0.85rem;"><i class="bi bi-geo-alt-fill text-danger me-1"></i> Home (Primary)</strong>
-                <span class="badge bg-success" style="font-size: 0.68rem;">Default</span>
-              </div>
-              <p class="text-muted mb-0 mt-1" style="font-size: 0.8rem;">
-                742 Evergreen Terrace, Apt 4B, San Francisco, CA 94107
-              </p>
+            <div class="table-actions-group">
+              <input type="text" class="table-search-input" id="orderSearchInput" placeholder="Search orders..." onkeyup="filterOrdersTable()">
+              <button class="table-filter-btn" onclick="showDashToast('Orders filtered by date')">
+                <i class="bi bi-filter me-1"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dash-custom-table" id="userOrdersTable">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Date & Time</th>
+                  <th>Items Summary</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong class="text-teal">#STK-9021</strong></td>
+                  <td>Today, 1:10 PM</td>
+                  <td>Organic Hass Avocados (3), Crisp Apples (1kg), Almond Milk (2)</td>
+                  <td><strong class="text-dark">$38.50</strong></td>
+                  <td>
+                    <span class="badge-status badge-status-transit">
+                      <i class="bi bi-truck"></i> In Transit
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="switchTab(event, 'tracking')">
+                      <i class="bi bi-geo-alt"></i> Live Track
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong class="text-teal">#STK-8942</strong></td>
+                  <td>Oct 12, 2026</td>
+                  <td>Artisan Sourdough Loaf, Raw Forest Honey, Fresh Strawberries</td>
+                  <td><strong class="text-dark">$26.80</strong></td>
+                  <td>
+                    <span class="badge-status badge-status-delivered">
+                      <i class="bi bi-check-circle-fill"></i> Delivered
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Reorder #STK-8942 added to your basket!')">
+                      <i class="bi bi-arrow-repeat"></i> Reorder
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong class="text-teal">#STK-8819</strong></td>
+                  <td>Oct 05, 2026</td>
+                  <td>Free-Range Eggs (12pk), Fresh Baby Spinach, Greek Yogurt</td>
+                  <td><strong class="text-dark">$34.20</strong></td>
+                  <td>
+                    <span class="badge-status badge-status-delivered">
+                      <i class="bi bi-check-circle-fill"></i> Delivered
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Receipt for #STK-8819 sent to your email!')">
+                      <i class="bi bi-receipt"></i> Receipt
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong class="text-teal">#STK-8720</strong></td>
+                  <td>Sep 28, 2026</td>
+                  <td>Organic Bananas Bunch, Wild Blueberries, Chia Seeds</td>
+                  <td><strong class="text-dark">$29.90</strong></td>
+                  <td>
+                    <span class="badge-status badge-status-delivered">
+                      <i class="bi bi-check-circle-fill"></i> Delivered
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Reorder #STK-8720 added to your basket!')">
+                      <i class="bi bi-arrow-repeat"></i> Reorder
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong class="text-teal">#STK-8640</strong></td>
+                  <td>Sep 15, 2026</td>
+                  <td>Organic Kale, Valencia Oranges (2kg), Extra Virgin Olive Oil</td>
+                  <td><strong class="text-dark">$45.10</strong></td>
+                  <td>
+                    <span class="badge-status badge-status-delivered">
+                      <i class="bi bi-check-circle-fill"></i> Delivered
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Receipt for #STK-8640 sent to your email!')">
+                      <i class="bi bi-receipt"></i> Receipt
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 3: LIVE TRACKING
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="tracking-pane">
+        <section class="dash-tracker-card" aria-label="Live Order Tracking">
+          <div class="tracker-header">
+            <div>
+              <h3 class="tracker-title">
+                <i class="bi bi-geo-alt-fill text-teal"></i>
+                <span>Live Delivery Tracking: Order #STK-9021</span>
+              </h3>
+              <small class="text-muted">Estimated Delivery: Today at 2:15 PM &bull; Driver: David K. (4.9 ★)</small>
+            </div>
+            <span class="tracker-badge">
+              <i class="bi bi-broadcast me-1"></i> Out for Delivery
+            </span>
+          </div>
+
+          <!-- 4-step Timeline -->
+          <div class="stepper-progress-wrap">
+            <div class="stepper-progress-line" style="width: 66%;"></div>
+            
+            <div class="stepper-step completed">
+              <div class="step-circle"><i class="bi bi-check-lg"></i></div>
+              <span class="step-label">Order Confirmed</span>
+              <span class="step-subtext">1:10 PM</span>
             </div>
 
-            <div class="border rounded-3 p-3 bg-white">
-              <div class="d-flex justify-content-between">
-                <strong class="text-dark" style="font-size: 0.85rem;"><i class="bi bi-briefcase-fill text-primary me-1"></i> Office</strong>
-                <span class="badge bg-secondary" style="font-size: 0.68rem;">Secondary</span>
+            <div class="stepper-step completed">
+              <div class="step-circle"><i class="bi bi-box-seam"></i></div>
+              <span class="step-label">Farm Packed</span>
+              <span class="step-subtext">1:30 PM</span>
+            </div>
+
+            <div class="stepper-step active">
+              <div class="step-circle"><i class="bi bi-truck"></i></div>
+              <span class="step-label">On Delivery Van</span>
+              <span class="step-subtext">Arriving in 14 mins</span>
+            </div>
+
+            <div class="stepper-step">
+              <div class="step-circle"><i class="bi bi-door-closed"></i></div>
+              <span class="step-label">Delivered</span>
+              <span class="step-subtext">Doorstep Drop</span>
+            </div>
+          </div>
+
+          <div class="p-3 bg-light rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-2 mt-4">
+            <div class="d-flex align-items-center gap-3">
+              <i class="bi bi-pin-map-fill text-danger fs-4"></i>
+              <div>
+                <strong class="d-block text-dark" style="font-size: 0.88rem;">Delivering to: 742 Evergreen Terrace, San Francisco, CA</strong>
+                <small class="text-muted">Delivery Instructions: Leave on front porch near door.</small>
               </div>
-              <p class="text-muted mb-0 mt-1" style="font-size: 0.8rem;">
-                500 Market St, Floor 12, Financial District, San Francisco, CA 94105
-              </p>
+            </div>
+            <button class="action-btn-sm" onclick="showDashToast('Calling Courier David K...')">
+              <i class="bi bi-telephone text-teal"></i> Call Driver
+            </button>
+          </div>
+        </section>
+
+        <!-- Driver Map Mock Card -->
+        <div class="dash-table-card p-4 mt-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold fs-6 mb-0 text-dark">
+              <i class="bi bi-compass-fill text-teal me-2"></i> Live Courier GPS Map
+            </h4>
+            <span class="badge bg-success bg-opacity-15 text-success fw-bold">Live GPS Ping: 5s ago</span>
+          </div>
+          <div class="rounded-4 p-5 text-center text-white position-relative overflow-hidden" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <i class="bi bi-geo-alt-fill text-danger fs-1 mb-2 animate-bounce"></i>
+            <h5 class="fw-bold mb-1">Van #01 is 1.2 miles away</h5>
+            <p class="text-white-50 mb-3" style="max-width: 420px; font-size: 0.88rem;">Passing Market St & 4th Ave &bull; Speed 25mph &bull; Ambient Temperature Refrigerated at 38°F</p>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-teal text-white rounded-3" onclick="showDashToast('Courier location refreshed')">
+                <i class="bi bi-arrow-clockwise me-1"></i> Refresh Map
+              </button>
+              <button class="btn btn-sm btn-light rounded-3" onclick="showDashToast('Sent delivery note to driver')">
+                <i class="bi bi-chat-dots me-1"></i> Message Driver
+              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Payment Methods -->
-        <div class="col-lg-6" id="payments">
-          <div class="dash-table-card p-3 h-100">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="fw-bold fs-6 mb-0 text-dark">
-                <i class="bi bi-credit-card-2-front-fill text-teal me-2"></i> Saved Payment Methods
-              </h4>
-              <button class="btn btn-sm btn-outline-teal" onclick="showDashToast('Add card modal opened')">+ Add Card</button>
+      <!-- ====================================================================
+           TAB PANE 4: QUICK REORDER
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="reorder-pane">
+        <section class="dash-table-card p-4" aria-label="Favorite Produce Reorder">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-arrow-repeat text-teal"></i>
+                <span>Quick Reorder & Weekly Favorites</span>
+              </h3>
+              <small class="text-muted">Items you buy most frequently. Reorder in one tap with saved payment.</small>
+            </div>
+            <a href="index.html" class="text-teal fw-bold" style="font-size: 0.85rem;">View Store &rarr;</a>
+          </div>
+
+          <div class="dash-products-grid mt-3">
+            
+            <!-- Product 1 -->
+            <div class="dash-prod-card">
+              <img src="assets/images/product-avocados.webp" alt="Organic Hass Avocados" class="dash-prod-img" onerror="this.src='assets/images/category-vegetables.webp'">
+              <h4 class="dash-prod-title">Organic Hass Avocados</h4>
+              <div class="dash-prod-price">$4.99 <small class="text-muted fs-7">/ 3 pcs</small></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Hass Avocados to basket!')">
+                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+              </button>
             </div>
 
-            <div class="border rounded-3 p-3 mb-2 bg-light d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-3">
-                <i class="bi bi-credit-card text-primary fs-3"></i>
-                <div>
-                  <strong class="text-dark d-block" style="font-size: 0.85rem;">Visa ending in 4242</strong>
-                  <small class="text-muted">Expires 08/2028 &bull; Default Card</small>
-                </div>
-              </div>
-              <span class="badge bg-teal-subtle text-teal">Active</span>
+            <!-- Product 2 -->
+            <div class="dash-prod-card">
+              <img src="assets/images/product-strawberries.webp" alt="Fresh Organic Strawberries" class="dash-prod-img" onerror="this.src='assets/images/category-fruits.webp'">
+              <h4 class="dash-prod-title">Fresh Strawberries</h4>
+              <div class="dash-prod-price">$5.49 <small class="text-muted fs-7">/ 400g</small></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Strawberries to basket!')">
+                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+              </button>
             </div>
 
-            <div class="border rounded-3 p-3 bg-white d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center gap-3">
-                <i class="bi bi-wallet2 text-success fs-3"></i>
-                <div>
-                  <strong class="text-dark d-block" style="font-size: 0.85rem;">Apple Pay</strong>
-                  <small class="text-muted">Connected to iPhone 15 Pro</small>
-                </div>
+            <!-- Product 3 -->
+            <div class="dash-prod-card">
+              <img src="assets/images/product-almond-milk.webp" alt="Artisan Almond Milk" class="dash-prod-img" onerror="this.src='assets/images/category-dairy.webp'">
+              <h4 class="dash-prod-title">Artisan Almond Milk</h4>
+              <div class="dash-prod-price">$3.89 <small class="text-muted fs-7">/ 1L</small></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Almond Milk to basket!')">
+                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+              </button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="dash-prod-card">
+              <img src="assets/images/product-honey.webp" alt="Raw Forest Honey" class="dash-prod-img" onerror="this.src='assets/images/category-bakery.webp'">
+              <h4 class="dash-prod-title">Raw Wild Honey</h4>
+              <div class="dash-prod-price">$8.20 <small class="text-muted fs-7">/ 500g</small></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Raw Honey to basket!')">
+                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+              </button>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 5: GREEN REWARDS & PERKS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="rewards-pane">
+        <section class="dash-table-card p-4" aria-label="Loyalty Rewards">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-star-fill text-warning"></i>
+                <span>Green Rewards & Loyalty Points</span>
+              </h3>
+              <small class="text-muted">Earn 10 points for every $1 spent on certified organic groceries</small>
+            </div>
+            <span class="badge bg-teal p-2 px-3 fs-6">1,450 Total Points</span>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="p-3 border rounded-3 bg-light text-center">
+                <i class="bi bi-ticket-perforated-fill text-teal fs-2"></i>
+                <h5 class="fw-bold mt-2">$15 Off Voucher</h5>
+                <p class="text-muted small mb-3">Redeemable on orders over $50</p>
+                <button class="btn btn-sm btn-teal text-white w-100" onclick="showDashToast('Voucher FRESH15 copied to clipboard!')">Redeem for 1,000 pts</button>
               </div>
-              <span class="badge bg-light text-muted">Backup</span>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 border rounded-3 bg-light text-center">
+                <i class="bi bi-truck text-success fs-2"></i>
+                <h5 class="fw-bold mt-2">Free Express Delivery</h5>
+                <p class="text-muted small mb-3">Valid for next 3 deliveries</p>
+                <button class="btn btn-sm btn-teal text-white w-100" onclick="showDashToast('Free Delivery pass applied to next 3 orders!')">Redeem for 500 pts</button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 border rounded-3 bg-light text-center">
+                <i class="bi bi-basket2-fill text-warning fs-2"></i>
+                <h5 class="fw-bold mt-2">Free Organic Avocado Box</h5>
+                <p class="text-muted small mb-3">Complimentary gift box of 4</p>
+                <button class="btn btn-sm btn-teal text-white w-100" onclick="showDashToast('Gift Avocado Box added to your next delivery!')">Redeem for 750 pts</button>
+              </div>
             </div>
           </div>
-        </div>
 
+          <h5 class="fw-bold fs-6 mb-3 text-dark">Points History</h5>
+          <div class="table-responsive">
+            <table class="dash-custom-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Activity</th>
+                  <th>Points</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Today, 1:10 PM</td>
+                  <td>Grocery Purchase #STK-9021</td>
+                  <td><strong class="text-success">+385 pts</strong></td>
+                  <td><span class="badge bg-success bg-opacity-15 text-success">Earned</span></td>
+                </tr>
+                <tr>
+                  <td>Oct 12, 2026</td>
+                  <td>Grocery Purchase #STK-8942</td>
+                  <td><strong class="text-success">+268 pts</strong></td>
+                  <td><span class="badge bg-success bg-opacity-15 text-success">Earned</span></td>
+                </tr>
+                <tr>
+                  <td>Oct 01, 2026</td>
+                  <td>Redeemed $10 Voucher</td>
+                  <td><strong class="text-danger">-500 pts</strong></td>
+                  <td><span class="badge bg-secondary bg-opacity-15 text-secondary">Redeemed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 6: SAVED ADDRESSES
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="addresses-pane">
+        <section class="dash-table-card p-4" aria-label="Customer Saved Addresses">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-house-door-fill text-teal"></i>
+                <span>Saved Delivery Addresses</span>
+              </h3>
+              <small class="text-muted">Manage your home, office, and family delivery destinations</small>
+            </div>
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Add address modal opened')">+ Add New Address</button>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-light position-relative">
+                <span class="badge bg-teal position-absolute top-0 end-0 m-3">Default</span>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <i class="bi bi-house-door-fill text-teal fs-5"></i>
+                  <strong class="text-dark fs-6">Home</strong>
+                </div>
+                <p class="text-dark mb-1">Sarah Jenkins</p>
+                <p class="text-muted mb-2">742 Evergreen Terrace, Apt 4B, San Francisco, CA 94107</p>
+                <p class="text-muted small mb-3">Phone: +1 (555) 234-5678</p>
+                <div class="d-flex gap-2">
+                  <button class="action-btn-sm" onclick="showDashToast('Edit address form opened')">Edit</button>
+                  <button class="action-btn-sm text-danger" onclick="showDashToast('Primary address cannot be deleted')">Delete</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-white position-relative">
+                <span class="badge bg-secondary position-absolute top-0 end-0 m-3">Secondary</span>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <i class="bi bi-briefcase-fill text-primary fs-5"></i>
+                  <strong class="text-dark fs-6">Office</strong>
+                </div>
+                <p class="text-dark mb-1">Sarah Jenkins (c/o Design Labs)</p>
+                <p class="text-muted mb-2">500 Market St, Floor 12, Financial District, San Francisco, CA 94105</p>
+                <p class="text-muted small mb-3">Phone: +1 (555) 987-6543</p>
+                <div class="d-flex gap-2">
+                  <button class="action-btn-sm" onclick="showDashToast('Edit address form opened')">Edit</button>
+                  <button class="action-btn-sm" onclick="showDashToast('Address set as default')">Set as Default</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 7: PAYMENT METHODS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="payments-pane">
+        <section class="dash-table-card p-4" aria-label="Customer Payment Methods">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-credit-card-2-front-fill text-teal"></i>
+                <span>Payment Methods</span>
+              </h3>
+              <small class="text-muted">Securely manage your credit cards and digital wallets</small>
+            </div>
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Add card modal opened')">+ Add Card</button>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-light position-relative">
+                <span class="badge bg-teal position-absolute top-0 end-0 m-3">Default</span>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <i class="bi bi-credit-card text-primary fs-1"></i>
+                  <div>
+                    <h5 class="fw-bold mb-0">Visa ending in 4242</h5>
+                    <small class="text-muted">Expires 08/2028</small>
+                  </div>
+                </div>
+                <p class="text-muted small mb-3">Cardholder Name: Sarah Jenkins</p>
+                <div class="d-flex gap-2">
+                  <button class="action-btn-sm" onclick="showDashToast('Card details opened')">Manage</button>
+                  <button class="action-btn-sm text-danger" onclick="showDashToast('Cannot remove default card')">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-white position-relative">
+                <span class="badge bg-secondary position-absolute top-0 end-0 m-3">Backup</span>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <i class="bi bi-wallet2 text-success fs-1"></i>
+                  <div>
+                    <h5 class="fw-bold mb-0">Apple Pay</h5>
+                    <small class="text-muted">Connected to iPhone 15 Pro</small>
+                  </div>
+                </div>
+                <p class="text-muted small mb-3">Auto-recharge enabled for instant 1-click checkout</p>
+                <div class="d-flex gap-2">
+                  <button class="action-btn-sm" onclick="showDashToast('Apple Pay settings updated')">Configure</button>
+                  <button class="action-btn-sm" onclick="showDashToast('Apple Pay set as default payment')">Make Default</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 8: ACCOUNT SETTINGS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="settings-pane">
+        <section class="dash-table-card p-4" aria-label="Customer Account Settings">
+          <div class="mb-4">
+            <h3 class="table-card-title mb-1">
+              <i class="bi bi-gear-fill text-teal"></i>
+              <span>Account & Profile Settings</span>
+            </h3>
+            <small class="text-muted">Update your personal details, dietary preferences, and notifications</small>
+          </div>
+
+          <form onsubmit="event.preventDefault(); showDashToast('Account profile successfully saved!');">
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Full Name</label>
+                <input type="text" class="form-control rounded-3" value="Sarah Jenkins">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Email Address</label>
+                <input type="email" class="form-control rounded-3" value="sarah.shopper@stacklyfresh.com">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Phone Number</label>
+                <input type="tel" class="form-control rounded-3" value="+1 (555) 234-5678">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Preferred Delivery Window</label>
+                <select class="form-select rounded-3">
+                  <option selected>Morning (8:00 AM - 12:00 PM)</option>
+                  <option>Afternoon (1:00 PM - 5:00 PM)</option>
+                  <option>Evening (6:00 PM - 9:00 PM)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold text-dark d-block">Dietary Preferences</label>
+              <div class="d-flex flex-wrap gap-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="prefOrganic" checked>
+                  <label class="form-check-label" for="prefOrganic">100% Certified Organic</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="prefGluten" checked>
+                  <label class="form-check-label" for="prefGluten">Gluten-Free</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="prefVegan">
+                  <label class="form-check-label" for="prefVegan">Plant-Based / Vegan</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="prefDairyFree" checked>
+                  <label class="form-check-label" for="prefDairyFree">Dairy-Free</label>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-teal text-white rounded-3 px-4">
+              <i class="bi bi-check2-circle me-1"></i> Save Changes
+            </button>
+          </form>
+        </section>
       </div>
 
     </main>
@@ -594,6 +912,12 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Load current user from localStorage
       loadUserSession();
+
+      // Check if URL has a hash and activate that tab
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        if (hash) switchTab(null, hash);
+      }
     });
 
     function loadUserSession() {
@@ -633,15 +957,28 @@
       // Update active sidebar link
       document.querySelectorAll('.sidebar-link').forEach(link => {
         link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + tabId) {
+          link.classList.add('active');
+        }
       });
-      if (e && e.currentTarget) {
+      if (e && e.currentTarget && e.currentTarget.classList.contains('sidebar-link')) {
         e.currentTarget.classList.add('active');
       }
 
-      // Scroll to element smoothly if exists
-      const target = document.getElementById(tabId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Switch active tab pane
+      const paneId = tabId.endsWith('-pane') ? tabId : tabId + '-pane';
+      document.querySelectorAll('.dash-tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      const targetPane = document.getElementById(paneId);
+      if (targetPane) {
+        targetPane.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Update location hash without jumping
+      if (history.pushState) {
+        history.pushState(null, null, '#' + tabId.replace('-pane', ''));
       }
 
       // Close mobile sidebar if open

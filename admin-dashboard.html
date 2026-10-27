@@ -197,435 +197,814 @@
     <!-- Main Content Area -->
     <main class="dash-content">
 
-      <!-- 1. Executive Welcome Hero Banner -->
-      <section class="dash-hero-card admin-hero" aria-label="Admin Executive Summary">
-        <div class="dash-hero-badge">
-          <i class="bi bi-shield-shaded text-warning"></i>
-          <span>STACKLY SuperAdmin Portal &bull; Store Hub #04</span>
-        </div>
-        <h2 class="dash-hero-title">
-          Store Operations: Welcome, <span id="welcomeAdminName">Administrator</span> 🛡️
-        </h2>
-        <p class="dash-hero-subtitle">
-          Real-time grocery logistics, store revenues, active couriers, and stock replenishment console. Today's fulfillment rate is running at <strong>91.4%</strong>.
-        </p>
-        <div class="dash-hero-actions">
-          <button type="button" class="btn-hero-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
-            <i class="bi bi-plus-circle-fill"></i> Add New Product
-          </button>
-          <button type="button" class="btn-hero-glass" onclick="showDashToast('Daily financial report generated & downloaded!')">
-            <i class="bi bi-download"></i> Export Sales CSV
-          </button>
-          <button type="button" class="btn-hero-glass" onclick="showDashToast('Courier dispatch route optimized for 14 vans!')">
-            <i class="bi bi-lightning-charge-fill text-warning"></i> Auto-Dispatch Vans
-          </button>
-        </div>
-      </section>
-
-      <!-- 2. KPI Executive Stat Cards Grid (Static Data) -->
-      <section class="dash-kpi-grid" aria-label="Store KPI Metrics">
-        
-        <!-- Card 1: Today's Revenue -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Today's Revenue</span>
-            <div class="kpi-icon-wrap kpi-icon-teal">
-              <i class="bi bi-currency-dollar"></i>
-            </div>
+      <!-- ====================================================================
+           TAB PANE 1: OVERVIEW (Default Active)
+           ==================================================================== -->
+      <div class="dash-tab-pane active" id="overview-pane">
+        <!-- 1. Executive Welcome Hero Banner -->
+        <section class="dash-hero-card admin-hero" aria-label="Admin Executive Summary">
+          <div class="dash-hero-badge">
+            <i class="bi bi-shield-shaded text-warning"></i>
+            <span>STACKLY SuperAdmin Portal &bull; Store Hub #04</span>
           </div>
-          <div class="kpi-value">$18,492.50</div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-arrow-up-right"></i> +14.8%
-            </span>
-            <span class="kpi-footer-text">vs yesterday ($16,105)</span>
-          </div>
-        </div>
-
-        <!-- Card 2: Total Daily Orders -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Daily Orders</span>
-            <div class="kpi-icon-wrap kpi-icon-amber">
-              <i class="bi bi-bag-check-fill"></i>
-            </div>
-          </div>
-          <div class="kpi-value">384 <span style="font-size: 0.9rem; font-weight: 600; color: #D97706;">Orders</span></div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-lightning-fill"></i> 36 Express
-            </span>
-            <span class="kpi-footer-text">Avg delivery: 22m</span>
-          </div>
-        </div>
-
-        <!-- Card 3: Active Live Shoppers -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Active Shoppers</span>
-            <div class="kpi-icon-wrap kpi-icon-blue">
-              <i class="bi bi-people-fill"></i>
-            </div>
-          </div>
-          <div class="kpi-value">1,420</div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-up">
-              <i class="bi bi-circle-fill" style="font-size: 0.5rem; color: #10B981;"></i> 142 in Cart
-            </span>
-            <span class="kpi-footer-text">Real-time online</span>
-          </div>
-        </div>
-
-        <!-- Card 4: Low Stock Alerts -->
-        <div class="kpi-card">
-          <div class="kpi-header">
-            <span class="kpi-title">Low Stock Alerts</span>
-            <div class="kpi-icon-wrap" style="background: #FEE2E2; color: #DC2626;">
-              <i class="bi bi-exclamation-octagon-fill"></i>
-            </div>
-          </div>
-          <div class="kpi-value">6 <span style="font-size: 0.9rem; font-weight: 600; color: #DC2626;">SKUs</span></div>
-          <div class="kpi-footer">
-            <span class="kpi-trend-pill kpi-trend-down">
-              <i class="bi bi-bell-fill"></i> Action Req
-            </span>
-            <span class="kpi-footer-text">3 critical farm orders</span>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- 3. Live Order Fulfillment Table (Static Data) -->
-      <section class="dash-table-card" id="orders" aria-label="Live Store Order Fulfillment">
-        <div class="table-card-header">
-          <div>
-            <h3 class="table-card-title">
-              <i class="bi bi-cart-check-fill text-teal"></i>
-              <span>Live Order Management & Dispatch</span>
-            </h3>
-            <small class="text-muted">Real-time incoming customer grocery orders & delivery routing</small>
-          </div>
-          
-          <div class="table-actions-group">
-            <input type="text" class="table-search-input" id="adminOrderSearch" placeholder="Search orders, clients..." onkeyup="filterAdminOrders()">
-            <button class="table-filter-btn" onclick="showDashToast('Orders reloaded from live socket')">
-              <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+          <h2 class="dash-hero-title">
+            Store Operations: Welcome, <span id="welcomeAdminName">Administrator</span> 🛡️
+          </h2>
+          <p class="dash-hero-subtitle">
+            Real-time grocery logistics, store revenues, active couriers, and stock replenishment console. Today's fulfillment rate is running at <strong>91.4%</strong>.
+          </p>
+          <div class="dash-hero-actions">
+            <button type="button" class="btn-hero-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+              <i class="bi bi-plus-circle-fill"></i> Add New Product
+            </button>
+            <button type="button" class="btn-hero-glass" onclick="showDashToast('Daily financial report generated & downloaded!')">
+              <i class="bi bi-download"></i> Export Sales CSV
+            </button>
+            <button type="button" class="btn-hero-glass" onclick="showDashToast('Courier dispatch route optimized for 14 vans!')">
+              <i class="bi bi-lightning-charge-fill text-warning"></i> Auto-Dispatch Vans
             </button>
           </div>
+        </section>
+
+        <!-- 2. KPI Executive Stat Cards Grid (Static Data) -->
+        <section class="dash-kpi-grid" aria-label="Store KPI Metrics">
+          
+          <!-- Card 1: Today's Revenue -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Today's Revenue</span>
+              <div class="kpi-icon-wrap kpi-icon-teal">
+                <i class="bi bi-currency-dollar"></i>
+              </div>
+            </div>
+            <div class="kpi-value">$18,492.50</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-arrow-up-right"></i> +14.8%
+              </span>
+              <span class="kpi-footer-text">vs yesterday ($16,105)</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Total Daily Orders -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Daily Orders</span>
+              <div class="kpi-icon-wrap kpi-icon-amber">
+                <i class="bi bi-bag-check-fill"></i>
+              </div>
+            </div>
+            <div class="kpi-value">384 <span style="font-size: 0.9rem; font-weight: 600; color: #D97706;">Orders</span></div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-lightning-fill"></i> 36 Express
+              </span>
+              <span class="kpi-footer-text">Avg delivery: 22m</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Active Live Shoppers -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Active Shoppers</span>
+              <div class="kpi-icon-wrap kpi-icon-blue">
+                <i class="bi bi-people-fill"></i>
+              </div>
+            </div>
+            <div class="kpi-value">1,420</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-up">
+                <i class="bi bi-circle-fill" style="font-size: 0.5rem; color: #10B981;"></i> 142 in Cart
+              </span>
+              <span class="kpi-footer-text">Real-time online</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Low Stock Alerts -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Low Stock Alerts</span>
+              <div class="kpi-icon-wrap" style="background: #FEE2E2; color: #DC2626;">
+                <i class="bi bi-exclamation-octagon-fill"></i>
+              </div>
+            </div>
+            <div class="kpi-value">6 <span style="font-size: 0.9rem; font-weight: 600; color: #DC2626;">SKUs</span></div>
+            <div class="kpi-footer">
+              <span class="kpi-trend-pill kpi-trend-down">
+                <i class="bi bi-bell-fill"></i> Action Req
+              </span>
+              <span class="kpi-footer-text">3 critical farm orders</span>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Quick Admin Action Grid -->
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <div class="dash-table-card p-4 h-100 mb-0">
+              <h3 class="table-card-title mb-3">
+                <i class="bi bi-activity text-teal"></i> Warehouse Operations Hub
+              </h3>
+              <div class="d-flex flex-column gap-3">
+                <div class="p-3 bg-light rounded-3 d-flex align-items-center justify-content-between">
+                  <div>
+                    <strong class="d-block text-dark">Packing Stations Active</strong>
+                    <small class="text-muted">12 of 14 stations operational (Fulfillment: 98%)</small>
+                  </div>
+                  <span class="badge bg-success">Normal</span>
+                </div>
+                <div class="p-3 bg-light rounded-3 d-flex align-items-center justify-content-between">
+                  <div>
+                    <strong class="d-block text-dark">Temperature Controlled Cold Storage</strong>
+                    <small class="text-muted">Zone A: 34°F &bull; Zone B: 38°F (Optimal Dairy & Produce)</small>
+                  </div>
+                  <span class="badge bg-teal">Optimal</span>
+                </div>
+                <div class="p-3 bg-light rounded-3 d-flex align-items-center justify-content-between">
+                  <div>
+                    <strong class="d-block text-dark">Automated Farm Supplier POs</strong>
+                    <small class="text-muted">Next batch auto-dispatches today at 4:00 PM</small>
+                  </div>
+                  <button class="btn btn-sm btn-outline-teal" onclick="showDashToast('Batch triggered now')">Run Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="dash-table-card p-4 h-100 mb-0">
+              <h3 class="table-card-title mb-3">
+                <i class="bi bi-speedometer text-teal"></i> Quick Jump Navigation
+              </h3>
+              <div class="row g-2">
+                <div class="col-6">
+                  <button class="btn btn-light w-100 p-3 text-start rounded-3 border" onclick="switchAdminTab(event, 'orders')">
+                    <i class="bi bi-receipt text-warning fs-4 d-block mb-1"></i>
+                    <strong class="d-block text-dark">Live Orders</strong>
+                    <small class="text-muted">18 Pending</small>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-light w-100 p-3 text-start rounded-3 border" onclick="switchAdminTab(event, 'inventory')">
+                    <i class="bi bi-box-seam text-info fs-4 d-block mb-1"></i>
+                    <strong class="d-block text-dark">Inventory</strong>
+                    <small class="text-muted">6 Low Stock SKUs</small>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-light w-100 p-3 text-start rounded-3 border" onclick="switchAdminTab(event, 'logistics')">
+                    <i class="bi bi-truck text-success fs-4 d-block mb-1"></i>
+                    <strong class="d-block text-dark">Logistics</strong>
+                    <small class="text-muted">14 Active Vans</small>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-light w-100 p-3 text-start rounded-3 border" onclick="switchAdminTab(event, 'revenue')">
+                    <i class="bi bi-graph-up-arrow text-teal fs-4 d-block mb-1"></i>
+                    <strong class="d-block text-dark">Revenue</strong>
+                    <small class="text-muted">$18,492 Today</small>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="table-responsive">
-          <table class="dash-custom-table" id="adminOrdersTable">
-            <thead>
-              <tr>
-                <th>Order ID</th>
-                <th>Customer</th>
-                <th>Items & Total</th>
-                <th>Payment</th>
-                <th>Delivery Type</th>
-                <th>Fulfillment Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong class="text-teal">#STK-9025</strong></td>
-                <td>
-                  <strong>Robert Chen</strong>
-                  <small class="text-muted d-block">robert.c@gmail.com</small>
-                </td>
-                <td>
-                  <span>8 Items</span> &bull; <strong class="text-dark">$72.40</strong>
-                </td>
-                <td>
-                  <span class="badge bg-light text-dark border">Apple Pay</span>
-                </td>
-                <td>
-                  <span class="badge bg-warning bg-opacity-25 text-dark fw-bold"><i class="bi bi-lightning-fill text-warning"></i> Express 30m</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-status-picking">
-                    <i class="bi bi-box-seam"></i> Picking in Progress
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Assigned Courier Van #03 to Order #STK-9025')">
-                    <i class="bi bi-truck"></i> Assign Van
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong class="text-teal">#STK-9024</strong></td>
-                <td>
-                  <strong>Sarah Jenkins</strong>
-                  <small class="text-muted d-block">sarah.j@outlook.com</small>
-                </td>
-                <td>
-                  <span>5 Items</span> &bull; <strong class="text-dark">$38.50</strong>
-                </td>
-                <td>
-                  <span class="badge bg-light text-dark border">Visa •••• 4242</span>
-                </td>
-                <td>
-                  <span class="badge bg-light text-muted border">Standard</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-status-transit">
-                    <i class="bi bi-truck"></i> Out for Delivery
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Courier David K. location: Sector 4, 1.2 miles away')">
-                    <i class="bi bi-geo-alt"></i> Live GPS
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong class="text-teal">#STK-9023</strong></td>
-                <td>
-                  <strong>Michael Ross</strong>
-                  <small class="text-muted d-block">m.ross@techcorp.io</small>
-                </td>
-                <td>
-                  <span>12 Items</span> &bull; <strong class="text-dark">$142.10</strong>
-                </td>
-                <td>
-                  <span class="badge bg-light text-dark border">Mastercard</span>
-                </td>
-                <td>
-                  <span class="badge bg-warning bg-opacity-25 text-dark fw-bold"><i class="bi bi-lightning-fill text-warning"></i> Express 30m</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-status-pending">
-                    <i class="bi bi-hourglass-split"></i> Ready for Dispatch
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Order #STK-9023 marked dispatched!')">
-                    <i class="bi bi-check2-circle"></i> Dispatch
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong class="text-teal">#STK-9022</strong></td>
-                <td>
-                  <strong>Emily Watson</strong>
-                  <small class="text-muted d-block">emily.w@icloud.com</small>
-                </td>
-                <td>
-                  <span>3 Items</span> &bull; <strong class="text-dark">$19.80</strong>
-                </td>
-                <td>
-                  <span class="badge bg-light text-dark border">Google Pay</span>
-                </td>
-                <td>
-                  <span class="badge bg-light text-muted border">Standard</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-status-delivered">
-                    <i class="bi bi-check-circle-fill"></i> Completed
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Receipt & delivery proof opened')">
-                    <i class="bi bi-file-earmark-text"></i> Invoice
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td><strong class="text-teal">#STK-9021</strong></td>
-                <td>
-                  <strong>Jessica Alba</strong>
-                  <small class="text-muted d-block">jessica@creative.co</small>
-                </td>
-                <td>
-                  <span>7 Items</span> &bull; <strong class="text-dark">$64.00</strong>
-                </td>
-                <td>
-                  <span class="badge bg-light text-dark border">Visa •••• 9918</span>
-                </td>
-                <td>
-                  <span class="badge bg-light text-muted border">Standard</span>
-                </td>
-                <td>
-                  <span class="badge-status badge-status-delivered">
-                    <i class="bi bi-check-circle-fill"></i> Completed
-                  </span>
-                </td>
-                <td>
-                  <button class="action-btn-sm" onclick="showDashToast('Receipt & delivery proof opened')">
-                    <i class="bi bi-file-earmark-text"></i> Invoice
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- 4. Inventory Stock Control & Low Stock Matrix (Static Data) -->
-      <div class="row g-3 mb-4" id="inventory">
-        
-        <!-- Inventory Table -->
-        <div class="col-lg-8">
-          <div class="dash-table-card h-100 mb-0">
-            <div class="table-card-header">
+      <!-- ====================================================================
+           TAB PANE 2: LIVE ORDERS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="orders-pane">
+        <section class="dash-table-card" aria-label="Live Store Order Fulfillment">
+          <div class="table-card-header">
+            <div>
               <h3 class="table-card-title">
+                <i class="bi bi-cart-check-fill text-teal"></i>
+                <span>Live Order Management & Dispatch</span>
+              </h3>
+              <small class="text-muted">Real-time incoming customer grocery orders & delivery routing</small>
+            </div>
+            
+            <div class="table-actions-group">
+              <input type="text" class="table-search-input" id="adminOrderSearch" placeholder="Search orders, clients..." onkeyup="filterAdminOrders()">
+              <button class="table-filter-btn" onclick="showDashToast('Orders reloaded from live socket')">
+                <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+              </button>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dash-custom-table" id="adminOrdersTable">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Items & Total</th>
+                  <th>Payment</th>
+                  <th>Delivery Type</th>
+                  <th>Fulfillment Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong class="text-teal">#STK-9025</strong></td>
+                  <td>
+                    <strong>Robert Chen</strong>
+                    <small class="text-muted d-block">robert.c@gmail.com</small>
+                  </td>
+                  <td>
+                    <span>8 Items</span> &bull; <strong class="text-dark">$72.40</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-dark border">Apple Pay</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-warning bg-opacity-25 text-dark fw-bold"><i class="bi bi-lightning-fill text-warning"></i> Express 30m</span>
+                  </td>
+                  <td>
+                    <span class="badge-status badge-status-picking">
+                      <i class="bi bi-box-seam"></i> Picking in Progress
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Assigned Courier Van #03 to Order #STK-9025')">
+                      <i class="bi bi-truck"></i> Assign Van
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong class="text-teal">#STK-9024</strong></td>
+                  <td>
+                    <strong>Sarah Jenkins</strong>
+                    <small class="text-muted d-block">sarah.j@outlook.com</small>
+                  </td>
+                  <td>
+                    <span>5 Items</span> &bull; <strong class="text-dark">$38.50</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-dark border">Visa •••• 4242</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-muted border">Standard</span>
+                  </td>
+                  <td>
+                    <span class="badge-status badge-status-transit">
+                      <i class="bi bi-truck"></i> Out for Delivery
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Courier David K. location: Sector 4, 1.2 miles away')">
+                      <i class="bi bi-geo-alt"></i> Live GPS
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong class="text-teal">#STK-9023</strong></td>
+                  <td>
+                    <strong>Michael Ross</strong>
+                    <small class="text-muted d-block">m.ross@techcorp.io</small>
+                  </td>
+                  <td>
+                    <span>12 Items</span> &bull; <strong class="text-dark">$142.10</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-dark border">Mastercard</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-warning bg-opacity-25 text-dark fw-bold"><i class="bi bi-lightning-fill text-warning"></i> Express 30m</span>
+                  </td>
+                  <td>
+                    <span class="badge-status badge-status-pending">
+                      <i class="bi bi-hourglass-split"></i> Ready for Dispatch
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Order #STK-9023 marked dispatched!')">
+                      <i class="bi bi-check2-circle"></i> Dispatch
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong class="text-teal">#STK-9022</strong></td>
+                  <td>
+                    <strong>Emily Watson</strong>
+                    <small class="text-muted d-block">emily.w@icloud.com</small>
+                  </td>
+                  <td>
+                    <span>3 Items</span> &bull; <strong class="text-dark">$19.80</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-dark border">Google Pay</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-muted border">Standard</span>
+                  </td>
+                  <td>
+                    <span class="badge-status badge-status-delivered">
+                      <i class="bi bi-check-circle-fill"></i> Completed
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Receipt & delivery proof opened')">
+                      <i class="bi bi-file-earmark-text"></i> Invoice
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><strong class="text-teal">#STK-9021</strong></td>
+                  <td>
+                    <strong>Jessica Alba</strong>
+                    <small class="text-muted d-block">jessica@creative.co</small>
+                  </td>
+                  <td>
+                    <span>7 Items</span> &bull; <strong class="text-dark">$64.00</strong>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-dark border">Visa •••• 9918</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-light text-muted border">Standard</span>
+                  </td>
+                  <td>
+                    <span class="badge-status badge-status-delivered">
+                      <i class="bi bi-check-circle-fill"></i> Completed
+                    </span>
+                  </td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Receipt & delivery proof opened')">
+                      <i class="bi bi-file-earmark-text"></i> Invoice
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 3: INVENTORY & STOCK
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="inventory-pane">
+        <section class="dash-table-card p-4" aria-label="Inventory Control">
+          <div class="table-card-header mb-3">
+            <div>
+              <h3 class="table-card-title mb-1">
                 <i class="bi bi-boxes text-teal"></i>
                 <span>Inventory & Fresh Produce Levels</span>
               </h3>
-              <button class="btn btn-sm btn-outline-teal" onclick="showDashToast('Automated restock purchase orders sent to Sonoma Organic Farms!')">
+              <small class="text-muted">Real-time shelf metrics, replenishment triggers, and organic grower PO status</small>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-teal text-white" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                <i class="bi bi-plus-circle me-1"></i> + New Product
+              </button>
+              <button class="btn btn-sm btn-outline-teal" onclick="showDashToast('Automated restock purchase orders sent!')">
                 <i class="bi bi-arrow-repeat me-1"></i> Auto-Replenish
               </button>
             </div>
-
-            <div class="table-responsive">
-              <table class="dash-custom-table">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Category</th>
-                    <th>Stock Left</th>
-                    <th>Restock Level</th>
-                    <th>Health</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="assets/images/product-avocados.webp" width="36" height="36" class="rounded-2" alt="Avocados">
-                        <div>
-                          <strong>Organic Hass Avocados</strong>
-                          <small class="text-muted d-block">$4.99 / 3pcs</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-success bg-opacity-10 text-success">Vegetables</span></td>
-                    <td><strong class="text-danger">12 kg</strong></td>
-                    <td>50 kg min</td>
-                    <td><span class="badge bg-danger bg-opacity-15 text-danger fw-bold">Critical Low</span></td>
-                    <td>
-                      <button class="action-btn-sm" onclick="showDashToast('Reorder PO for 100kg Avocados submitted!')">+ Reorder</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="assets/images/product-strawberries.webp" width="36" height="36" class="rounded-2" alt="Strawberries">
-                        <div>
-                          <strong>Fresh Farm Strawberries</strong>
-                          <small class="text-muted d-block">$5.49 / 400g</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-warning bg-opacity-10 text-warning">Fruits</span></td>
-                    <td><strong class="text-danger">8 packs</strong></td>
-                    <td>40 packs min</td>
-                    <td><span class="badge bg-danger bg-opacity-15 text-danger fw-bold">Low Stock</span></td>
-                    <td>
-                      <button class="action-btn-sm" onclick="showDashToast('Reorder PO for 80 packs Strawberries submitted!')">+ Reorder</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="assets/images/product-almond-milk.webp" width="36" height="36" class="rounded-2" alt="Almond Milk">
-                        <div>
-                          <strong>Artisan Almond Milk</strong>
-                          <small class="text-muted d-block">$3.89 / 1L</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-primary bg-opacity-10 text-primary">Dairy</span></td>
-                    <td><strong class="text-success">54 cartons</strong></td>
-                    <td>20 cartons min</td>
-                    <td><span class="badge bg-success bg-opacity-15 text-success fw-bold">Healthy</span></td>
-                    <td>
-                      <button class="action-btn-sm" onclick="showDashToast('Stock count verified')">Audit</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <div class="d-flex align-items-center gap-2">
-                        <img src="assets/images/product-honey.webp" width="36" height="36" class="rounded-2" alt="Honey">
-                        <div>
-                          <strong>Raw Wild Forest Honey</strong>
-                          <small class="text-muted d-block">$8.20 / 500g</small>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-warning bg-opacity-10 text-warning">Pantry</span></td>
-                    <td><strong class="text-success">38 jars</strong></td>
-                    <td>15 jars min</td>
-                    <td><span class="badge bg-success bg-opacity-15 text-success fw-bold">Healthy</span></td>
-                    <td>
-                      <button class="action-btn-sm" onclick="showDashToast('Stock count verified')">Audit</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
-        </div>
 
-        <!-- Fleet Logistics & Couriers -->
-        <div class="col-lg-4" id="logistics">
-          <div class="dash-table-card h-100 p-3 mb-0">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="fw-bold fs-6 mb-0 text-dark">
-                <i class="bi bi-truck text-teal me-2"></i> Courier Fleet Active
-              </h4>
-              <span class="badge bg-teal-subtle text-teal">14/16 Vans</span>
+          <div class="table-responsive">
+            <table class="dash-custom-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Stock Left</th>
+                  <th>Restock Level</th>
+                  <th>Health</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="assets/images/product-avocados.webp" width="36" height="36" class="rounded-2" alt="Avocados">
+                      <div>
+                        <strong>Organic Hass Avocados</strong>
+                        <small class="text-muted d-block">$4.99 / 3pcs</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-success bg-opacity-10 text-success">Vegetables</span></td>
+                  <td><strong class="text-danger">12 kg</strong></td>
+                  <td>50 kg min</td>
+                  <td><span class="badge bg-danger bg-opacity-15 text-danger fw-bold">Critical Low</span></td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Reorder PO for 100kg Avocados submitted!')">+ Reorder</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="assets/images/product-strawberries.webp" width="36" height="36" class="rounded-2" alt="Strawberries">
+                      <div>
+                        <strong>Fresh Farm Strawberries</strong>
+                        <small class="text-muted d-block">$5.49 / 400g</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-warning bg-opacity-10 text-warning">Fruits</span></td>
+                  <td><strong class="text-danger">8 packs</strong></td>
+                  <td>40 packs min</td>
+                  <td><span class="badge bg-danger bg-opacity-15 text-danger fw-bold">Low Stock</span></td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Reorder PO for 80 packs Strawberries submitted!')">+ Reorder</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="assets/images/product-almond-milk.webp" width="36" height="36" class="rounded-2" alt="Almond Milk">
+                      <div>
+                        <strong>Artisan Almond Milk</strong>
+                        <small class="text-muted d-block">$3.89 / 1L</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-primary bg-opacity-10 text-primary">Dairy</span></td>
+                  <td><strong class="text-success">54 cartons</strong></td>
+                  <td>20 cartons min</td>
+                  <td><span class="badge bg-success bg-opacity-15 text-success fw-bold">Healthy</span></td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Stock count verified')">Audit</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <img src="assets/images/product-honey.webp" width="36" height="36" class="rounded-2" alt="Honey">
+                      <div>
+                        <strong>Raw Wild Forest Honey</strong>
+                        <small class="text-muted d-block">$8.20 / 500g</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-warning bg-opacity-10 text-warning">Pantry</span></td>
+                  <td><strong class="text-success">38 jars</strong></td>
+                  <td>15 jars min</td>
+                  <td><span class="badge bg-success bg-opacity-15 text-success fw-bold">Healthy</span></td>
+                  <td>
+                    <button class="action-btn-sm" onclick="showDashToast('Stock count verified')">Audit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 4: FLEET & LOGISTICS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="logistics-pane">
+        <section class="dash-table-card p-4" aria-label="Fleet and Logistics">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-truck text-teal"></i>
+                <span>Courier Fleet & Logistics Console</span>
+              </h3>
+              <small class="text-muted">14 electric refrigerated vans currently delivering across San Francisco sectors</small>
             </div>
-
-            <div class="border rounded-3 p-3 mb-2 bg-light">
-              <div class="d-flex justify-content-between align-items-center">
-                <strong>Van #01 &bull; David K.</strong>
-                <span class="badge bg-success" style="font-size: 0.68rem;">Delivering</span>
-              </div>
-              <small class="text-muted d-block mt-1">Sector 4 Downtown &bull; 4 drop-offs remaining</small>
-              <div class="progress mt-2" style="height: 4px;">
-                <div class="progress-bar bg-teal" style="width: 75%;"></div>
-              </div>
-            </div>
-
-            <div class="border rounded-3 p-3 mb-2 bg-light">
-              <div class="d-flex justify-content-between align-items-center">
-                <strong>Van #02 &bull; Carlos M.</strong>
-                <span class="badge bg-success" style="font-size: 0.68rem;">Delivering</span>
-              </div>
-              <small class="text-muted d-block mt-1">Sunset District &bull; 6 drop-offs remaining</small>
-              <div class="progress mt-2" style="height: 4px;">
-                <div class="progress-bar bg-teal" style="width: 40%;"></div>
-              </div>
-            </div>
-
-            <div class="border rounded-3 p-3 bg-white">
-              <div class="d-flex justify-content-between align-items-center">
-                <strong>Van #03 &bull; Aisha P.</strong>
-                <span class="badge bg-warning text-dark" style="font-size: 0.68rem;">Loading at Hub</span>
-              </div>
-              <small class="text-muted d-block mt-1">Dock 2 &bull; Express 30m Priority Orders</small>
-              <div class="progress mt-2" style="height: 4px;">
-                <div class="progress-bar bg-warning" style="width: 20%;"></div>
-              </div>
-            </div>
-
-            <button class="btn btn-sm btn-outline-teal w-100 mt-3" onclick="showDashToast('Opening Fleet GPS Live Dispatch Map...')">
-              <i class="bi bi-map-fill me-1"></i> View Full Live Dispatch Map
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Fleet dispatch synchronized!')">
+              <i class="bi bi-broadcast me-1"></i> Ping All Couriers
             </button>
           </div>
-        </div>
 
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="border rounded-4 p-3 bg-light">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <strong class="fs-6 text-dark"><i class="bi bi-truck text-teal me-1"></i> Van #01 &bull; David K.</strong>
+                  <span class="badge bg-success">En Route</span>
+                </div>
+                <p class="text-muted small mb-2">Zone: Downtown &bull; 4 drop-offs remaining</p>
+                <div class="progress mb-2" style="height: 6px;">
+                  <div class="progress-bar bg-teal" style="width: 75%;"></div>
+                </div>
+                <small class="text-muted d-block mb-3">Refrigeration Temp: 38°F &bull; Speed: 24mph</small>
+                <button class="action-btn-sm w-100" onclick="showDashToast('Contacted Courier David K.')">Call Driver</button>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="border rounded-4 p-3 bg-light">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <strong class="fs-6 text-dark"><i class="bi bi-truck text-teal me-1"></i> Van #02 &bull; Carlos M.</strong>
+                  <span class="badge bg-success">En Route</span>
+                </div>
+                <p class="text-muted small mb-2">Zone: Sunset District &bull; 6 drop-offs remaining</p>
+                <div class="progress mb-2" style="height: 6px;">
+                  <div class="progress-bar bg-teal" style="width: 40%;"></div>
+                </div>
+                <small class="text-muted d-block mb-3">Refrigeration Temp: 37°F &bull; Speed: 18mph</small>
+                <button class="action-btn-sm w-100" onclick="showDashToast('Contacted Courier Carlos M.')">Call Driver</button>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="border rounded-4 p-3 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <strong class="fs-6 text-dark"><i class="bi bi-truck text-warning me-1"></i> Van #03 &bull; Aisha P.</strong>
+                  <span class="badge bg-warning text-dark">Loading at Hub</span>
+                </div>
+                <p class="text-muted small mb-2">Zone: Dock 2 &bull; Express 30m Priority Orders</p>
+                <div class="progress mb-2" style="height: 6px;">
+                  <div class="progress-bar bg-warning" style="width: 20%;"></div>
+                </div>
+                <small class="text-muted d-block mb-3">Refrigeration Temp: 36°F &bull; Staging</small>
+                <button class="action-btn-sm w-100" onclick="showDashToast('Dispatched Van #03 to road')">Authorize Departure</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 5: SHOPPERS DIRECTORY
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="customers-pane">
+        <section class="dash-table-card p-4" aria-label="Customer Directory">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-people-fill text-teal"></i>
+                <span>Shoppers Directory (4,820 Active)</span>
+              </h3>
+              <small class="text-muted">Registered customers, lifetime order value, and membership tiers</small>
+            </div>
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Customer export CSV started')">
+              <i class="bi bi-download me-1"></i> Export Customers
+            </button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dash-custom-table">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Tier</th>
+                  <th>Total Orders</th>
+                  <th>Lifetime Spend</th>
+                  <th>Last Ordered</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Sarah Jenkins</strong>
+                    <small class="text-muted d-block">sarah.j@outlook.com</small>
+                  </td>
+                  <td><span class="badge bg-warning text-dark fw-bold">Gold VIP</span></td>
+                  <td>28 Orders</td>
+                  <td><strong class="text-dark">$1,142.50</strong></td>
+                  <td>Today, 1:10 PM</td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('Viewing Sarah Jenkins account')">Profile</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Robert Chen</strong>
+                    <small class="text-muted d-block">robert.c@gmail.com</small>
+                  </td>
+                  <td><span class="badge bg-teal text-white">Silver</span></td>
+                  <td>14 Orders</td>
+                  <td><strong class="text-dark">$680.20</strong></td>
+                  <td>Today, 12:45 PM</td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('Viewing Robert Chen account')">Profile</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Michael Ross</strong>
+                    <small class="text-muted d-block">m.ross@techcorp.io</small>
+                  </td>
+                  <td><span class="badge bg-warning text-dark fw-bold">Platinum</span></td>
+                  <td>42 Orders</td>
+                  <td><strong class="text-dark">$2,840.00</strong></td>
+                  <td>Today, 12:15 PM</td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('Viewing Michael Ross account')">Profile</button></td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Emily Watson</strong>
+                    <small class="text-muted d-block">emily.w@icloud.com</small>
+                  </td>
+                  <td><span class="badge bg-light text-muted border">Regular</span></td>
+                  <td>6 Orders</td>
+                  <td><strong class="text-dark">$198.40</strong></td>
+                  <td>Oct 25, 2026</td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('Viewing Emily Watson account')">Profile</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 6: REVENUE & REPORTS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="revenue-pane">
+        <section class="dash-table-card p-4" aria-label="Revenue Reports">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-graph-up-arrow text-teal"></i>
+                <span>Revenue & Financial Analytics</span>
+              </h3>
+              <small class="text-muted">Gross sales, net profit margin, and category performance breakdown</small>
+            </div>
+            <span class="badge bg-teal p-2 px-3 fs-6">October: $148,220.00</span>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-3">
+              <div class="p-3 border rounded-3 bg-light">
+                <small class="text-muted d-block">Average Order Value</small>
+                <div class="fs-4 fw-bold text-dark mt-1">$48.15</div>
+                <small class="text-success fw-bold">+8.4% this month</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3 border rounded-3 bg-light">
+                <small class="text-muted d-block">Gross Margin</small>
+                <div class="fs-4 fw-bold text-teal mt-1">34.2%</div>
+                <small class="text-success fw-bold">+2.1% farm direct</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3 border rounded-3 bg-light">
+                <small class="text-muted d-block">Delivery Fee Revenue</small>
+                <div class="fs-4 fw-bold text-dark mt-1">$4,810.00</div>
+                <small class="text-muted">384 deliveries</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="p-3 border rounded-3 bg-light">
+                <small class="text-muted d-block">Refund Rate</small>
+                <div class="fs-4 fw-bold text-danger mt-1">0.42%</div>
+                <small class="text-success fw-bold">Industry best (&lt;1%)</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="border rounded-4 p-4 text-center bg-light">
+            <h5 class="fw-bold mb-2">Top Selling Categories This Week</h5>
+            <div class="d-flex justify-content-around flex-wrap gap-3 mt-3">
+              <div>
+                <strong class="d-block text-teal fs-5">42%</strong>
+                <small class="text-muted">Organic Produce</small>
+              </div>
+              <div>
+                <strong class="d-block text-warning fs-5">24%</strong>
+                <small class="text-muted">Dairy & Artisan Eggs</small>
+              </div>
+              <div>
+                <strong class="d-block text-primary fs-5">18%</strong>
+                <small class="text-muted">Bakery & Sourdough</small>
+              </div>
+              <div>
+                <strong class="d-block text-success fs-5">16%</strong>
+                <small class="text-muted">Pantry Staples & Honey</small>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 7: PROMOS & COUPONS
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="coupons-pane">
+        <section class="dash-table-card p-4" aria-label="Coupons Management">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-ticket-perforated text-warning"></i>
+                <span>Discount Codes & Promotional Campaigns</span>
+              </h3>
+              <small class="text-muted">Manage active consumer promo coupons, usage limits, and redemption statistics</small>
+            </div>
+            <button class="btn btn-sm btn-teal text-white" onclick="showDashToast('Create promo modal opened')">+ Create Coupon</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="dash-custom-table">
+              <thead>
+                <tr>
+                  <th>Promo Code</th>
+                  <th>Discount</th>
+                  <th>Usage Count</th>
+                  <th>Min Order</th>
+                  <th>Expires</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong class="text-teal">FRESH20</strong></td>
+                  <td>20% Off</td>
+                  <td>428 redemptions</td>
+                  <td>$30.00</td>
+                  <td>Dec 31, 2026</td>
+                  <td><span class="badge bg-success">Active</span></td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('FRESH20 paused')">Pause</button></td>
+                </tr>
+                <tr>
+                  <td><strong class="text-teal">ORGANIC10</strong></td>
+                  <td>$10.00 Flat</td>
+                  <td>192 redemptions</td>
+                  <td>$50.00</td>
+                  <td>Nov 30, 2026</td>
+                  <td><span class="badge bg-success">Active</span></td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('ORGANIC10 paused')">Pause</button></td>
+                </tr>
+                <tr>
+                  <td><strong class="text-teal">FREEDELIVERY</strong></td>
+                  <td>Free Shipping ($4.99)</td>
+                  <td>814 redemptions</td>
+                  <td>$25.00</td>
+                  <td>Continuous</td>
+                  <td><span class="badge bg-success">Active</span></td>
+                  <td><button class="action-btn-sm" onclick="showDashToast('FREEDELIVERY updated')">Edit</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <!-- ====================================================================
+           TAB PANE 8: STORE CONFIGURATION
+           ==================================================================== -->
+      <div class="dash-tab-pane" id="settings-pane">
+        <section class="dash-table-card p-4" aria-label="Store Configuration">
+          <div class="mb-4">
+            <h3 class="table-card-title mb-1">
+              <i class="bi bi-sliders text-teal"></i>
+              <span>Store Configuration & Operations Settings</span>
+            </h3>
+            <small class="text-muted">Delivery radius, store hours, tax rates, and grower notification preferences</small>
+          </div>
+
+          <form onsubmit="event.preventDefault(); showDashToast('Store settings saved successfully!');">
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Store Hub Name</label>
+                <input type="text" class="form-control rounded-3" value="STACKLY Organic Flagship Hub #04">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Delivery Radius (Miles)</label>
+                <input type="number" class="form-control rounded-3" value="15">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Operating Hours</label>
+                <input type="text" class="form-control rounded-3" value="6:00 AM - 10:00 PM PST Daily">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold text-dark">Minimum Order for Free Delivery ($)</label>
+                <input type="number" class="form-control rounded-3" value="45">
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold text-dark d-block">Logistics Automations</label>
+              <div class="d-flex flex-column gap-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="autoAssignVans" checked>
+                  <label class="form-check-label" for="autoAssignVans">Auto-assign delivery van using shortest route algorithm</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="autoReorderLowStock" checked>
+                  <label class="form-check-label" for="autoReorderLowStock">Auto-dispatch purchase orders to certified regional farms when stock &lt; 20%</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="smsCustomerUpdates" checked>
+                  <label class="form-check-label" for="smsCustomerUpdates">Send live SMS updates when courier is within 5 minutes</label>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-teal text-white rounded-3 px-4">
+              <i class="bi bi-check2-circle me-1"></i> Save Store Configuration
+            </button>
+          </form>
+        </section>
       </div>
 
     </main>
@@ -701,6 +1080,12 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Load current admin from localStorage
       loadAdminSession();
+
+      // Check if URL has a hash and activate that tab
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        if (hash) switchAdminTab(null, hash);
+      }
     });
 
     function loadAdminSession() {
@@ -737,16 +1122,31 @@
     function switchAdminTab(e, tabId) {
       if (e) e.preventDefault();
       
+      // Update active sidebar link
       document.querySelectorAll('.sidebar-link').forEach(link => {
         link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + tabId) {
+          link.classList.add('active');
+        }
       });
-      if (e && e.currentTarget) {
+      if (e && e.currentTarget && e.currentTarget.classList.contains('sidebar-link')) {
         e.currentTarget.classList.add('active');
       }
 
-      const target = document.getElementById(tabId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Switch active tab pane
+      const paneId = tabId.endsWith('-pane') ? tabId : tabId + '-pane';
+      document.querySelectorAll('.dash-tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      const targetPane = document.getElementById(paneId);
+      if (targetPane) {
+        targetPane.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Update location hash without page jump
+      if (history.pushState) {
+        history.pushState(null, null, '#' + tabId.replace('-pane', ''));
       }
 
       const sidebar = document.getElementById('dashSidebar');
