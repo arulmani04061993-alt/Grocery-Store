@@ -576,52 +576,264 @@
               </h3>
               <small class="text-muted">Items you buy most frequently. Reorder in one tap with saved payment.</small>
             </div>
-            <a href="index.html" class="text-teal fw-bold" style="font-size: 0.85rem;">View Store &rarr;</a>
+            <a href="index.html" class="btn-view-store">
+              <i class="bi bi-shop"></i>
+              <span>View Store</span>
+              <i class="bi bi-arrow-right"></i>
+            </a>
           </div>
 
           <div class="dash-products-grid mt-3">
 
-            <!-- Product 1 -->
+            <!-- Product 1: Avocados -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-avocados.webp" alt="Organic Hass Avocados" class="dash-prod-img"
-                onerror="this.src='assets/images/category-vegetables.webp'">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-avocados.webp" alt="Organic Hass Avocados" class="dash-prod-img">
+                <span class="dash-prod-badge badge-fresh">Fresh Pick</span>
+              </div>
+              <span class="dash-prod-cat">Produce &bull; Farm Direct</span>
               <h4 class="dash-prod-title">Organic Hass Avocados</h4>
-              <div class="dash-prod-price">$4.99 <small class="text-muted fs-7">/ 3 pcs</small></div>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(4.9 &bull; 128 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 14 times
+              </div>
+              <div class="dash-prod-price">$4.99 <span class="text-muted">/ 3 pcs pack</span></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Hass Avocados to basket!')">
-                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
               </button>
             </div>
 
-            <!-- Product 2 -->
+            <!-- Product 2: Strawberries -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-strawberries.webp" alt="Fresh Organic Strawberries" class="dash-prod-img"
-                onerror="this.src='assets/images/category-fruits.webp'">
-              <h4 class="dash-prod-title">Fresh Strawberries</h4>
-              <div class="dash-prod-price">$5.49 <small class="text-muted fs-7">/ 400g</small></div>
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-strawberries.webp" alt="Fresh Organic Strawberries" class="dash-prod-img">
+                <span class="dash-prod-badge badge-popular">Best Seller</span>
+              </div>
+              <span class="dash-prod-cat">Berries &bull; Valley Farms</span>
+              <h4 class="dash-prod-title">Fresh Organic Strawberries</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(4.95 &bull; 94 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 11 times
+              </div>
+              <div class="dash-prod-price">$5.49 <span class="text-muted">/ 400g punnet</span></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Strawberries to basket!')">
-                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
               </button>
             </div>
 
-            <!-- Product 3 -->
+            <!-- Product 3: Artisan Sourdough -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-almond-milk.webp" alt="Artisan Almond Milk" class="dash-prod-img"
-                onerror="this.src='assets/images/category-dairy.webp'">
-              <h4 class="dash-prod-title">Artisan Almond Milk</h4>
-              <div class="dash-prod-price">$3.89 <small class="text-muted fs-7">/ 1L</small></div>
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-sourdough.webp" alt="Artisan Stone-Ground Sourdough" class="dash-prod-img">
+                <span class="dash-prod-badge badge-organic">Daily Baked</span>
+              </div>
+              <span class="dash-prod-cat">Bakery &bull; Wood Fired</span>
+              <h4 class="dash-prod-title">Artisan Country Sourdough</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                <span>(4.8 &bull; 76 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 9 times
+              </div>
+              <div class="dash-prod-price">$6.25 <span class="text-muted">/ 750g loaf</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Artisan Sourdough to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 4: Extra Virgin Olive Oil -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-olive-oil.webp" alt="Cold-Pressed Extra Virgin Olive Oil" class="dash-prod-img">
+                <span class="dash-prod-badge badge-fresh">Estate Cold-Pressed</span>
+              </div>
+              <span class="dash-prod-cat">Pantry &bull; Single Origin</span>
+              <h4 class="dash-prod-title">Cold-Pressed Extra Virgin Olive Oil</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(5.0 &bull; 62 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 6 times
+              </div>
+              <div class="dash-prod-price">$14.80 <span class="text-muted">/ 500ml glass</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Olive Oil to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 5: Free-Range Pasture Eggs -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-eggs.webp" alt="Pasture-Raised Organic Brown Eggs" class="dash-prod-img">
+                <span class="dash-prod-badge badge-fresh">Farm Fresh</span>
+              </div>
+              <span class="dash-prod-cat">Dairy & Poultry &bull; Pasture-Fed</span>
+              <h4 class="dash-prod-title">Pasture-Raised Brown Eggs</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(4.9 &bull; 112 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 15 times
+              </div>
+              <div class="dash-prod-price">$5.90 <span class="text-muted">/ 12 count carton</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Brown Eggs to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 6: Baby Spinach -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-spinach.webp" alt="Crisp Organic Baby Spinach" class="dash-prod-img">
+                <span class="dash-prod-badge badge-organic">Triple-Washed</span>
+              </div>
+              <span class="dash-prod-cat">Greens &bull; Hydroponic</span>
+              <h4 class="dash-prod-title">Crisp Baby Spinach Leaves</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                <span>(4.85 &bull; 83 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 8 times
+              </div>
+              <div class="dash-prod-price">$3.60 <span class="text-muted">/ 250g clamshell</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Baby Spinach to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 7: Blueberries -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-blueberries.webp" alt="Plump Organic Blueberries" class="dash-prod-img">
+                <span class="dash-prod-badge badge-popular">Antioxidant Rich</span>
+              </div>
+              <span class="dash-prod-cat">Berries &bull; Mountain Grown</span>
+              <h4 class="dash-prod-title">Wild Forest Blueberries</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(4.92 &bull; 71 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 7 times
+              </div>
+              <div class="dash-prod-price">$4.75 <span class="text-muted">/ 200g box</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Blueberries to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 8: Greek Yogurt -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-greek-yogurt.webp" alt="Authentic Greek Strained Yogurt" class="dash-prod-img">
+                <span class="dash-prod-badge badge-fresh">Grass-Fed</span>
+              </div>
+              <span class="dash-prod-cat">Dairy &bull; Probiotic Culture</span>
+              <h4 class="dash-prod-title">Grass-Fed Organic Greek Yogurt</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(4.9 &bull; 65 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 10 times
+              </div>
+              <div class="dash-prod-price">$4.25 <span class="text-muted">/ 500g tub</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Greek Yogurt to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 9: Heirloom Vine Tomatoes -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-tomatoes.webp" alt="Organic Vine-Ripened Tomatoes" class="dash-prod-img">
+                <span class="dash-prod-badge badge-fresh">Vine-Ripened</span>
+              </div>
+              <span class="dash-prod-cat">Produce &bull; Greenhouse Fresh</span>
+              <h4 class="dash-prod-title">Heirloom Vine-Ripened Tomatoes</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                <span>(4.8 &bull; 59 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 6 times
+              </div>
+              <div class="dash-prod-price">$3.99 <span class="text-muted">/ 500g cluster</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Vine Tomatoes to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 10: Organic Bananas -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-bananas.webp" alt="Fair Trade Organic Cavendish Bananas" class="dash-prod-img">
+                <span class="dash-prod-badge badge-popular">Fair-Trade</span>
+              </div>
+              <span class="dash-prod-cat">Fruits &bull; Naturally Ripened</span>
+              <h4 class="dash-prod-title">Cavendish Sweet Bananas</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(4.9 &bull; 140 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 18 times
+              </div>
+              <div class="dash-prod-price">$2.49 <span class="text-muted">/ 1 bunch (~1kg)</span></div>
+              <button class="dash-prod-btn" onclick="showDashToast('Added Cavendish Bananas to basket!')">
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
+              </button>
+            </div>
+
+            <!-- Product 11: Artisan Almond Milk -->
+            <div class="dash-prod-card">
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-almond-milk.webp" alt="Artisan Almond Milk" class="dash-prod-img">
+                <span class="dash-prod-badge badge-organic">Plant-Based</span>
+              </div>
+              <span class="dash-prod-cat">Dairy Alt &bull; Unsweetened</span>
+              <h4 class="dash-prod-title">Artisan Almond Mylk</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                <span>(4.88 &bull; 88 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 12 times
+              </div>
+              <div class="dash-prod-price">$3.89 <span class="text-muted">/ 1L carton</span></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Almond Milk to basket!')">
-                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
               </button>
             </div>
 
-            <!-- Product 4 -->
+            <!-- Product 12: Raw Wild Honey -->
             <div class="dash-prod-card">
-              <img src="assets/images/product-honey.webp" alt="Raw Forest Honey" class="dash-prod-img"
-                onerror="this.src='assets/images/category-bakery.webp'">
-              <h4 class="dash-prod-title">Raw Wild Honey</h4>
-              <div class="dash-prod-price">$8.20 <small class="text-muted fs-7">/ 500g</small></div>
+              <div class="dash-prod-img-wrap">
+                <img src="assets/images/product-honey.webp" alt="Raw Forest Honey" class="dash-prod-img">
+                <span class="dash-prod-badge badge-fresh">Pure Raw</span>
+              </div>
+              <span class="dash-prod-cat">Pantry &bull; Unfiltered Forest</span>
+              <h4 class="dash-prod-title">Raw Wildflower Honey</h4>
+              <div class="dash-prod-rating">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <span>(5.0 &bull; 92 orders)</span>
+              </div>
+              <div class="dash-prod-freq">
+                <i class="bi bi-arrow-repeat text-teal"></i> Ordered 13 times
+              </div>
+              <div class="dash-prod-price">$8.20 <span class="text-muted">/ 500g glass jar</span></div>
               <button class="dash-prod-btn" onclick="showDashToast('Added Raw Honey to basket!')">
-                <i class="bi bi-cart-plus me-1"></i> Add to Basket
+                <i class="bi bi-cart-plus-fill"></i> Quick Reorder
               </button>
             </div>
 
