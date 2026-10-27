@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | STACKLY Premium Organic Grocery</title>
+  <meta name="description" content="STACKLY Store Operations & Admin Dashboard. Manage live orders, monitor stock, dispatch couriers, and track daily revenue.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230F172A'/><text y='.75em' x='.2em' font-size='65' fill='white'>🛡️</text></svg>">
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Base and Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body class="dashboard-body preloader-active">
+
+  <!-- ==========================================================================
+       SIDEBAR: FULL STATIC DATA (Admin Operations Console)
+       ========================================================================== -->
+  <aside class="dash-sidebar admin-theme" id="dashSidebar">
+    
+    <!-- Sidebar Header & Logo -->
+    <div class="sidebar-header">
+      <a href="index.html" class="sidebar-brand">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="sidebar-brand-img">
+      </a>
+      <span class="sidebar-badge-tag">Admin Console</span>
+    </div>
+
+    <!-- Sidebar Navigation Links (Full Static Data) -->
+    <div class="sidebar-nav-container">
+      
+      <p class="sidebar-heading">Store Operations</p>
+      <ul class="sidebar-menu-list">
+        <li class="sidebar-menu-item">
+          <a href="#overview" class="sidebar-link active" onclick="switchAdminTab(event, 'overview')">
+            <i class="bi bi-speedometer2 text-teal"></i>
+            <span>Overview</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#orders" class="sidebar-link" onclick="switchAdminTab(event, 'orders')">
+            <i class="bi bi-receipt text-warning"></i>
+            <span>Live Orders</span>
+            <span class="sidebar-nav-badge badge-warning">18 Pending</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#inventory" class="sidebar-link" onclick="switchAdminTab(event, 'inventory')">
+            <i class="bi bi-box-seam text-info"></i>
+            <span>Inventory & Stock</span>
+            <span class="sidebar-nav-badge badge-danger">6 Low</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#logistics" class="sidebar-link" onclick="switchAdminTab(event, 'logistics')">
+            <i class="bi bi-truck text-success"></i>
+            <span>Fleet & Logistics</span>
+            <span class="sidebar-nav-badge">14 Vans</span>
+          </a>
+        </li>
+      </ul>
+
+      <p class="sidebar-heading">Management & Finance</p>
+      <ul class="sidebar-menu-list">
+        <li class="sidebar-menu-item">
+          <a href="#customers" class="sidebar-link" onclick="switchAdminTab(event, 'customers')">
+            <i class="bi bi-people text-primary"></i>
+            <span>Shoppers Directory</span>
+            <span class="sidebar-nav-badge">4.8k</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#revenue" class="sidebar-link" onclick="switchAdminTab(event, 'revenue')">
+            <i class="bi bi-graph-up-arrow text-success"></i>
+            <span>Revenue & Reports</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#coupons" class="sidebar-link" onclick="switchAdminTab(event, 'coupons')">
+            <i class="bi bi-ticket-perforated text-warning"></i>
+            <span>Promos & Coupons</span>
+            <span class="sidebar-nav-badge badge-teal">3 Active</span>
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#settings" class="sidebar-link" onclick="switchAdminTab(event, 'settings')">
+            <i class="bi bi-sliders text-secondary"></i>
+            <span>Store Configuration</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+    <!-- Sidebar Footer with Logout Button -->
+    <div class="sidebar-footer">
+      <button type="button" class="sidebar-logout-btn" onclick="handleLogout()">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Sign Out (Admin)</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN ADMIN DASHBOARD LAYOUT
+       ========================================================================== -->
+  <div class="dash-main-layout">
+
+    <!-- Top Sticky Navbar -->
+    <header class="dash-topbar">
+      
+      <!-- Left: Mobile Toggle & Admin Page Title -->
+      <div class="topbar-left">
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation Sidebar" onclick="toggleMobileSidebar()">
+          <i class="bi bi-list"></i>
+        </button>
+        <h1 class="topbar-page-title">
+          <i class="bi bi-shield-lock-fill text-warning"></i>
+          <span>Admin Operations Console</span>
+        </h1>
+      </div>
+
+      <!-- Right: Admin Email Shown Prominently, Notifications, Storefront Link -->
+      <div class="topbar-right">
+        
+        <!-- Live System Operational Pill -->
+        <div class="d-none d-md-flex align-items-center gap-2 px-3 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded-pill text-success fw-bold" style="font-size: 0.78rem;">
+          <span class="spinner-grow spinner-grow-sm text-success" style="width: 8px; height: 8px;"></span>
+          <span>Store Live &bull; Orders Syncing</span>
+        </div>
+
+        <!-- Storefront View Link -->
+        <a href="index.html" class="topbar-store-btn" title="View Customer Storefront">
+          <i class="bi bi-shop"></i>
+          <span>Storefront</span>
+        </a>
+
+        <!-- Admin Alerts Bell -->
+        <button class="topbar-icon-btn" title="View Operations Alerts" onclick="showDashToast('3 Low stock items need reorder from farm supplier!')">
+          <i class="bi bi-bell"></i>
+          <span class="topbar-ping-dot"></span>
+        </button>
+
+        <!-- ADMIN EMAIL DISPLAYED PROMINENTLY ON NAVBAR RIGHT -->
+        <div class="dropdown">
+          <div class="nav-email-pill admin-pill" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/images/customer-michael.webp" alt="Admin Avatar" class="nav-email-avatar" id="navAvatarImg" style="border-color: #F59E0B;" onerror="this.src='assets/images/customer-emily.webp'">
+            <span class="nav-email-text" id="navAdminEmail">admin@stacklyfresh.com</span>
+            <span class="nav-role-badge badge-admin">Admin</span>
+            <i class="bi bi-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+          </div>
+
+          <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2 mt-2">
+            <li class="px-3 py-2 border-bottom mb-2">
+              <small class="text-muted d-block">Authorized Admin Account</small>
+              <strong class="text-dark d-block text-truncate" id="dropdownAdminEmail" style="max-width: 220px;">admin@stacklyfresh.com</strong>
+            </li>
+            <li>
+              <a class="dropdown-item rounded-3 py-2" href="user-dashboard.html">
+                <i class="bi bi-person text-teal me-2"></i> Switch to User View
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item rounded-3 py-2" href="index.html">
+                <i class="bi bi-cart3 text-primary me-2"></i> Open Customer Store
+              </a>
+            </li>
+            <li><hr class="dropdown-divider my-1"></li>
+            <li>
+              <button class="dropdown-item rounded-3 py-2 text-danger" onclick="handleLogout()">
+                <i class="bi bi-box-arrow-right me-2"></i> Sign Out of Admin
+              </button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="dash-content">
+
+      <!-- 1. Executive Welcome Hero Banner -->
+      <section class="dash-hero-card admin-hero" aria-label="Admin Executive Summary">
+        <div class="dash-hero-badge">
+          <i class="bi bi-shield-shaded text-warning"></i>
+          <span>STACKLY SuperAdmin Portal &bull; Store Hub #04</span>
+        </div>
+        <h2 class="dash-hero-title">
+          Store Operations: Welcome, <span id="welcomeAdminName">Administrator</span> 🛡️
+        </h2>
+        <p class="dash-hero-subtitle">
+          Real-time grocery logistics, store revenues, active couriers, and stock replenishment console. Today's fulfillment rate is running at <strong>91.4%</strong>.
+        </p>
+        <div class="dash-hero-actions">
+          <button type="button" class="btn-hero-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            <i class="bi bi-plus-circle-fill"></i> Add New Product
+          </button>
+          <button type="button" class="btn-hero-glass" onclick="showDashToast('Daily financial report generated & downloaded!')">
+            <i class="bi bi-download"></i> Export Sales CSV
+          </button>
+          <button type="button" class="btn-hero-glass" onclick="showDashToast('Courier dispatch route optimized for 14 vans!')">
+            <i class="bi bi-lightning-charge-fill text-warning"></i> Auto-Dispatch Vans
+          </button>
+        </div>
+      </section>
+
+      <!-- 2. KPI Executive Stat Cards Grid (Static Data) -->
+      <section class="dash-kpi-grid" aria-label="Store KPI Metrics">
+        
+        <!-- Card 1: Today's Revenue -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Today's Revenue</span>
+            <div class="kpi-icon-wrap kpi-icon-teal">
+              <i class="bi bi-currency-dollar"></i>
+            </div>
+          </div>
+          <div class="kpi-value">$18,492.50</div>
+          <div class="kpi-footer">
+            <span class="kpi-trend-pill kpi-trend-up">
+              <i class="bi bi-arrow-up-right"></i> +14.8%
+            </span>
+            <span class="kpi-footer-text">vs yesterday ($16,105)</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Total Daily Orders -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Daily Orders</span>
+            <div class="kpi-icon-wrap kpi-icon-amber">
+              <i class="bi bi-bag-check-fill"></i>
+            </div>
+          </div>
+          <div class="kpi-value">384 <span style="font-size: 0.9rem; font-weight: 600; color: #D97706;">Orders</span></div>
+          <div class="kpi-footer">
+            <span class="kpi-trend-pill kpi-trend-up">
+              <i class="bi bi-lightning-fill"></i> 36 Express
+            </span>
+            <span class="kpi-footer-text">Avg delivery: 22m</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Active Live Shoppers -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Active Shoppers</span>
+            <div class="kpi-icon-wrap kpi-icon-blue">
+              <i class="bi bi-people-fill"></i>
+            </div>
+          </div>
+          <div class="kpi-value">1,420</div>
+          <div class="kpi-footer">
+            <span class="kpi-trend-pill kpi-trend-up">
+              <i class="bi bi-circle-fill" style="font-size: 0.5rem; color: #10B981;"></i> 142 in Cart
+            </span>
+            <span class="kpi-footer-text">Real-time online</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Low Stock Alerts -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Low Stock Alerts</span>
+            <div class="kpi-icon-wrap" style="background: #FEE2E2; color: #DC2626;">
+              <i class="bi bi-exclamation-octagon-fill"></i>
+            </div>
+          </div>
+          <div class="kpi-value">6 <span style="font-size: 0.9rem; font-weight: 600; color: #DC2626;">SKUs</span></div>
+          <div class="kpi-footer">
+            <span class="kpi-trend-pill kpi-trend-down">
+              <i class="bi bi-bell-fill"></i> Action Req
+            </span>
+            <span class="kpi-footer-text">3 critical farm orders</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 3. Live Order Fulfillment Table (Static Data) -->
+      <section class="dash-table-card" id="orders" aria-label="Live Store Order Fulfillment">
+        <div class="table-card-header">
+          <div>
+            <h3 class="table-card-title">
+              <i class="bi bi-cart-check-fill text-teal"></i>
+              <span>Live Order Management & Dispatch</span>
+            </h3>
+            <small class="text-muted">Real-time incoming customer grocery orders & delivery routing</small>
+          </div>
+          
+          <div class="table-actions-group">
+            <input type="text" class="table-search-input" id="adminOrderSearch" placeholder="Search orders, clients..." onkeyup="filterAdminOrders()">
+            <button class="table-filter-btn" onclick="showDashToast('Orders reloaded from live socket')">
+              <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="dash-custom-table" id="adminOrdersTable">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Items & Total</th>
+                <th>Payment</th>
+                <th>Delivery Type</th>
+                <th>Fulfillment Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong class="text-teal">#STK-9025</strong></td>
+                <td>
+                  <strong>Robert Chen</strong>
+                  <small class="text-muted d-block">robert.c@gmail.com</small>
+                </td>
+                <td>
+                  <span>8 Items</span> &bull; <strong class="text-dark">$72.40</strong>
+                </td>
+                <td>
+                  <span class="badge bg-light text-dark border">Apple Pay</span>
+                </td>
+                <td>
+                  <span class="badge bg-warning bg-opacity-25 text-dark fw-bold"><i class="bi bi-lightning-fill text-warning"></i> Express 30m</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-status-picking">
+                    <i class="bi bi-box-seam"></i> Picking in Progress
+                  </span>
+                </td>
+                <td>
+                  <button class="action-btn-sm" onclick="showDashToast('Assigned Courier Van #03 to Order #STK-9025')">
+                    <i class="bi bi-truck"></i> Assign Van
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong class="text-teal">#STK-9024</strong></td>
+                <td>
+                  <strong>Sarah Jenkins</strong>
+                  <small class="text-muted d-block">sarah.j@outlook.com</small>
+                </td>
+                <td>
+                  <span>5 Items</span> &bull; <strong class="text-dark">$38.50</strong>
+                </td>
+                <td>
+                  <span class="badge bg-light text-dark border">Visa •••• 4242</span>
+                </td>
+                <td>
+                  <span class="badge bg-light text-muted border">Standard</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-status-transit">
+                    <i class="bi bi-truck"></i> Out for Delivery
+                  </span>
+                </td>
+                <td>
+                  <button class="action-btn-sm" onclick="showDashToast('Courier David K. location: Sector 4, 1.2 miles away')">
+                    <i class="bi bi-geo-alt"></i> Live GPS
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong class="text-teal">#STK-9023</strong></td>
+                <td>
+                  <strong>Michael Ross</strong>
+                  <small class="text-muted d-block">m.ross@techcorp.io</small>
+                </td>
+                <td>
+                  <span>12 Items</span> &bull; <strong class="text-dark">$142.10</strong>
+                </td>
+                <td>
+                  <span class="badge bg-light text-dark border">Mastercard</span>
+                </td>
+                <td>
+                  <span class="badge bg-warning bg-opacity-25 text-dark fw-bold"><i class="bi bi-lightning-fill text-warning"></i> Express 30m</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-status-pending">
+                    <i class="bi bi-hourglass-split"></i> Ready for Dispatch
+                  </span>
+                </td>
+                <td>
+                  <button class="action-btn-sm" onclick="showDashToast('Order #STK-9023 marked dispatched!')">
+                    <i class="bi bi-check2-circle"></i> Dispatch
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong class="text-teal">#STK-9022</strong></td>
+                <td>
+                  <strong>Emily Watson</strong>
+                  <small class="text-muted d-block">emily.w@icloud.com</small>
+                </td>
+                <td>
+                  <span>3 Items</span> &bull; <strong class="text-dark">$19.80</strong>
+                </td>
+                <td>
+                  <span class="badge bg-light text-dark border">Google Pay</span>
+                </td>
+                <td>
+                  <span class="badge bg-light text-muted border">Standard</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-status-delivered">
+                    <i class="bi bi-check-circle-fill"></i> Completed
+                  </span>
+                </td>
+                <td>
+                  <button class="action-btn-sm" onclick="showDashToast('Receipt & delivery proof opened')">
+                    <i class="bi bi-file-earmark-text"></i> Invoice
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong class="text-teal">#STK-9021</strong></td>
+                <td>
+                  <strong>Jessica Alba</strong>
+                  <small class="text-muted d-block">jessica@creative.co</small>
+                </td>
+                <td>
+                  <span>7 Items</span> &bull; <strong class="text-dark">$64.00</strong>
+                </td>
+                <td>
+                  <span class="badge bg-light text-dark border">Visa •••• 9918</span>
+                </td>
+                <td>
+                  <span class="badge bg-light text-muted border">Standard</span>
+                </td>
+                <td>
+                  <span class="badge-status badge-status-delivered">
+                    <i class="bi bi-check-circle-fill"></i> Completed
+                  </span>
+                </td>
+                <td>
+                  <button class="action-btn-sm" onclick="showDashToast('Receipt & delivery proof opened')">
+                    <i class="bi bi-file-earmark-text"></i> Invoice
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Inventory Stock Control & Low Stock Matrix (Static Data) -->
+      <div class="row g-3 mb-4" id="inventory">
+        
+        <!-- Inventory Table -->
+        <div class="col-lg-8">
+          <div class="dash-table-card h-100 mb-0">
+            <div class="table-card-header">
+              <h3 class="table-card-title">
+                <i class="bi bi-boxes text-teal"></i>
+                <span>Inventory & Fresh Produce Levels</span>
+              </h3>
+              <button class="btn btn-sm btn-outline-teal" onclick="showDashToast('Automated restock purchase orders sent to Sonoma Organic Farms!')">
+                <i class="bi bi-arrow-repeat me-1"></i> Auto-Replenish
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dash-custom-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Stock Left</th>
+                    <th>Restock Level</th>
+                    <th>Health</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="assets/images/product-avocados.webp" width="36" height="36" class="rounded-2" alt="Avocados">
+                        <div>
+                          <strong>Organic Hass Avocados</strong>
+                          <small class="text-muted d-block">$4.99 / 3pcs</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge bg-success bg-opacity-10 text-success">Vegetables</span></td>
+                    <td><strong class="text-danger">12 kg</strong></td>
+                    <td>50 kg min</td>
+                    <td><span class="badge bg-danger bg-opacity-15 text-danger fw-bold">Critical Low</span></td>
+                    <td>
+                      <button class="action-btn-sm" onclick="showDashToast('Reorder PO for 100kg Avocados submitted!')">+ Reorder</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="assets/images/product-strawberries.webp" width="36" height="36" class="rounded-2" alt="Strawberries">
+                        <div>
+                          <strong>Fresh Farm Strawberries</strong>
+                          <small class="text-muted d-block">$5.49 / 400g</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge bg-warning bg-opacity-10 text-warning">Fruits</span></td>
+                    <td><strong class="text-danger">8 packs</strong></td>
+                    <td>40 packs min</td>
+                    <td><span class="badge bg-danger bg-opacity-15 text-danger fw-bold">Low Stock</span></td>
+                    <td>
+                      <button class="action-btn-sm" onclick="showDashToast('Reorder PO for 80 packs Strawberries submitted!')">+ Reorder</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="assets/images/product-almond-milk.webp" width="36" height="36" class="rounded-2" alt="Almond Milk">
+                        <div>
+                          <strong>Artisan Almond Milk</strong>
+                          <small class="text-muted d-block">$3.89 / 1L</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge bg-primary bg-opacity-10 text-primary">Dairy</span></td>
+                    <td><strong class="text-success">54 cartons</strong></td>
+                    <td>20 cartons min</td>
+                    <td><span class="badge bg-success bg-opacity-15 text-success fw-bold">Healthy</span></td>
+                    <td>
+                      <button class="action-btn-sm" onclick="showDashToast('Stock count verified')">Audit</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <img src="assets/images/product-honey.webp" width="36" height="36" class="rounded-2" alt="Honey">
+                        <div>
+                          <strong>Raw Wild Forest Honey</strong>
+                          <small class="text-muted d-block">$8.20 / 500g</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge bg-warning bg-opacity-10 text-warning">Pantry</span></td>
+                    <td><strong class="text-success">38 jars</strong></td>
+                    <td>15 jars min</td>
+                    <td><span class="badge bg-success bg-opacity-15 text-success fw-bold">Healthy</span></td>
+                    <td>
+                      <button class="action-btn-sm" onclick="showDashToast('Stock count verified')">Audit</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fleet Logistics & Couriers -->
+        <div class="col-lg-4" id="logistics">
+          <div class="dash-table-card h-100 p-3 mb-0">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="fw-bold fs-6 mb-0 text-dark">
+                <i class="bi bi-truck text-teal me-2"></i> Courier Fleet Active
+              </h4>
+              <span class="badge bg-teal-subtle text-teal">14/16 Vans</span>
+            </div>
+
+            <div class="border rounded-3 p-3 mb-2 bg-light">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>Van #01 &bull; David K.</strong>
+                <span class="badge bg-success" style="font-size: 0.68rem;">Delivering</span>
+              </div>
+              <small class="text-muted d-block mt-1">Sector 4 Downtown &bull; 4 drop-offs remaining</small>
+              <div class="progress mt-2" style="height: 4px;">
+                <div class="progress-bar bg-teal" style="width: 75%;"></div>
+              </div>
+            </div>
+
+            <div class="border rounded-3 p-3 mb-2 bg-light">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>Van #02 &bull; Carlos M.</strong>
+                <span class="badge bg-success" style="font-size: 0.68rem;">Delivering</span>
+              </div>
+              <small class="text-muted d-block mt-1">Sunset District &bull; 6 drop-offs remaining</small>
+              <div class="progress mt-2" style="height: 4px;">
+                <div class="progress-bar bg-teal" style="width: 40%;"></div>
+              </div>
+            </div>
+
+            <div class="border rounded-3 p-3 bg-white">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>Van #03 &bull; Aisha P.</strong>
+                <span class="badge bg-warning text-dark" style="font-size: 0.68rem;">Loading at Hub</span>
+              </div>
+              <small class="text-muted d-block mt-1">Dock 2 &bull; Express 30m Priority Orders</small>
+              <div class="progress mt-2" style="height: 4px;">
+                <div class="progress-bar bg-warning" style="width: 20%;"></div>
+              </div>
+            </div>
+
+            <button class="btn btn-sm btn-outline-teal w-100 mt-3" onclick="showDashToast('Opening Fleet GPS Live Dispatch Map...')">
+              <i class="bi bi-map-fill me-1"></i> View Full Live Dispatch Map
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Modal: Add New Product -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-bottom py-3 px-4">
+          <h5 class="modal-title fw-bold" id="addProductModalLabel">
+            <i class="bi bi-plus-circle text-teal me-2"></i> Add New Organic Product
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="addProductForm" onsubmit="handleProductAdd(event)">
+            <div class="mb-3">
+              <label class="form-label fw-semibold text-dark">Product Name</label>
+              <input type="text" class="form-control rounded-3" placeholder="e.g. Organic Crisp Gala Apples" required id="newProdName">
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold text-dark">Category</label>
+                <select class="form-select rounded-3" id="newProdCat">
+                  <option value="fruits">Fresh Fruits</option>
+                  <option value="vegetables">Vegetables</option>
+                  <option value="dairy">Dairy & Eggs</option>
+                  <option value="bakery">Bakery</option>
+                  <option value="meat">Meat & Fish</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label fw-semibold text-dark">Price ($)</label>
+                <input type="number" step="0.01" class="form-control rounded-3" placeholder="4.99" required id="newProdPrice">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold text-dark">Initial Stock Level (kg / units)</label>
+              <input type="number" class="form-control rounded-3" placeholder="50" required id="newProdStock">
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-teal text-white rounded-3 px-4">Save Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification element -->
+  <div class="dash-toast" id="dashToast" role="alert">
+    <i class="bi bi-shield-check text-warning fs-5" id="toastIcon"></i>
+    <span id="dashToastMsg">Notification message</span>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Core Data & Interaction Scripts -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/interactions.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Admin Dashboard Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load current admin from localStorage
+      loadAdminSession();
+    });
+
+    function loadAdminSession() {
+      let user = null;
+      try {
+        const stored = localStorage.getItem('stackly_current_user');
+        if (stored) {
+          user = JSON.parse(stored);
+        }
+      } catch (e) {
+        console.warn('Error reading localStorage:', e);
+      }
+
+      // Default fallback if admin visited directly
+      const defaultEmail = 'admin@stacklyfresh.com';
+      const defaultName = 'Store Administrator';
+
+      const email = (user && user.email) ? user.email : defaultEmail;
+      const name = (user && user.name) ? user.name : defaultName;
+
+      // Populate Navbar Email prominently (as explicitly requested)
+      const navEmail = document.getElementById('navAdminEmail');
+      if (navEmail) navEmail.textContent = email;
+
+      const dropdownEmail = document.getElementById('dropdownAdminEmail');
+      if (dropdownEmail) dropdownEmail.textContent = email;
+
+      // Welcome Banner
+      const welcome = document.getElementById('welcomeAdminName');
+      if (welcome) welcome.textContent = name;
+    }
+
+    // Tab switcher helper
+    function switchAdminTab(e, tabId) {
+      if (e) e.preventDefault();
+      
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      if (e && e.currentTarget) {
+        e.currentTarget.classList.add('active');
+      }
+
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      const sidebar = document.getElementById('dashSidebar');
+      if (sidebar && sidebar.classList.contains('mobile-open')) {
+        sidebar.classList.remove('mobile-open');
+      }
+    }
+
+    // Search filter for admin orders table
+    function filterAdminOrders() {
+      const query = document.getElementById('adminOrderSearch').value.toLowerCase();
+      const rows = document.querySelectorAll('#adminOrdersTable tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    // Mobile sidebar toggle
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('dashSidebar');
+      if (sidebar) {
+        sidebar.classList.toggle('mobile-open');
+      }
+    }
+
+    // Show toast helper
+    function showDashToast(message) {
+      const toast = document.getElementById('dashToast');
+      const msg = document.getElementById('dashToastMsg');
+      if (!toast || !msg) return;
+
+      msg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // Add Product Modal Handler
+    function handleProductAdd(e) {
+      e.preventDefault();
+      const name = document.getElementById('newProdName').value;
+      const price = document.getElementById('newProdPrice').value;
+      
+      // Close modal
+      const modalEl = document.getElementById('addProductModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalEl);
+      if (modalInstance) modalInstance.hide();
+
+      showDashToast(`✅ New product "${name}" ($${price}) published to online catalog!`);
+      document.getElementById('addProductForm').reset();
+    }
+
+    // Handle Logout
+    function handleLogout() {
+      localStorage.removeItem('stackly_current_user');
+      showDashToast('Signing out of Admin Portal...');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 700);
+    }
+  </script>
+
+</body>
+</html>

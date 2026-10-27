@@ -1,0 +1,938 @@
+/* ==========================================================================
+   SERVICE / OUR STORY PAGE — Matches Exact Provided Reference Mockup
+   ========================================================================== */
+
+/* 1. Hero Banner: Our Story */
+.story-hero-section {
+  position: relative;
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 5rem 1rem;
+}
+
+.story-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 26, 45, 0.45) 0%, rgba(17, 26, 45, 0.72) 100%);
+  z-index: 1;
+}
+
+.story-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.story-hero-pill {
+  display: inline-block;
+  background: #14B8A6;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+
+.story-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.story-hero-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* 2. Section: It All Started with a Simple Seed */
+.story-seed-section {
+  padding: 5.5rem 0 4.5rem;
+  background: #FFFFFF;
+}
+
+.story-seed-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.story-seed-image-wrap {
+  position: relative;
+}
+
+.story-seed-backdrop-circle {
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #A7F3D0;
+  opacity: 0.65;
+  z-index: 0;
+}
+
+.story-seed-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.story-badge-years {
+  position: absolute;
+  bottom: -20px;
+  right: -15px;
+  z-index: 2;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 1.25rem 1.65rem;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  min-width: 180px;
+}
+
+.story-badge-number {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #14B8A6;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.story-badge-label {
+  font-size: 0.8rem;
+  color: #64748B;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.story-seed-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: #1E293B;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.story-seed-title span {
+  color: #14B8A6;
+}
+
+.story-seed-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #64748B;
+  margin-bottom: 1.35rem;
+}
+
+.story-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  margin-top: 2.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid #F1F5F9;
+}
+
+.story-stat-item .stat-num {
+  font-family: var(--font-heading);
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: #1E293B;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.story-stat-item .stat-label {
+  font-size: 0.85rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+/* 3. Mission & Vision Dual Cards */
+.story-mission-section {
+  padding: 1.5rem 0 4.5rem;
+  background: #FFFFFF;
+}
+
+.story-mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.story-mv-card {
+  background: #FFFFFF;
+  border-radius: 22px;
+  padding: 2.5rem 2.25rem;
+  border: 1px solid #F1F5F9;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.story-mv-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: 0 16px 36px -8px rgba(20, 184, 166, 0.12);
+}
+
+.story-mv-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: #E6FFFA;
+  color: #14B8A6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+
+.story-mv-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 0.65rem;
+}
+
+.story-mv-desc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #64748B;
+  margin: 0;
+}
+
+/* 4. The Values We Live By (4 Cards) */
+.story-values-section {
+  padding: 4.5rem 0 5rem;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.story-values-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: #1E293B;
+  margin-bottom: 3.5rem;
+  letter-spacing: -0.5px;
+}
+
+.story-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.story-value-card {
+  border-radius: 20px;
+  padding: 2.5rem 1.65rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+}
+
+.story-value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+}
+
+/* 4 Distinct pastel card backgrounds from reference */
+.story-val-1 {
+  background: #ECFDF5;
+  border-color: #D1FAE5;
+}
+.story-val-2 {
+  background: #F0FDFA;
+  border-color: #CCFBF1;
+}
+.story-val-3 {
+  background: #EFF6FF;
+  border-color: #DBEAFE;
+}
+.story-val-4 {
+  background: #FAF5FF;
+  border-color: #F3E8FF;
+}
+
+.story-value-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 1.35rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.story-val-1 .story-value-icon { color: #10B981; }
+.story-val-2 .story-value-icon { color: #14B8A6; }
+.story-val-3 .story-value-icon { color: #3B82F6; }
+.story-val-4 .story-value-icon { color: #8B5CF6; }
+
+.story-value-title {
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 0.65rem;
+}
+
+.story-value-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #64748B;
+  margin: 0;
+}
+
+/* 5. Meet the Visionaries (Team) */
+.story-team-section {
+  padding: 4.5rem 0 5.5rem;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.story-team-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 800;
+  color: #1E293B;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.5px;
+}
+
+.story-team-sub {
+  font-size: 0.95rem;
+  color: #64748B;
+  margin-bottom: 3.5rem;
+}
+
+.story-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.story-team-card {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.story-team-card:hover {
+  transform: translateY(-6px);
+}
+
+.story-team-img-wrap {
+  width: 100%;
+  aspect-ratio: 1/1.15;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+
+.story-team-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.story-team-card:hover .story-team-img-wrap img {
+  transform: scale(1.05);
+}
+
+.story-team-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 0.25rem;
+}
+
+.story-team-role {
+  font-size: 0.82rem;
+  color: #14B8A6;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.story-team-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.story-team-social a {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.story-team-social a:hover {
+  color: #14B8A6;
+}
+
+/* 6. Caring for Our Planet & Our People */
+.story-planet-section {
+  padding: 4.5rem 0 6rem;
+  background: #FFFFFF;
+}
+
+.story-planet-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.story-planet-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ECFDF5;
+  color: #10B981;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+}
+
+.story-planet-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: #1E293B;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 1.35rem;
+}
+
+.story-planet-title span {
+  color: #10B981;
+}
+
+.story-planet-intro {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #64748B;
+  margin-bottom: 2rem;
+}
+
+.story-planet-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.story-planet-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.story-planet-ficon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #ECFDF5;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.story-planet-fname {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1E293B;
+  margin-bottom: 0.3rem;
+}
+
+.story-planet-fdesc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #64748B;
+  margin: 0;
+}
+
+.story-planet-img-wrap {
+  width: 100%;
+}
+
+.story-planet-img {
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+/* Story Responsive Styles */
+@media (max-width: 991.98px) {
+  .story-seed-grid,
+  .story-planet-grid,
+  .about-cert-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  .story-mv-grid {
+    grid-template-columns: 1fr;
+  }
+  .story-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .story-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .about-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .story-values-grid,
+  .story-team-grid,
+  .about-process-grid {
+    grid-template-columns: 1fr;
+  }
+  .story-stats-row {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .story-badge-years {
+    position: static;
+    margin-top: 1rem;
+    min-width: auto;
+  }
+}
+
+/* ==========================================================================
+   EXTRA ABOUT SECTIONS: Process Journey, Certifications, Partner & FAQs
+   ========================================================================== */
+
+/* 1. Farm-to-Fork Journey */
+.about-process-section {
+  padding: 5.5rem 0;
+  background: #F8FAFC;
+  position: relative;
+}
+
+.about-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.5rem;
+}
+
+.about-section-pill {
+  display: inline-block;
+  background: rgba(20, 184, 166, 0.12);
+  color: #0D9488;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+  margin-bottom: 0.85rem;
+}
+
+.about-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 0.75rem;
+}
+
+.about-section-title span {
+  color: #14B8A6;
+}
+
+.about-section-desc {
+  font-size: 1.05rem;
+  color: #64748B;
+  line-height: 1.6;
+}
+
+.about-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.about-process-card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 2.2rem 1.75rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.about-process-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(20, 184, 166, 0.12);
+  border-color: rgba(20, 184, 166, 0.3);
+}
+
+.about-process-step-num {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #E2E8F0;
+  line-height: 1;
+}
+
+.about-process-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: #ECFDF5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.35rem;
+}
+
+.about-process-card:nth-child(2) .about-process-icon {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.about-process-card:nth-child(3) .about-process-icon {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.about-process-card:nth-child(4) .about-process-icon {
+  background: #F0FDF4;
+  color: #16A34A;
+}
+
+.about-process-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.65rem;
+}
+
+.about-process-desc {
+  font-size: 0.92rem;
+  color: #64748B;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.about-process-banner-wrap {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
+  position: relative;
+  max-height: 380px;
+}
+
+.about-process-banner-img {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.about-process-banner-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  color: #FFFFFF;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.about-process-banner-badge i {
+  font-size: 1.8rem;
+  color: #10B981;
+}
+
+/* 2. Certification & Strict Standards Section */
+.about-cert-section {
+  padding: 5.5rem 0;
+  background: #FFFFFF;
+}
+
+.about-cert-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+
+.about-cert-img-wrap {
+  position: relative;
+}
+
+.about-cert-img {
+  width: 100%;
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.about-cert-pill-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #10B981;
+  color: #FFFFFF;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.about-cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.about-cert-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: #F8FAFC;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.about-cert-item:hover {
+  transform: translateX(6px);
+  border-color: #14B8A6;
+  background: #FFFFFF;
+}
+
+.about-cert-check {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ECFDF5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.about-cert-item-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.25rem;
+}
+
+.about-cert-item-desc {
+  font-size: 0.88rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 3. Partner Spotlight Section */
+.about-partner-section {
+  padding: 5.5rem 0;
+  background: #F8FAFC;
+}
+
+.about-partner-card {
+  background: #FFFFFF;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+@media (max-width: 991.98px) {
+  .about-partner-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-partner-img {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.about-partner-body {
+  padding: 3.5rem;
+}
+
+@media (max-width: 575.98px) {
+  .about-partner-body {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.about-partner-tag {
+  color: #0D9488;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.about-partner-title {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 1rem;
+}
+
+.about-partner-desc {
+  font-size: 0.98rem;
+  color: #64748B;
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+}
+
+.about-partner-stats {
+  display: flex;
+  gap: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #E2E8F0;
+}
+
+.about-pstat-num {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0D9488;
+}
+
+.about-pstat-label {
+  font-size: 0.82rem;
+  color: #64748B;
+  font-weight: 600;
+}
+
+/* 4. About FAQ Accordion */
+.about-faq-section {
+  padding: 5.5rem 0;
+  background: #FFFFFF;
+}
+
+.about-faq-accordion .accordion-item {
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 16px !important;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+.about-faq-accordion .accordion-button {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #0F172A;
+  padding: 1.25rem 1.5rem;
+  background: #FFFFFF;
+}
+
+.about-faq-accordion .accordion-button:not(.collapsed) {
+  background: #ECFDF5;
+  color: #0D9488;
+  box-shadow: none;
+}
+
+.about-faq-accordion .accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.about-faq-accordion .accordion-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  color: #64748B;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+

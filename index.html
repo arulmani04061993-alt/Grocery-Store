@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STACKLY — Premium Organic Grocery E-Commerce</title>
+  <meta name="description" content="Eat fresh, live healthy every day with STACKLY. High-quality 100% certified organic fruits, vegetables, dairy, and groceries delivered in 30 minutes.">
+  <meta name="keywords" content="organic groceries, farm to table, fresh produce, vegetables, fruits, grocery delivery">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <!-- Preload Official Brand Logo for Instant Preloader Display -->
+  <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp">
+</head>
+<body class="preloader-active">
+
+  <!-- ==========================================================================
+       SECTION 14: LOGO INTRO PRELOADER (Exactly 2.0 Seconds)
+       ========================================================================== -->
+  <div id="logoIntroPreloader" aria-hidden="true">
+    <div class="preloader-brand-wrap">
+      <div class="preloader-logo-wrapper">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
+      </div>
+      <!-- Wave Loading Animation below Logo -->
+      <div class="preloader-wave-container" aria-label="Loading...">
+        <div class="wave-bars">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+          <span class="wave-bar bar-4"></span>
+          <span class="wave-bar bar-5"></span>
+          <span class="wave-bar bar-6"></span>
+          <span class="wave-bar bar-7"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SECTION 4: HEADER & NAVIGATION — Called dynamically from navbar.html
+       ========================================================================== -->
+  <div id="navbar-placeholder" data-include="navbar.html">
+    <header class="site-header" id="siteHeader">
+      <div class="header-container">
+        
+        <!-- Logo Left -->
+        <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery Homepage">
+          <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img" width="145" height="43">
+        </a>
+
+        <!-- Wide Rounded Search Bar -->
+        <div class="header-search-wrap" role="search">
+          <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
+          <input type="text" 
+                 id="headerSearchInput" 
+                 class="header-search-input" 
+                 placeholder="Search for groceries, snacks, or drinks..." 
+                 aria-label="Search for groceries, snacks, or drinks">
+          <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+            <i class="bi bi-x-circle-fill"></i>
+          </button>
+        </div>
+
+        <!-- Navigation & Actions Right -->
+        <nav class="header-actions" aria-label="Main Navigation">
+          <!-- Home Link with House Icon -->
+          <a href="index.html" class="nav-text-link" aria-label="Home">
+            <i class="bi bi-house"></i>
+            <span>Home</span>
+          </a>
+
+          <!-- Categories dropdown with indicator -->
+          <div class="dropdown d-none d-lg-block">
+            <a href="#categories-section" class="nav-text-link has-indicator dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Categories">
+              <span>Categories</span>
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2 mt-2">
+              <li><a class="dropdown-item rounded-3 py-2" href="#categories-section" onclick="window.StacklyInteractions.filterByCategory('fruits')"><i class="bi bi-apple text-danger me-2"></i> Fresh Fruits</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="#categories-section" onclick="window.StacklyInteractions.filterByCategory('vegetables')"><i class="bi bi-flower1 text-success me-2"></i> Vegetables</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="#categories-section" onclick="window.StacklyInteractions.filterByCategory('dairy')"><i class="bi bi-cup-hot text-primary me-2"></i> Dairy &amp; Eggs</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="#categories-section" onclick="window.StacklyInteractions.filterByCategory('bakery')"><i class="bi bi-cake2 text-warning me-2"></i> Bakery</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="#categories-section" onclick="window.StacklyInteractions.filterByCategory('meat')"><i class="bi bi-egg-fried text-danger me-2"></i> Meat &amp; Fish</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="#categories-section" onclick="window.StacklyInteractions.filterByCategory('snacks')"><i class="bi bi-box2-heart text-info me-2"></i> Snacks</a></li>
+            </ul>
+          </div>
+
+          <!-- Deals Link with HOT Badge -->
+          <a href="#deal-of-the-day" class="nav-text-link d-none d-lg-flex" aria-label="Deals">
+            <span>Deals</span>
+            <span class="deals-hot-badge">HOT</span>
+          </a>
+
+          <!-- Account Link with User Circle Icon (Navigates to login.html) -->
+          <a href="login.html" class="nav-text-link header-account-link" aria-label="Open User Account & Login">
+            <i class="bi bi-person-circle"></i>
+            <span>Account</span>
+          </a>
+
+          <!-- Shopping Cart Button with Live Badge -->
+          <button class="nav-cart-btn" 
+                  data-bs-toggle="offcanvas" 
+                  data-bs-target="#cartDrawer" 
+                  aria-controls="cartDrawer" 
+                  aria-label="Open Shopping Cart">
+            <div class="cart-icon-wrapper">
+              <i class="bi bi-cart3"></i>
+              <span class="cart-badge-count" id="headerCartCountBadge">0</span>
+            </div>
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button class="hamburger-btn" 
+                  data-bs-toggle="offcanvas" 
+                  data-bs-target="#mobileMenuDrawer" 
+                  aria-controls="mobileMenuDrawer" 
+                  aria-label="Open Navigation Menu">
+            <i class="bi bi-list"></i>
+          </button>
+        </nav>
+
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         SECTION 5: HERO SECTION — Reference Image 1
+         ========================================================================== -->
+    <section class="hero-section" id="hero-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          
+          <!-- Left Column Content -->
+          <div class="col-lg-6">
+            <div class="hero-pill-label">
+              <i class="bi bi-leaf-fill"></i>
+              <span>FARM TO TABLE</span>
+            </div>
+
+            <h1 class="hero-heading">
+              <span class="hero-line d-block">Eat Fresh,</span>
+              <span class="hero-line d-block text-teal">Live Healthy</span>
+              <span class="hero-line d-block">Every Day.</span>
+            </h1>
+
+            <p class="hero-description">
+              Experience the convenience of high-quality organic groceries delivered to your doorstep in 30 minutes.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#featured-products" class="btn btn-primary-teal">
+                Shop Now <i class="bi bi-arrow-right"></i>
+              </a>
+              <button class="btn btn-outline-teal" onclick="window.StacklyInteractions.openRecipesModal()">
+                View Recipes <i class="bi bi-book-half"></i>
+              </button>
+            </div>
+
+            <div class="hero-trust-badge">
+              <div class="hero-trust-item">
+                <i class="bi bi-lightning-charge-fill"></i>
+                <span><span class="counter-number fw-bold" data-counter="30" data-suffix="-Min">30-Min</span> Fast Delivery</span>
+              </div>
+              <div class="hero-trust-item">
+                <i class="bi bi-patch-check-fill"></i>
+                <span><span class="counter-number fw-bold" data-counter="100" data-suffix="%">100%</span> Certified Organic</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column Image Frame -->
+          <div class="col-lg-6">
+            <div class="hero-image-wrapper">
+              <div class="hero-image-frame float-animation">
+                <img src="assets/images/hero-organic-vegetables.webp" 
+                     alt="Fresh organic vegetables and fruits arranged in a wooden produce crate" 
+                     width="1000" 
+                     height="747" 
+                     fetchpriority="high">
+              </div>
+
+              <!-- Floating Certified Badge -->
+              <div class="hero-floating-badge">
+                <div class="badge-icon-leaf">
+                  <i class="bi bi-shield-fill-check"></i>
+                </div>
+                <div>
+                  <div class="badge-text-bold"><span class="counter-number" data-counter="100" data-suffix="%">100%</span> Farm Fresh</div>
+                  <div class="badge-text-sub">Harvested Daily at Dawn</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         LIVE TRUST & ECO-IMPACT STRIP (Real-Time Farm & Sustainability Metrics)
+         ========================================================================== -->
+    <div class="container">
+      <div class="eco-trust-strip" role="region" aria-label="Store Impact and Certifications">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+          <div class="eco-trust-top-pill">
+            <span class="eco-pulse-dot"></span>
+            <span>Live Farm Network &bull; Zero Chemical Guarantee</span>
+          </div>
+          <span class="text-secondary small fw-semibold">Updated Today at Dawn &bull; 100% Cold-Chain</span>
+        </div>
+        <div class="eco-metrics-grid">
+          
+          <!-- Metric 1: Certified Organic -->
+          <div class="eco-metric-item">
+            <div class="eco-icon-wrap" aria-hidden="true">
+              <i class="bi bi-patch-check-fill"></i>
+            </div>
+            <div>
+              <div class="eco-metric-val counter-number" data-counter="100" data-suffix="%">100%</div>
+              <div class="eco-metric-label">Certified Organic Farms</div>
+            </div>
+          </div>
+
+          <!-- Metric 2: 30-Min Fast Delivery -->
+          <div class="eco-metric-item">
+            <div class="eco-icon-wrap" aria-hidden="true">
+              <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+            <div>
+              <div class="eco-metric-val counter-number" data-counter="30" data-suffix=" Min">30 Min</div>
+              <div class="eco-metric-label">Guaranteed Cold Delivery</div>
+            </div>
+          </div>
+
+          <!-- Metric 3: Plastics Saved -->
+          <div class="eco-metric-item">
+            <div class="eco-icon-wrap" aria-hidden="true">
+              <i class="bi bi-recycle"></i>
+            </div>
+            <div>
+              <div class="eco-metric-val counter-number" data-counter="128450" data-suffix="+" data-comma="true">128,450+</div>
+              <div class="eco-metric-label">Single-Use Plastics Saved</div>
+            </div>
+          </div>
+
+          <!-- Metric 4: Happy Families -->
+          <div class="eco-metric-item">
+            <div class="eco-icon-wrap" aria-hidden="true">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div>
+              <div class="eco-metric-val counter-number" data-counter="45000" data-suffix="+" data-comma="true">45,000+</div>
+              <div class="eco-metric-label">Healthy Families Nourished</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         SECTION 6: SHOP BY CATEGORIES — 6 Cards in 1 Row Desktop
+         ========================================================================== -->
+    <section class="categories-section" id="categories-section">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-title">Shop by Categories</h2>
+            <p class="section-subtitle">Explore our wide range of organic products</p>
+          </div>
+          <a href="#featured-products" class="view-all-link" onclick="window.StacklyInteractions.resetFilter()">
+            View All Categories <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="categories-row">
+          
+          <!-- Card 1: Fresh Fruits (Pastel Peach/Yellow) -->
+          <div class="category-card cat-bg-fruits" 
+               data-aos="fade-right" 
+               data-aos-duration="650"
+               onclick="window.StacklyInteractions.filterByCategory('fruits', this)" 
+               tabindex="0" 
+               role="button" 
+               aria-label="Filter by Fresh Fruits">
+            <div class="category-img-circle">
+              <img src="assets/images/category-fruits.webp" alt="Fresh Fruits" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="category-name">Fresh Fruits</h3>
+            <span class="category-count">28 Items</span>
+          </div>
+
+          <!-- Card 2: Vegetables (Mint Pastel) -->
+          <div class="category-card cat-bg-veg" 
+               data-aos="fade-left" 
+               data-aos-duration="650"
+               onclick="window.StacklyInteractions.filterByCategory('vegetables', this)" 
+               tabindex="0" 
+               role="button" 
+               aria-label="Filter by Vegetables">
+            <div class="category-img-circle">
+              <img src="assets/images/category-vegetables.webp" alt="Fresh Vegetables" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="category-name">Vegetables</h3>
+            <span class="category-count">34 Items</span>
+          </div>
+
+          <!-- Card 3: Dairy & Eggs (Pale Blue) -->
+          <div class="category-card cat-bg-dairy" 
+               data-aos="fade-right" 
+               data-aos-duration="650"
+               onclick="window.StacklyInteractions.filterByCategory('dairy', this)" 
+               tabindex="0" 
+               role="button" 
+               aria-label="Filter by Dairy and Eggs">
+            <div class="category-img-circle">
+              <img src="assets/images/category-dairy.webp" alt="Dairy and Milk" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="category-name">Dairy &amp; Eggs</h3>
+            <span class="category-count">19 Items</span>
+          </div>
+
+          <!-- Card 4: Bakery (Cream Pastel) -->
+          <div class="category-card cat-bg-bakery" 
+               data-aos="fade-left" 
+               data-aos-duration="650"
+               onclick="window.StacklyInteractions.filterByCategory('bakery', this)" 
+               tabindex="0" 
+               role="button" 
+               aria-label="Filter by Bakery">
+            <div class="category-img-circle">
+              <img src="assets/images/category-bakery.webp" alt="Artisan Bakery Loaves" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="category-name">Bakery</h3>
+            <span class="category-count">15 Items</span>
+          </div>
+
+          <!-- Card 5: Meat & Fish (Pale Pink) -->
+          <div class="category-card cat-bg-meat" 
+               data-aos="fade-right" 
+               data-aos-duration="650"
+               onclick="window.StacklyInteractions.filterByCategory('meat', this)" 
+               tabindex="0" 
+               role="button" 
+               aria-label="Filter by Meat and Fish">
+            <div class="category-img-circle">
+              <img src="assets/images/category-meat.webp" alt="Fresh Meat and Seafood" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="category-name">Meat &amp; Fish</h3>
+            <span class="category-count">22 Items</span>
+          </div>
+
+          <!-- Card 6: Snacks (Soft Lavender) -->
+          <div class="category-card cat-bg-snacks" 
+               data-aos="fade-left" 
+               data-aos-duration="650"
+               onclick="window.StacklyInteractions.filterByCategory('snacks', this)" 
+               tabindex="0" 
+               role="button" 
+               aria-label="Filter by Healthy Snacks">
+            <div class="category-img-circle">
+              <img src="assets/images/category-snacks.webp" alt="Healthy Organic Snacks" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="category-name">Snacks</h3>
+            <span class="category-count">18 Items</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 7: FEATURED PRODUCTS SECTION — Reference Image 2
+         ========================================================================== -->
+    <section class="featured-section" id="featured-products">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-title">Featured Products</h2>
+            <p class="section-subtitle">Hand-picked organic essentials for your daily nutrition</p>
+          </div>
+          <!-- Circular Arrow Controls -->
+          <div class="carousel-nav-arrows">
+            <button class="arrow-btn" id="prodPrevBtn" aria-label="Previous products">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="arrow-btn" id="prodNextBtn" aria-label="Next products">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Product Cards Grid -->
+        <div class="products-grid" id="featuredProductsGrid">
+          <!-- Rendered dynamically by ProductService & StacklyInteractions -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 8: DEAL OF THE DAY — Reference Image 2
+         ========================================================================== -->
+    <section class="deal-section" id="deal-of-the-day">
+      <div class="container">
+        
+        <div class="deal-banner-wrapper">
+          <div class="row align-items-center g-5">
+            
+            <!-- Left Column: Copy & Live Countdown -->
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+              <div class="deal-limit-pill">
+                <i class="bi bi-stopwatch-fill"></i>
+                <span>LIMITED TIME OFFER</span>
+              </div>
+
+              <h2 class="deal-heading">Deal of the Day: Fresh Organic Harvest Box</h2>
+              <p class="deal-text">
+                Get a curated box of 12 seasonal organic fruits and vegetables at a special price. Offer ends soon!
+              </p>
+
+              <!-- Live Countdown Clock -->
+              <div class="deal-countdown-row" role="timer" aria-label="Deal countdown timer">
+                <div class="countdown-box">
+                  <div class="countdown-num" id="dealHours">14</div>
+                  <div class="countdown-lbl">Hours</div>
+                </div>
+                <div class="countdown-colon">:</div>
+                <div class="countdown-box">
+                  <div class="countdown-num" id="dealMins">45</div>
+                  <div class="countdown-lbl">Mins</div>
+                </div>
+                <div class="countdown-colon">:</div>
+                <div class="countdown-box">
+                  <div class="countdown-num" id="dealSecs">30</div>
+                  <div class="countdown-lbl">Secs</div>
+                </div>
+              </div>
+
+              <!-- Price & CTA Button -->
+              <div class="deal-price-cta-row">
+                <div class="deal-price-block">
+                  <span class="deal-current-price">$24.99</span>
+                  <span class="deal-old-price">$45.00</span>
+                </div>
+                <button class="btn btn-claim-deal" onclick="window.StacklyInteractions.claimDealOfTheDay()">
+                  Claim Deal Now <i class="bi bi-bag-check-fill"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Column: Photograph & Aura -->
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800">
+              <div class="deal-image-container">
+                <div class="deal-teal-circle-aura"></div>
+                <span class="deal-save-badge">SAVE 45%</span>
+                <img src="assets/images/deal-harvest-box.webp" 
+                     alt="Deal of the Day Organic Harvest Produce Box" 
+                     width="700" 
+                     height="700" 
+                     loading="lazy" 
+                     class="deal-product-img">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EXPANDED SECTION: CURATED ORGANIC BUNDLES & WEEKLY CRATES
+         ========================================================================== -->
+    <section class="bundles-section" id="organic-bundles">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <div class="deal-pill-label d-inline-flex align-items-center mb-2" style="background: rgba(255, 107, 22, 0.1); border-color: rgba(255, 107, 22, 0.3); color: #FF6B16; border-radius: 9999px; width: fit-content; max-width: fit-content;">
+              <i class="bi bi-box2-heart-fill"></i>
+              <span>CURATED SPECIALS &bull; SAVE UP TO 25%</span>
+            </div>
+            <h2 class="section-title">Curated Organic Bundles</h2>
+            <p class="section-subtitle">Farm-assembled weekly grocery boxes packed with morning harvest produce and artisan kitchen essentials.</p>
+          </div>
+          <div class="d-none d-md-block">
+            <span class="badge bg-light text-secondary border px-3 py-2 rounded-pill font-heading">
+              <i class="bi bi-truck text-teal me-1"></i> Free Temperature-Controlled Delivery
+            </span>
+          </div>
+        </div>
+
+        <div class="bundles-grid">
+          
+          <!-- Bundle 1: Artisan Breakfast Crate -->
+          <article class="bundle-card" data-aos="fade-right" data-aos-duration="800">
+            <div class="bundle-img-wrapper">
+              <img src="assets/images/bundle-breakfast-crate.webp" 
+                   alt="STACKLY Artisan Breakfast Crate" 
+                   width="750" 
+                   height="560" 
+                   loading="lazy">
+              <span class="bundle-save-badge">SAVE <span class="counter-number" data-counter="20" data-suffix="%">20%</span></span>
+            </div>
+            <div class="bundle-body">
+              <div>
+                <div class="bundle-tier-tag">Chef's Morning Selection</div>
+                <h3 class="bundle-title">Artisan Breakfast Crate</h3>
+                <p class="bundle-desc">Everything needed for a nutritious farm breakfast. Warm baked sourdough, whole milk, berries, raw honey & pasture eggs.</p>
+                
+                <div class="bundle-items-list" aria-label="Items in bundle">
+                  <span class="bundle-item-pill">🍞 Sourdough Loaf</span>
+                  <span class="bundle-item-pill">🥛 Farm Whole Milk 1L</span>
+                  <span class="bundle-item-pill">🍓 Organic Berries 400g</span>
+                  <span class="bundle-item-pill">🍯 Raw Wild Honey 250g</span>
+                  <span class="bundle-item-pill">🥚 6 Pasture Eggs</span>
+                </div>
+              </div>
+
+              <div class="bundle-price-row">
+                <div>
+                  <span class="bundle-price">$34.99</span>
+                  <span class="bundle-old-price">$44.00</span>
+                </div>
+                <button type="button" 
+                        class="btn-bundle-add" 
+                        onclick="window.StacklyInteractions.addCustomItemToCart({id: 'bundle-breakfast', name: 'Artisan Breakfast Crate', price: 34.99, image: 'assets/images/bundle-breakfast-crate.webp', unit: 'crate'})"
+                        aria-label="Add Artisan Breakfast Crate to cart">
+                  <i class="bi bi-cart-plus-fill"></i> Add Crate
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bundle 2: Family Seasonal Harvest Box -->
+          <article class="bundle-card" data-aos="fade-left" data-aos-duration="800">
+            <div class="bundle-img-wrapper">
+              <img src="assets/images/bundle-family-harvest.webp" 
+                   alt="STACKLY Family Seasonal Harvest Box" 
+                   width="750" 
+                   height="560" 
+                   loading="lazy">
+              <span class="bundle-save-badge">SAVE <span class="counter-number" data-counter="22" data-suffix="%">22%</span></span>
+            </div>
+            <div class="bundle-body">
+              <div>
+                <div class="bundle-tier-tag">Most Popular &bull; Feeds 3-5</div>
+                <h3 class="bundle-title">Family Seasonal Harvest Box</h3>
+                <p class="bundle-desc">14 lbs of fresh crisp vegetables, antioxidant rich greens, root vegetables and crisp orchard fruit straight from our growers.</p>
+                
+                <div class="bundle-items-list" aria-label="Items in bundle">
+                  <span class="bundle-item-pill">🥬 Crisp Lacinato Kale</span>
+                  <span class="bundle-item-pill">🍅 Heirloom Tomatoes 1kg</span>
+                  <span class="bundle-item-pill">🥕 Rainbow Carrots</span>
+                  <span class="bundle-item-pill">🫑 Sweet Bell Peppers</span>
+                  <span class="bundle-item-pill">🥔 Organic Russets</span>
+                  <span class="bundle-item-pill">🍋 Eureka Lemons</span>
+                </div>
+              </div>
+
+              <div class="bundle-price-row">
+                <div>
+                  <span class="bundle-price">$48.50</span>
+                  <span class="bundle-old-price">$62.00</span>
+                </div>
+                <button type="button" 
+                        class="btn-bundle-add" 
+                        onclick="window.StacklyInteractions.addCustomItemToCart({id: 'bundle-family', name: 'Family Seasonal Harvest Box', price: 48.50, image: 'assets/images/bundle-family-harvest.webp', unit: 'box'})"
+                        aria-label="Add Family Seasonal Harvest Box to cart">
+                  <i class="bi bi-cart-plus-fill"></i> Add Box
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 9: WHY SHOP WITH US? — Reference Image 3
+         ========================================================================== -->
+    <section class="why-us-section" id="why-shop-with-us">
+      <div class="container">
+        
+        <div class="text-center max-w-700 mx-auto">
+          <h2 class="section-title">Why Shop With Us?</h2>
+          <p class="section-subtitle">
+            We are committed to providing the freshest produce and the best shopping experience for our community.
+          </p>
+        </div>
+
+        <div class="why-us-grid">
+          
+          <!-- Benefit 1 -->
+          <div class="benefit-card" data-aos="fade-right" data-aos-duration="750">
+            <div class="benefit-icon-box">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <h3 class="benefit-title"><span class="counter-number" data-counter="30" data-suffix=" Minute">30 Minute</span> Delivery</h3>
+            <p class="benefit-desc">
+              Fastest grocery delivery in your city. From our store to your door in record time.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="benefit-card" data-aos="fade-left" data-aos-duration="750">
+            <div class="benefit-icon-box">
+              <i class="bi bi-flower1"></i>
+            </div>
+            <h3 class="benefit-title"><span class="counter-number" data-counter="100" data-suffix="%">100%</span> Organic</h3>
+            <p class="benefit-desc">
+              All our produce is sourced from certified organic farms that care about the environment.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="benefit-card" data-aos="fade-right" data-aos-duration="750">
+            <div class="benefit-icon-box">
+              <i class="bi bi-tag-fill"></i>
+            </div>
+            <h3 class="benefit-title">Best Price Match</h3>
+            <p class="benefit-desc">
+              Quality doesn't have to be expensive. We match any competitor's price on organic goods.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EXPANDED SECTION: FARM-TO-TABLE GROWER STORIES
+         ========================================================================== -->
+    <section class="growers-section" id="grower-stories">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <div class="deal-pill-label d-inline-flex align-items-center mb-2" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); color: #10B981; border-radius: 9999px; width: fit-content; max-width: fit-content;">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>100% TRANSPARENCY &bull; DIRECT PARTNER FARMS</span>
+            </div>
+            <h2 class="section-title">Meet Our Local Organic Growers</h2>
+            <p class="section-subtitle">Know your food's story. We partner with family farms operating within 40 miles to bring you zero-chemical produce picked at peak ripeness.</p>
+          </div>
+          <div class="d-none d-lg-block">
+            <span class="badge bg-light text-success border px-3 py-2 rounded-pill font-heading">
+              <i class="bi bi-patch-check-fill text-success me-1"></i> 100% Certified Soil Association &amp; USDA Organic
+            </span>
+          </div>
+        </div>
+
+        <div class="growers-grid">
+          
+          <!-- Farm 1: Oakhaven Organic Orchards -->
+          <article class="grower-story-card" data-aos="fade-right" data-aos-duration="800">
+            <div class="grower-media-wrap">
+              <img src="assets/images/farm-partner-orchard.webp" 
+                   alt="Oakhaven Organic Orchards" 
+                   width="750" 
+                   height="560" 
+                   loading="lazy">
+              <div class="grower-floating-badges">
+                <span class="farm-dist-pill"><i class="bi bi-geo-alt-fill text-teal me-1"></i> Hudson Valley &bull; <span class="counter-number" data-counter="24" data-suffix=" Mi Away">24 Mi Away</span></span>
+                <span class="farm-fresh-pill"><i class="bi bi-clock-fill me-1"></i> Harvested Today at 5:30 AM</span>
+              </div>
+            </div>
+            <div class="grower-card-body">
+              <div>
+                <div class="grower-meta-row">
+                  <i class="bi bi-award-fill text-warning"></i>
+                  <span>Partnered Since 2018 &bull; 3rd Generation Orchard</span>
+                </div>
+                <h3 class="grower-farm-name">Oakhaven Organic Fruit Orchards</h3>
+                <p class="grower-quote">
+                  "We believe true sweetness comes from patience. We never spray artificial ripeners or waxes. Every apple ripens naturally in Hudson Valley sunshine."
+                </p>
+                <ul class="grower-specs-list" aria-label="Farm features">
+                  <li><i class="bi bi-check-circle-fill"></i> 100% Regenerative Organic Certified soil practices</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Solar-powered micro-climate cold-chain facilities</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Zero chemical pesticide run-off guarantee</li>
+                </ul>
+              </div>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                <span class="grower-crop-tag"><i class="bi bi-apple"></i> Honeycrisp Apples &amp; Pears</span>
+                <span class="text-secondary small fw-semibold">Grown by Marcus &amp; Elena Lindqvist</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Farm 2: Sunfield Heritage Farm -->
+          <article class="grower-story-card" data-aos="fade-left" data-aos-duration="800">
+            <div class="grower-media-wrap">
+              <img src="assets/images/farm-partner-grower.webp" 
+                   alt="Sunfield Heritage Farm grower Clara Henderson" 
+                   width="750" 
+                   height="560" 
+                   loading="lazy">
+              <div class="grower-floating-badges">
+                <span class="farm-dist-pill"><i class="bi bi-geo-alt-fill text-teal me-1"></i> Lancaster County &bull; <span class="counter-number" data-counter="38" data-suffix=" Mi Away">38 Mi Away</span></span>
+                <span class="farm-fresh-pill"><i class="bi bi-sun-fill me-1"></i> Picked Daily at Dawn</span>
+              </div>
+            </div>
+            <div class="grower-card-body">
+              <div>
+                <div class="grower-meta-row">
+                  <i class="bi bi-flower1 text-success"></i>
+                  <span>Master Certified Organic Horticulturist</span>
+                </div>
+                <h3 class="grower-farm-name">Sunfield Heritage Veggie Farm</h3>
+                <p class="grower-quote">
+                  "Our heirloom seeds have been saved for four decades. The rich living compost produces vegetables bursting with natural vitamins and authentic crunch."
+                </p>
+                <ul class="grower-specs-list" aria-label="Farm features">
+                  <li><i class="bi bi-check-circle-fill"></i> Non-GMO Project Verified &amp; Heirloom Seed Heritage</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Natural predatory insect pest control (Ladybugs &amp; Bees)</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Delivered to STACKLY store hub in under 2 hours</li>
+                </ul>
+              </div>
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                <span class="grower-crop-tag"><i class="bi bi-flower2"></i> Rainbow Carrots &amp; Heirloom Chard</span>
+                <span class="text-secondary small fw-semibold">Grown by Clara Henderson</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EXPANDED SECTION: FARM-FRESH SEASONAL RECIPES
+         ========================================================================== -->
+    <section class="recipes-section" id="chef-recipes">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <div class="deal-pill-label d-inline-flex align-items-center mb-2" style="background: rgba(20, 184, 166, 0.1); border-color: rgba(20, 184, 166, 0.3); color: var(--primary-teal); border-radius: 9999px; width: fit-content; max-width: fit-content;">
+              <i class="bi bi-egg-fried"></i>
+              <span>CHEF-CRAFTED IDEAS &bull; 1-CLICK INGREDIENT CARTS</span>
+            </div>
+            <h2 class="section-title">Cook Fresh with Organic Recipes</h2>
+            <p class="section-subtitle">Nutritionist-designed 20-minute meals made solely with in-season produce available right now on STACKLY.</p>
+          </div>
+          <a href="#featured-products" class="view-all-link">
+            Explore All Produce <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="recipes-grid">
+          
+          <!-- Recipe 1: Quinoa Avocado Goddess Bowl -->
+          <article class="recipe-card" data-aos="fade-right" data-aos-duration="800">
+            <div class="recipe-img-wrap">
+              <img src="assets/images/recipe-avocado-bowl.webp" 
+                   alt="Superfood Avocado Quinoa Goddess Bowl" 
+                   width="750" 
+                   height="560" 
+                   loading="lazy">
+              <span class="recipe-time-badge"><i class="bi bi-clock"></i> <span class="counter-number" data-counter="20" data-suffix=" Mins Prep">20 Mins Prep</span></span>
+              <span class="recipe-cal-badge"><span class="counter-number" data-counter="480" data-suffix=" kcal">480 kcal</span> &bull; High Fiber</span>
+            </div>
+            <div class="recipe-card-body">
+              <div>
+                <div class="recipe-chef-tag">Chef Liam Vance &bull; Plant-Forward</div>
+                <h3 class="recipe-title">Superfood Avocado Quinoa Goddess Bowl</h3>
+                <p class="recipe-desc">Ripe sliced Hass avocado layered over warm organic quinoa, spiced crunchy chickpeas, cherry tomatoes, baby spinach and pasture poached egg.</p>
+                
+                <div class="recipe-ingredients-wrap">
+                  <div class="recipe-ingredients-heading">Ingredients in Cart:</div>
+                  <div class="recipe-ingredients-pills">
+                    <span class="recipe-ingr-pill">🥑 Hass Avocado</span>
+                    <span class="recipe-ingr-pill">🌾 Organic Quinoa</span>
+                    <span class="recipe-ingr-pill">🍅 Cherry Tomatoes</span>
+                    <span class="recipe-ingr-pill">🥬 Baby Spinach</span>
+                    <span class="recipe-ingr-pill">🥚 Pasture Egg</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="recipe-action-row">
+                <div>
+                  <span class="recipe-cart-price">$14.95</span>
+                  <span class="recipe-cart-sub">All 5 Fresh Ingredients</span>
+                </div>
+                <button type="button" 
+                        class="btn btn-primary-teal px-4 py-2 rounded-pill fw-bold"
+                        onclick="window.StacklyInteractions.addCustomItemToCart({id: 'recipe-bowl', name: 'Goddess Bowl (All Ingredients)', price: 14.95, image: 'assets/images/recipe-avocado-bowl.webp', unit: 'kit'})"
+                        aria-label="Add all ingredients for Avocado Quinoa Bowl">
+                  <i class="bi bi-bag-plus-fill me-1"></i> Add Ingredients ($14.95)
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Recipe 2: Antioxidant Acai Smoothie Bowl -->
+          <article class="recipe-card" data-aos="fade-left" data-aos-duration="800">
+            <div class="recipe-img-wrap">
+              <img src="assets/images/recipe-berry-smoothie.webp" 
+                   alt="Antioxidant Berry Power Smoothie Bowl" 
+                   width="750" 
+                   height="560" 
+                   loading="lazy">
+              <span class="recipe-time-badge"><i class="bi bi-lightning-charge"></i> <span class="counter-number" data-counter="10" data-suffix=" Mins Prep">10 Mins Prep</span></span>
+              <span class="recipe-cal-badge"><span class="counter-number" data-counter="340" data-suffix=" kcal">340 kcal</span> &bull; Gluten Free</span>
+            </div>
+            <div class="recipe-card-body">
+              <div>
+                <div class="recipe-chef-tag">Chef Maya Torres &bull; Energy Booster</div>
+                <h3 class="recipe-title">Antioxidant Berry Power Smoothie Bowl</h3>
+                <p class="recipe-desc">Chilled organic acai and wild blueberries blended smooth, arranged with sliced farm strawberries, raw almond butter, chia seeds, and toasted coconut flakes.</p>
+                
+                <div class="recipe-ingredients-wrap">
+                  <div class="recipe-ingredients-heading">Ingredients in Cart:</div>
+                  <div class="recipe-ingredients-pills">
+                    <span class="recipe-ingr-pill">🍓 Strawberries</span>
+                    <span class="recipe-ingr-pill">🫐 Wild Blueberries</span>
+                    <span class="recipe-ingr-pill">🥜 Almond Butter</span>
+                    <span class="recipe-ingr-pill">🥥 Coconut Flakes</span>
+                    <span class="recipe-ingr-pill">🌱 Chia Seeds</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="recipe-action-row">
+                <div>
+                  <span class="recipe-cart-price">$12.50</span>
+                  <span class="recipe-cart-sub">All 5 Organic Ingredients</span>
+                </div>
+                <button type="button" 
+                        class="btn btn-primary-teal px-4 py-2 rounded-pill fw-bold"
+                        onclick="window.StacklyInteractions.addCustomItemToCart({id: 'recipe-smoothie', name: 'Acai Smoothie Bowl (All Ingredients)', price: 12.50, image: 'assets/images/recipe-berry-smoothie.webp', unit: 'kit'})"
+                        aria-label="Add all ingredients for Acai Smoothie Bowl">
+                  <i class="bi bi-bag-plus-fill me-1"></i> Add Ingredients ($12.50)
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 10: CUSTOMER TESTIMONIALS — Reference Image 3
+         ========================================================================== -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="container">
+        
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real experiences from our growing community of organic lovers</p>
+          </div>
+          <!-- Testimonial Controls -->
+          <div class="carousel-nav-arrows">
+            <button class="arrow-btn" id="testPrevBtn" aria-label="Previous customer testimonial">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="arrow-btn" id="testNextBtn" aria-label="Next customer testimonial">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 Testimonial Cards -->
+        <div class="testimonials-grid">
+          
+          <!-- Testimonial 1: Sarah Jenkins -->
+          <div class="testimonial-card" data-aos="fade-right" data-aos-duration="750">
+            <div>
+              <div class="quote-badge-box">
+                <i class="bi bi-quote"></i>
+              </div>
+              <p class="testimonial-text">
+                "The quality of the vegetables is unmatched. I've never seen such fresh produce even at my local farmers market. Highly recommend!"
+              </p>
+            </div>
+            <div class="testimonial-author-row">
+              <img src="assets/images/customer-sarah.webp" alt="Sarah Jenkins" width="450" height="450" class="author-portrait-img" loading="lazy">
+              <div>
+                <h4 class="author-name">Sarah Jenkins</h4>
+                <span class="author-role"><i class="bi bi-patch-check-fill"></i> Verified Customer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2: Michael Ross -->
+          <div class="testimonial-card" data-aos="fade-left" data-aos-duration="750">
+            <div>
+              <div class="quote-badge-box">
+                <i class="bi bi-quote"></i>
+              </div>
+              <p class="testimonial-text">
+                "Fast delivery is an understatement. My groceries arrived in 15 minutes! The app is also super intuitive and easy to use."
+              </p>
+            </div>
+            <div class="testimonial-author-row">
+              <img src="assets/images/customer-michael.webp" alt="Michael Ross" width="450" height="450" class="author-portrait-img" loading="lazy">
+              <div>
+                <h4 class="author-name">Michael Ross</h4>
+                <span class="author-role"><i class="bi bi-star-fill text-warning"></i> Regular Shopper</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3: Emily Davis -->
+          <div class="testimonial-card" data-aos="fade-right" data-aos-duration="750">
+            <div>
+              <div class="quote-badge-box">
+                <i class="bi bi-quote"></i>
+              </div>
+              <p class="testimonial-text">
+                "I love their subscription box service. It's like a surprise gift of healthy food every week. Saved me so much time planning meals."
+              </p>
+            </div>
+            <div class="testimonial-author-row">
+              <img src="assets/images/customer-emily.webp" alt="Emily Davis" width="450" height="450" class="author-portrait-img" loading="lazy">
+              <div>
+                <h4 class="author-name">Emily Davis</h4>
+                <span class="author-role"><i class="bi bi-heart-fill text-danger"></i> Organic Enthusiast</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EXPANDED SECTION: INTERACTIVE FAQ & QUALITY ASSURANCE
+         ========================================================================== -->
+    <section class="faq-section" id="faq-section">
+      <div class="container">
+        
+        <div class="text-center max-w-700 mx-auto mb-5">
+          <div class="deal-pill-label mb-2 mx-auto d-inline-flex align-items-center" style="background: rgba(20, 184, 166, 0.1); border-color: rgba(20, 184, 166, 0.3); color: var(--primary-teal); border-radius: 9999px; width: fit-content; max-width: fit-content;">
+            <i class="bi bi-question-circle-fill"></i>
+            <span>TRANSPARENCY &bull; COMMONLY ASKED QUESTIONS</span>
+          </div>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about our organic certifications, insulated cold-chain logistics, and 100% money-back freshness pledge.</p>
+        </div>
+
+        <div class="faq-container-narrow">
+          <div class="accordion faq-accordion" id="stacklyFaqAccordion">
+            
+            <!-- FAQ 1 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faqHeading1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                  <i class="bi bi-shield-check text-teal me-2"></i> How do you guarantee peak freshness during 30-minute delivery?
+                </button>
+              </h3>
+              <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#stacklyFaqAccordion">
+                <div class="accordion-body">
+                  We deploy custom temperature-controlled electric delivery vehicles and multi-chamber insulated totes packed with non-toxic gel chillers. Every order is packed under 4°C immediately before courier dispatch, ensuring your berries, leafy greens, and artisan dairy arrive crisp and chilled from our farm hubs.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faqHeading2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                  <i class="bi bi-patch-check-fill text-teal me-2"></i> What does "100% Certified Organic" strictly mean at STACKLY?
+                </button>
+              </h3>
+              <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#stacklyFaqAccordion">
+                <div class="accordion-body">
+                  Every grower and producer in our network is audited annually by recognized agencies (including USDA Organic and Soil Association). We ban all synthetic pesticides, petroleum fertilizers, sewage sludge, genetic modification (GMO), and artificial irradiation. Our heirloom produce grows in rich, biologically active living soil.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faqHeading3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                  <i class="bi bi-arrow-repeat text-teal me-2"></i> What happens if an avocado or fruit arrives bruised?
+                </button>
+              </h3>
+              <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#stacklyFaqAccordion">
+                <div class="accordion-body">
+                  We offer a zero-friction <strong>100% Freshness Guarantee</strong>. If you are not delighted with any item in your basket, tap the 1-click refund button in your user dashboard or digital receipt within 48 hours for an instant store credit or original payment refund &mdash; no returns, no calls, no awkward questions.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faqHeading4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                  <i class="bi bi-calendar-check-fill text-teal me-2"></i> Can I customize or pause recurring weekly bundle subscriptions?
+                </button>
+              </h3>
+              <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#stacklyFaqAccordion">
+                <div class="accordion-body">
+                  Absolutely! With STACKLY Smart Delivery, you can easily swap any items in your weekly crate, adjust delivery frequency (weekly, bi-weekly, or monthly), or pause your subscription while on vacation with zero cancellation fees. Plus, subscription members receive an automatic 10% discount on every automated box.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 11: MOBILE APP PROMOTION — Reference Image 4
+         ========================================================================== -->
+    <section class="app-promo-section" id="mobile-app">
+      <div class="container">
+        
+        <div class="app-banner-card">
+          
+          <!-- Left: Dark Navy Panel -->
+          <div class="app-banner-left" data-aos="fade-right" data-aos-duration="850">
+            <div class="app-pill-label">
+              <i class="bi bi-phone"></i>
+              <span>SMART SHOPPING</span>
+            </div>
+            <h2 class="app-banner-heading">Order from Anywhere with our App</h2>
+            <p class="app-banner-desc">
+              Experience app-exclusive deals, real-time live GPS order tracking, 1-click reorders, and a smoother, faster checkout on iOS and Android.
+            </p>
+
+            <div class="app-buttons-row">
+              <button class="btn-store-badge" onclick="window.StacklyInteractions.openAppStoreModal('Apple App Store')">
+                <i class="bi bi-apple"></i>
+                <div class="store-badge-text">
+                  <span class="store-badge-sub">Download on the</span>
+                  <span class="store-badge-title">App Store</span>
+                </div>
+              </button>
+              <button class="btn-store-badge" onclick="window.StacklyInteractions.openAppStoreModal('Google Play Store')">
+                <i class="bi bi-google-play"></i>
+                <div class="store-badge-text">
+                  <span class="store-badge-sub">GET IT ON</span>
+                  <span class="store-badge-title">Google Play</span>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Deep Teal Background with 2 Overlapping Smartphone Mockups -->
+          <div class="app-banner-right">
+            <div class="phones-mockup-wrapper" data-aos="fade-left" data-aos-duration="850">
+              
+              <!-- Back Phone Mockup -->
+              <div class="phone-device-frame phone-back">
+                <div class="phone-screen">
+                  <div class="phone-island"></div>
+                  <div class="phone-app-content">
+                    <div class="phone-app-header">
+                      <span class="phone-logo-pill">STACKLY</span>
+                      <i class="bi bi-bell text-secondary"></i>
+                    </div>
+                    <div class="phone-search-mock">
+                      <i class="bi bi-search"></i>
+                      <span>Organic berries...</span>
+                    </div>
+                    <div class="phone-banner-mock">
+                      <h6>Fresh Harvest</h6>
+                      <small>20% off today</small>
+                    </div>
+                    <div class="phone-products-mini-grid">
+                      <div class="phone-product-mini-item">
+                        <img src="assets/images/product-strawberries.webp" alt="App Strawberries">
+                        <div class="phone-product-mini-title">Strawberries</div>
+                        <div class="phone-product-mini-price">$4.99</div>
+                      </div>
+                      <div class="phone-product-mini-item">
+                        <img src="assets/images/product-avocados.webp" alt="App Avocados">
+                        <div class="phone-product-mini-title">Hass Avocados</div>
+                        <div class="phone-product-mini-price">$2.99</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Front Phone Mockup -->
+              <div class="phone-device-frame phone-front">
+                <div class="phone-screen">
+                  <div class="phone-island"></div>
+                  <div class="phone-app-content">
+                    <div class="phone-app-header">
+                      <span class="phone-logo-pill">STACKLY FRESH</span>
+                      <i class="bi bi-bag-check-fill text-teal"></i>
+                    </div>
+                    <div class="phone-search-mock">
+                      <i class="bi bi-search"></i>
+                      <span>Search 1,000+ items...</span>
+                    </div>
+                    <div class="phone-banner-mock" style="background: linear-gradient(135deg, #FF6B16, #FF944D);">
+                      <h6>30-Min Delivery</h6>
+                      <small>Driver is arriving</small>
+                    </div>
+                    <div class="phone-products-mini-grid">
+                      <div class="phone-product-mini-item">
+                        <img src="assets/images/product-honey.webp" alt="App Honey">
+                        <div class="phone-product-mini-title">Manuka Honey</div>
+                        <div class="phone-product-mini-price">$12.50</div>
+                      </div>
+                      <div class="phone-product-mini-item">
+                        <img src="assets/images/product-almond-milk.webp" alt="App Almond Milk">
+                        <div class="phone-product-mini-title">Almond Milk</div>
+                        <div class="phone-product-mini-price">$3.50</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 12: NEWSLETTER SUBSCRIPTION — Centered Teal Panel
+         ========================================================================== -->
+    <section class="newsletter-section" id="newsletter">
+      <div class="container">
+        
+        <div class="newsletter-panel">
+          <div class="newsletter-circle-1"></div>
+          <div class="newsletter-circle-2"></div>
+
+          <div class="newsletter-content-box">
+            <h2 class="newsletter-heading">Join our newsletter</h2>
+            <p class="newsletter-desc">
+              Subscribe to get 20% off your first order and stay updated with our weekly deals.
+            </p>
+
+            <form class="newsletter-form-wrap" id="homeNewsletterForm">
+              <input type="email" 
+                     id="newsletterEmailInput" 
+                     class="newsletter-input" 
+                     placeholder="Enter your email address..." 
+                     required 
+                     aria-label="Your email address">
+              <button class="btn btn-newsletter-subscribe" type="submit">
+                Subscribe
+              </button>
+            </form>
+
+            <div id="newsletterFeedback"></div>
+
+            <div class="newsletter-helper-text">
+              <i class="bi bi-shield-check"></i>
+              <span>No spam, we promise. Only the freshest news.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SECTION 13: FOOTER — Called dynamically from footer.html
+       ========================================================================== -->
+  <div id="footer-placeholder" data-include="footer.html">
+    <footer class="site-footer" id="siteFooter">
+      <div class="container">
+        
+        <div class="footer-top-row">
+          
+          <!-- Column 1: Brand & Bio -->
+          <div class="footer-col-brand" data-aos="fade-up" data-aos-delay="100">
+            <a href="index.html" class="brand-logo-link footer-brand-logo mb-3" aria-label="STACKLY">
+              <img src="assets/images/logo.webp" alt="STACKLY" class="brand-logo-img footer-logo-img" width="145" height="42">
+            </a>
+            <p>
+              Providing high-quality, fresh and organic groceries since 2015. Your health is our priority.
+            </p>
+            <div class="footer-social-row">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Facebook">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Twitter">
+                <i class="bi bi-twitter"></i>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Instagram">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on YouTube">
+                <i class="bi bi-youtube"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-col-links" data-aos="fade-up" data-aos-delay="200">
+            <h4 class="footer-col-title">Quick Links</h4>
+            <ul class="footer-links-list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="service%20page.html">Services</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="signup.html">Signup</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Categories -->
+          <div class="footer-col-categories" data-aos="fade-up" data-aos-delay="300">
+            <h4 class="footer-col-title">Categories</h4>
+            <ul class="footer-links-list">
+              <li><a href="#categories-section" onclick="window.StacklyInteractions ? window.StacklyInteractions.filterByCategory('vegetables') : null">Fresh Vegetables</a></li>
+              <li><a href="#categories-section" onclick="window.StacklyInteractions ? window.StacklyInteractions.filterByCategory('fruits') : null">Fruits &amp; Berries</a></li>
+              <li><a href="#categories-section" onclick="window.StacklyInteractions ? window.StacklyInteractions.filterByCategory('dairy') : null">Dairy &amp; Milk</a></li>
+              <li><a href="#categories-section" onclick="window.StacklyInteractions ? window.StacklyInteractions.filterByCategory('bakery') : null">Bread &amp; Bakery</a></li>
+              <li><a href="#categories-section" onclick="window.StacklyInteractions ? window.StacklyInteractions.filterByCategory('snacks') : null">Pantry Staples</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Contact Info -->
+          <div class="footer-col-contact" data-aos="fade-up" data-aos-delay="400">
+            <h4 class="footer-col-title">Contact Info</h4>
+            <ul class="footer-contact-list">
+              <li class="contact-item">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span>stackly hyderabad</span>
+              </li>
+              <li class="contact-item">
+                <i class="bi bi-telephone-fill"></i>
+                <a href="tel:+18005550199">+1 (800) 555-0199</a>
+              </li>
+              <li class="contact-item">
+                <i class="bi bi-envelope-fill"></i>
+                <a href="mailto:support@stackly.com">support@stackly.com</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Bottom Copyright & Legal Links -->
+        <div class="footer-bottom-row">
+          <span>&copy; 2024 FreshCart. All rights reserved.</span>
+          <div class="footer-legal-links">
+            <a href="#" onclick="return false;">Privacy Policy</a>
+            <a href="#" onclick="return false;">Terms of Service</a>
+            <a href="#" onclick="return false;">Cookies</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==========================================================================
+       OFFCANVAS: SHOPPING CART DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel" style="width: 420px; max-width: 90vw;">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title font-heading fw-bold" id="cartDrawerLabel">
+        <i class="bi bi-basket2-fill text-teal me-2"></i> Your Fresh Basket
+      </h5>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    
+    <div class="offcanvas-body d-flex flex-column">
+      
+      <!-- Free Shipping Tracker -->
+      <div class="free-shipping-progress" id="freeShippingContainer">
+        <div class="small fw-semibold" id="freeShippingText">
+          Add <strong>$35.00</strong> more for <strong>FREE 30-min delivery!</strong>
+        </div>
+        <div class="progress-bar-teal">
+          <div class="progress-bar-teal-fill" id="freeShippingProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Item List -->
+      <div id="cartDrawerItemsList" class="flex-grow-1 overflow-y-auto">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Cart Subtotal & Checkout -->
+      <div class="border-top pt-3 mt-auto">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <span class="text-secondary">Estimated Subtotal:</span>
+          <span class="font-heading fw-bold fs-4 text-dark" id="cartDrawerSubtotal">$0.00</span>
+        </div>
+        <p class="text-secondary small mb-3">Taxes and bottle deposits calculated at checkout.</p>
+        <button class="btn btn-primary-teal w-100 py-3 fw-bold fs-6" id="cartCheckoutBtn" onclick="alert('Thank you for trying STACKLY Demo! Your order has been placed successfully with Free 30-minute delivery.')">
+          Proceed to Checkout <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OFFCANVAS: MOBILE NAVIGATION DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuDrawer" aria-labelledby="mobileMenuDrawerLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img mobile-logo-img" width="135" height="40">
+      </a>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Mobile Search -->
+      <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" id="mobileSearchInput" class="form-control border-start-0 bg-light" placeholder="Search groceries...">
+        </div>
+      </div>
+
+      <h6 class="text-uppercase text-teal fw-bold small mb-3">Navigation</h6>
+      <ul class="nav flex-column gap-2 mb-4">
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#hero-section" data-bs-dismiss="offcanvas"><i class="bi bi-house me-2"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link text-teal fw-semibold" href="login.html"><i class="bi bi-person-circle me-2"></i> Account / Sign In</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#featured-products" data-bs-dismiss="offcanvas"><i class="bi bi-grid me-2"></i> Featured Products</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#deal-of-the-day" data-bs-dismiss="offcanvas"><i class="bi bi-stopwatch text-warning me-2"></i> Deal of the Day</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#why-shop-with-us" data-bs-dismiss="offcanvas"><i class="bi bi-shield-check text-success me-2"></i> Why Shop With Us</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#testimonials" data-bs-dismiss="offcanvas"><i class="bi bi-chat-quote me-2"></i> Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="#mobile-app" data-bs-dismiss="offcanvas"><i class="bi bi-phone me-2"></i> Mobile App</a></li>
+      </ul>
+
+      <h6 class="text-uppercase text-teal fw-bold small mb-3">Shop Categories</h6>
+      <ul class="nav flex-column gap-2">
+        <li class="nav-item"><a class="nav-link text-secondary" href="#featured-products" onclick="window.StacklyInteractions.filterByCategory('fruits')" data-bs-dismiss="offcanvas">🍎 Fresh Fruits</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#featured-products" onclick="window.StacklyInteractions.filterByCategory('vegetables')" data-bs-dismiss="offcanvas">🥦 Vegetables</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#featured-products" onclick="window.StacklyInteractions.filterByCategory('dairy')" data-bs-dismiss="offcanvas">🥛 Dairy &amp; Eggs</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#featured-products" onclick="window.StacklyInteractions.filterByCategory('bakery')" data-bs-dismiss="offcanvas">🥖 Bakery</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#featured-products" onclick="window.StacklyInteractions.filterByCategory('meat')" data-bs-dismiss="offcanvas">🥩 Meat &amp; Fish</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="#featured-products" onclick="window.StacklyInteractions.filterByCategory('snacks')" data-bs-dismiss="offcanvas">🥜 Snacks</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 1: PRODUCT QUICK VIEW
+       ========================================================================== -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 pt-0" id="quickViewModalBody">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: RECIPE IDEAS MODAL (Hero "View Recipes")
+       ========================================================================== -->
+  <div class="modal fade" id="recipesModal" tabindex="-1" aria-labelledby="recipesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header bg-teal text-white border-0" style="background-color: var(--primary-teal);">
+          <h5 class="modal-title font-heading fw-bold" id="recipesModalLabel">
+            <i class="bi bi-journal-bookmark me-2"></i> Farm-to-Table Seasonal Recipes
+          </h5>
+          <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-4">
+            
+            <div class="col-md-6">
+              <div class="card h-100 border rounded-4 overflow-hidden shadow-sm">
+                <img src="assets/images/hero-organic-vegetables.webp" alt="Avocado Strawberry Salad" class="card-img-top object-fit-cover" style="height: 180px;">
+                <div class="card-body p-3">
+                  <span class="badge bg-success-subtle text-success mb-2">15 Mins Prep</span>
+                  <h5 class="font-heading fw-bold">Organic Avocado & Strawberry Summer Salad</h5>
+                  <p class="text-secondary small">Crisp greens, sliced ripe Hass avocados, sweet organic strawberries, and a honey-lime glaze.</p>
+                  <ul class="small text-muted ps-3 mb-3">
+                    <li>2 Hass Avocados</li>
+                    <li>1 Punnet Strawberries</li>
+                    <li>1 Tbsp Manuka Honey</li>
+                  </ul>
+                  <button class="btn btn-outline-teal btn-sm w-100" onclick="window.StacklyInteractions.addToCart('prod-avocados'); window.StacklyInteractions.addToCart('prod-strawberries'); window.StacklyInteractions.addToCart('prod-honey');">
+                    <i class="bi bi-cart-plus me-1"></i> Add All Ingredients to Cart ($20.48)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card h-100 border rounded-4 overflow-hidden shadow-sm">
+                <img src="assets/images/deal-harvest-box.webp" alt="Harvest Vegetable Stew" class="card-img-top object-fit-cover" style="height: 180px;">
+                <div class="card-body p-3">
+                  <span class="badge bg-warning-subtle text-warning mb-2">30 Mins Cook</span>
+                  <h5 class="font-heading fw-bold">Rustic Organic Harvest Casserole</h5>
+                  <p class="text-secondary small">Slow-roasted seasonal vegetables with garlic, cold-pressed olive oil, and rosemary.</p>
+                  <ul class="small text-muted ps-3 mb-3">
+                    <li>1 Fresh Organic Harvest Box</li>
+                    <li>Artisan Sourdough bread for dipping</li>
+                  </ul>
+                  <button class="btn btn-outline-teal btn-sm w-100" onclick="window.StacklyInteractions.addToCart('deal-harvest-box'); window.StacklyInteractions.addToCart('prod-sourdough');">
+                    <i class="bi bi-cart-plus me-1"></i> Add All Ingredients to Cart ($29.24)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SECTION 17: STORE MAP MODAL (Google Maps HTML iframe)
+       ========================================================================== -->
+  <div class="modal fade" id="storeMapModal" tabindex="-1" aria-labelledby="storeMapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title font-heading fw-bold" id="storeMapModalLabel">
+            <i class="bi bi-geo-alt-fill text-teal me-2"></i> STACKLY Flagship Market &amp; Distribution Center
+          </h5>
+          <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="text-secondary small mb-3">Visit our certified organic fulfillment depot or pick up your online orders in 15 minutes.</p>
+          <div class="ratio ratio-16x9 rounded-4 overflow-hidden border">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0192881881765!2d-122.40194462347672!3d37.78952401131109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808580629705a397%3A0xc3b836a0f12fa8e7!2sMarket%20St%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" 
+              title="STACKLY Organic Grocery Store Location Map" 
+              width="600" 
+              height="450" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              sandbox="allow-scripts allow-same-origin allow-popups">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: USER ACCOUNT MODAL
+       ========================================================================== -->
+  <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title font-heading fw-bold" id="accountModalLabel">
+            <i class="bi bi-person-circle text-teal me-2"></i> STACKLY Customer Profile
+          </h5>
+          <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <div class="mx-auto mb-3" style="width: 80px; height: 80px; border-radius: 50%; background: var(--pastel-veg); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--primary-teal);">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <h5 class="fw-bold mb-1">Welcome back, Organic Shopper!</h5>
+          <p class="text-muted small mb-4">Member since 2024 &bull; 14 Orders Completed &bull; Green Tier Member</p>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary-teal py-2" onclick="alert('Order history loaded: 14 past orders retrieved.'); bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide();">
+              <i class="bi bi-receipt me-2"></i> View Past Orders
+            </button>
+            <button class="btn btn-outline-teal py-2" onclick="alert('Wishlist has ' + window.StacklyInteractions.favorites.length + ' saved items.'); bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide();">
+              <i class="bi bi-heart me-2"></i> View Saved Wishlist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: APP PROMO MODAL
+       ========================================================================== -->
+  <div class="modal fade" id="appPromoModal" tabindex="-1" aria-labelledby="appPromoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <div class="modal-header bg-dark text-white border-0">
+          <h5 class="modal-title font-heading fw-bold" id="appPromoModalLabel">
+            <i class="bi bi-phone text-teal me-2"></i> STACKLY Mobile App Preview
+          </h5>
+          <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <img src="assets/images/app-preview.webp" alt="STACKLY Mobile App Preview" class="img-fluid rounded-4 shadow-sm mb-3" style="max-height: 280px; object-fit: contain;">
+          <h5 class="fw-bold">Coming Soon to <span id="appModalPlatform">App Store</span></h5>
+          <p class="text-secondary small">
+            Scan QR code or enter your phone number to receive early access notification when the official STACKLY Mobile App goes live!
+          </p>
+          <div class="input-group mb-3">
+            <input type="tel" class="form-control rounded-start-pill" placeholder="+1 (555) 000-0000" aria-label="Phone number">
+            <button class="btn btn-primary-teal rounded-end-pill px-4" onclick="alert('Thank you! We will notify you when early access begins.'); bootstrap.Modal.getInstance(document.getElementById('appPromoModal')).hide();">Get VIP Link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       CDN SCRIPTS: Bootstrap 5.3, GSAP 3, ScrollTrigger, AOS
+       ========================================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Application Modules -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/interactions.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

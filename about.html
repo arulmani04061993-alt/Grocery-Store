@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | STACKLY Premium Organic Grocery</title>
+  <meta name="description" content="Cultivating a healthier community through fresh, organic, and sustainable groceries. Discover the story, mission, vision, and team behind STACKLY.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/service-story.css">
+
+  <!-- Preload Essential WebP Images (<90KB) -->
+  <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/service-story-hero.webp" as="image" type="image/webp">
+</head>
+<body class="preloader-active">
+
+  <!-- ==========================================================================
+       LOGO INTRO & WAVE PRELOADER
+       ========================================================================== -->
+  <div id="logoIntroPreloader" aria-hidden="true">
+    <div class="preloader-brand-wrap">
+      <div class="preloader-logo-wrapper">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
+      </div>
+      <div class="preloader-wave-container" aria-label="Loading...">
+        <div class="wave-bars">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+          <span class="wave-bar bar-4"></span>
+          <span class="wave-bar bar-5"></span>
+          <span class="wave-bar bar-6"></span>
+          <span class="wave-bar bar-7"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div id="serviceToast" class="login-toast-banner" role="alert" aria-live="polite">
+    <i class="bi bi-check-circle-fill text-emerald fs-5" id="toastIcon"></i>
+    <span id="toastMsg">Thank you! Welcome to STACKLY Our Story.</span>
+  </div>
+
+  <!-- ==========================================================================
+       SECTION 1: NAVBAR — Matches Official STACKLY Header
+       ========================================================================== -->
+  <div id="navbar-placeholder" data-include="navbar.html">
+    <header class="site-header" id="siteHeader">
+      <div class="header-container">
+        
+        <!-- Logo Left -->
+        <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery Homepage">
+          <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img" width="145" height="43">
+        </a>
+
+        <!-- Center: Wide Rounded Pill Search Bar -->
+        <div class="header-search-wrap" role="search">
+          <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
+          <input type="text" 
+                 id="headerSearchInput" 
+                 class="header-search-input" 
+                 placeholder="Search for groceries, snacks, or drinks..." 
+                 aria-label="Search for groceries, snacks, or drinks">
+          <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+            <i class="bi bi-x-circle-fill"></i>
+          </button>
+        </div>
+
+        <!-- Right: Navigation Items -->
+        <nav class="header-actions" aria-label="Main Navigation">
+          <!-- 1. Home Link with House Icon -->
+          <a href="index.html" class="nav-text-link" aria-label="Home">
+            <i class="bi bi-house"></i>
+            <span>Home</span>
+          </a>
+
+          <!-- 2. Categories with Indicator Dot & Dropdown -->
+          <div class="dropdown d-none d-lg-block">
+            <a href="index.html#categories-section" 
+               class="nav-text-link has-indicator dropdown-toggle" 
+               role="button" 
+               data-bs-toggle="dropdown" 
+               aria-expanded="false" 
+               aria-label="Categories">
+              <span>Categories</span>
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2 mt-2">
+              <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=fruits"><i class="bi bi-apple text-danger me-2"></i> Fresh Fruits</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=vegetables"><i class="bi bi-flower1 text-success me-2"></i> Vegetables</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=dairy"><i class="bi bi-cup-hot text-primary me-2"></i> Dairy &amp; Eggs</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=bakery"><i class="bi bi-cake2 text-warning me-2"></i> Bakery</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=meat"><i class="bi bi-egg-fried text-danger me-2"></i> Meat &amp; Fish</a></li>
+              <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=snacks"><i class="bi bi-box2-heart text-info me-2"></i> Snacks</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. Deals with HOT Badge -->
+          <a href="index.html#deal-of-the-day" class="nav-text-link d-none d-lg-flex" aria-label="Deals">
+            <span>Deals</span>
+            <span class="deals-hot-badge">HOT</span>
+          </a>
+
+          <!-- 4. Account with User Circle Icon (Navigates to login.html) -->
+          <a href="login.html" class="nav-text-link header-account-link" aria-label="Open User Account & Login">
+            <i class="bi bi-person-circle"></i>
+            <span>Account</span>
+          </a>
+
+          <!-- 5. Cart Button with Teal Badge Count -->
+          <button class="nav-cart-btn" 
+                  data-bs-toggle="offcanvas" 
+                  data-bs-target="#cartDrawer" 
+                  aria-controls="cartDrawer" 
+                  aria-label="Open Shopping Cart">
+            <div class="cart-icon-wrapper">
+              <i class="bi bi-cart3"></i>
+              <span class="cart-badge-count" id="headerCartCountBadge">0</span>
+            </div>
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button class="hamburger-btn" 
+                  data-bs-toggle="offcanvas" 
+                  data-bs-target="#mobileMenuDrawer" 
+                  aria-controls="mobileMenuDrawer" 
+                  aria-label="Open Navigation Menu">
+            <i class="bi bi-list"></i>
+          </button>
+        </nav>
+
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         SECTION 1: HERO BANNER (Our Story)
+         ========================================================================== -->
+    <section class="story-hero-section" style="background-image: url('assets/images/service-story-hero.webp');">
+      <div class="story-hero-overlay"></div>
+      <div class="container story-hero-content" data-aos="fade-up">
+        <span class="story-hero-pill">ESTABLISHED 2015</span>
+        <h1 class="story-hero-title">Our Story</h1>
+        <p class="story-hero-subtitle">
+          Cultivating a healthier community through fresh, organic, and sustainable groceries.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 2: IT ALL STARTED WITH A SIMPLE SEED
+         ========================================================================== -->
+    <section class="story-seed-section">
+      <div class="container">
+        <div class="story-seed-grid">
+          
+          <!-- Left: Image with Backdrop & Floating Years Badge -->
+          <div class="story-seed-image-wrap" data-aos="fade-right">
+            <div class="story-seed-backdrop-circle"></div>
+            <img src="assets/images/service-farmers-market.webp" 
+                 alt="Organic Farmers Market Stall" 
+                 class="story-seed-img" 
+                 width="800" 
+                 height="600" 
+                 loading="lazy">
+            <div class="story-badge-years">
+              <div class="story-badge-number">9+ Years</div>
+              <div class="story-badge-label">Of Bringing Farm-Fresh Harvest to Your Table</div>
+            </div>
+          </div>
+
+          <!-- Right: Text Story & Statistics -->
+          <div class="story-seed-content" data-aos="fade-left">
+            <h2 class="story-seed-title">It All Started with a Simple <span>Seed</span></h2>
+            <p class="story-seed-text">
+              Founded in 2015, STACKLY began with a simple belief that everyone deserves access to healthy, natural, and truly sustainable food. Our founders, Jane and Mark, believed that everyone deserved access to high-quality organic produce without the premium price tag or the inconvenience of long commutes.
+            </p>
+            <p class="story-seed-text">
+              What started with just a handful of local farmers and a single delivery van has grown into a community of over 50,000 families across the country. Today, we partner with over 150 certified organic farms to ensure that the food on your family's table is as fresh as if you picked it yourself that very morning.
+            </p>
+
+            <div class="story-stats-row">
+              <div class="story-stat-item">
+                <div class="stat-num">50+</div>
+                <div class="stat-label">Local Farms</div>
+              </div>
+              <div class="story-stat-item">
+                <div class="stat-num">10k+</div>
+                <div class="stat-label">Happy Families</div>
+              </div>
+              <div class="story-stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Organic Guarantee</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: OUR MISSION & OUR VISION
+         ========================================================================== -->
+    <section class="story-mission-section">
+      <div class="container">
+        <div class="story-mv-grid">
+          
+          <!-- Card 1: Our Mission -->
+          <div class="story-mv-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="story-mv-icon">
+              <i class="bi bi-rocket-takeoff-fill"></i>
+            </div>
+            <div>
+              <h3 class="story-mv-title">Our Mission</h3>
+              <p class="story-mv-desc">
+                To revolutionize the way people shop for food by making organic, farm-fresh produce accessible, affordable, and conveniently delivered every single day.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Our Vision -->
+          <div class="story-mv-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="story-mv-icon">
+              <i class="bi bi-eye-fill"></i>
+            </div>
+            <div>
+              <h3 class="story-mv-title">Our Vision</h3>
+              <p class="story-mv-desc">
+                To be the most trusted sustainable grocery platform in the world, fostering a global ecosystem where health, community, and the environment thrive together.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4: THE VALUES WE LIVE BY (4 Cards)
+         ========================================================================== -->
+    <section class="story-values-section">
+      <div class="container">
+        <h2 class="story-values-heading" data-aos="fade-up">The Values We Live By</h2>
+        
+        <div class="story-values-grid">
+          
+          <!-- Value 1: Freshness First -->
+          <div class="story-value-card story-val-1" data-aos="fade-up" data-aos-delay="100">
+            <div class="story-value-icon">
+              <i class="bi bi-leaf-fill"></i>
+            </div>
+            <h3 class="story-value-title">Freshness First</h3>
+            <p class="story-value-desc">
+              We never compromise on quality. Only harvest-fresh produce that meets our stringent farm standards.
+            </p>
+          </div>
+
+          <!-- Value 2: Community -->
+          <div class="story-value-card story-val-2" data-aos="fade-up" data-aos-delay="200">
+            <div class="story-value-icon">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <h3 class="story-value-title">Community</h3>
+            <p class="story-value-desc">
+              Empowering local farmers and strengthening regional agriculture is at the heart of our mission.
+            </p>
+          </div>
+
+          <!-- Value 3: Unmatched Quality -->
+          <div class="story-value-card story-val-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="story-value-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h3 class="story-value-title">Unmatched Quality</h3>
+            <p class="story-value-desc">
+              Rigorous certifications and constant quality inspection from farm gate to your front doorstep.
+            </p>
+          </div>
+
+          <!-- Value 4: Integrity -->
+          <div class="story-value-card story-val-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="story-value-icon">
+              <i class="bi bi-shield-fill-exclamation"></i>
+            </div>
+            <h3 class="story-value-title">Integrity</h3>
+            <p class="story-value-desc">
+              Transparent sourcing, fair farmer pricing, and zero hidden chemicals across every product.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5: MEET THE VISIONARIES
+         ========================================================================== -->
+    <section class="story-team-section">
+      <div class="container">
+        <h2 class="story-team-heading" data-aos="fade-up">Meet the Visionaries</h2>
+        <p class="story-team-sub" data-aos="fade-up" data-aos-delay="100">
+          The passionate team working together behind the scenes to bring the farm to your doorstep.
+        </p>
+
+        <div class="story-team-grid">
+          
+          <!-- Member 1: Marcus Sterling -->
+          <div class="story-team-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="story-team-img-wrap">
+              <img src="assets/images/service-team-marcus.webp" alt="Marcus Sterling" width="400" height="460" loading="lazy">
+            </div>
+            <h3 class="story-team-name">Marcus Sterling</h3>
+            <div class="story-team-role">Co-Founder &amp; CEO</div>
+            <div class="story-team-social">
+              <a href="#" aria-label="Marcus LinkedIn" onclick="return false;"><i class="bi bi-linkedin"></i></a>
+              <a href="#" aria-label="Marcus Twitter" onclick="return false;"><i class="bi bi-twitter"></i></a>
+            </div>
+          </div>
+
+          <!-- Member 2: Jane Robertson -->
+          <div class="story-team-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="story-team-img-wrap">
+              <img src="assets/images/service-team-jane.webp" alt="Jane Robertson" width="400" height="460" loading="lazy">
+            </div>
+            <h3 class="story-team-name">Jane Robertson</h3>
+            <div class="story-team-role">Co-Founder &amp; COO</div>
+            <div class="story-team-social">
+              <a href="#" aria-label="Jane LinkedIn" onclick="return false;"><i class="bi bi-linkedin"></i></a>
+              <a href="#" aria-label="Jane Twitter" onclick="return false;"><i class="bi bi-twitter"></i></a>
+            </div>
+          </div>
+
+          <!-- Member 3: David Chen -->
+          <div class="story-team-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="story-team-img-wrap">
+              <img src="assets/images/service-team-david.webp" alt="David Chen" width="400" height="460" loading="lazy">
+            </div>
+            <h3 class="story-team-name">David Chen</h3>
+            <div class="story-team-role">Head of Supply Chain</div>
+            <div class="story-team-social">
+              <a href="#" aria-label="David LinkedIn" onclick="return false;"><i class="bi bi-linkedin"></i></a>
+              <a href="#" aria-label="David Twitter" onclick="return false;"><i class="bi bi-twitter"></i></a>
+            </div>
+          </div>
+
+          <!-- Member 4: Elena Rodriguez -->
+          <div class="story-team-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="story-team-img-wrap">
+              <img src="assets/images/service-team-elena.webp" alt="Elena Rodriguez" width="400" height="460" loading="lazy">
+            </div>
+            <h3 class="story-team-name">Elena Rodriguez</h3>
+            <div class="story-team-role">Community Director</div>
+            <div class="story-team-social">
+              <a href="#" aria-label="Elena LinkedIn" onclick="return false;"><i class="bi bi-linkedin"></i></a>
+              <a href="#" aria-label="Elena Twitter" onclick="return false;"><i class="bi bi-twitter"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 6: CARING FOR OUR PLANET & OUR PEOPLE
+         ========================================================================== -->
+    <section class="story-planet-section">
+      <div class="container">
+        <div class="story-planet-grid">
+          
+          <!-- Left: Information & Green initiatives -->
+          <div class="story-planet-content" data-aos="fade-right">
+            <div class="story-planet-badge">
+              <i class="bi bi-leaf-fill"></i> Eco-Friendly Initiatives
+            </div>
+            <h2 class="story-planet-title">Caring for Our <span>Planet</span> and Our People</h2>
+            <p class="story-planet-intro">
+              At STACKLY, sustainability isn't just a buzzword; it's how we operate every single day. From 100% recyclable packaging to carbon-neutral deliveries, here is how we work tirelessly to protect our shared planet:
+            </p>
+
+            <div class="story-planet-features">
+              
+              <!-- Item 1: Reusable Packaging -->
+              <div class="story-planet-feature-item">
+                <div class="story-planet-ficon">
+                  <i class="bi bi-box-seam-fill"></i>
+                </div>
+                <div>
+                  <h4 class="story-planet-fname">Reusable Packaging</h4>
+                  <p class="story-planet-fdesc">
+                    100% compostable and recycled paper grocery totes that reduce landfill waste by over 40 tons every year.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2: Electric Fleet -->
+              <div class="story-planet-feature-item">
+                <div class="story-planet-ficon">
+                  <i class="bi bi-ev-front-fill"></i>
+                </div>
+                <div>
+                  <h4 class="story-planet-fname">Electric Fleet</h4>
+                  <p class="story-planet-fdesc">
+                    Over 80% of our city delivery fleet is powered by 100% clean electric energy to keep neighborhood emissions low.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3: Community Donations -->
+              <div class="story-planet-feature-item">
+                <div class="story-planet-ficon">
+                  <i class="bi bi-heart-fill"></i>
+                </div>
+                <div>
+                  <h4 class="story-planet-fname">Community Donations</h4>
+                  <p class="story-planet-fdesc">
+                    Weekly donations of fresh, unsold organic produce to local shelters and community food banks.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right: Caring Hands with Sapling Image -->
+          <div class="story-planet-img-wrap" data-aos="fade-left">
+            <img src="assets/images/service-hands-sapling.webp" 
+                 alt="Hands caring for green sapling" 
+                 class="story-planet-img" 
+                 width="800" 
+                 height="600" 
+                 loading="lazy">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 7: OUR FARM-TO-FORK JOURNEY (4-Step Process & Harvest Image)
+         ========================================================================== -->
+    <section class="about-process-section" id="farmToFork">
+      <div class="container">
+        
+        <div class="about-section-header" data-aos="fade-up">
+          <span class="about-section-pill">Traceable Food Cycle</span>
+          <h2 class="about-section-title">Our <span>Farm-to-Fork</span> Journey</h2>
+          <p class="about-section-desc">
+            We operate an ultra-lean direct supply route, eliminating warehouse bottlenecks to deliver produce from regional soil to your kitchen within 24 hours.
+          </p>
+        </div>
+
+        <div class="about-process-grid">
+          <!-- Step 1 -->
+          <div class="about-process-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-process-step-num">01</div>
+            <div class="about-process-icon">
+              <i class="bi bi-sun-fill"></i>
+            </div>
+            <h3 class="about-process-title">Morning Harvest</h3>
+            <p class="about-process-desc">
+              Picked at dawn from partner organic fields at peak nutritional ripeness without chemical preservatives.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="about-process-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="about-process-step-num">02</div>
+            <div class="about-process-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h3 class="about-process-title">Quality Screening</h3>
+            <p class="about-process-desc">
+              Every single batch undergoes our 5-point organic purity test, checking for zero synthetic pesticide residue.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="about-process-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="about-process-step-num">03</div>
+            <div class="about-process-icon">
+              <i class="bi bi-box2-heart-fill"></i>
+            </div>
+            <h3 class="about-process-title">Eco-Smart Pack</h3>
+            <p class="about-process-desc">
+              Packaged in 100% biodegradable cornstarch wrapping and recyclable honeycomb crates for maximum protection.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="about-process-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="about-process-step-num">04</div>
+            <div class="about-process-icon">
+              <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+            <h3 class="about-process-title">Zero-Emission Drop</h3>
+            <p class="about-process-desc">
+              Dispatched via our electric refrigerated fleet directly to your doorstep in temperature-controlled conditions.
+            </p>
+          </div>
+        </div>
+
+        <!-- High Resolution Verified WebP Banner (<90KB) -->
+        <div class="about-process-banner-wrap" data-aos="zoom-in">
+          <img src="assets/images/about-process-harvest.webp" 
+               alt="Morning vegetable harvest crates at organic farm" 
+               class="about-process-banner-img" 
+               width="900" 
+               height="500" 
+               loading="lazy">
+          <div class="about-process-banner-badge">
+            <i class="bi bi-patch-check-fill"></i>
+            <div>
+              <div class="fw-bold fs-6">100% Certified Direct Sourcing</div>
+              <small class="text-white-50">Never stored in cold storage ripening chambers</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 8: CERTIFICATIONS & SAFETY STANDARDS
+         ========================================================================== -->
+    <section class="about-cert-section" id="certifications">
+      <div class="container">
+        <div class="about-cert-grid">
+          
+          <!-- Left: Image with Pill Badge (<90KB WebP) -->
+          <div class="about-cert-img-wrap" data-aos="fade-right">
+            <span class="about-cert-pill-badge">
+              <i class="bi bi-award-fill"></i> USDA &amp; EU Certified
+            </span>
+            <img src="assets/images/about-cert-eco.webp" 
+                 alt="Certified Organic grocery basket with eco friendly packaging" 
+                 class="about-cert-img" 
+                 width="900" 
+                 height="675" 
+                 loading="lazy">
+          </div>
+
+          <!-- Right: List of Standards & Checks -->
+          <div class="about-cert-content" data-aos="fade-left">
+            <span class="about-section-pill">Quality Governance</span>
+            <h2 class="about-section-title">Strict <span>Organic Standards</span> You Can Trust</h2>
+            <p class="about-section-desc">
+              We hold the highest certification threshold in modern grocery retail. If an item doesn't meet our zero-residue benchmark, it never enters our inventory.
+            </p>
+
+            <div class="about-cert-list">
+              <!-- Item 1 -->
+              <div class="about-cert-item">
+                <div class="about-cert-check">
+                  <i class="bi bi-check-lg"></i>
+                </div>
+                <div>
+                  <h4 class="about-cert-item-title">100% Non-GMO Verified</h4>
+                  <p class="about-cert-item-desc">
+                    Every seed variety is heritage-preserved without artificial gene modifications or laboratory alterations.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="about-cert-item">
+                <div class="about-cert-check">
+                  <i class="bi bi-check-lg"></i>
+                </div>
+                <div>
+                  <h4 class="about-cert-item-title">Zero Synthetic Fertilizers or Pesticides</h4>
+                  <p class="about-cert-item-desc">
+                    Only natural compost, bio-extracts, and crop rotation methods are permitted across all grower agreements.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="about-cert-item">
+                <div class="about-cert-check">
+                  <i class="bi bi-check-lg"></i>
+                </div>
+                <div>
+                  <h4 class="about-cert-item-title">Transparent QR Traceability</h4>
+                  <p class="about-cert-item-desc">
+                    Scan any product label to see the grower's exact farm location, harvest timestamp, and soil test results.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 9: GROWER PARTNER SPOTLIGHT (<90KB WebP)
+         ========================================================================== -->
+    <section class="about-partner-section" id="partners">
+      <div class="container">
+        
+        <div class="about-partner-card" data-aos="fade-up">
+          <img src="assets/images/about-partner-dairy.webp" 
+               alt="Sunny Hillside Dairy Farm partner" 
+               class="about-partner-img" 
+               width="900" 
+               height="675" 
+               loading="lazy">
+          
+          <div class="about-partner-body">
+            <span class="about-partner-tag"><i class="bi bi-geo-alt-fill me-1"></i> Featured Partner • Vermont Valley</span>
+            <h2 class="about-partner-title">Sunny Meadow Organic Pastures</h2>
+            <p class="about-partner-desc">
+              Owned and operated by the Miller family for 3 generations, Sunny Meadow supplies STACKLY with 100% grass-fed organic milk, cultured Greek yogurt, and artisanal pasture cheeses. Their ethical, free-roaming dairy standard exemplifies our commitment to compassionate animal stewardship.
+            </p>
+            
+            <div class="about-partner-stats">
+              <div>
+                <div class="about-pstat-num">12 Yrs</div>
+                <div class="about-pstat-label">Partnership</div>
+              </div>
+              <div>
+                <div class="about-pstat-num">100%</div>
+                <div class="about-pstat-label">Grass-Fed Diet</div>
+              </div>
+              <div>
+                <div class="about-pstat-num">0%</div>
+                <div class="about-pstat-label">Antibiotics / Hormones</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 10: FREQUENTLY ASKED QUESTIONS (Interactive Accordion)
+         ========================================================================== -->
+    <section class="about-faq-section" id="faq">
+      <div class="container">
+        <div class="about-section-header" data-aos="fade-up">
+          <span class="about-section-pill">Got Questions?</span>
+          <h2 class="about-section-title">Frequently Asked <span>Questions</span></h2>
+          <p class="about-section-desc">
+            Everything you need to know about our sourcing, quality verification, and delivery commitments.
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9" data-aos="fade-up" data-aos-delay="100">
+            <div class="accordion about-faq-accordion" id="aboutFaqAccordion">
+              
+              <!-- Item 1 -->
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    How do you guarantee your produce is truly 100% organic?
+                  </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#aboutFaqAccordion">
+                  <div class="accordion-body">
+                    We conduct bi-weekly soil, water, and leaf assays in accredited independent third-party laboratories. Every single farm partner must hold valid certifications from USDA Organic, EU Organic, or local organic regulatory boards.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    How quickly does food travel from the farm to my door?
+                  </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#aboutFaqAccordion">
+                  <div class="accordion-body">
+                    Most produce is harvested between 5:00 AM and 8:00 AM, inspected by noon, and placed in eco-cool boxes for delivery later that afternoon or early the following morning. The maximum turnaround time from soil to table is under 24 hours.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    What is your policy on packaging and zero plastic waste?
+                  </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#aboutFaqAccordion">
+                  <div class="accordion-body">
+                    We have eliminated single-use petroleum plastics from our supply line. We use biodegradable paper wraps, plant-based compostable cellulose bags, and insulated returnable cooler totes that our delivery drivers take back on your next order.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="accordion-item">
+                <h3 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Can local smallholder farmers apply to partner with STACKLY?
+                  </button>
+                </h3>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#aboutFaqAccordion">
+                  <div class="accordion-body">
+                    Yes! We reserve 30% of our supply partnerships exclusively for small-scale regenerative and organic growers. You can reach out directly via our contact page or partner portal to begin the onboarding review.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER — Matching Reference Image
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      
+      <div class="footer-top-row">
+        
+        <!-- Column 1: Brand & Bio -->
+        <div class="footer-col-brand" data-aos="fade-up" data-aos-delay="100">
+          <a href="index.html" class="brand-logo-link footer-brand-logo mb-3" aria-label="STACKLY">
+            <img src="assets/images/logo.webp" alt="STACKLY" class="brand-logo-img footer-logo-img" width="145" height="42">
+          </a>
+          <p>
+            Providing high-quality, fresh and organic groceries since 2015. Your health is our priority.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Twitter">
+              <i class="bi bi-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col-links" data-aos="fade-up" data-aos-delay="200">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="service%20page.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Categories -->
+        <div class="footer-col-categories" data-aos="fade-up" data-aos-delay="300">
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#categories-section">Fresh Vegetables</a></li>
+            <li><a href="index.html#categories-section">Fruits &amp; Berries</a></li>
+            <li><a href="index.html#categories-section">Dairy &amp; Milk</a></li>
+            <li><a href="index.html#categories-section">Bread &amp; Bakery</a></li>
+            <li><a href="index.html#categories-section">Pantry Staples</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Info -->
+        <div class="footer-col-contact" data-aos="fade-up" data-aos-delay="400">
+          <h4 class="footer-col-title">Contact Info</h4>
+          <ul class="footer-contact-list">
+            <li class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>stackly hyderabad</span>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <a href="tel:+18005550199">+1 (800) 555-0199</a>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <a href="mailto:support@stackly.com">support@stackly.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Copyright & Legal Links -->
+      <div class="footer-bottom-row">
+        <span>&copy; 2024 FreshCart. All rights reserved.</span>
+        <div class="footer-legal-links">
+          <a href="#" onclick="return false;">Privacy Policy</a>
+          <a href="#" onclick="return false;">Terms of Service</a>
+          <a href="#" onclick="return false;">Cookies</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       OFFCANVAS: SHOPPING CART DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel" style="width: 420px; max-width: 90vw;">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title font-heading fw-bold" id="cartDrawerLabel">
+        <i class="bi bi-basket2-fill text-teal me-2"></i> Your Fresh Basket
+      </h5>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cartDrawerItemsList" class="flex-grow-1 overflow-y-auto">
+        <p class="text-muted text-center py-5">Your basket is currently empty.</p>
+      </div>
+      <div class="border-top pt-3 mt-auto">
+        <a href="index.html#featured-products" class="btn btn-primary-teal w-100 py-3 fw-bold fs-6">
+          Start Shopping <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OFFCANVAS: MOBILE NAVIGATION DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuDrawer" aria-labelledby="mobileMenuDrawerLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img mobile-logo-img" width="135" height="40">
+      </a>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" id="mobileSearchInput" class="form-control border-start-0 bg-light" placeholder="Search groceries...">
+        </div>
+      </div>
+
+      <h6 class="text-uppercase text-teal fw-bold small mb-3">Navigation</h6>
+      <ul class="nav flex-column gap-2 mb-4">
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html"><i class="bi bi-house me-2"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link text-teal fw-semibold" href="about.html"><i class="bi bi-info-circle me-2"></i> About Us</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#featured-products"><i class="bi bi-grid me-2"></i> Featured Products</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#deal-of-the-day"><i class="bi bi-stopwatch text-warning me-2"></i> Deal of the Day</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="login.html"><i class="bi bi-person-circle me-2"></i> Account / Sign In</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="contact.html"><i class="bi bi-envelope me-2"></i> Contact Us</a></li>
+      </ul>
+
+      <h6 class="text-uppercase text-teal fw-bold small mb-3">Shop Categories</h6>
+      <ul class="nav flex-column gap-2">
+        <li class="nav-item"><a class="nav-link text-secondary" href="index.html?category=fruits">🍎 Fresh Fruits</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="index.html?category=vegetables">🥦 Vegetables</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="index.html?category=dairy">🥛 Dairy &amp; Eggs</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="index.html?category=bakery">🥖 Bakery</a></li>
+        <li class="nav-item"><a class="nav-link text-secondary" href="index.html?category=snacks">🥜 Snacks</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       CDN SCRIPTS: Bootstrap 5.3, GSAP 3, ScrollTrigger, AOS
+       ========================================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Application Modules -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/interactions.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

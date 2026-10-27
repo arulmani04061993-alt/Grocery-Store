@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services | STACKLY Premium Organic Grocery</title>
+  <meta name="description" content="More Than Just a Grocery Store. Explore eco-home delivery, organic bulk refill, personalized pantry curation, and zero-waste logistics.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Preload Essential WebP Images (<90KB) -->
+  <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/service-hero.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/service-pantry.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/service-van.webp" as="image" type="image/webp">
+</head>
+<body class="login-landing-body preloader-active">
+
+  <!-- ==========================================================================
+       LOGO INTRO & WAVE PRELOADER
+       ========================================================================== -->
+  <div id="logoIntroPreloader" aria-hidden="true">
+    <div class="preloader-brand-wrap">
+      <div class="preloader-logo-wrapper">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
+      </div>
+      <div class="preloader-wave-container" aria-label="Loading...">
+        <div class="wave-bars">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+          <span class="wave-bar bar-4"></span>
+          <span class="wave-bar bar-5"></span>
+          <span class="wave-bar bar-6"></span>
+          <span class="wave-bar bar-7"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div id="serviceToast" class="login-toast-banner" role="alert" aria-live="polite">
+    <i class="bi bi-check-circle-fill text-emerald fs-5" id="toastIcon"></i>
+    <span id="toastMsg">Thank you! Your consultation request has been booked.</span>
+  </div>
+
+  <!-- ==========================================================================
+       TOP NAVBAR — Matching Reference Mockup Header
+       ========================================================================== -->
+  <header class="site-header login-header-top" id="siteHeader">
+    <div class="header-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery Homepage">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img" width="145" height="43">
+      </a>
+
+      <!-- Center Rounded Pill Search Bar -->
+      <div class="header-search-wrap" role="search">
+        <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
+        <input type="text" 
+               id="headerSearchInput" 
+               class="header-search-input" 
+               placeholder="Search for groceries, snacks, or drinks..." 
+               aria-label="Search for groceries, snacks, or drinks">
+        <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+      </div>
+
+      <!-- Right Nav Actions -->
+      <nav class="header-actions" aria-label="Main Navigation">
+        <!-- 1. Home Link with House Icon -->
+        <a href="index.html" class="nav-text-link" aria-label="Home">
+          <i class="bi bi-house"></i>
+          <span>Home</span>
+        </a>
+
+        <!-- 2. Categories with Indicator Dot & Dropdown -->
+        <div class="dropdown d-none d-lg-block">
+          <a href="index.html#categories-section" 
+             class="nav-text-link has-indicator dropdown-toggle" 
+             role="button" 
+             data-bs-toggle="dropdown" 
+             aria-expanded="false" 
+             aria-label="Categories">
+            <span>Categories</span>
+          </a>
+          <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2 mt-2">
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=fruits"><i class="bi bi-apple text-danger me-2"></i> Fresh Fruits</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=vegetables"><i class="bi bi-flower1 text-success me-2"></i> Vegetables</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=dairy"><i class="bi bi-cup-hot text-primary me-2"></i> Dairy &amp; Eggs</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=bakery"><i class="bi bi-cake2 text-warning me-2"></i> Bakery</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=meat"><i class="bi bi-egg-fried text-danger me-2"></i> Meat &amp; Fish</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=snacks"><i class="bi bi-box2-heart text-info me-2"></i> Snacks</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Deals with HOT Badge -->
+        <a href="index.html#deal-of-the-day" class="nav-text-link d-none d-lg-flex" aria-label="Deals">
+          <span>Deals</span>
+          <span class="deals-hot-badge">HOT</span>
+        </a>
+
+        <!-- 4. Account with User Circle Icon -->
+        <div class="dropdown">
+          <a href="#" class="nav-text-link header-account-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open User Account">
+            <i class="bi bi-person-circle"></i>
+            <span>Account</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-4 p-2 mt-2">
+            <li><a class="dropdown-item rounded-3 py-2" href="login.html"><i class="bi bi-box-arrow-in-right text-teal me-2"></i> Customer Login</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="signup.html"><i class="bi bi-person-plus text-success me-2"></i> Sign Up</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="user-dashboard.html"><i class="bi bi-speedometer2 text-primary me-2"></i> User Dashboard</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="admin-dashboard.html"><i class="bi bi-shield-lock text-danger me-2"></i> Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <!-- 5. Cart Button with Teal Badge Count -->
+        <button class="nav-cart-btn" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#cartDrawer" 
+                aria-controls="cartDrawer" 
+                aria-label="Open Shopping Cart">
+          <div class="cart-icon-wrapper">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge-count" id="headerCartCountBadge">0</span>
+          </div>
+        </button>
+
+        <!-- 6. Mobile Hamburger Menu Button -->
+        <button class="hamburger-btn" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#mobileMenuDrawer" 
+                aria-controls="mobileMenuDrawer" 
+                aria-label="Open Navigation Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT: SERVICE PAGE
+       ========================================================================== -->
+  <main class="service-page-main" id="mainContent">
+
+    <!-- ==========================================================================
+         1. HERO SECTION: Split Screen (Text Left, Store Aisle Image Right)
+         ========================================================================== -->
+    <section class="service-hero-section">
+      <div class="container">
+        <div class="service-hero-grid">
+          
+          <!-- Left Hero Content -->
+          <div class="service-hero-content">
+            <span class="service-pill-tag">WHAT WE OFFER</span>
+            <h1 class="service-hero-title">
+              More Than Just a<br>
+              <span class="text-teal-gradient">Grocery Store.</span>
+            </h1>
+            <p class="service-hero-desc">
+              We've designed our services to make healthy living effortless, sustainable, and tailored to your unique lifestyle.
+            </p>
+            <div class="service-hero-cta-group">
+              <a href="#services-grid" class="btn-service-primary">Explore Services</a>
+              <a href="#consultation-modal" class="btn-service-outline" onclick="openConsultModal(event)">How It Works</a>
+            </div>
+          </div>
+
+          <!-- Right Hero Image with Soft Glow -->
+          <div class="service-hero-media">
+            <div class="service-hero-img-wrap">
+              <img src="assets/images/service-hero.webp" 
+                   alt="Modern organic grocery store shelves stocked with organic grains and sustainable goods" 
+                   class="service-hero-img" 
+                   width="720" 
+                   height="540" 
+                   loading="eager">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         2. TAILORED SOLUTIONS: 4 Cards Grid
+         ========================================================================== -->
+    <section class="service-solutions-section" id="services-grid">
+      <div class="container">
+        
+        <div class="service-section-header text-center">
+          <h2 class="service-section-title">Tailored Solutions for Your Kitchen</h2>
+          <p class="service-section-subtitle">
+            From farm-fresh doorstep delivery to personalized nutrition curations, we elevate every aspect of your daily food routines.
+          </p>
+        </div>
+
+        <div class="service-cards-grid">
+          
+          <!-- Card 1: Eco-Home Delivery -->
+          <div class="service-feature-card">
+            <div class="service-card-icon-wrap icon-cyan">
+              <i class="bi bi-truck"></i>
+            </div>
+            <h3 class="service-card-title">Eco-Home Delivery</h3>
+            <p class="service-card-text">
+              Zero-emission delivery fleet delivering farm-fresh orders straight to your doorstep in 100% recyclable, reusable insulated crates.
+            </p>
+            <a href="#zero-waste" class="service-card-link">Learn More <i class="bi bi-chevron-right"></i></a>
+          </div>
+
+          <!-- Card 2: Organic Selection -->
+          <div class="service-feature-card">
+            <div class="service-card-icon-wrap icon-teal">
+              <i class="bi bi-basket2"></i>
+            </div>
+            <h3 class="service-card-title">Organic Selection</h3>
+            <p class="service-card-text">
+              Carefully curated non-GMO, chemical-free fruits &amp; vegetables from certified regional partners, hand-picked daily for peak freshness.
+            </p>
+            <a href="index.html#categories-section" class="service-card-link">Learn More <i class="bi bi-chevron-right"></i></a>
+          </div>
+
+          <!-- Card 3: Bulk Refill Hub -->
+          <div class="service-feature-card">
+            <div class="service-card-icon-wrap icon-mint">
+              <i class="bi bi-recycle"></i>
+            </div>
+            <h3 class="service-card-title">Bulk Refill Hub</h3>
+            <p class="service-card-text">
+              Reduce single-use plastic by refilling whole grains, nuts, cold-pressed oils, organic honey, and natural household soaps in bulk.
+            </p>
+            <a href="#services-grid" class="service-card-link">Learn More <i class="bi bi-chevron-right"></i></a>
+          </div>
+
+          <!-- Card 4: Personal Shopping -->
+          <div class="service-feature-card">
+            <div class="service-card-icon-wrap icon-blue">
+              <i class="bi bi-person-heart"></i>
+            </div>
+            <h3 class="service-card-title">Personal Shopping</h3>
+            <p class="service-card-text">
+              Dedicated organic concierge team hand-selects items customized to your family's exact ripeness preferences and dietary needs.
+            </p>
+            <a href="#pantry-curation" class="service-card-link">Learn More <i class="bi bi-chevron-right"></i></a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. FEATURE ROW 1: Personalized Pantry Curation (Image Left, Text Right)
+         ========================================================================== -->
+    <section class="service-feature-row-section" id="pantry-curation">
+      <div class="container">
+        <div class="service-feature-row-grid">
+          
+          <!-- Image Left -->
+          <div class="service-feature-row-media">
+            <div class="feature-img-card-wrap">
+              <img src="assets/images/service-pantry.webp" 
+                   alt="Customer hand picking crisp fresh red organic apples from a wooden crate" 
+                   class="feature-row-img" 
+                   width="640" 
+                   height="480" 
+                   loading="lazy">
+            </div>
+          </div>
+
+          <!-- Content Right -->
+          <div class="service-feature-row-content">
+            <div class="service-inline-badge">
+              <i class="bi bi-person-badge-fill text-teal"></i>
+            </div>
+            <h2 class="feature-row-title">Personalized Pantry Curation</h2>
+            <p class="feature-row-desc">
+              Not sure what's in season? Our certified personal shopping specialists build custom recurring boxes tailored to your dietary goals, seasonal harvest peak, and household size.
+            </p>
+            
+            <ul class="feature-bullets-list">
+              <li>
+                <span class="bullet-dot"></span>
+                <span>Custom curated seasonal grocery plan</span>
+              </li>
+              <li>
+                <span class="bullet-dot"></span>
+                <span>Recipe and nutritional matching</span>
+              </li>
+              <li>
+                <span class="bullet-dot"></span>
+                <span>Direct chat with your dedicated personal shopper</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. FEATURE ROW 2: Zero-Waste Logistics (Text Left, Image Right)
+         ========================================================================== -->
+    <section class="service-feature-row-section service-row-reverse" id="zero-waste">
+      <div class="container">
+        <div class="service-feature-row-grid">
+          
+          <!-- Content Left -->
+          <div class="service-feature-row-content">
+            <div class="service-inline-badge">
+              <i class="bi bi-arrow-repeat text-teal"></i>
+            </div>
+            <h2 class="feature-row-title">Zero-Waste Logistics</h2>
+            <p class="feature-row-desc">
+              We believe convenience shouldn't cost the planet. Our delivery system is built on circular economy principles, from reusable insulated containers to route optimization.
+            </p>
+            
+            <ul class="feature-bullets-list">
+              <li>
+                <span class="bullet-dot"></span>
+                <span>100% plastic-free shipping containers</span>
+              </li>
+              <li>
+                <span class="bullet-dot"></span>
+                <span>Return bottles &amp; crates on next delivery for instant store credit</span>
+              </li>
+              <li>
+                <span class="bullet-dot"></span>
+                <span>100% electric delivery vans powered by clean solar power</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Image Right -->
+          <div class="service-feature-row-media">
+            <div class="feature-img-card-wrap">
+              <img src="assets/images/service-van.webp" 
+                   alt="Modern electric zero-emission grocery delivery van driving down a sunny residential lane" 
+                   class="feature-row-img" 
+                   width="640" 
+                   height="480" 
+                   loading="lazy">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. HOW IT WORKS: Simple, Seamless, Fresh (3 Step Process)
+         ========================================================================== -->
+    <section class="service-process-section">
+      <div class="container">
+        
+        <div class="service-section-header text-center">
+          <h2 class="service-section-title">Simple, Seamless, Fresh</h2>
+          <p class="service-section-subtitle">
+            Three easy steps to a better grocery experience.
+          </p>
+        </div>
+
+        <div class="service-process-grid">
+          
+          <!-- Step 1 -->
+          <div class="process-step-card text-center">
+            <div class="process-step-number">1</div>
+            <h3 class="process-step-title">Build Your Cart</h3>
+            <p class="process-step-desc">
+              Explore thousands of local, organic products and customize your recurring subscription or one-off order.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="process-step-card text-center">
+            <div class="process-step-number">2</div>
+            <h3 class="process-step-title">Choose Your Service</h3>
+            <p class="process-step-desc">
+              Select standard delivery, 2-hour rush, or lock in your recurring weekly drop slot at zero extra charge.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="process-step-card text-center">
+            <div class="process-step-number">3</div>
+            <h3 class="process-step-title">Enjoy Freshness</h3>
+            <p class="process-step-desc">
+              Receive your order chilled, crisp, and ready for your kitchen table with 100% freshness guarantee.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. BOTTOM CTA BANNER: Ready to Experience FreshPicks Premium?
+         ========================================================================== -->
+    <section class="service-bottom-cta-section">
+      <div class="container">
+        <div class="service-cta-banner">
+          
+          <!-- Background Decorative Leaf SVG Watermark -->
+          <div class="cta-leaf-watermark" aria-hidden="true">
+            <svg viewBox="0 0 200 200" fill="currentColor">
+              <path d="M185 25C130 25 70 65 40 120C28 142 22 165 20 185C40 183 63 177 85 165C140 135 180 75 185 25Z" opacity="0.15"/>
+              <path d="M40 170C75 135 115 95 185 25" stroke="currentColor" stroke-width="6" stroke-linecap="round" opacity="0.2"/>
+            </svg>
+          </div>
+
+          <div class="cta-banner-content">
+            <h2 class="cta-banner-title">Ready to Experience<br>FreshPicks Premium?</h2>
+            <p class="cta-banner-desc">
+              Join over 10,000 families who have transformed their grocery shopping. Get your first delivery free when you sign up today.
+            </p>
+            <div class="cta-banner-buttons">
+              <a href="signup.html" class="btn-cta-white">Get Started Now</a>
+              <button class="btn-cta-transparent" onclick="openConsultModal(event)">Book a Consultation</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       BOOK CONSULTATION MODAL
+       ========================================================================== -->
+  <div class="modal fade" id="consultationModal" tabindex="-1" aria-labelledby="consultModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-xl rounded-4">
+        <div class="modal-header border-0 pb-0">
+          <h3 class="modal-title fw-bold fs-4 text-navy" id="consultModalLabel">Book a Free Consultation</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-2">
+          <p class="text-muted small mb-4">Meet with one of our certified personal nutrition and grocery concierges to tailor your weekly deliveries.</p>
+          <form id="consultForm" onsubmit="handleConsultSubmit(event)">
+            <div class="mb-3">
+              <label for="consultName" class="form-label small fw-semibold text-navy">Full Name</label>
+              <input type="text" class="form-control rounded-3 py-2" id="consultName" placeholder="e.g. Sarah Jenkins" required>
+            </div>
+            <div class="mb-3">
+              <label for="consultEmail" class="form-label small fw-semibold text-navy">Email Address</label>
+              <input type="email" class="form-control rounded-3 py-2" id="consultEmail" placeholder="sarah@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="consultType" class="form-label small fw-semibold text-navy">Preferred Service</label>
+              <select class="form-select rounded-3 py-2" id="consultType">
+                <option value="Personalized Pantry Curation" selected>Personalized Pantry Curation</option>
+                <option value="Zero-Waste Eco Delivery">Zero-Waste Eco Delivery</option>
+                <option value="Bulk Refill Hub Setup">Bulk Refill Hub Setup</option>
+                <option value="Dietary Nutrition Planning">Dietary Nutrition Planning</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-service-primary w-100 py-2 mt-2">Confirm Consultation</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       CART OFFCANVAS DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-end cart-drawer-wrap" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold fs-5 text-navy" id="cartDrawerLabel">
+        <i class="bi bi-basket2-fill text-teal me-2"></i> Your Grocery Basket
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column justify-content-between">
+      <div id="cartDrawerItems" class="cart-items-container">
+        <div class="text-center py-5">
+          <i class="bi bi-cart-x fs-1 text-muted"></i>
+          <p class="mt-3 text-muted">Your cart is currently empty.</p>
+          <a href="index.html" class="btn-service-primary mt-2">Start Shopping</a>
+        </div>
+      </div>
+      <div class="cart-drawer-footer border-top pt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <span class="text-muted">Subtotal:</span>
+          <span class="fw-bold text-navy" id="cartDrawerSubtotal">$0.00</span>
+        </div>
+        <button class="btn-service-primary w-100 py-2" onclick="alert('Proceeding to checkout!')">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MOBILE NAVIGATION OFFCANVAS DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuDrawer" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="index.html" class="brand-logo-link">
+        <img src="assets/images/logo.webp" alt="STACKLY" width="130" height="38">
+      </a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column gap-2 mb-4">
+        <li class="nav-item"><a class="nav-link text-navy fw-semibold" href="index.html"><i class="bi bi-house me-2"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link text-teal fw-semibold" href="service%20page.html"><i class="bi bi-gear-wide-connected me-2"></i> Services</a></li>
+        <li class="nav-item"><a class="nav-link text-navy fw-semibold" href="index.html#categories-section"><i class="bi bi-grid me-2"></i> Categories</a></li>
+        <li class="nav-item"><a class="nav-link text-navy fw-semibold" href="index.html#deal-of-the-day"><i class="bi bi-tag me-2"></i> Deals</a></li>
+        <li class="nav-item"><a class="nav-link text-navy fw-semibold" href="contact.html"><i class="bi bi-envelope me-2"></i> Contact Us</a></li>
+      </ul>
+      <div class="d-grid gap-2 border-top pt-3">
+        <a href="login.html" class="btn btn-outline-secondary rounded-pill py-2">Customer Login</a>
+        <a href="signup.html" class="btn btn-teal rounded-pill py-2 text-white" style="background: var(--primary-teal);">Sign Up Free</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       7. FOOTER — Matching Reference Mockup Exactly
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      
+      <div class="footer-top-row">
+        
+        <!-- Column 1: Brand & Bio -->
+        <div class="footer-col-brand">
+          <a href="index.html" class="brand-logo-link footer-brand-logo mb-3" aria-label="STACKLY Organic Grocery">
+            <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img footer-logo-img" width="155" height="46">
+          </a>
+          <p>
+            Providing high-quality, fresh and organic groceries since 2015. Your health is our priority.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Twitter">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="service%20page.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Categories -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html?category=fruits">Fresh Vegetables</a></li>
+            <li><a href="index.html?category=fruits">Fruit &amp; Berries</a></li>
+            <li><a href="index.html?category=dairy">Dairy &amp; Milk</a></li>
+            <li><a href="index.html?category=bakery">Bread &amp; Bakery</a></li>
+            <li><a href="index.html?category=snacks">Pantry Snacks</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Info -->
+        <div class="footer-col-contact">
+          <h4 class="footer-col-title">Contact Info</h4>
+          <ul class="footer-contact-list">
+            <li class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>1234 City Market Blvd</span>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <a href="tel:+18005550199">+1 (800) 555-0199</a>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <a href="mailto:support@stackly.com">support@stackly.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Footer Copyright & Legal -->
+      <div class="footer-bottom-row">
+        <div>
+          &copy; 2026 STACKLY FreshCart Grocery Inc. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Application Modules -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/interactions.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // 2. Open Consultation Modal
+    function openConsultModal(e) {
+      if (e) e.preventDefault();
+      const modalEl = document.getElementById('consultationModal');
+      if (modalEl) {
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+      }
+    }
+
+    // 3. Handle Consultation Form Submission
+    function handleConsultSubmit(e) {
+      e.preventDefault();
+      const modalEl = document.getElementById('consultationModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalEl);
+      if (modalInstance) {
+        modalInstance.hide();
+      }
+      showToast('Thank you! Your personalized consultation is booked.');
+      document.getElementById('consultForm').reset();
+    }
+
+    // 4. Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('serviceToast');
+      const msgEl = document.getElementById('toastMsg');
+      if (!toast) return;
+      if (msgEl) msgEl.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>

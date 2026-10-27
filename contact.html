@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | STACKLY Premium Organic Grocery</title>
+  <meta name="description" content="Have questions about our products or delivery? We're here to help you live a fresher, healthier life. Visit us, call us, or send a message.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Preload Essential Images (All WebP & <90KB) -->
+  <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/login-banner.webp" as="image" type="image/webp">
+</head>
+<body class="login-landing-body preloader-active">
+
+  <!-- ==========================================================================
+       LOGO INTRO & WAVE PRELOADER
+       ========================================================================== -->
+  <div id="logoIntroPreloader" aria-hidden="true">
+    <div class="preloader-brand-wrap">
+      <div class="preloader-logo-wrapper">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
+      </div>
+      <div class="preloader-wave-container" aria-label="Loading...">
+        <div class="wave-bars">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+          <span class="wave-bar bar-4"></span>
+          <span class="wave-bar bar-5"></span>
+          <span class="wave-bar bar-6"></span>
+          <span class="wave-bar bar-7"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div id="contactToast" class="login-toast-banner" role="alert" aria-live="polite">
+    <i class="bi bi-check-circle-fill text-emerald fs-5" id="toastIcon"></i>
+    <span id="toastMsg">Thank you! Your message has been sent successfully.</span>
+  </div>
+
+  <!-- ==========================================================================
+       TOP NAVBAR — Matching Reference Mockup Header
+       ========================================================================== -->
+  <header class="site-header login-header-top" id="siteHeader">
+    <div class="header-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery Homepage">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img" width="145" height="43">
+      </a>
+
+      <!-- Center Rounded Pill Search Bar -->
+      <div class="header-search-wrap" role="search">
+        <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
+        <input type="text" 
+               id="headerSearchInput" 
+               class="header-search-input" 
+               placeholder="Search for groceries, snacks, or drinks..." 
+               aria-label="Search for groceries, snacks, or drinks">
+        <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+      </div>
+
+      <!-- Right Nav Actions -->
+      <nav class="header-actions" aria-label="Main Navigation">
+        <!-- 1. Home Link with House Icon -->
+        <a href="index.html" class="nav-text-link" aria-label="Home">
+          <i class="bi bi-house"></i>
+          <span>Home</span>
+        </a>
+
+        <!-- 2. Categories with Indicator Dot & Dropdown -->
+        <div class="dropdown d-none d-lg-block">
+          <a href="index.html#categories-section" 
+             class="nav-text-link has-indicator dropdown-toggle" 
+             role="button" 
+             data-bs-toggle="dropdown" 
+             aria-expanded="false" 
+             aria-label="Categories">
+            <span>Categories</span>
+          </a>
+          <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2 mt-2">
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=fruits"><i class="bi bi-apple text-danger me-2"></i> Fresh Fruits</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=vegetables"><i class="bi bi-flower1 text-success me-2"></i> Vegetables</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=dairy"><i class="bi bi-cup-hot text-primary me-2"></i> Dairy &amp; Eggs</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=bakery"><i class="bi bi-cake2 text-warning me-2"></i> Bakery</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=meat"><i class="bi bi-egg-fried text-danger me-2"></i> Meat &amp; Fish</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=snacks"><i class="bi bi-box2-heart text-info me-2"></i> Snacks</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Deals with HOT Badge -->
+        <a href="index.html#deal-of-the-day" class="nav-text-link d-none d-lg-flex" aria-label="Deals">
+          <span>Deals</span>
+          <span class="deals-hot-badge">HOT</span>
+        </a>
+
+        <!-- 4. Account with User Circle Icon -->
+        <a href="login.html" class="nav-text-link header-account-link" aria-label="Open User Account">
+          <i class="bi bi-person-circle"></i>
+          <span>Account</span>
+        </a>
+
+        <!-- 5. Cart Button with Teal Badge Count -->
+        <button class="nav-cart-btn" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#cartDrawer" 
+                aria-controls="cartDrawer" 
+                aria-label="Open Shopping Cart">
+          <div class="cart-icon-wrapper">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge-count" id="headerCartCountBadge">0</span>
+          </div>
+        </button>
+
+        <!-- 6. Mobile Hamburger Menu Button -->
+        <button class="hamburger-btn" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#mobileMenuDrawer" 
+                aria-controls="mobileMenuDrawer" 
+                aria-label="Open Navigation Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       1. HERO HEADER: "Get in Touch"
+       ========================================================================== -->
+  <main id="mainContent">
+    <section class="contact-hero-banner">
+      <div class="contact-hero-overlay"></div>
+      <div class="contact-hero-content">
+        <h1 class="contact-hero-title">Get in Touch</h1>
+        <p class="contact-hero-desc">
+          Have questions about our products or delivery? We're here to help you live a fresher, healthier life.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         2. TOP 3 QUICK CONTACT CARDS (Visit Us, Call Us, Email Us)
+         ========================================================================== -->
+    <section class="contact-info-strip">
+      <div class="container">
+        <div class="contact-cards-grid">
+          
+          <!-- Card 1: Visit Us -->
+          <div class="contact-info-card">
+            <div class="contact-card-icon-wrap">
+              <i class="bi bi-geo-alt-fill"></i>
+            </div>
+            <h3 class="contact-card-heading">Visit Us</h3>
+            <p class="contact-card-lines">
+              MMR Complex, 24, Maravaneri 1st Cross St,<br>
+              Salem, Tamil Nadu 636007, India
+            </p>
+          </div>
+
+          <!-- Card 2: Call Us -->
+          <div class="contact-info-card">
+            <div class="contact-card-icon-wrap">
+              <i class="bi bi-telephone-fill"></i>
+            </div>
+            <h3 class="contact-card-heading">Call Us</h3>
+            <p class="contact-card-lines">
+              Toll Free: <a href="tel:+18005550199">+1 (800) 555-0199</a><br>
+              Support: <a href="tel:+18007822559">+1 (800) 782-2559</a>
+            </p>
+          </div>
+
+          <!-- Card 3: Email Us -->
+          <div class="contact-info-card">
+            <div class="contact-card-icon-wrap">
+              <i class="bi bi-envelope-fill"></i>
+            </div>
+            <h3 class="contact-card-heading">Email Us</h3>
+            <p class="contact-card-lines">
+              <a href="mailto:support@stacklyfresh.com">support@freshcart.com</a><br>
+              <a href="mailto:help@freshcart.com">help@freshcart.com</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. MAIN SECTION: Send us a Message (Left) + Map & Store Hours (Right)
+         ========================================================================== -->
+    <section class="contact-main-section">
+      <div class="container">
+        <div class="contact-main-grid">
+          
+          <!-- Left: Send us a Message Form -->
+          <div class="contact-form-card">
+            <h2 class="contact-form-title">Send us a Message</h2>
+            <p class="contact-form-subtitle">Fill out the form below and our team will get back to you within 24 hours.</p>
+
+            <form id="contactMessageForm" onsubmit="handleContactSubmit(event)" novalidate>
+              
+              <!-- Row 1: Full Name & Email Address -->
+              <div class="contact-form-row-2">
+                <div class="contact-field-group mb-0">
+                  <label for="contactFullName" class="contact-field-label">Full Name</label>
+                  <input type="text" 
+                         id="contactFullName" 
+                         class="contact-text-input" 
+                         placeholder="John Doe" 
+                         required 
+                         autocomplete="name">
+                </div>
+                <div class="contact-field-group mb-0">
+                  <label for="contactEmail" class="contact-field-label">Email Address</label>
+                  <input type="email" 
+                         id="contactEmail" 
+                         class="contact-text-input" 
+                         placeholder="john@example.com" 
+                         required 
+                         autocomplete="email">
+                </div>
+              </div>
+
+              <!-- Row 2: Subject -->
+              <div class="contact-field-group">
+                <label for="contactSubject" class="contact-field-label">Subject</label>
+                <input type="text" 
+                       id="contactSubject" 
+                       class="contact-text-input" 
+                       placeholder="General Inquiry" 
+                       required>
+              </div>
+
+              <!-- Row 3: Message Textarea -->
+              <div class="contact-field-group">
+                <label for="contactMessage" class="contact-field-label">Message</label>
+                <textarea id="contactMessage" 
+                          class="contact-textarea" 
+                          placeholder="How can we help you?" 
+                          required></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="contact-btn-submit" id="contactSubmitBtn">
+                <span id="contactBtnText">Send Message</span>
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Right Column: Interactive Styled Map & Store Hours Card -->
+          <div class="contact-side-column">
+            
+            <!-- Map Card matching user screenshot exactly -->
+            <div class="contact-map-card">
+              <div class="contact-map-viewport" style="position: relative; height: 380px; overflow: hidden; border-radius: 20px;">
+                <!-- Real Google Map iframe for MMR Complex, Maravaneri, Salem (contains native single Info Card) -->
+                <iframe 
+                  src="https://maps.google.com/maps?q=MMR+Complex,+Maravaneri,+Salem,+Tamil+Nadu+636007&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0; display:block; width:100%; height:100%;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="MMR Complex Salem Google Map">
+                </iframe>
+              </div>
+
+              <!-- Bottom Bar inside Map Card -->
+              <div class="contact-map-bottom-bar">
+                <div>
+                  <h4 class="contact-store-name">MMR Complex &bull; STACKLY Salem Store</h4>
+                  <p class="contact-store-status">
+                    <i class="bi bi-check-circle-fill"></i> Open until 9:00 PM tonight
+                  </p>
+                </div>
+                <a href="https://www.google.com/maps/dir//MMR+Complex,+Maravaneri,+Salem" target="_blank" rel="noopener noreferrer" class="btn-directions">
+                  <i class="bi bi-geo-alt"></i> Directions
+                </a>
+              </div>
+            </div>
+
+            <!-- Store Hours Card matching reference -->
+            <div class="contact-hours-card">
+              <div class="contact-hours-header">
+                <i class="bi bi-clock-history"></i>
+                <span>Store Hours</span>
+              </div>
+              <div class="contact-hours-list">
+                
+                <div class="contact-hours-row">
+                  <span class="hours-day">Monday - Friday</span>
+                  <span class="hours-time">08:00 AM - 09:00 PM</span>
+                </div>
+
+                <div class="contact-hours-row">
+                  <span class="hours-day">Saturday</span>
+                  <span class="hours-time">09:00 AM - 08:00 PM</span>
+                </div>
+
+                <div class="contact-hours-row weekend">
+                  <span class="hours-day">Sunday</span>
+                  <span class="hours-time">10:00 AM - 06:00 PM</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. COMMON QUESTIONS (FAQ Accordion matching reference image)
+         ========================================================================== -->
+    <section class="contact-faq-section">
+      <div class="container contact-faq-container">
+        
+        <h2 class="contact-faq-heading">Common Questions</h2>
+        <p class="contact-faq-subtitle">Quick answers to things you might be wondering about.</p>
+
+        <div class="contact-faq-list" id="faqAccordion">
+          
+          <!-- Item 1 (Open by default matching screenshot) -->
+          <div class="contact-faq-item active">
+            <button class="contact-faq-question" onclick="toggleFaq(this)" aria-expanded="true">
+              <span>Do you offer same-day delivery?</span>
+              <span class="contact-faq-toggle-icon"><i class="bi bi-plus-lg"></i></span>
+            </button>
+            <div class="contact-faq-answer">
+              Yes! Orders placed before 1:00 PM local time are eligible for same-day delivery. Orders placed after 1:00 PM will be delivered the following morning.
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="contact-faq-item">
+            <button class="contact-faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              <span>Is all your produce certified organic?</span>
+              <span class="contact-faq-toggle-icon"><i class="bi bi-plus-lg"></i></span>
+            </button>
+            <div class="contact-faq-answer">
+              Absolutely. 100% of our fresh produce is certified organic by USDA-accredited certifying agents. We work exclusively with verified regional growers and non-GMO family farms.
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="contact-faq-item">
+            <button class="contact-faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              <span>How do you handle returns or missing items?</span>
+              <span class="contact-faq-toggle-icon"><i class="bi bi-plus-lg"></i></span>
+            </button>
+            <div class="contact-faq-answer">
+              We stand by our 100% Freshness Guarantee. If an item is missing or doesn't meet your expectations, notify us within 48 hours for an instant hassle-free refund or free replacement.
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="contact-faq-item">
+            <button class="contact-faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              <span>Can I pick up my order in-store?</span>
+              <span class="contact-faq-toggle-icon"><i class="bi bi-plus-lg"></i></span>
+            </button>
+            <div class="contact-faq-answer">
+              Yes, free curbside in-store pickup is available at all our flagship locations. Simply select "Store Pickup" at checkout and your order will be ready in 1 hour.
+            </div>
+          </div>
+
+        </div>
+
+        <p class="contact-faq-footer">
+          Still have questions? <a href="mailto:support@freshcart.com">Check our full help center</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       5. FOOTER — Matching Reference Mockup Exactly
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      
+      <div class="footer-top-row">
+        
+        <!-- Column 1: Brand & Bio -->
+        <div class="footer-col-brand">
+          <a href="index.html" class="brand-logo-link footer-brand-logo mb-3" aria-label="STACKLY Organic Grocery">
+            <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img footer-logo-img" width="155" height="46">
+          </a>
+          <p>
+            Providing high-quality, fresh and organic groceries since 2015. Your health is our priority.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Twitter">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="service%20page.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Categories -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html?category=fruits">Fresh Vegetables</a></li>
+            <li><a href="index.html?category=fruits">Fruit &amp; Berries</a></li>
+            <li><a href="index.html?category=dairy">Dairy &amp; Milk</a></li>
+            <li><a href="index.html?category=bakery">Bread &amp; Bakery</a></li>
+            <li><a href="index.html?category=snacks">Pantry Snacks</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Info -->
+        <div class="footer-col-contact">
+          <h4 class="footer-col-title">Contact Info</h4>
+          <ul class="footer-contact-list">
+            <li class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>1234 City Market Blvd</span>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <a href="tel:+18005550199">+1 (800) 555-0199</a>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <a href="mailto:support@stackly.com">support@stackly.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Footer Copyright & Legal -->
+      <div class="footer-bottom-row">
+        <div>
+          &copy; 2026 STACKLY FreshCart Grocery Inc. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       OFFCANVAS: SHOPPING CART DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel" style="width: 420px; max-width: 90vw;">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title font-heading fw-bold" id="cartDrawerLabel">
+        <i class="bi bi-basket2-fill text-teal me-2" style="color: var(--primary-teal);"></i> Your Fresh Basket
+      </h5>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    
+    <div class="offcanvas-body d-flex flex-column">
+      <div class="free-shipping-progress" id="freeShippingContainer">
+        <div class="small fw-semibold" id="freeShippingText">
+          Add <strong>$35.00</strong> more for <strong>FREE 30-min delivery!</strong>
+        </div>
+        <div class="progress-bar-teal">
+          <div class="progress-bar-teal-fill" id="freeShippingProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div id="cartDrawerItemsList" class="flex-grow-1 overflow-y-auto">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="border-top pt-3 mt-auto">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <span class="text-secondary">Estimated Subtotal:</span>
+          <span class="font-heading fw-bold fs-4 text-dark" id="cartDrawerSubtotal">$0.00</span>
+        </div>
+        <p class="text-secondary small mb-3">Taxes and bottle deposits calculated at checkout.</p>
+        <button class="btn btn-primary-teal w-100 py-3 fw-bold fs-6" id="cartCheckoutBtn" onclick="alert('Thank you for trying STACKLY Demo! Your order has been placed successfully with Free 30-minute delivery.')">
+          Proceed to Checkout <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OFFCANVAS: MOBILE NAVIGATION DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuDrawer" aria-labelledby="mobileMenuDrawerLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img mobile-logo-img" width="135" height="40">
+      </a>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" id="mobileSearchInput" class="form-control border-start-0 bg-light" placeholder="Search groceries...">
+        </div>
+      </div>
+
+      <h6 class="text-uppercase text-teal fw-bold small mb-3" style="color: var(--primary-teal);">Navigation</h6>
+      <ul class="nav flex-column gap-2 mb-4">
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html"><i class="bi bi-house me-2"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link text-teal fw-semibold" href="contact.html" style="color: var(--primary-teal);"><i class="bi bi-envelope me-2"></i> Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="login.html"><i class="bi bi-person-circle me-2"></i> Sign In</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="signup.html"><i class="bi bi-person-plus me-2"></i> Create Account</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Core Data & Interaction Scripts -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/interactions.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Contact Script -->
+  <script>
+    // Accordion Toggle
+    function toggleFaq(btn) {
+      const item = btn.closest('.contact-faq-item');
+      const isCurrentlyActive = item.classList.contains('active');
+      
+      // Close all items
+      document.querySelectorAll('.contact-faq-item').forEach(el => {
+        el.classList.remove('active');
+        el.querySelector('.contact-faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      // If it wasn't active, open it
+      if (!isCurrentlyActive) {
+        item.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Contact Form Submit Handler
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactFullName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const subject = document.getElementById('contactSubject').value.trim();
+      const message = document.getElementById('contactMessage').value.trim();
+      const btn = document.getElementById('contactSubmitBtn');
+      const btnText = document.getElementById('contactBtnText');
+
+      if (!name || !email || !subject || !message) {
+        showToast('Please fill in all form fields.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      if (btnText) btnText.textContent = 'Sending Message...';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        if (btnText) btnText.textContent = 'Send Message';
+        showToast(`🎉 Thank you ${name}! Your message has been received. Our team will contact you shortly.`, 'success');
+        document.getElementById('contactMessageForm').reset();
+      }, 700);
+    }
+
+    // Toast Alert Helper
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('contactToast');
+      const msgEl = document.getElementById('toastMsg');
+      const icon = document.getElementById('toastIcon');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.className = `login-toast-banner show ${type === 'error' ? 'toast-error' : 'toast-success'}`;
+      if (icon) {
+        icon.className = type === 'error' ? 'bi bi-exclamation-triangle-fill text-warning fs-5' : 'bi bi-check-circle-fill text-emerald fs-5';
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

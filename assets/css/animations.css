@@ -1,0 +1,250 @@
+/* ==========================================================================
+   STACKLY — Animations & Motion Design System
+   GSAP, AOS, Micro-interactions, and Keyframes
+   ========================================================================== */
+
+/* Preloader Aura Pulse */
+@keyframes preloaderPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(20, 184, 166, 0);
+    transform: scale(1.04);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0);
+    transform: scale(1);
+  }
+}
+
+.preloader-icon-circle {
+  animation: preloaderPulse 2s infinite ease-in-out;
+}
+
+/* Subtle Floating Movement for Hero & Mockups */
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-animation {
+  animation: subtleFloat 4s ease-in-out infinite;
+}
+
+/* Deal of the Day Aura Pulse */
+@keyframes auraPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.5;
+  }
+}
+
+.deal-teal-circle-aura {
+  animation: auraPulse 5s ease-in-out infinite;
+}
+
+/* Badge Glow */
+@keyframes badgeGlow {
+  0%, 100% {
+    box-shadow: 0 4px 10px rgba(255, 107, 22, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 107, 22, 0.6);
+  }
+}
+
+.product-badge-discount {
+  animation: badgeGlow 2.5s infinite;
+}
+
+/* Shimmer Effect for Loading / Highlights */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-active {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Micro-animations for buttons */
+.btn-primary-teal,
+.btn-outline-teal,
+.btn-claim-deal,
+.btn-add-cart,
+.product-fav-btn,
+.social-circle-link,
+.arrow-btn {
+  will-change: transform, box-shadow;
+}
+
+/* Hero Text Line Animation Ready Classes */
+.hero-line {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* GSAP Section Heading Text Animations */
+.gsap-text-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-top: 0.05em;
+  padding-bottom: 0.18em;
+  margin-top: -0.05em;
+  margin-bottom: -0.18em;
+}
+
+.gsap-text-word {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-origin: 50% 100%;
+}
+
+.section-title,
+.deal-heading,
+.app-banner-heading,
+.newsletter-heading {
+  position: relative;
+}
+
+/* Phone Mockup Floating Offset */
+@keyframes phoneFloatFront {
+  0%, 100% {
+    transform: rotate(5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(4deg) translateY(-10px);
+  }
+}
+
+@keyframes phoneFloatBack {
+  0%, 100% {
+    transform: rotate(-7deg) scale(0.92) translateY(0);
+  }
+  50% {
+    transform: rotate(-6deg) scale(0.92) translateY(-6px);
+  }
+}
+
+.phone-front {
+  animation: phoneFloatFront 6s ease-in-out infinite;
+}
+
+.phone-back {
+  animation: phoneFloatBack 6s ease-in-out infinite 0.5s;
+}
+
+/* Ripple effect on click */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-ripple:focus:not(:active)::after {
+  animation: rippleEffect 0.6s ease-out;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(30, 30);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Iframe Animations & Transitions
+   ========================================================================== */
+iframe.iframe-smooth-load {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+iframe.iframe-smooth-load.iframe-loaded {
+  opacity: 1;
+}
+
+/* Modal Iframe Wrapper Animation */
+#storeMapModal .modal-dialog {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#storeMapModal .ratio {
+  box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+#storeMapModal .ratio:hover {
+  box-shadow: 0 14px 40px -10px rgba(20, 184, 166, 0.4);
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  #logoIntroPreloader {
+    display: none !important;
+  }
+  
+  body.preloader-active {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+  .phone-front,
+  .phone-back,
+  .deal-teal-circle-aura,
+  .product-badge-discount,
+  .float-animation {
+    animation: none !important;
+  }
+
+  .gsap-text-word-wrap,
+  .gsap-text-word {
+    overflow: visible !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

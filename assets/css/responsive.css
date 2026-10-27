@@ -1,0 +1,755 @@
+/* ==========================================================================
+   STACKLY — Responsive Stylesheet
+   Breakpoints: 1440px, 1024px, 768px, 390px, 320px
+   ========================================================================== */
+
+/* Large Desktop (1440px and up) */
+@media (min-width: 1440px) {
+  .header-container {
+    max-width: 1380px;
+  }
+  .hero-heading {
+    font-size: 4.15rem;
+  }
+}
+
+/* Laptops & Standard Desktop (1024px to 1200px) */
+@media (max-width: 1199.98px) {
+  .hero-heading {
+    font-size: 3.25rem;
+  }
+  .deal-heading {
+    font-size: 2.25rem;
+  }
+  .app-banner-heading {
+    font-size: 2.25rem;
+  }
+  .categories-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-top-row {
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Tablets (768px to 991.98px) */
+@media (max-width: 991.98px) {
+  /* Navigation */
+  .header-search-wrap {
+    display: none; /* Move to mobile menu or toggle */
+  }
+  .nav-text-link {
+    display: none;
+  }
+  .hamburger-btn {
+    display: block;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 3rem 0 4rem 0;
+  }
+  .hero-heading {
+    font-size: 2.85rem;
+  }
+  .hero-image-wrapper {
+    margin-top: 2.5rem;
+  }
+
+  /* Categories */
+  .categories-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Deal of the Day Banner */
+  .deal-banner-wrapper {
+    padding: 3rem 2.5rem;
+  }
+  .deal-image-container {
+    margin-top: 2.5rem;
+  }
+  .deal-teal-circle-aura {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Why Shop With Us */
+  .why-us-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .benefit-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* App Banner */
+  .app-banner-card {
+    grid-template-columns: 1fr;
+  }
+  .app-banner-left {
+    padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+  }
+  .app-banner-right {
+    padding: 2rem 1.5rem;
+  }
+  .phones-mockup-wrapper {
+    height: 400px;
+  }
+  .phone-device-frame {
+    width: 220px;
+    height: 390px;
+  }
+
+  /* Footer */
+  .footer-top-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Mobile Devices (up to 767.98px) */
+@media (max-width: 767.98px) {
+  :root {
+    --header-height: 58px;
+  }
+  .site-header {
+    padding: 0.5rem 0;
+  }
+  .header-container {
+    padding: 0.5rem 1rem;
+  }
+  .brand-logo-img {
+    height: 35px;
+    max-width: 130px;
+  }
+  .preloader-logo-img {
+    width: 220px;
+  }
+  .brand-title {
+    font-size: 1.25rem;
+  }
+  .brand-subtitle {
+    font-size: 0.58rem;
+  }
+  .brand-icon-box {
+    width: 36px;
+    height: 36px;
+    font-size: 1.15rem;
+  }
+  .header-btn-icon span {
+    display: none; /* Hide 'Account' text on mobile */
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding: 2rem 0 3rem 0;
+  }
+  .hero-heading {
+    font-size: 2.25rem;
+    letter-spacing: -1px;
+  }
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .btn-primary-teal,
+  .btn-outline-teal {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-trust-badge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  /* Categories Section */
+  .categories-section {
+    padding: 3rem 0;
+  }
+  .section-title {
+    font-size: 1.75rem;
+  }
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+  .categories-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .category-card {
+    padding: 1.25rem 0.75rem;
+  }
+  .category-img-circle {
+    width: 82px;
+    height: 82px;
+    margin-bottom: 0.85rem;
+  }
+  .category-name {
+    font-size: 0.95rem;
+  }
+  .category-count {
+    font-size: 0.78rem;
+  }
+
+  /* Featured Products */
+  .featured-section {
+    padding: 3.5rem 0;
+  }
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Deal Banner */
+  .deal-section {
+    padding: 2rem 0;
+  }
+  .deal-banner-wrapper {
+    padding: 2.25rem 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+  .deal-heading {
+    font-size: 1.85rem;
+  }
+  .deal-text {
+    font-size: 0.95rem;
+  }
+  .deal-countdown-row {
+    gap: 0.5rem;
+  }
+  .countdown-box {
+    min-width: 58px;
+    padding: 0.5rem 0.35rem;
+  }
+  .countdown-num {
+    font-size: 1.4rem;
+  }
+  .countdown-lbl {
+    font-size: 0.62rem;
+  }
+  .deal-price-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+  .btn-claim-deal {
+    width: 100%;
+    justify-content: center;
+  }
+  .deal-teal-circle-aura {
+    width: 240px;
+    height: 240px;
+  }
+  .deal-save-badge {
+    top: 5px;
+    right: 5px;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.95rem;
+  }
+
+  /* Why Shop With Us */
+  .why-us-section {
+    padding: 3.5rem 0;
+  }
+  .why-us-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  /* Testimonials */
+  .testimonials-section {
+    padding: 3.5rem 0;
+  }
+  .testimonial-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  /* App Banner */
+  .app-promo-section {
+    padding: 2.5rem 0;
+  }
+  .app-banner-left {
+    padding: 2.5rem 1.5rem;
+  }
+  .app-banner-heading {
+    font-size: 1.85rem;
+  }
+  .app-banner-desc {
+    font-size: 0.95rem;
+  }
+  .btn-store-badge {
+    width: 100%;
+    justify-content: center;
+  }
+  .phones-mockup-wrapper {
+    height: 340px;
+  }
+  .phone-device-frame {
+    width: 180px;
+    height: 310px;
+    border-radius: 28px;
+    padding: 6px;
+  }
+  .phone-screen {
+    border-radius: 22px;
+  }
+  .phone-back {
+    left: 10px;
+    top: 10px;
+  }
+  .phone-front {
+    right: 15px;
+    bottom: 5px;
+  }
+
+  /* Newsletter */
+  .newsletter-section {
+    padding: 3rem 0;
+  }
+  .newsletter-panel {
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+  .newsletter-heading {
+    font-size: 1.85rem;
+  }
+  .newsletter-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+  .newsletter-form-wrap {
+    flex-direction: column;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    gap: 0.75rem;
+  }
+  .newsletter-input {
+    background: var(--white);
+    border-radius: var(--radius-full);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  .btn-newsletter-subscribe {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 3.5rem 0 1.5rem 0;
+  }
+  .footer-top-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footer-bottom-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .footer-legal-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Narrow Mobile Screens (320px to 389px) */
+@media (max-width: 389.98px) {
+  .brand-logo-img {
+    height: 30px;
+    max-width: 110px;
+  }
+  .preloader-logo-img {
+    width: 190px;
+  }
+  .hero-heading {
+    font-size: 1.95rem;
+  }
+  .countdown-box {
+    min-width: 48px;
+    padding: 0.4rem 0.2rem;
+  }
+  .countdown-num {
+    font-size: 1.15rem;
+  }
+  .categories-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .category-img-circle {
+    width: 70px;
+    height: 70px;
+  }
+  .phones-mockup-wrapper {
+    height: 290px;
+  }
+  .phone-device-frame {
+    width: 155px;
+    height: 270px;
+  }
+}
+
+/* ==========================================================================
+   404 Page Responsive Rules
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .error-hero-section {
+    padding: 3.5rem 0 3rem;
+  }
+  .error-content-col {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .error-breadcrumb {
+    justify-content: center;
+  }
+  .error-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .error-search-box-wrap {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .error-quick-tags {
+    justify-content: center;
+  }
+  .error-btn-group {
+    justify-content: center;
+  }
+  .error-illustration-card {
+    margin-top: 2.5rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .error-chip-top {
+    left: 5px;
+  }
+  .error-chip-bottom {
+    right: 5px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .error-hero-section {
+    padding: 2.5rem 0 2rem;
+  }
+  .error-search-form {
+    padding: 0.3rem 0.3rem 0.3rem 1rem;
+  }
+  .error-search-submit {
+    padding: 0.65rem 1.15rem;
+    font-size: 0.85rem;
+  }
+  .error-btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .error-btn-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .error-floating-chip {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .error-joke-widget {
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 389.98px) {
+  .error-code-badge {
+    font-size: 3.4rem;
+  }
+  .error-code-icon-wrap {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+    margin: 0 0.25rem;
+  }
+  .error-floating-chip {
+    display: none; /* Keep clean on ultra small screens */
+  }
+}
+
+/* ==========================================================================
+   UNIVERSAL RESPONSIVE ENHANCEMENTS (Mobile, Tablet, Desktop across all pages)
+   ========================================================================== */
+
+/* 1. Global Touch, Image, and Layout Stability */
+img, picture, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* 2. Tablet & Medium Screen Optimizations (768px - 991.98px) */
+@media (max-width: 991.98px) {
+  /* Service Page */
+  .service-hero-section {
+    padding: 4rem 1.5rem;
+    min-height: 380px;
+  }
+  .service-hero-title {
+    font-size: 2.5rem;
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem;
+  }
+  .service-story-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem;
+  }
+  .consult-card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem;
+  }
+  .consult-img-wrap {
+    max-height: 320px;
+  }
+
+  /* Contact Page */
+  .contact-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem;
+  }
+  .contact-info-cards-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem;
+  }
+
+  /* Login & Signup Pages */
+  .login-showcase-container {
+    grid-template-columns: 1fr !important;
+    max-width: 580px;
+    margin: 2rem auto;
+  }
+  .login-showcase-left {
+    display: none !important; /* Clean focused sign in on mobile/tablets */
+  }
+  .login-right-card {
+    padding: 2.5rem 2rem;
+  }
+
+  /* Dashboards (User & Admin) */
+  .dash-main-layout {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  .dash-topbar {
+    left: 0 !important;
+    width: 100% !important;
+    padding: 0 1.25rem;
+  }
+  .dash-content {
+    padding: 1.5rem;
+  }
+  .dash-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem;
+  }
+  .dash-recent-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  .dash-tracking-row {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+}
+
+/* 3. Mobile Devices (Up to 767.98px) */
+@media (max-width: 767.98px) {
+  /* Service Page */
+  .service-hero-section {
+    padding: 3rem 1rem;
+    min-height: 320px;
+  }
+  .service-hero-title {
+    font-size: 2rem;
+  }
+  .service-hero-sub {
+    font-size: 1rem;
+  }
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .service-step-row {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  /* Contact Page */
+  .contact-hero-section {
+    padding: 3rem 1rem 2.5rem;
+  }
+  .contact-hero-title {
+    font-size: 2rem;
+  }
+  .contact-info-cards-row {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-form-panel {
+    padding: 1.75rem 1.25rem;
+  }
+
+  /* About / Story Page */
+  .story-hero-section {
+    min-height: 340px;
+    padding: 3.5rem 1rem;
+  }
+  .story-hero-title {
+    font-size: 2.25rem;
+  }
+  .story-hero-subtitle {
+    font-size: 0.98rem;
+  }
+  .about-section-header {
+    margin-bottom: 2.5rem;
+  }
+  .about-section-title {
+    font-size: 1.85rem;
+  }
+  .about-process-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem;
+  }
+  .about-process-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .about-process-banner-wrap {
+    max-height: 240px;
+  }
+  .about-process-banner-badge {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+  .about-cert-item {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .about-partner-stats {
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  /* Dashboards Mobile Layout */
+  .dash-topbar {
+    height: 64px;
+  }
+  .dash-topbar-inner {
+    gap: 0.5rem;
+  }
+  .dash-content {
+    padding: 1rem 0.75rem;
+  }
+  .dash-hero-title {
+    font-size: 1.25rem;
+  }
+  .dash-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .dash-table-wrap {
+    border-radius: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dash-table {
+    min-width: 600px; /* Enable clean horizontal scroll for tables on mobile */
+  }
+  .dash-order-stepper {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .dash-order-step {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  /* Login & Signup Pages Mobile */
+  .login-showcase-container {
+    margin: 1rem auto;
+    border-radius: 20px;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  .login-right-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: 20px;
+    background: #FFFFFF;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+  }
+  .login-oauth-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* 4. Small Mobile Phones (Up to 389.98px) */
+@media (max-width: 389.98px) {
+  .hero-heading {
+    font-size: 1.85rem !important;
+  }
+  .story-hero-title,
+  .service-hero-title,
+  .contact-hero-title {
+    font-size: 1.75rem !important;
+  }
+  .story-badge-years {
+    width: 100%;
+    text-align: center;
+  }
+  .deal-countdown-row {
+    gap: 0.4rem;
+  }
+  .deal-timer-unit {
+    min-width: 52px;
+    padding: 0.4rem 0.3rem;
+  }
+  .deal-timer-digit {
+    font-size: 1.15rem;
+  }
+}
+
+

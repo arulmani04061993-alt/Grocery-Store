@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | STACKLY Premium Organic Grocery</title>
+  <meta name="description" content="Sign in to STACKLY to access fresh organic groceries, track your orders in real time, and manage your account.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2314B8A6'/><text y='.75em' x='.2em' font-size='65' fill='white'>🥬</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS files -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <!-- Preload Essential Images (All WebP & <90KB) -->
+  <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/login-banner.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/images/app-preview.webp" as="image" type="image/webp">
+</head>
+<body class="login-landing-body preloader-active">
+
+  <!-- ==========================================================================
+       LOGO INTRO & WAVE PRELOADER (2.0 Seconds)
+       ========================================================================== -->
+  <div id="logoIntroPreloader" aria-hidden="true">
+    <div class="preloader-brand-wrap">
+      <div class="preloader-logo-wrapper">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
+      </div>
+      <!-- Wave Loading Animation below Logo -->
+      <div class="preloader-wave-container" aria-label="Loading...">
+        <div class="wave-bars">
+          <span class="wave-bar bar-1"></span>
+          <span class="wave-bar bar-2"></span>
+          <span class="wave-bar bar-3"></span>
+          <span class="wave-bar bar-4"></span>
+          <span class="wave-bar bar-5"></span>
+          <span class="wave-bar bar-6"></span>
+          <span class="wave-bar bar-7"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Alert -->
+  <div id="loginToast" class="login-toast-banner" role="alert" aria-live="polite">
+    <i class="bi bi-check-circle-fill text-emerald fs-5" id="toastIcon"></i>
+    <span id="toastMsg">Welcome back! Redirecting...</span>
+  </div>
+
+  <!-- ==========================================================================
+       TOP NAVBAR — Matching Reference Mockup Header
+       ========================================================================== -->
+  <header class="site-header login-header-top" id="siteHeader">
+    <div class="header-container">
+      
+      <!-- Logo Left (Teal S Spiral + STACKLY) -->
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery Homepage">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img" width="145" height="43">
+      </a>
+
+      <!-- Center: Wide Rounded Pill Search Bar -->
+      <div class="header-search-wrap" role="search">
+        <i class="bi bi-search header-search-icon" aria-hidden="true"></i>
+        <input type="text" 
+               id="headerSearchInput" 
+               class="header-search-input" 
+               placeholder="Search for groceries, snacks, or drinks..." 
+               aria-label="Search for groceries, snacks, or drinks">
+        <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+      </div>
+
+      <!-- Right Nav Actions -->
+      <nav class="header-actions" aria-label="Main Navigation">
+        <!-- 1. Home Link with House Icon -->
+        <a href="index.html" class="nav-text-link" aria-label="Home">
+          <i class="bi bi-house"></i>
+          <span>Home</span>
+        </a>
+
+        <!-- 2. Categories with Indicator Dot & Dropdown -->
+        <div class="dropdown d-none d-lg-block">
+          <a href="index.html#categories-section" 
+             class="nav-text-link has-indicator dropdown-toggle" 
+             role="button" 
+             data-bs-toggle="dropdown" 
+             aria-expanded="false" 
+             aria-label="Categories">
+            <span>Categories</span>
+          </a>
+          <ul class="dropdown-menu border-0 shadow-lg rounded-4 p-2 mt-2">
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=fruits"><i class="bi bi-apple text-danger me-2"></i> Fresh Fruits</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=vegetables"><i class="bi bi-flower1 text-success me-2"></i> Vegetables</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=dairy"><i class="bi bi-cup-hot text-primary me-2"></i> Dairy &amp; Eggs</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=bakery"><i class="bi bi-cake2 text-warning me-2"></i> Bakery</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=meat"><i class="bi bi-egg-fried text-danger me-2"></i> Meat &amp; Fish</a></li>
+            <li><a class="dropdown-item rounded-3 py-2" href="index.html?category=snacks"><i class="bi bi-box2-heart text-info me-2"></i> Snacks</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Deals with HOT Badge -->
+        <a href="index.html#deal-of-the-day" class="nav-text-link d-none d-lg-flex" aria-label="Deals">
+          <span>Deals</span>
+          <span class="deals-hot-badge">HOT</span>
+        </a>
+
+        <!-- 4. Account with User Circle Icon (Active on login.html) -->
+        <a href="login.html" class="nav-text-link header-account-link active" style="color: var(--primary-teal);" aria-label="Open User Account & Login">
+          <i class="bi bi-person-circle text-teal" style="color: var(--primary-teal);"></i>
+          <span>Account</span>
+        </a>
+
+        <!-- 5. Cart Button with Teal Badge Count -->
+        <button class="nav-cart-btn" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#cartDrawer" 
+                aria-controls="cartDrawer" 
+                aria-label="Open Shopping Cart">
+          <div class="cart-icon-wrapper">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-badge-count" id="headerCartCountBadge">0</span>
+          </div>
+        </button>
+
+        <!-- 6. Mobile Hamburger Menu Button -->
+        <button class="hamburger-btn" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#mobileMenuDrawer" 
+                aria-controls="mobileMenuDrawer" 
+                aria-label="Open Navigation Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       1. HERO SECTION: Sign In Card (Left) + Freshness Banner (Right)
+       ========================================================================== -->
+  <main id="mainContent">
+    <section class="login-hero-section">
+      <div class="container">
+        <div class="login-hero-grid">
+          
+          <!-- LEFT CARD: Login Form matching reference design 1:1 -->
+          <div class="mockup-login-card">
+            <h1 class="mockup-login-title">Welcome Back</h1>
+            <p class="mockup-login-subtitle">Sign in to your account to continue shopping.</p>
+
+            <form id="mockupLoginForm" onsubmit="handleLoginSubmit(event)" novalidate>
+              
+              <!-- 1. Select Account Role Dropdown (Admin & User) -->
+              <div class="mockup-form-group">
+                <div class="mockup-label-row">
+                  <label for="roleSelect" class="mockup-label">Select Role</label>
+                  <span id="roleIndicatorBadge" class="badge" style="background: rgba(45, 212, 191, 0.15); color: #0D9488; font-size: 0.75rem; border-radius: 9999px; padding: 0.25rem 0.6rem;">Customer</span>
+                </div>
+                <div class="position-relative">
+                  <select id="roleSelect" class="mockup-input pe-4" onchange="handleRoleSelectChange(this.value)" style="cursor: pointer; appearance: none; -webkit-appearance: none; font-weight: 600;">
+                    <option value="user" selected>👤 User (Customer / Shopper)</option>
+                    <option value="admin">🛡️ Admin (Store Manager / Executive)</option>
+                  </select>
+                  <i class="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-muted pointer-events-none" style="pointer-events: none;"></i>
+                </div>
+              </div>
+
+              <!-- 2. Email Address Input -->
+              <div class="mockup-form-group">
+                <div class="mockup-label-row">
+                  <label for="loginEmail" class="mockup-label">Email Address</label>
+                </div>
+                <input type="email" 
+                       id="loginEmail" 
+                       class="mockup-input" 
+                       placeholder="name@example.com" 
+                       required 
+                       autocomplete="email">
+              </div>
+
+              <!-- 3. Password Input with Forgot Password? -->
+              <div class="mockup-form-group">
+                <div class="mockup-label-row">
+                  <label for="loginPassword" class="mockup-label">Password</label>
+                  <a href="#" class="mockup-forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
+                </div>
+                <input type="password" 
+                       id="loginPassword" 
+                       class="mockup-input" 
+                       placeholder="••••••••" 
+                       required 
+                       autocomplete="current-password">
+              </div>
+
+              <!-- 4. Forgot Password Checkbox matching screenshot -->
+              <div class="mockup-checkbox-row">
+                <input type="checkbox" id="rememberMe">
+                <label for="rememberMe">Forgot Password</label>
+              </div>
+
+              <!-- 5. Solid Cyan/Teal Sign In Button -->
+              <button type="submit" class="mockup-btn-signin" id="loginSubmitBtn">
+                <span id="btnText">Sign In</span>
+              </button>
+
+              <!-- 6. Or continue with Divider -->
+              <div class="mockup-divider">
+                <span>Or continue with</span>
+              </div>
+
+              <!-- 7. Google & Facebook Social Buttons -->
+              <div class="mockup-social-row">
+                <button type="button" class="mockup-social-btn" onclick="handleSocialLogin('Google')">
+                  <svg class="mockup-social-icon" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                  <span>Google</span>
+                </button>
+
+                <button type="button" class="mockup-social-btn" onclick="handleSocialLogin('Facebook')">
+                  <i class="bi bi-facebook text-primary fs-5"></i>
+                  <span>Facebook</span>
+                </button>
+              </div>
+
+              <!-- 8. Don't have an account? Create an account matching screenshot -->
+              <p class="mockup-signup-text">
+                Don't have an account? <a href="signup.html">Create an account</a>
+              </p>
+
+            </form>
+          </div>
+
+          <!-- RIGHT CARD: Fresh Produce Image Banner (WebP, <90KB) -->
+          <div class="mockup-banner-card">
+            <img src="assets/images/login-banner.webp" 
+                 alt="Freshness delivered right to your doorstep" 
+                 class="mockup-banner-img"
+                 width="780" 
+                 height="700">
+            <div class="mockup-banner-overlay"></div>
+            <div class="mockup-banner-content">
+              <h2 class="mockup-banner-title">
+                Freshness delivered right<br>to your doorstep.
+              </h2>
+              <p class="mockup-banner-desc">
+                Join over 50,000 happy customers enjoying farm-fresh products every day.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         2. WHY JOIN THE FRESHCART FAMILY? (4 Feature Cards)
+         ========================================================================== -->
+    <section class="why-join-section">
+      <div class="container">
+        <h2 class="why-join-title">Why Join the FreshCart Family?</h2>
+        
+        <div class="why-join-grid">
+          
+          <!-- Card 1: Exclusive Deals -->
+          <div class="why-join-card">
+            <div class="why-join-icon-box">
+              <i class="bi bi-tag-fill"></i>
+            </div>
+            <h3 class="why-join-card-title">Exclusive Deals</h3>
+            <p class="why-join-card-desc">Access member-only discounts and special flash sales on seasonal organic produce.</p>
+          </div>
+
+          <!-- Card 2: Fast Checkout -->
+          <div class="why-join-card">
+            <div class="why-join-icon-box">
+              <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+            <h3 class="why-join-card-title">Fast Checkout</h3>
+            <p class="why-join-card-desc">Save your favorite items and payment info for a seamless 1-click ordering experience.</p>
+          </div>
+
+          <!-- Card 3: Order History -->
+          <div class="why-join-card">
+            <div class="why-join-icon-box">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <h3 class="why-join-card-title">Order History</h3>
+            <p class="why-join-card-desc">Easily reorder your past baskets and track your real-time deliveries in 30 minutes.</p>
+          </div>
+
+          <!-- Card 4: Loyalty Points -->
+          <div class="why-join-card">
+            <div class="why-join-icon-box">
+              <i class="bi bi-gift-fill"></i>
+            </div>
+            <h3 class="why-join-card-title">Loyalty Points</h3>
+            <p class="why-join-card-desc">Earn rewards every time you shop and redeem for free organic groceries and items.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. WHAT OUR COMMUNITY SAYS (Testimonials with Customer Avatars)
+         ========================================================================== -->
+    <section class="community-section">
+      <div class="container">
+        <span class="community-pill-tag">TESTIMONIALS</span>
+        <h2 class="community-title">What Our Community Says</h2>
+
+        <div class="community-grid">
+          
+          <!-- Testimonial 1: Sarah Jenkins -->
+          <div class="community-card">
+            <div class="community-stars">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <p class="community-quote">
+              "The quality of the vegetables is always top-notch. I love how I can schedule deliveries according to my work hours!"
+            </p>
+            <div class="community-author">
+              <img src="assets/images/customer-sarah.webp" alt="Sarah Jenkins" class="community-avatar" width="44" height="44">
+              <div>
+                <h4 class="community-author-name">Sarah Jenkins</h4>
+                <p class="community-author-role">Verified Customer</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2: Michael Chen (Mint highlighted card with floating quote bubble badge) -->
+          <div class="community-card active-card">
+            <div class="community-quote-badge" aria-hidden="true">
+              <i class="bi bi-quote"></i>
+            </div>
+            <div class="community-stars">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <p class="community-quote">
+              "FreshCart has completely changed the way I shop. No more long queues, and everything arrives chilled and fresh."
+            </p>
+            <div class="community-author">
+              <img src="assets/images/customer-michael.webp" alt="Michael Chen" class="community-avatar" width="44" height="44">
+              <div>
+                <h4 class="community-author-name">Michael Chen</h4>
+                <p class="community-author-role">Loyal Member</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3: Emma Thompson -->
+          <div class="community-card">
+            <div class="community-stars">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <p class="community-quote">
+              "Their customer support is incredibly helpful. Once I had an item missing and they refunded me instantly."
+            </p>
+            <div class="community-author">
+              <img src="assets/images/customer-emily.webp" alt="Emma Thompson" class="community-avatar" width="44" height="44">
+              <div>
+                <h4 class="community-author-name">Emma Thompson</h4>
+                <p class="community-author-role">Verified Customer</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. MOBILE APP PROMOTION: Dark Section + App Preview Mockup
+         ========================================================================== -->
+    <section class="mockup-app-section">
+      <div class="container">
+        <div class="mockup-app-grid">
+          
+          <!-- Left Info & Badges -->
+          <div class="mockup-app-info">
+            <span class="mockup-app-tag">GET THE APP</span>
+            <h2 class="mockup-app-heading">Grocery Shopping is<br>now in your pocket</h2>
+            <p class="mockup-app-desc">
+              Download our mobile app to track orders in real-time, get exclusive mobile-only app deals, and experience guaranteed 30-minute delivery.
+            </p>
+            <div class="mockup-app-badges">
+              <a href="https://apple.com" target="_blank" rel="noopener noreferrer" class="btn-store-badge">
+                <i class="bi bi-apple"></i>
+                <div class="store-badge-text">
+                  <span class="store-badge-sub">Download on the</span>
+                  <span class="store-badge-title">App Store</span>
+                </div>
+              </a>
+              <a href="https://google.com" target="_blank" rel="noopener noreferrer" class="btn-store-badge">
+                <i class="bi bi-google-play"></i>
+                <div class="store-badge-text">
+                  <span class="store-badge-sub">GET IT ON</span>
+                  <span class="store-badge-title">Google Play</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Smartphone Preview with Verified WebP (<90KB) -->
+          <div class="mockup-app-phone-wrap">
+            <div class="mockup-phone-frame">
+              <img src="assets/images/app-preview.webp" 
+                   alt="FreshCart Mobile App Screen" 
+                   class="mockup-phone-img" 
+                   width="260" 
+                   height="520"
+                   loading="lazy">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. NEWSLETTER SECTION: Vibrant Teal Banner with Paper Plane Icon
+         ========================================================================== -->
+    <section class="mockup-newsletter-section">
+      <div class="container mockup-newsletter-container">
+        <div class="mockup-newsletter-card">
+          <div class="mockup-plane-icon">
+            <i class="bi bi-send-fill"></i>
+          </div>
+          <h2 class="mockup-newsletter-title">Don't miss out on fresh deals!</h2>
+          <p class="mockup-newsletter-desc">Subscribe to our weekly newsletter and get $10 off your first order over $50.</p>
+          
+          <form class="mockup-newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" 
+                   class="mockup-newsletter-input" 
+                   placeholder="Enter your email address..." 
+                   required
+                   id="newsletterEmailInput"
+                   aria-label="Email address for newsletter">
+            <button type="submit" class="mockup-newsletter-btn">Subscribe Now</button>
+          </form>
+
+          <p class="mockup-newsletter-note">Join 15,000+ shoppers for fresh recipes, weekly discounts, and farm updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. TRUSTED PARTNERS STRIP (Smooth Continuous Right-to-Left Infinite Marquee)
+         ========================================================================== -->
+    <section class="partners-section">
+      <div class="container text-center">
+        <h3 class="partners-section-title">TRUSTED BY OUR AMAZING PARTNERS</h3>
+      </div>
+      
+      <!-- Infinite Continuous Marquee Ticker -->
+      <div class="partners-marquee-container" aria-label="Trusted Partners List">
+        <div class="partners-marquee-track">
+          
+          <!-- Track Group 1 -->
+          <div class="partners-marquee-group">
+            <div class="partner-logo-item">
+              <i class="bi bi-radioactive partner-icon" style="color: #2DD4BF;"></i>
+              <span>BioGarden</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-flower2 partner-icon" style="color: #FB923C;"></i>
+              <span>RootFarm</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-truck-front-fill partner-icon" style="color: #64748B;"></i>
+              <span>PureDairy</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-egg-fill partner-icon" style="color: #D97706;"></i>
+              <span>EcoPoultry</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-brightness-high-fill partner-icon" style="color: #FBBF24;"></i>
+              <span>SunHarvest</span>
+            </div>
+          </div>
+
+          <!-- Track Group 2 (Exact Duplicate for Seamless Continuous Loop) -->
+          <div class="partners-marquee-group" aria-hidden="true">
+            <div class="partner-logo-item">
+              <i class="bi bi-radioactive partner-icon" style="color: #2DD4BF;"></i>
+              <span>BioGarden</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-flower2 partner-icon" style="color: #FB923C;"></i>
+              <span>RootFarm</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-truck-front-fill partner-icon" style="color: #64748B;"></i>
+              <span>PureDairy</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-egg-fill partner-icon" style="color: #D97706;"></i>
+              <span>EcoPoultry</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-brightness-high-fill partner-icon" style="color: #FBBF24;"></i>
+              <span>SunHarvest</span>
+            </div>
+          </div>
+
+          <!-- Track Group 3 (Extra buffer for ultra-wide screens) -->
+          <div class="partners-marquee-group" aria-hidden="true">
+            <div class="partner-logo-item">
+              <i class="bi bi-radioactive partner-icon" style="color: #2DD4BF;"></i>
+              <span>BioGarden</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-flower2 partner-icon" style="color: #FB923C;"></i>
+              <span>RootFarm</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-truck-front-fill partner-icon" style="color: #64748B;"></i>
+              <span>PureDairy</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-egg-fill partner-icon" style="color: #D97706;"></i>
+              <span>EcoPoultry</span>
+            </div>
+            <div class="partner-logo-item">
+              <i class="bi bi-brightness-high-fill partner-icon" style="color: #FBBF24;"></i>
+              <span>SunHarvest</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       7. FOOTER — Matching Reference Mockup Exactly
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      
+      <div class="footer-top-row">
+        
+        <!-- Column 1: Brand & Bio -->
+        <div class="footer-col-brand">
+          <a href="index.html" class="brand-logo-link footer-brand-logo mb-3" aria-label="STACKLY Organic Grocery">
+            <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img footer-logo-img" width="155" height="46">
+          </a>
+          <p>
+            Providing high-quality, fresh and organic groceries since 2015. Your health is our priority.
+          </p>
+          <div class="footer-social-row">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Twitter">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Pinterest">
+              <i class="bi bi-pinterest"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="STACKLY on Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="service%20page.html">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Categories -->
+        <div class="footer-col-links">
+          <h4 class="footer-col-title">Categories</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html?category=fruits">Fresh Vegetables</a></li>
+            <li><a href="index.html?category=fruits">Organic Fruits</a></li>
+            <li><a href="index.html?category=dairy">Dairy &amp; Eggs</a></li>
+            <li><a href="index.html?category=bakery">Bread &amp; Bakery</a></li>
+            <li><a href="index.html?category=meat">Meat &amp; Seafood</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Info -->
+        <div class="footer-col-contact">
+          <h4 class="footer-col-title">Contact Info</h4>
+          <ul class="footer-contact-list">
+            <li class="contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>1234 Fresh Market Lane, Suite 100, San Francisco, CA 94103</span>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <a href="tel:+18005553737">+1 (800) 555-FRESH</a>
+            </li>
+            <li class="contact-item">
+              <i class="bi bi-envelope-fill"></i>
+              <a href="mailto:support@stacklyfresh.com">hello@freshcartgrocery.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Footer Copyright & Legal -->
+      <div class="footer-bottom-row">
+        <div>
+          &copy; 2026 STACKLY FreshCart Grocery Inc. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       OFFCANVAS: SHOPPING CART DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel" style="width: 420px; max-width: 90vw;">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title font-heading fw-bold" id="cartDrawerLabel">
+        <i class="bi bi-basket2-fill text-teal me-2" style="color: var(--primary-teal);"></i> Your Fresh Basket
+      </h5>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    
+    <div class="offcanvas-body d-flex flex-column">
+      <!-- Free Shipping Tracker -->
+      <div class="free-shipping-progress" id="freeShippingContainer">
+        <div class="small fw-semibold" id="freeShippingText">
+          Add <strong>$35.00</strong> more for <strong>FREE 30-min delivery!</strong>
+        </div>
+        <div class="progress-bar-teal">
+          <div class="progress-bar-teal-fill" id="freeShippingProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Item List -->
+      <div id="cartDrawerItemsList" class="flex-grow-1 overflow-y-auto">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Cart Subtotal & Checkout -->
+      <div class="border-top pt-3 mt-auto">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <span class="text-secondary">Estimated Subtotal:</span>
+          <span class="font-heading fw-bold fs-4 text-dark" id="cartDrawerSubtotal">$0.00</span>
+        </div>
+        <p class="text-secondary small mb-3">Taxes and bottle deposits calculated at checkout.</p>
+        <button class="btn btn-primary-teal w-100 py-3 fw-bold fs-6" id="cartCheckoutBtn" onclick="alert('Thank you for trying STACKLY Demo! Your order has been placed successfully with Free 30-minute delivery.')">
+          Proceed to Checkout <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OFFCANVAS: MOBILE NAVIGATION DRAWER
+       ========================================================================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenuDrawer" aria-labelledby="mobileMenuDrawerLabel">
+    <div class="offcanvas-header border-bottom">
+      <a href="index.html" class="brand-logo-link" aria-label="STACKLY Organic Grocery">
+        <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="brand-logo-img mobile-logo-img" width="135" height="40">
+      </a>
+      <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Mobile Search -->
+      <div class="mb-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+          <input type="text" id="mobileSearchInput" class="form-control border-start-0 bg-light" placeholder="Search groceries...">
+        </div>
+      </div>
+
+      <h6 class="text-uppercase text-teal fw-bold small mb-3" style="color: var(--primary-teal);">Navigation</h6>
+      <ul class="nav flex-column gap-2 mb-4">
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html"><i class="bi bi-house me-2"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link text-teal fw-semibold" href="login.html" style="color: var(--primary-teal);"><i class="bi bi-person-circle me-2"></i> Account / Sign In</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#featured-products"><i class="bi bi-grid me-2"></i> Featured Products</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#deal-of-the-day"><i class="bi bi-stopwatch text-warning me-2"></i> Deal of the Day</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#why-shop-with-us"><i class="bi bi-shield-check text-success me-2"></i> Why Shop With Us</a></li>
+        <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html#testimonials"><i class="bi bi-chat-quote me-2"></i> Testimonials</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Core Data & Interaction Scripts -->
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/interactions.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Login Page Script & Handlers -->
+  <script>
+    // Preset Demo Credentials
+    function setDemoUser(role) {
+      const emailInput = document.getElementById('loginEmail');
+      const passInput = document.getElementById('loginPassword');
+      const roleSelect = document.getElementById('roleSelect');
+
+      if (role === 'admin') {
+        if (roleSelect) roleSelect.value = 'admin';
+        handleRoleSelectChange('admin');
+        emailInput.value = 'admin@stacklyfresh.com';
+        passInput.value = 'AdminPass2026!';
+        showToast('🛡️ Admin credentials populated! Sign in to open Admin Dashboard.', 'success');
+      } else {
+        if (roleSelect) roleSelect.value = 'user';
+        handleRoleSelectChange('user');
+        emailInput.value = 'user@stacklyfresh.com';
+        passInput.value = 'Welcome2026!';
+        showToast('👤 Customer credentials populated! Sign in to open User Dashboard.', 'success');
+      }
+    }
+
+    // Role Dropdown Change Handler
+    function handleRoleSelectChange(role) {
+      const badge = document.getElementById('roleIndicatorBadge');
+      const btnText = document.getElementById('btnText');
+
+      if (role === 'admin') {
+        if (badge) {
+          badge.textContent = 'Administrator';
+          badge.style.background = 'rgba(245, 158, 11, 0.15)';
+          badge.style.color = '#D97706';
+        }
+        if (btnText) btnText.textContent = 'Sign In as Admin';
+      } else {
+        if (badge) {
+          badge.textContent = 'Customer';
+          badge.style.background = 'rgba(45, 212, 191, 0.15)';
+          badge.style.color = '#0D9488';
+        }
+        if (btnText) btnText.textContent = 'Sign In';
+      }
+    }
+
+    // Login Form Submit (Direct Role Redirection)
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+      const role = document.getElementById('roleSelect').value;
+      const btn = document.getElementById('loginSubmitBtn');
+      const btnText = document.getElementById('btnText');
+
+      if (!email || !password) {
+        showToast('Please enter your email and password.', 'error');
+        return;
+      }
+
+      btn.disabled = true;
+      const originalText = btnText ? btnText.textContent : 'Sign In';
+      if (btnText) btnText.textContent = 'Signing in...';
+
+      setTimeout(() => {
+        // Strictly determine destination based on chosen role
+        const isAdmin = (role === 'admin');
+        const targetDashboard = isAdmin ? 'admin-dashboard.html' : 'user-dashboard.html';
+        const displayName = isAdmin ? 'Store Administrator' : (email.split('@')[0] || 'Valued Customer');
+
+        const userData = {
+          name: displayName,
+          email: email,
+          role: isAdmin ? 'admin' : 'user',
+          loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('stackly_current_user', JSON.stringify(userData));
+
+        if (isAdmin) {
+          showToast('🛡️ Welcome Admin! Redirecting to Admin Dashboard...', 'success');
+        } else {
+          showToast(`🎉 Welcome back, ${displayName}! Redirecting to User Dashboard...`, 'success');
+        }
+
+        setTimeout(() => {
+          window.location.href = targetDashboard;
+        }, 700);
+      }, 500);
+    }
+
+    // Toast Alert Helper
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('loginToast');
+      const msgEl = document.getElementById('toastMsg');
+      const icon = document.getElementById('toastIcon');
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = msg;
+      toast.className = `login-toast-banner show ${type === 'error' ? 'toast-error' : 'toast-success'}`;
+      if (icon) {
+        icon.className = type === 'error' ? 'bi bi-exclamation-triangle-fill text-warning fs-5' : 'bi bi-check-circle-fill text-emerald fs-5';
+      }
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // Forgot Password
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      const email = prompt('Enter your registered email address to receive password reset instructions:', 'user@stacklyfresh.com');
+      if (email) {
+        showToast(`📬 Password reset link sent to ${email}`, 'success');
+      }
+    }
+
+    // Social Login Simulation
+    function handleSocialLogin(provider) {
+      showToast(`Connecting to ${provider} Secure OAuth...`, 'success');
+      setTimeout(() => {
+        showToast(`✅ ${provider} authorization successful! Redirecting to User Dashboard...`, 'success');
+        setTimeout(() => {
+          const userData = {
+            name: `${provider} Shopper`,
+            email: `shopper@${provider.toLowerCase()}.com`,
+            role: 'user',
+            loginTime: new Date().toISOString()
+          };
+          localStorage.setItem('stackly_current_user', JSON.stringify(userData));
+          window.location.href = 'user-dashboard.html';
+        }, 900);
+      }, 850);
+    }
+
+    // Sign Up Modal
+    function handleSignUpModal(e) {
+      e.preventDefault();
+      const newEmail = prompt('Create your free FreshCart account. Enter your email:');
+      if (newEmail) {
+        showToast(`🎉 Account created for ${newEmail}! Welcome to FreshCart!`, 'success');
+        document.getElementById('loginEmail').value = newEmail;
+        document.getElementById('loginPassword').value = 'Welcome2026!';
+      }
+    }
+
+    // Newsletter Submit
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('newsletterEmailInput');
+      if (input && input.value) {
+        showToast(`🎉 Thank you for subscribing! Your $10 coupon has been sent to ${input.value}`, 'success');
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
