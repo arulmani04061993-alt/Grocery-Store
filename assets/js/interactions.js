@@ -654,5 +654,15 @@ window.StacklyInteractions = {
         this.renderCartDrawer();
       });
     }
+
+    // Proceed to Checkout -> redirect to 404.html
+    document.addEventListener('click', (e) => {
+      const checkoutBtn = e.target.closest('#cartCheckoutBtn, .btn-service-primary');
+      if (checkoutBtn && checkoutBtn.textContent && checkoutBtn.textContent.includes('Proceed to Checkout')) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = '404.html';
+      }
+    });
   }
 };

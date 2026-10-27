@@ -407,6 +407,46 @@
       </div>
     </section>
 
+    <!-- ==========================================================================
+         JOIN OUR NEWSLETTER SECTION — Exact Match to Reference Image
+         ========================================================================== -->
+    <section class="newsletter-section" id="newsletter">
+      <div class="container">
+        
+        <div class="newsletter-panel">
+          <div class="newsletter-circle-1"></div>
+          <div class="newsletter-circle-2"></div>
+
+          <div class="newsletter-content-box">
+            <h2 class="newsletter-heading">Join our newsletter</h2>
+            <p class="newsletter-desc">
+              Subscribe to get 20% off your first order and stay updated with our weekly deals.
+            </p>
+
+            <form class="newsletter-form-wrap" id="homeNewsletterForm">
+              <input type="email" 
+                     id="newsletterEmailInput" 
+                     class="newsletter-input" 
+                     placeholder="Enter your email address..." 
+                     required 
+                     aria-label="Your email address">
+              <button class="btn btn-newsletter-subscribe" type="submit">
+                Subscribe
+              </button>
+            </form>
+
+            <div id="newsletterFeedback"></div>
+
+            <div class="newsletter-helper-text">
+              <i class="bi bi-shield-check"></i>
+              <span>No spam, we promise. Only the freshest news.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- ==========================================================================
@@ -464,6 +504,7 @@
             <li><a href="index.html?category=dairy">Dairy &amp; Milk</a></li>
             <li><a href="index.html?category=bakery">Bread &amp; Bakery</a></li>
             <li><a href="index.html?category=snacks">Pantry Snacks</a></li>
+            <li><a href="404.html">404 Error</a></li>
           </ul>
         </div>
 
@@ -534,7 +575,7 @@
           <span class="font-heading fw-bold fs-4 text-dark" id="cartDrawerSubtotal">$0.00</span>
         </div>
         <p class="text-secondary small mb-3">Taxes and bottle deposits calculated at checkout.</p>
-        <button class="btn btn-primary-teal w-100 py-3 fw-bold fs-6" id="cartCheckoutBtn" onclick="alert('Thank you for trying STACKLY Demo! Your order has been placed successfully with Free 30-minute delivery.')">
+        <button class="btn btn-primary-teal w-100 py-3 fw-bold fs-6" id="cartCheckoutBtn" onclick="window.location.href='404.html'">
           Proceed to Checkout <i class="bi bi-arrow-right ms-2"></i>
         </button>
       </div>
