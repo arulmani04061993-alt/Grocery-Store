@@ -578,13 +578,7 @@ window.StacklyInteractions = {
   },
 
   openAppStoreModal(platform = 'iOS / Android') {
-    const titleEl = document.getElementById('appModalPlatform');
-    if (titleEl) titleEl.textContent = platform;
-    const modalEl = document.getElementById('appPromoModal');
-    if (modalEl && typeof bootstrap !== 'undefined') {
-      const bsModal = new bootstrap.Modal(modalEl);
-      bsModal.show();
-    }
+    window.location.href = '404.html';
   },
 
   openAccountModal() {

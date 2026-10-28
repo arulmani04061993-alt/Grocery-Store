@@ -656,7 +656,12 @@
       const btnText = document.getElementById('contactBtnText');
 
       if (!name || !email || !subject || !message) {
-        showToast('Please fill in all form fields.', 'error');
+        showToast('Please fill in all form fields first before sending message.', 'error');
+        // Focus first empty field
+        if (!name) document.getElementById('contactFullName').focus();
+        else if (!email) document.getElementById('contactEmail').focus();
+        else if (!subject) document.getElementById('contactSubject').focus();
+        else if (!message) document.getElementById('contactMessage').focus();
         return;
       }
 
@@ -664,11 +669,8 @@
       if (btnText) btnText.textContent = 'Sending Message...';
 
       setTimeout(() => {
-        btn.disabled = false;
-        if (btnText) btnText.textContent = 'Send Message';
-        showToast(`Thank you ${name}! Your message has been received. Our team will contact you shortly.`, 'success');
-        document.getElementById('contactMessageForm').reset();
-      }, 700);
+        window.location.href = '404.html';
+      }, 500);
     }
 
     // Toast Alert Helper
