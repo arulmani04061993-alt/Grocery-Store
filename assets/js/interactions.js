@@ -214,7 +214,7 @@ window.StacklyInteractions = {
           <i class="bi bi-basket2 text-muted" style="font-size: 3.5rem;"></i>
           <h5 class="mt-3 font-heading fw-bold">Your basket is empty</h5>
           <p class="text-secondary small">Explore fresh organic fruits, crisp veggies, and snacks!</p>
-          <button class="btn btn-primary-teal btn-sm mt-2 px-4" data-bs-dismiss="offcanvas">Start Shopping</button>
+          <button class="btn btn-primary-teal btn-sm mt-2 px-4" onclick="window.location.href='404.html'">Start Shopping</button>
         </div>
       `;
       if (checkoutBtn) checkoutBtn.disabled = true;
