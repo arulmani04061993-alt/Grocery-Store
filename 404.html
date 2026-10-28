@@ -111,17 +111,29 @@
     function handleGoBack() {
       if (window.StacklyAnimations && typeof window.StacklyAnimations.triggerGoBack === 'function') {
         window.StacklyAnimations.triggerGoBack();
-      } else if (window.StacklyAnimations && typeof window.StacklyAnimations.triggerPageTransition === 'function') {
-        const dest = (document.referrer && document.referrer.includes(window.location.host)) ? document.referrer : 'index.html';
-        window.StacklyAnimations.triggerPageTransition(dest);
+        return;
+      }
+      
+      let targetDest = '';
+      try {
+        targetDest = sessionStorage.getItem('stackly_last_valid_page') ||
+                     sessionStorage.getItem('stackly_dashboard_url') ||
+                     sessionStorage.getItem('stackly_saved_scroll_url') || '';
+      } catch (e) {}
+
+      if (!targetDest && document.referrer && document.referrer.includes(window.location.host) && !document.referrer.includes('404.html')) {
+        targetDest = document.referrer;
+      }
+
+      if (targetDest && !targetDest.includes('404.html')) {
+        try {
+          sessionStorage.setItem('stackly_should_restore_scroll', 'true');
+        } catch (e) {}
+        window.location.href = targetDest;
+      } else if (window.history.length > 1) {
+        window.history.back();
       } else {
-        if (window.history.length > 1) {
-          window.history.back();
-        } else if (document.referrer && document.referrer.includes(window.location.host)) {
-          window.location.href = document.referrer;
-        } else {
-          window.location.href = 'index.html';
-        }
+        window.location.href = 'index.html';
       }
     }
 

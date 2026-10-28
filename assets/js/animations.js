@@ -342,13 +342,15 @@ window.StacklyAnimations = {
       sessionStorage.setItem('stackly_should_restore_scroll', 'true');
     } catch (e) { }
 
-    // Priority 1: Check if coming from a dashboard (User or Admin Dashboard with exact tab)
+    // Priority 1: Check explicitly stored previous valid page or dashboard URL
     let targetDest = '';
     try {
-      targetDest = sessionStorage.getItem('stackly_dashboard_url') || sessionStorage.getItem('stackly_saved_scroll_url') || '';
+      targetDest = sessionStorage.getItem('stackly_last_valid_page') ||
+                   sessionStorage.getItem('stackly_dashboard_url') ||
+                   sessionStorage.getItem('stackly_saved_scroll_url') || '';
     } catch (e) { }
 
-    // Priority 2: Check document.referrer if not 404
+    // Priority 2: Check document.referrer if valid and not 404
     if (!targetDest && document.referrer && document.referrer.includes(window.location.host) && !document.referrer.includes('404.html')) {
       targetDest = document.referrer;
     }

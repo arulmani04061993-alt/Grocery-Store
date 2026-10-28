@@ -127,6 +127,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, { passive: true });
   }
 
+  // 3b. Automatically track current valid page location so 404 Go Back knows the exact previous place
+  try {
+    const currentHref = window.location.href;
+    if (!currentHref.includes('404.html')) {
+      sessionStorage.setItem('stackly_last_valid_page', currentHref);
+    }
+  } catch (err) {}
+
+  // Global click tracker: whenever any button or link pointing to 404.html is clicked, capture exact scroll & page location
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('a, button');
+    if (!target) return;
+    const href = target.getAttribute('href') || target.getAttribute('onclick') || '';
+    if (href.includes('404.html')) {
+      try {
+        const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+        sessionStorage.setItem('stackly_saved_scroll_y', currentY.toString());
+        sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
+        sessionStorage.setItem('stackly_should_restore_scroll', 'true');
+        sessionStorage.setItem('stackly_last_valid_page', window.location.href);
+
+        const section = target.closest('section[id], div[id], [data-tab-pane], .dash-tab-pane');
+        if (section && section.id) {
+          sessionStorage.setItem('stackly_saved_anchor', '#' + section.id);
+        }
+      } catch (err) {}
+    }
+  }, true);
+
   // 4. Product Carousel arrow controls
   const prodPrev = document.getElementById('prodPrevBtn');
   const prodNext = document.getElementById('prodNextBtn');
