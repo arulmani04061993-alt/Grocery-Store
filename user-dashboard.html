@@ -96,7 +96,7 @@
           <a href="#addresses" class="sidebar-link" onclick="switchTab(event, 'addresses')">
             <i class="bi bi-house-door-fill text-secondary"></i>
             <span>Saved Addresses</span>
-            <span class="sidebar-nav-badge">2</span>
+            <span class="sidebar-nav-badge">4</span>
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -1146,41 +1146,141 @@
           </div>
 
           <div class="row g-3">
+            <!-- Address 1: Home (Default) -->
             <div class="col-md-6">
-              <div class="border rounded-4 p-4 bg-light position-relative">
-                <span class="badge bg-teal position-absolute top-0 end-0 m-3">Default</span>
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <i class="bi bi-house-door-fill text-teal fs-5"></i>
-                  <strong class="text-dark fs-6">Home</strong>
+              <div class="border rounded-4 p-4 bg-light position-relative h-100 d-flex flex-column justify-content-between shadow-sm">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="p-2 rounded-circle bg-teal-subtle text-teal">
+                        <i class="bi bi-house-door-fill fs-5"></i>
+                      </span>
+                      <div>
+                        <strong class="text-dark fs-6 d-block">Home Residence</strong>
+                        <span class="badge bg-teal">Default Address</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-dark fw-bold mb-1 mt-2">Sarah Jenkins</p>
+                  <p class="text-muted mb-2">742 Evergreen Terrace, Apt 4B, San Francisco, CA 94107</p>
+                  <p class="text-muted small mb-2"><i class="bi bi-telephone text-teal me-1"></i> +1 (555) 234-5678</p>
+                  <div class="p-2 rounded-3 bg-white border small text-muted mb-3">
+                    <i class="bi bi-info-circle text-primary me-1"></i>
+                    <strong>Drop-off Note:</strong> Ring intercom 4B or leave in lobby security locker.
+                  </div>
                 </div>
-                <p class="text-dark mb-1">Sarah Jenkins</p>
-                <p class="text-muted mb-2">742 Evergreen Terrace, Apt 4B, San Francisco, CA 94107</p>
-                <p class="text-muted small mb-3">Phone: +1 (555) 234-5678</p>
-                <div class="d-flex gap-2">
-                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Edit</button>
-                  <button class="action-btn-sm text-danger"
-                    onclick="window.location.href='404.html'">Delete</button>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-pencil me-1"></i> Edit</button>
+                  <button class="action-btn-sm text-danger" onclick="window.location.href='404.html'"><i class="bi bi-trash me-1"></i> Delete</button>
                 </div>
               </div>
             </div>
 
+            <!-- Address 2: Office / Workspace -->
             <div class="col-md-6">
-              <div class="border rounded-4 p-4 bg-white position-relative">
-                <span class="badge bg-secondary position-absolute top-0 end-0 m-3">Secondary</span>
-                <div class="d-flex align-items-center gap-2 mb-2">
-                  <i class="bi bi-briefcase-fill text-primary fs-5"></i>
-                  <strong class="text-dark fs-6">Office</strong>
+              <div class="border rounded-4 p-4 bg-white position-relative h-100 d-flex flex-column justify-content-between shadow-sm">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="p-2 rounded-circle bg-primary-subtle text-primary">
+                        <i class="bi bi-briefcase-fill fs-5"></i>
+                      </span>
+                      <div>
+                        <strong class="text-dark fs-6 d-block">Office HQ</strong>
+                        <span class="badge bg-secondary">Weekday Deliveries</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-dark fw-bold mb-1 mt-2">Sarah Jenkins (c/o Design Labs)</p>
+                  <p class="text-muted mb-2">500 Market St, Floor 12, Financial District, San Francisco, CA 94105</p>
+                  <p class="text-muted small mb-2"><i class="bi bi-telephone text-primary me-1"></i> +1 (555) 987-6543</p>
+                  <div class="p-2 rounded-3 bg-light border small text-muted mb-3">
+                    <i class="bi bi-clock-history text-secondary me-1"></i>
+                    <strong>Access Hours:</strong> Mon-Fri 9:00 AM - 6:00 PM (Front Desk reception).
+                  </div>
                 </div>
-                <p class="text-dark mb-1">Sarah Jenkins (c/o Design Labs)</p>
-                <p class="text-muted mb-2">500 Market St, Floor 12, Financial District, San Francisco, CA 94105</p>
-                <p class="text-muted small mb-3">Phone: +1 (555) 987-6543</p>
-                <div class="d-flex gap-2">
-                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Edit</button>
-                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Set as
-                    Default</button>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-pencil me-1"></i> Edit</button>
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-check2-circle me-1"></i> Set as Default</button>
                 </div>
               </div>
             </div>
+
+            <!-- Address 3: Parents Villa / Salem Family Home -->
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-white position-relative h-100 d-flex flex-column justify-content-between shadow-sm">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="p-2 rounded-circle bg-warning-subtle text-warning">
+                        <i class="bi bi-heart-fill fs-5"></i>
+                      </span>
+                      <div>
+                        <strong class="text-dark fs-6 d-block">Parents Home (Salem)</strong>
+                        <span class="badge bg-warning text-dark">Family Organic Care</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-dark fw-bold mb-1 mt-2">Robert & Mary Jenkins</p>
+                  <p class="text-muted mb-2">MMR Complex, 24, Maravaneri 1st Cross St, Salem, Tamil Nadu 636007, India</p>
+                  <p class="text-muted small mb-2"><i class="bi bi-telephone text-warning me-1"></i> +91 98765 43210</p>
+                  <div class="p-2 rounded-3 bg-light border small text-muted mb-3">
+                    <i class="bi bi-box-seam text-warning me-1"></i>
+                    <strong>Drop-off Note:</strong> Contact security at main gate before entering.
+                  </div>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-pencil me-1"></i> Edit</button>
+                  <button class="action-btn-sm text-danger" onclick="window.location.href='404.html'"><i class="bi bi-trash me-1"></i> Delete</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address 4: Weekend Lake Cabin / Vacation Retreat -->
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-white position-relative h-100 d-flex flex-column justify-content-between shadow-sm">
+                <div>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="p-2 rounded-circle bg-success-subtle text-success">
+                        <i class="bi bi-tree-fill fs-5"></i>
+                      </span>
+                      <div>
+                        <strong class="text-dark fs-6 d-block">Weekend Eco Cottage</strong>
+                        <span class="badge bg-success">Weekend Getaway</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-dark fw-bold mb-1 mt-2">Sarah Jenkins</p>
+                  <p class="text-muted mb-2">12 Mountain View Rd, Pinecrest Valley, Marin County, CA 94901</p>
+                  <p class="text-muted small mb-2"><i class="bi bi-telephone text-success me-1"></i> +1 (555) 345-6789</p>
+                  <div class="p-2 rounded-3 bg-light border small text-muted mb-3">
+                    <i class="bi bi-shield-check text-success me-1"></i>
+                    <strong>Gate Code:</strong> #8920 (Deliveries inside screened porch).
+                  </div>
+                </div>
+                <div class="d-flex gap-2 pt-2 border-top">
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-pencil me-1"></i> Edit</button>
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-check2-circle me-1"></i> Set as Default</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extra Delivery Preferences & Instructions Banner -->
+          <div class="mt-4 p-3 rounded-4 border bg-light d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <span class="p-3 rounded-3 bg-white border text-teal fs-4 shadow-sm">
+                <i class="bi bi-geo-alt-fill"></i>
+              </span>
+              <div>
+                <h6 class="fw-bold text-dark mb-0">Contactless Safe Drop-off & Insulated Tote Bags</h6>
+                <p class="text-muted small mb-0">All refrigerated organic items are delivered in 100% biodegradable chilled cold-chain containers.</p>
+              </div>
+            </div>
+            <button class="btn btn-sm btn-outline-teal rounded-3 px-3" onclick="window.location.href='404.html'">
+              Delivery Preferences
+            </button>
           </div>
         </section>
       </div>
