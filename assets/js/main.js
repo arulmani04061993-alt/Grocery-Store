@@ -21,17 +21,29 @@ window.StacklyComponents = {
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
         const component = doc.querySelector('header, footer') || doc.body.firstElementChild;
+
         if (component) {
           targetElement.innerHTML = component.outerHTML;
-          if (filePath.includes('navbar')) {
+
+          if (filePath.toLowerCase().includes("navbar")) {
             this.highlightCurrentPageNav();
+            this.initMobileMenuAutoClose();
           }
         }
+
       }
     } catch (e) {
       console.warn(`[StacklyComponents] Note: ${filePath} loaded from inline template (${e.message}).`);
     }
   },
+
+
+
+
+  initMobileMenuAutoClose() {
+    // Handled globally with event capturing for all offcanvas menus
+  },
+
 
   highlightCurrentPageNav() {
     let currentPage = window.location.pathname.split('/').pop().toLowerCase();
@@ -207,3 +219,120 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 });
+
+// 9. Mobile menu drawer handling: open via hamburger, close via (X), links, or clicking outside
+document.addEventListener("DOMContentLoaded", function () {
+  const drawer = document.getElementById("mobileMenuDrawer");
+  if (!drawer) return;
+
+  // Track drawer open/close lifecycle on body to prevent background scrolling (for both mobile menu and cart)
+  const drawers = [drawer, document.getElementById("cartDrawer")].filter(Boolean);
+  drawers.forEach(d => {
+    d.addEventListener("show.bs.offcanvas", function () {
+      document.body.classList.add("mobile-menu-open");
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    });
+
+    d.addEventListener("hidden.bs.offcanvas", function () {
+      document.body.classList.remove("mobile-menu-open");
+      cleanupDrawerArtifacts();
+    });
+  });
+
+  // Listen to close button clicks directly
+  drawer.querySelectorAll(".btn-close, [data-bs-dismiss='offcanvas']").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      closeMobileDrawer(drawer);
+    });
+  });
+
+  // Listen to clicks on navigation links inside drawer
+  drawer.querySelectorAll("a[href]").forEach(link => {
+    link.addEventListener("click", function (e) {
+      const rawHref = (this.getAttribute("href") || "").trim();
+      if (!rawHref || rawHref === "#" || rawHref.toLowerCase().startsWith("javascript:")) return;
+
+      // Close the drawer immediately
+      closeMobileDrawer(drawer);
+
+      const currentPath = window.location.pathname.replace(/\/$/, "") || "/index.html";
+      const currentFile = (currentPath.split("/").pop() || "index.html").toLowerCase();
+      const targetClean = decodeURIComponent(rawHref.split("#")[0].split("?")[0]).toLowerCase();
+
+      // In-page hash jump on same page
+      if (rawHref.startsWith("#")) {
+        const targetEl = document.querySelector(rawHref);
+        if (targetEl) {
+          e.preventDefault();
+          setTimeout(() => targetEl.scrollIntoView({ behavior: "smooth" }), 50);
+        }
+      } else if (targetClean === currentFile || (targetClean === "index.html" && currentFile === "")) {
+        // Same page link -> scroll to top
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        // Different page link -> navigate immediately
+        // Note: do not preventDefault here so the browser or animations module navigates seamlessly
+      }
+    });
+  });
+});
+
+// Helper to remove any leftover backdrops or body locks
+function cleanupDrawerArtifacts() {
+  document.querySelectorAll(".offcanvas-backdrop").forEach(b => b.remove());
+  document.body.classList.remove("modal-open", "mobile-menu-open", "menu-open", "nav-open");
+  document.body.style.removeProperty("overflow");
+  document.body.style.removeProperty("padding-right");
+  document.body.style.removeProperty("touch-action");
+  document.documentElement.style.removeProperty("overflow");
+}
+
+// Global outside click / touch handler to close drawer
+function handleGlobalDrawerClose(event) {
+  const drawer = document.getElementById("mobileMenuDrawer");
+  if (!drawer || !drawer.classList.contains("show")) return;
+
+  const hamburgerBtn = event.target.closest(".hamburger-btn");
+  const insideDrawer = event.target.closest("#mobileMenuDrawer");
+  const closeBtn = event.target.closest("#mobileMenuDrawer .btn-close, [data-bs-dismiss='offcanvas']");
+
+  if (closeBtn) {
+    closeMobileDrawer(drawer);
+    return;
+  }
+
+  // Clicked on backdrop or outside drawer content
+  if (!insideDrawer && !hamburgerBtn) {
+    closeMobileDrawer(drawer);
+  }
+}
+
+document.addEventListener("click", handleGlobalDrawerClose, true);
+document.addEventListener("touchend", handleGlobalDrawerClose, { passive: true });
+
+// Helper function to cleanly close mobile drawer and clean backdrop
+function closeMobileDrawer(drawer) {
+  if (!drawer) return;
+  try {
+    if (window.bootstrap?.Offcanvas) {
+      const inst = window.bootstrap.Offcanvas.getInstance(drawer) || window.bootstrap.Offcanvas.getOrCreateInstance(drawer);
+      if (inst) inst.hide();
+    }
+  } catch (err) {
+    console.warn("Offcanvas close error:", err);
+  }
+
+  drawer.classList.remove("show", "open", "active");
+  drawer.setAttribute("aria-hidden", "true");
+  drawer.style.visibility = "hidden";
+  setTimeout(() => {
+    drawer.style.removeProperty("visibility");
+  }, 350);
+
+  cleanupDrawerArtifacts();
+}
+

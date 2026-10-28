@@ -8,8 +8,8 @@ window.StacklyAnimations = {
   _isRestoringScroll: false,
 
   init() {
-    this.initLogoIntro();
-    this.initPageTransitions();
+    // Preloader disabled as requested: direct page navigation without delay
+    this.disablePreloader();
     this.initScrollTracking();
     this.restoreSavedScrollPosition();
     this.initAOS();
@@ -24,77 +24,31 @@ window.StacklyAnimations = {
    * Helper: Ensure preloader element is present in DOM
    */
   ensurePreloaderElement() {
-    let preloader = document.getElementById('logoIntroPreloader');
-    if (!preloader) {
-      preloader = document.createElement('div');
-      preloader.id = 'logoIntroPreloader';
-      preloader.setAttribute('aria-hidden', 'true');
-      preloader.className = 'preloader-hidden';
-      preloader.innerHTML = `
-        <div class="preloader-brand-wrap">
-          <div class="preloader-logo-wrapper">
-            <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
-          </div>
-          <div class="preloader-wave-container" aria-label="Loading...">
-            <div class="wave-bars">
-              <span class="wave-bar bar-1"></span>
-              <span class="wave-bar bar-2"></span>
-              <span class="wave-bar bar-3"></span>
-              <span class="wave-bar bar-4"></span>
-              <span class="wave-bar bar-5"></span>
-              <span class="wave-bar bar-6"></span>
-              <span class="wave-bar bar-7"></span>
-            </div>
-          </div>
-        </div>
-      `;
-      document.body.prepend(preloader);
-    }
-    return preloader;
+    return document.getElementById('logoIntroPreloader');
   },
 
   /**
-   * Section 14: Logo Intro & Wave Page Load Animation (All Pages)
+   * Disabled Preloader: Clean up any preloader elements immediately
    */
-  initLogoIntro() {
-    const preloader = this.ensurePreloaderElement();
-
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
+  disablePreloader() {
+    const preloader = document.getElementById('logoIntroPreloader');
+    if (preloader) {
       preloader.style.display = 'none';
       preloader.classList.add('preloader-hidden');
-      document.body.classList.remove('preloader-active');
-      return;
+      preloader.remove();
     }
+    document.body.classList.remove('preloader-active');
+    
+    // Animate hero and elements immediately without delay
+    this.animateHeroEntrance();
+    this.initLoginAnimations();
+    this.initCounterAnimations();
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    if (typeof AOS !== 'undefined') AOS.refresh();
+  },
 
-    // Duration set to exactly 2 seconds (2000ms) across all pages as requested
-    const duration = 2000;
-    sessionStorage.setItem('stackly_visited', 'true');
-
-    // Ensure preloader is visible
-    preloader.classList.remove('preloader-hidden');
-    preloader.classList.add('preloader-visible');
-    preloader.style.display = 'flex';
-    preloader.style.opacity = '1';
-    document.body.classList.add('preloader-active');
-
-    if (this._preloaderTimer) {
-      clearTimeout(this._preloaderTimer);
-    }
-    if (this._safetyTimer) {
-      clearTimeout(this._safetyTimer);
-    }
-
-    // Safety fallback
-    this._safetyTimer = setTimeout(() => {
-      this.finishPreloader(preloader);
-    }, duration + 500);
-
-    this._preloaderTimer = setTimeout(() => {
-      if (this._safetyTimer) clearTimeout(this._safetyTimer);
-      this.finishPreloader(preloader);
-    }, duration);
+  initLogoIntro() {
+    this.disablePreloader();
   },
 
   finishPreloader(preloader) {
@@ -102,6 +56,19 @@ window.StacklyAnimations = {
 
     // Ensure final scroll restoration just before preloader fades out
     this.restoreSavedScrollPosition();
+
+    // Ensure mobile drawers are fully closed
+    document.querySelectorAll('#mobileMenuDrawer, .offcanvas').forEach(drawer => {
+      try {
+        if (window.bootstrap?.Offcanvas) {
+          const inst = window.bootstrap.Offcanvas.getInstance(drawer);
+          if (inst) inst.hide();
+        }
+      } catch (err) {}
+      drawer.classList.remove('show', 'open', 'active');
+      drawer.setAttribute('aria-hidden', 'true');
+    });
+    document.querySelectorAll('.offcanvas-backdrop').forEach(el => el.remove());
 
     preloader.style.opacity = '0';
     preloader.style.transition = 'opacity 0.35s ease-out';
@@ -184,7 +151,7 @@ window.StacklyAnimations = {
           try {
             sessionStorage.setItem('stackly_saved_scroll_y', y.toString());
             sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
-          } catch (e) {}
+          } catch (e) { }
         }
       }
     }, { passive: true });
@@ -196,7 +163,7 @@ window.StacklyAnimations = {
           try {
             sessionStorage.setItem('stackly_saved_scroll_y', y.toString());
             sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
-          } catch (e) {}
+          } catch (e) { }
         }
       }
     });
@@ -288,8 +255,8 @@ window.StacklyAnimations = {
 
     // Check if target is explicitly Home page (e.g. from 404 or login)
     const isExplicitHome = sourceElement && (
-      sourceElement.classList.contains('ref-btn-home') || 
-      sourceElement.classList.contains('brand-logo-link') || 
+      sourceElement.classList.contains('ref-btn-home') ||
+      sourceElement.classList.contains('brand-logo-link') ||
       sourceElement.id === 'refBtnHome' ||
       sourceElement.classList.contains('login-back-store-btn')
     );
@@ -300,7 +267,7 @@ window.StacklyAnimations = {
         sessionStorage.removeItem('stackly_saved_scroll_y');
         sessionStorage.removeItem('stackly_saved_anchor');
         sessionStorage.setItem('stackly_scroll_to_top', 'true');
-      } catch (e) {}
+      } catch (e) { }
     } else {
       // Snapshot exact scroll position and section before leaving
       const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
@@ -324,7 +291,7 @@ window.StacklyAnimations = {
         } else if (currentY > 3500) {
           sessionStorage.setItem('stackly_saved_anchor', '#siteFooter');
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     const preloader = this.ensurePreloaderElement();
@@ -363,7 +330,7 @@ window.StacklyAnimations = {
       sessionStorage.removeItem('stackly_saved_scroll_y');
       sessionStorage.removeItem('stackly_saved_anchor');
       sessionStorage.setItem('stackly_scroll_to_top', 'true');
-    } catch (e) {}
+    } catch (e) { }
 
     const preloader = this.ensurePreloaderElement();
     preloader.classList.remove('preloader-hidden');
@@ -395,7 +362,7 @@ window.StacklyAnimations = {
     // Ensure restore flag is active
     try {
       sessionStorage.setItem('stackly_should_restore_scroll', 'true');
-    } catch (e) {}
+    } catch (e) { }
 
     const preloader = this.ensurePreloaderElement();
     preloader.classList.remove('preloader-hidden');
@@ -411,7 +378,7 @@ window.StacklyAnimations = {
     let targetDest = '';
     try {
       targetDest = sessionStorage.getItem('stackly_saved_scroll_url') || '';
-    } catch (e) {}
+    } catch (e) { }
 
     if (!targetDest && document.referrer && document.referrer.includes(window.location.host)) {
       targetDest = document.referrer;
@@ -438,22 +405,51 @@ window.StacklyAnimations = {
    * Page Transitions Event Listeners
    */
   initPageTransitions() {
-    // Intercept clicks on links that navigate to other pages
+    // Direct navigation: close any open drawer immediately when clicking links
     document.addEventListener('click', (e) => {
-      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
-
       const link = e.target.closest('a');
-      if (this.isNavigationalLink(link)) {
-        e.preventDefault();
-        this.triggerPageTransition(link.href, link);
+      if (!link) return;
+
+      const drawer = link.closest('#mobileMenuDrawer, .offcanvas') || document.getElementById('mobileMenuDrawer');
+      if (drawer && (link.closest('#mobileMenuDrawer, .offcanvas') || drawer.classList.contains('show'))) {
+        try {
+          if (window.bootstrap?.Offcanvas) {
+            const inst = window.bootstrap.Offcanvas.getInstance(drawer) || window.bootstrap.Offcanvas.getOrCreateInstance(drawer);
+            if (inst) inst.hide();
+          }
+        } catch (err) {}
+        drawer.classList.remove('show', 'open', 'active');
+        drawer.setAttribute('aria-hidden', 'true');
+        drawer.style.visibility = 'hidden';
+        setTimeout(() => { drawer.style.removeProperty('visibility'); }, 350);
+        document.querySelectorAll('.offcanvas-backdrop').forEach(el => el.remove());
+        document.body.classList.remove('modal-open', 'mobile-menu-open', 'menu-open', 'nav-open');
+        document.body.style.removeProperty('overflow');
+        document.body.style.removeProperty('padding-right');
       }
     });
 
     // Handle bfcache (browser back/forward button)
     window.addEventListener('pageshow', (event) => {
       this._isNavigating = false;
+      // Ensure all mobile drawers and backdrops are closed on pageshow
+      document.querySelectorAll('#mobileMenuDrawer, .offcanvas').forEach(drawer => {
+        try {
+          if (window.bootstrap?.Offcanvas) {
+            const inst = window.bootstrap.Offcanvas.getInstance(drawer);
+            if (inst) inst.hide();
+          }
+        } catch (err) {}
+        drawer.classList.remove('show', 'open', 'active');
+        drawer.setAttribute('aria-hidden', 'true');
+      });
+      document.querySelectorAll('.offcanvas-backdrop').forEach(el => el.remove());
+      document.body.classList.remove('modal-open', 'menu-open', 'nav-open');
+      document.body.style.removeProperty('overflow');
+      document.body.style.removeProperty('padding-right');
+
       if (event && event.persisted) {
-        // If restored from browser bfcache, trigger the 2-second wave preloader!
+        // If restored from browser bfcache, trigger the wave preloader!
         this.initLogoIntro();
       }
       this.restoreSavedScrollPosition();
@@ -469,85 +465,85 @@ window.StacklyAnimations = {
     // 1. Home Page Hero
     if (document.querySelector('.hero-pill-label')) {
       const heroTl = gsap.timeline();
-      heroTl.fromTo('.hero-pill-label', 
-        { y: -20, opacity: 0 }, 
+      heroTl.fromTo('.hero-pill-label',
+        { y: -20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
       )
-      .fromTo('.hero-line', 
-        { y: 35, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power3.out' }, 
-        '-=0.3'
-      )
-      .fromTo('.hero-description', 
-        { y: 20, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 
-        '-=0.3'
-      )
-      .fromTo('.hero-cta-group .btn', 
-        { scale: 0.9, opacity: 0 }, 
-        { scale: 1, opacity: 1, duration: 0.45, stagger: 0.12, ease: 'back.out(1.5)' }, 
-        '-=0.3'
-      )
-      .fromTo('.hero-trust-badge', 
-        { opacity: 0 }, 
-        { opacity: 1, duration: 0.4, ease: 'power2.out' }, 
-        '-=0.2'
-      )
-      .fromTo('.hero-image-frame', 
-        { scale: 0.92, opacity: 0, y: 30 }, 
-        { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 
-        0.3
-      )
-      .fromTo('.hero-floating-badge', 
-        { y: 20, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }, 
-        0.8
-      );
+        .fromTo('.hero-line',
+          { y: 35, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power3.out' },
+          '-=0.3'
+        )
+        .fromTo('.hero-description',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+          '-=0.3'
+        )
+        .fromTo('.hero-cta-group .btn',
+          { scale: 0.9, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.45, stagger: 0.12, ease: 'back.out(1.5)' },
+          '-=0.3'
+        )
+        .fromTo('.hero-trust-badge',
+          { opacity: 0 },
+          { opacity: 1, duration: 0.4, ease: 'power2.out' },
+          '-=0.2'
+        )
+        .fromTo('.hero-image-frame',
+          { scale: 0.92, opacity: 0, y: 30 },
+          { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+          0.3
+        )
+        .fromTo('.hero-floating-badge',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' },
+          0.8
+        );
     }
 
     // 2. About / Story Page Hero
     if (document.querySelector('.story-hero-content')) {
       const storyTl = gsap.timeline();
-      storyTl.fromTo('.story-hero-pill', 
-        { y: -20, opacity: 0, scale: 0.9 }, 
+      storyTl.fromTo('.story-hero-pill',
+        { y: -20, opacity: 0, scale: 0.9 },
         { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.5)' }
       )
-      .fromTo('.story-hero-title', 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 
-        '-=0.3'
-      )
-      .fromTo('.story-hero-subtitle', 
-        { y: 20, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 
-        '-=0.3'
-      );
+        .fromTo('.story-hero-title',
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+          '-=0.3'
+        )
+        .fromTo('.story-hero-subtitle',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+          '-=0.3'
+        );
     }
 
     // 3. Service Page Hero
     if (document.querySelector('.service-hero-content')) {
       const servTl = gsap.timeline();
-      servTl.fromTo('.service-hero-pill', 
-        { y: -20, opacity: 0, scale: 0.9 }, 
+      servTl.fromTo('.service-hero-pill',
+        { y: -20, opacity: 0, scale: 0.9 },
         { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.5)' }
       )
-      .fromTo('.service-hero-title', 
-        { y: 35, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out' }, 
-        '-=0.3'
-      )
-      .fromTo('.service-hero-sub', 
-        { y: 20, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, 
-        '-=0.3'
-      );
+        .fromTo('.service-hero-title',
+          { y: 35, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.65, ease: 'power3.out' },
+          '-=0.3'
+        )
+        .fromTo('.service-hero-sub',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
+          '-=0.3'
+        );
     }
 
     // 4. Blog Page Featured Banner
     if (document.querySelector('.blog-featured-card')) {
       const blogTl = gsap.timeline();
-      blogTl.fromTo('.blog-featured-card', 
-        { scale: 0.95, opacity: 0, y: 20 }, 
+      blogTl.fromTo('.blog-featured-card',
+        { scale: 0.95, opacity: 0, y: 20 },
         { scale: 1, opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }
       );
     }
@@ -555,29 +551,29 @@ window.StacklyAnimations = {
     // 5. Contact Page Showcase Hero
     if (document.querySelector('.contact-showcase-panel')) {
       const contactTl = gsap.timeline();
-      contactTl.fromTo('.contact-showcase-panel', 
-        { scale: 0.96, opacity: 0, y: 25 }, 
+      contactTl.fromTo('.contact-showcase-panel',
+        { scale: 0.96, opacity: 0, y: 25 },
         { scale: 1, opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
       )
-      .fromTo('.contact-form-panel', 
-        { opacity: 0, y: 25 }, 
-        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, 
-        '-=0.4'
-      );
+        .fromTo('.contact-form-panel',
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' },
+          '-=0.4'
+        );
     }
 
     // 6. User & Admin Dashboards
     if (document.querySelector('.dash-welcome-banner, .admin-welcome-banner')) {
       const dashTl = gsap.timeline();
-      dashTl.fromTo('.dash-welcome-banner, .admin-welcome-banner', 
-        { opacity: 0, y: -15, scale: 0.98 }, 
+      dashTl.fromTo('.dash-welcome-banner, .admin-welcome-banner',
+        { opacity: 0, y: -15, scale: 0.98 },
         { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'power2.out' }
       )
-      .fromTo('.dash-stat-card, .metric-card', 
-        { opacity: 0, y: 20, scale: 0.95 }, 
-        { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.4)' }, 
-        '-=0.25'
-      );
+        .fromTo('.dash-stat-card, .metric-card',
+          { opacity: 0, y: 20, scale: 0.95 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.08, ease: 'back.out(1.4)' },
+          '-=0.25'
+        );
     }
   },
 
@@ -596,13 +592,13 @@ window.StacklyAnimations = {
 
     // Deal of the Day Banner reveal
     if (document.querySelector('.deal-banner-wrapper')) {
-      gsap.fromTo('.deal-banner-wrapper', 
-        { scale: 0.96, opacity: 0, y: 30 }, 
-        { 
-          scale: 1, 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.75, 
+      gsap.fromTo('.deal-banner-wrapper',
+        { scale: 0.96, opacity: 0, y: 30 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: '.deal-banner-wrapper',
@@ -626,13 +622,13 @@ window.StacklyAnimations = {
 
     // Newsletter Panel entrance
     if (document.querySelector('.newsletter-panel')) {
-      gsap.fromTo('.newsletter-panel', 
-        { scale: 0.95, opacity: 0, y: 25 }, 
-        { 
-          scale: 1, 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.7, 
+      gsap.fromTo('.newsletter-panel',
+        { scale: 0.95, opacity: 0, y: 25 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '.newsletter-panel',
@@ -713,14 +709,14 @@ window.StacklyAnimations = {
       });
 
       if (words.length) {
-        tl.fromTo(words, 
+        tl.fromTo(words,
           { y: '115%', opacity: 0, rotateZ: 2 },
           { y: '0%', opacity: 1, rotateZ: 0, duration: 0.65, stagger: 0.045, ease: 'power3.out' }
         );
       }
 
       if (subtitle) {
-        tl.fromTo(subtitle, 
+        tl.fromTo(subtitle,
           { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
           words.length ? '-=0.35' : 0
@@ -728,7 +724,7 @@ window.StacklyAnimations = {
       }
 
       if (action) {
-        tl.fromTo(action, 
+        tl.fromTo(action,
           { x: 25, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
           '-=0.35'
@@ -754,14 +750,14 @@ window.StacklyAnimations = {
         });
 
         if (words.length) {
-          tl.fromTo(words, 
+          tl.fromTo(words,
             { y: '115%', opacity: 0, rotateZ: 2 },
             { y: '0%', opacity: 1, rotateZ: 0, duration: 0.65, stagger: 0.05, ease: 'power3.out' }
           );
         }
 
         if (subtitle) {
-          tl.fromTo(subtitle, 
+          tl.fromTo(subtitle,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
             words.length ? '-=0.35' : 0
@@ -789,14 +785,14 @@ window.StacklyAnimations = {
         });
 
         if (pill) {
-          tl.fromTo(pill, 
+          tl.fromTo(pill,
             { y: -15, opacity: 0, scale: 0.88 },
             { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.7)' }
           );
         }
 
         if (words.length) {
-          tl.fromTo(words, 
+          tl.fromTo(words,
             { y: '115%', opacity: 0, rotateZ: 2 },
             { y: '0%', opacity: 1, rotateZ: 0, duration: 0.7, stagger: 0.04, ease: 'power3.out' },
             pill ? '-=0.2' : 0
@@ -804,7 +800,7 @@ window.StacklyAnimations = {
         }
 
         if (desc) {
-          tl.fromTo(desc, 
+          tl.fromTo(desc,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
             '-=0.4'
@@ -812,7 +808,7 @@ window.StacklyAnimations = {
         }
 
         if (timer) {
-          tl.fromTo(timer, 
+          tl.fromTo(timer,
             { y: 20, opacity: 0, scale: 0.95 },
             { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
             '-=0.35'
@@ -840,14 +836,14 @@ window.StacklyAnimations = {
         });
 
         if (pill) {
-          tl.fromTo(pill, 
+          tl.fromTo(pill,
             { y: -15, opacity: 0, scale: 0.88 },
             { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.7)' }
           );
         }
 
         if (words.length) {
-          tl.fromTo(words, 
+          tl.fromTo(words,
             { y: '115%', opacity: 0, rotateZ: 2 },
             { y: '0%', opacity: 1, rotateZ: 0, duration: 0.7, stagger: 0.045, ease: 'power3.out' },
             pill ? '-=0.2' : 0
@@ -855,7 +851,7 @@ window.StacklyAnimations = {
         }
 
         if (desc) {
-          tl.fromTo(desc, 
+          tl.fromTo(desc,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
             '-=0.4'
@@ -863,7 +859,7 @@ window.StacklyAnimations = {
         }
 
         if (buttons) {
-          tl.fromTo(buttons, 
+          tl.fromTo(buttons,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
             '-=0.35'
@@ -890,14 +886,14 @@ window.StacklyAnimations = {
         });
 
         if (words.length) {
-          tl.fromTo(words, 
+          tl.fromTo(words,
             { y: '115%', opacity: 0, rotateZ: 2 },
             { y: '0%', opacity: 1, rotateZ: 0, duration: 0.65, stagger: 0.05, ease: 'power3.out' }
           );
         }
 
         if (desc) {
-          tl.fromTo(desc, 
+          tl.fromTo(desc,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.55, ease: 'power2.out' },
             '-=0.35'
@@ -905,7 +901,7 @@ window.StacklyAnimations = {
         }
 
         if (form) {
-          tl.fromTo(form, 
+          tl.fromTo(form,
             { y: 20, opacity: 0, scale: 0.98 },
             { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
             '-=0.3'
@@ -919,14 +915,14 @@ window.StacklyAnimations = {
       if (titleEl.dataset.gsapSplit === 'true') return;
       const words = this.splitTextIntoWords(titleEl);
       if (words.length) {
-        gsap.fromTo(words, 
+        gsap.fromTo(words,
           { y: '115%', opacity: 0, rotateZ: 2 },
-          { 
-            y: '0%', 
-            opacity: 1, 
-            rotateZ: 0, 
-            duration: 0.65, 
-            stagger: 0.05, 
+          {
+            y: '0%',
+            opacity: 1,
+            rotateZ: 0,
+            duration: 0.65,
+            stagger: 0.05,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: titleEl,
@@ -956,13 +952,13 @@ window.StacklyAnimations = {
         const words = this.splitTextIntoWords(loginLeftHeading);
         const sub = document.querySelector('.login-showcase-hero p, .login-left-content .login-subtext');
         if (words.length) {
-          tl.fromTo(words, 
+          tl.fromTo(words,
             { y: '115%', opacity: 0, rotateZ: 2 },
             { y: '0%', opacity: 1, rotateZ: 0, duration: 0.7, stagger: 0.045, ease: 'power3.out' }
           );
         }
         if (sub) {
-          tl.fromTo(sub, 
+          tl.fromTo(sub,
             { y: 20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
             '-=0.35'
@@ -974,14 +970,14 @@ window.StacklyAnimations = {
         const words = this.splitTextIntoWords(loginRightHeading);
         const sub = document.querySelector('.login-subtitle, .login-right-card .login-subtitle');
         if (words.length) {
-          tl.fromTo(words, 
+          tl.fromTo(words,
             { y: '115%', opacity: 0 },
             { y: '0%', opacity: 1, duration: 0.6, stagger: 0.06, ease: 'power3.out' },
             '-=0.3'
           );
         }
         if (sub) {
-          tl.fromTo(sub, 
+          tl.fromTo(sub,
             { y: 15, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' },
             '-=0.3'
@@ -1171,14 +1167,14 @@ window.StacklyAnimations = {
         const iframe = mapModal.querySelector('iframe');
         if (typeof gsap !== 'undefined') {
           if (iframeWrapper) {
-            gsap.fromTo(iframeWrapper, 
-              { opacity: 0, scale: 0.94, y: 15 }, 
+            gsap.fromTo(iframeWrapper,
+              { opacity: 0, scale: 0.94, y: 15 },
               { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out' }
             );
           }
           if (iframe) {
-            gsap.fromTo(iframe, 
-              { opacity: 0, filter: 'blur(4px)' }, 
+            gsap.fromTo(iframe,
+              { opacity: 0, filter: 'blur(4px)' },
               { opacity: 1, filter: 'blur(0px)', duration: 0.6, delay: 0.1, ease: 'power2.out' }
             );
           }

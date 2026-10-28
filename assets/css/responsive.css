@@ -82,8 +82,108 @@
   .header-signup-btn {
     display: none !important;
   }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+  }
   .hamburger-btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: 99; /* Always keep at the very right side of the navbar */
+    margin-left: 0.25rem;
+  }
+
+  /* Full screen Mobile Menu & Cart Drawers — 100% covers background cleanly */
+  #mobileMenuDrawer,
+  #cartDrawer {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    border: none !important;
+    background-color: #FFFFFF !important;
+    z-index: 1080 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #cartDrawer {
+    right: 0 !important;
+    left: 0 !important;
+  }
+
+  #mobileMenuDrawer .offcanvas-header,
+  #cartDrawer .offcanvas-header {
+    padding: 1.15rem 1.25rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #F1F5F9 !important;
+  }
+
+  #mobileMenuDrawer .btn-close,
+  #cartDrawer .btn-close {
+    width: 42px !important;
+    height: 42px !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    opacity: 0.9 !important;
+    background-size: 18px !important;
+    cursor: pointer !important;
+    border-radius: 8px !important;
+    transition: opacity 0.2s ease, background-color 0.2s ease !important;
+  }
+
+  #mobileMenuDrawer .btn-close:hover,
+  #cartDrawer .btn-close:hover {
+    opacity: 1 !important;
+    background-color: #F1F5F9 !important;
+  }
+
+  /* When offcanvas is open, hide navbar completely and lock background scroll */
+  body.modal-open .site-header,
+  body.mobile-menu-open .site-header,
+  body.menu-open .site-header,
+  body:has(#mobileMenuDrawer.show) .site-header,
+  body:has(.offcanvas.show) .site-header {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Prevent background page scroll on mobile while menu is open */
+  html:has(#mobileMenuDrawer.show),
+  html:has(.offcanvas.show),
+  body.mobile-menu-open,
+  body.modal-open,
+  body:has(#mobileMenuDrawer.show),
+  body:has(.offcanvas.show) {
+    overflow: hidden !important;
+    touch-action: none !important;
+    overscroll-behavior: contain !important;
+  }
+
+  #mobileMenuDrawer {
+    touch-action: auto !important;
+    overscroll-behavior: contain !important;
+  }
+
+  #mobileMenuDrawer .offcanvas-body {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+  }
+
+  /* Offcanvas backdrop — dark dim overlay */
+  .offcanvas-backdrop.show {
+    opacity: 0.65 !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    background-color: rgba(15, 23, 42, 0.7) !important;
+    z-index: 1070 !important;
   }
   
   /* Hero Section */
