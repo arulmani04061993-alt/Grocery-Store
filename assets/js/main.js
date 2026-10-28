@@ -241,12 +241,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Listen to close button clicks directly
-  drawer.querySelectorAll(".btn-close, [data-bs-dismiss='offcanvas']").forEach(btn => {
-    btn.addEventListener("click", function (e) {
+  // Listen to close button clicks across all drawers (mobile menu, cart drawer, modals)
+  document.querySelectorAll(".btn-close, [data-bs-dismiss='offcanvas']").forEach(btn => {
+    const handleClose = function (e) {
       e.preventDefault();
-      closeMobileDrawer(drawer);
-    });
+      e.stopPropagation();
+      const parentDrawer = btn.closest(".offcanvas") || document.getElementById("mobileMenuDrawer") || document.getElementById("cartDrawer");
+      closeAnyDrawer(parentDrawer);
+    };
+    btn.addEventListener("click", handleClose, true);
+    btn.addEventListener("touchend", handleClose, { passive: false });
   });
 
   // Listen to clicks on navigation links inside drawer
@@ -256,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!rawHref || rawHref === "#" || rawHref.toLowerCase().startsWith("javascript:")) return;
 
       // Close the drawer immediately
-      closeMobileDrawer(drawer);
+      closeAnyDrawer(drawer);
 
       const currentPath = window.location.pathname.replace(/\/$/, "") || "/index.html";
       const currentFile = (currentPath.split("/").pop() || "index.html").toLowerCase();
@@ -293,46 +297,56 @@ function cleanupDrawerArtifacts() {
 
 // Global outside click / touch handler to close drawer
 function handleGlobalDrawerClose(event) {
-  const drawer = document.getElementById("mobileMenuDrawer");
-  if (!drawer || !drawer.classList.contains("show")) return;
+  const openDrawers = document.querySelectorAll(".offcanvas.show");
+  if (!openDrawers.length) return;
 
-  const hamburgerBtn = event.target.closest(".hamburger-btn");
-  const insideDrawer = event.target.closest("#mobileMenuDrawer");
-  const closeBtn = event.target.closest("#mobileMenuDrawer .btn-close, [data-bs-dismiss='offcanvas']");
+  const clickedTrigger = event.target.closest(".hamburger-btn, .nav-cart-btn");
+  const insideAnyDrawer = event.target.closest(".offcanvas");
+  const closeBtn = event.target.closest(".btn-close, [data-bs-dismiss='offcanvas']");
 
   if (closeBtn) {
-    closeMobileDrawer(drawer);
+    const parentDrawer = closeBtn.closest(".offcanvas");
+    closeAnyDrawer(parentDrawer);
     return;
   }
 
   // Clicked on backdrop or outside drawer content
-  if (!insideDrawer && !hamburgerBtn) {
-    closeMobileDrawer(drawer);
+  if (!insideAnyDrawer && !clickedTrigger) {
+    openDrawers.forEach(d => closeAnyDrawer(d));
   }
 }
 
 document.addEventListener("click", handleGlobalDrawerClose, true);
 document.addEventListener("touchend", handleGlobalDrawerClose, { passive: true });
 
-// Helper function to cleanly close mobile drawer and clean backdrop
-function closeMobileDrawer(drawer) {
-  if (!drawer) return;
-  try {
-    if (window.bootstrap?.Offcanvas) {
-      const inst = window.bootstrap.Offcanvas.getInstance(drawer) || window.bootstrap.Offcanvas.getOrCreateInstance(drawer);
-      if (inst) inst.hide();
-    }
-  } catch (err) {
-    console.warn("Offcanvas close error:", err);
-  }
+// Universal helper to cleanly close any drawer (mobileMenuDrawer, cartDrawer)
+function closeAnyDrawer(drawer) {
+  const targetDrawers = drawer ? [drawer] : Array.from(document.querySelectorAll(".offcanvas.show"));
 
-  drawer.classList.remove("show", "open", "active");
-  drawer.setAttribute("aria-hidden", "true");
-  drawer.style.visibility = "hidden";
-  setTimeout(() => {
-    drawer.style.removeProperty("visibility");
-  }, 350);
+  targetDrawers.forEach(d => {
+    if (!d) return;
+    try {
+      if (window.bootstrap?.Offcanvas) {
+        const inst = window.bootstrap.Offcanvas.getInstance(d) || window.bootstrap.Offcanvas.getOrCreateInstance(d);
+        if (inst) inst.hide();
+      }
+    } catch (err) {
+      console.warn("Offcanvas close error:", err);
+    }
+
+    d.classList.remove("show", "open", "active");
+    d.setAttribute("aria-hidden", "true");
+    d.style.visibility = "hidden";
+    setTimeout(() => {
+      d.style.removeProperty("visibility");
+    }, 350);
+  });
 
   cleanupDrawerArtifacts();
+}
+
+// Legacy alias for compatibility
+function closeMobileDrawer(drawer) {
+  closeAnyDrawer(drawer);
 }
 

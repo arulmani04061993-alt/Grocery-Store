@@ -125,20 +125,28 @@
   }
 
   #mobileMenuDrawer .btn-close,
-  #cartDrawer .btn-close {
-    width: 42px !important;
-    height: 42px !important;
-    padding: 10px !important;
+  #cartDrawer .btn-close,
+  .offcanvas .btn-close {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    padding: 12px !important;
     margin: 0 !important;
-    opacity: 0.9 !important;
-    background-size: 18px !important;
+    opacity: 1 !important;
+    background-size: 20px !important;
     cursor: pointer !important;
     border-radius: 8px !important;
+    position: relative !important;
+    z-index: 1099 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
     transition: opacity 0.2s ease, background-color 0.2s ease !important;
   }
 
   #mobileMenuDrawer .btn-close:hover,
-  #cartDrawer .btn-close:hover {
+  #cartDrawer .btn-close:hover,
+  .offcanvas .btn-close:hover {
     opacity: 1 !important;
     background-color: #F1F5F9 !important;
   }
