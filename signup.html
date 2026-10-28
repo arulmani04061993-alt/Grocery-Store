@@ -216,12 +216,20 @@
                   <label for="signupPassword" class="mockup-label">Password</label>
                   <a href="404.html" class="mockup-forgot-link">Forgot Password?</a>
                 </div>
-                <input type="password" 
-                       id="signupPassword" 
-                       class="mockup-input" 
-                       placeholder="••••••••" 
-                       required 
-                       autocomplete="new-password">
+                <div class="mockup-password-wrapper">
+                  <input type="password" 
+                         id="signupPassword" 
+                         class="mockup-input" 
+                         placeholder="••••••••" 
+                         required 
+                         autocomplete="new-password">
+                  <button type="button" 
+                          class="mockup-password-toggle" 
+                          onclick="togglePasswordVisibility('signupPassword', this)" 
+                          aria-label="Toggle password visibility">
+                    <i class="bi bi-eye-slash"></i>
+                  </button>
+                </div>
               </div>
 
               <!-- 4. Re-Password Input Field with Forgot Password? link -->
@@ -230,12 +238,20 @@
                   <label for="signupRePassword" class="mockup-label">Re-Password</label>
                   <a href="404.html" class="mockup-forgot-link">Forgot Password?</a>
                 </div>
-                <input type="password" 
-                       id="signupRePassword" 
-                       class="mockup-input" 
-                       placeholder="••••••••" 
-                       required 
-                       autocomplete="new-password">
+                <div class="mockup-password-wrapper">
+                  <input type="password" 
+                         id="signupRePassword" 
+                         class="mockup-input" 
+                         placeholder="••••••••" 
+                         required 
+                         autocomplete="new-password">
+                  <button type="button" 
+                          class="mockup-password-toggle" 
+                          onclick="togglePasswordVisibility('signupRePassword', this)" 
+                          aria-label="Toggle password visibility">
+                    <i class="bi bi-eye-slash"></i>
+                  </button>
+                </div>
               </div>
 
               <!-- 5. Remember me for 30 days Checkbox -->
@@ -646,11 +662,11 @@
         <div class="footer-col-links">
           <h4 class="footer-col-title">Categories</h4>
           <ul class="footer-links-list">
-            <li><a href="index.html?category=fruits">Fresh Vegetables</a></li>
-            <li><a href="index.html?category=fruits">Organic Fruits</a></li>
-            <li><a href="index.html?category=dairy">Dairy &amp; Eggs</a></li>
-            <li><a href="index.html?category=bakery">Bread &amp; Bakery</a></li>
-            <li><a href="index.html?category=meat">Meat &amp; Seafood</a></li>
+            <li><a href="404.html">Fresh Vegetables</a></li>
+            <li><a href="404.html">Organic Fruits</a></li>
+            <li><a href="404.html">Dairy &amp; Eggs</a></li>
+            <li><a href="404.html">Bread &amp; Bakery</a></li>
+            <li><a href="404.html">Meat &amp; Seafood</a></li>
             <li><a href="404.html">404 Error</a></li>
           </ul>
         </div>
@@ -660,16 +676,22 @@
           <h4 class="footer-col-title">Contact Info</h4>
           <ul class="footer-contact-list">
             <li class="contact-item">
-              <i class="bi bi-geo-alt-fill"></i>
-              <span>1234 Fresh Market Lane, Suite 100, San Francisco, CA 94103</span>
+              <a href="404.html" class="d-flex align-items-center gap-2 text-decoration-none text-inherit">
+                <i class="bi bi-geo-alt-fill"></i>
+                <span>1234 Fresh Market Lane, Suite 100, San Francisco, CA 94103</span>
+              </a>
             </li>
             <li class="contact-item">
-              <i class="bi bi-telephone-fill"></i>
-              <a href="tel:+18005553737">+1 (800) 555-FRESH</a>
+              <a href="404.html" class="d-flex align-items-center gap-2 text-decoration-none text-inherit">
+                <i class="bi bi-telephone-fill"></i>
+                <span>+1 (800) 555-FRESH</span>
+              </a>
             </li>
             <li class="contact-item">
-              <i class="bi bi-envelope-fill"></i>
-              <a href="mailto:support@stacklyfresh.com">hello@freshcartgrocery.com</a>
+              <a href="404.html" class="d-flex align-items-center gap-2 text-decoration-none text-inherit">
+                <i class="bi bi-envelope-fill"></i>
+                <span>hello@freshcartgrocery.com</span>
+              </a>
             </li>
           </ul>
         </div>
@@ -682,9 +704,9 @@
           &copy; 2026 STACKLY FreshCart Grocery Inc. All rights reserved.
         </div>
         <div class="footer-legal-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Settings</a>
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms of Service</a>
+          <a href="404.html">Cookie Settings</a>
         </div>
       </div>
 
@@ -873,6 +895,26 @@
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3500);
+    }
+
+    // Password Visibility Toggle (Eye open = show password, Eye off / slash = hidden ...)
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      const icon = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        if (icon) {
+          icon.classList.remove('bi-eye-slash');
+          icon.classList.add('bi-eye');
+        }
+      } else {
+        input.type = 'password';
+        if (icon) {
+          icon.classList.remove('bi-eye');
+          icon.classList.add('bi-eye-slash');
+        }
+      }
     }
 
     // Forgot Password Prompt
