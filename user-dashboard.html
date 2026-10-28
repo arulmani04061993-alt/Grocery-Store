@@ -100,13 +100,6 @@
           </a>
         </li>
         <li class="sidebar-menu-item">
-          <a href="#payments" class="sidebar-link" onclick="switchTab(event, 'payments')">
-            <i class="bi bi-credit-card-2-front-fill text-danger"></i>
-            <span>Payment Methods</span>
-            <span class="sidebar-nav-badge">4</span>
-          </a>
-        </li>
-        <li class="sidebar-menu-item">
           <a href="#settings" class="sidebar-link" onclick="switchTab(event, 'settings')">
             <i class="bi bi-gear-fill text-muted"></i>
             <span>Account Settings</span>
@@ -1193,291 +1186,7 @@
       </div>
 
       <!-- ====================================================================
-           TAB PANE 7: PAYMENT METHODS
-           ==================================================================== -->
-      <div class="dash-tab-pane" id="payments-pane">
-        
-        <!-- Payment Methods & Cards Overview -->
-        <section class="dash-table-card p-4 mb-4" aria-label="Customer Payment Methods">
-          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
-            <div>
-              <h3 class="table-card-title mb-1">
-                <i class="bi bi-credit-card-2-front-fill text-teal"></i>
-                <span>Saved Payment Methods</span>
-              </h3>
-              <small class="text-muted">Manage your credit/debit cards, UPI handles, and digital grocery wallets</small>
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-sm btn-outline-secondary" onclick="window.location.href='404.html'">
-                <i class="bi bi-shield-lock-fill me-1 text-teal"></i> Security Settings
-              </button>
-              <button class="btn btn-sm btn-teal text-white" onclick="window.location.href='404.html'">
-                <i class="bi bi-plus-lg me-1"></i> Add New Method
-              </button>
-            </div>
-          </div>
-
-          <!-- Cards Grid -->
-          <div class="row g-3 mb-4">
-            <!-- Card 1: HDFC Regalia Visa (Default) -->
-            <div class="col-md-6 col-lg-6">
-              <div class="border rounded-4 p-4 position-relative" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); color: #FFFFFF; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);">
-                <span class="badge bg-teal position-absolute top-0 end-0 m-3 px-3 py-2 fw-semibold">Default Card</span>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="badge bg-white bg-opacity-20 text-white px-2 py-1 small"><i class="bi bi-cpu-fill me-1"></i> Contactless Chip</span>
-                  <i class="bi bi-credit-card-2-front fs-2 text-info"></i>
-                </div>
-                <div class="mb-3">
-                  <small class="text-white-50 text-uppercase d-block" style="letter-spacing: 0.1em; font-size: 0.72rem;">Card Number</small>
-                  <h4 class="fw-bold tracking-wider mb-0 text-white font-monospace" style="letter-spacing: 0.15em;">•••• •••• •••• 4242</h4>
-                </div>
-                <div class="d-flex justify-content-between align-items-end pt-2 border-top border-white border-opacity-10">
-                  <div>
-                    <small class="text-white-50 text-uppercase d-block" style="font-size: 0.68rem;">Cardholder</small>
-                    <strong class="text-white" style="font-size: 0.92rem;">Sarah Jenkins</strong>
-                  </div>
-                  <div>
-                    <small class="text-white-50 text-uppercase d-block" style="font-size: 0.68rem;">Expires</small>
-                    <strong class="text-white" style="font-size: 0.92rem;">08 / 2028</strong>
-                  </div>
-                  <div class="text-end">
-                    <span class="fw-extrabold text-info fs-5 fst-italic">VISA</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 mt-3 pt-3 border-top border-white border-opacity-10">
-                  <button class="btn btn-sm btn-light text-dark fw-semibold px-3 py-1 rounded-pill" onclick="window.location.href='404.html'">Manage</button>
-                  <button class="btn btn-sm btn-outline-light px-3 py-1 rounded-pill" onclick="window.location.href='404.html'">Edit Nickname</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 2: ICICI Sapphiro Mastercard -->
-            <div class="col-md-6 col-lg-6">
-              <div class="border rounded-4 p-4 position-relative" style="background: linear-gradient(135deg, #134E4A 0%, #0F766E 100%); color: #FFFFFF; box-shadow: 0 8px 24px rgba(15, 118, 110, 0.15);">
-                <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3 px-3 py-2 fw-semibold">Backup</span>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="badge bg-white bg-opacity-20 text-white px-2 py-1 small"><i class="bi bi-cpu-fill me-1"></i> Contactless Chip</span>
-                  <i class="bi bi-credit-card-fill fs-2 text-warning"></i>
-                </div>
-                <div class="mb-3">
-                  <small class="text-white-50 text-uppercase d-block" style="letter-spacing: 0.1em; font-size: 0.72rem;">Card Number</small>
-                  <h4 class="fw-bold tracking-wider mb-0 text-white font-monospace" style="letter-spacing: 0.15em;">•••• •••• •••• 8821</h4>
-                </div>
-                <div class="d-flex justify-content-between align-items-end pt-2 border-top border-white border-opacity-10">
-                  <div>
-                    <small class="text-white-50 text-uppercase d-block" style="font-size: 0.68rem;">Cardholder</small>
-                    <strong class="text-white" style="font-size: 0.92rem;">Sarah Jenkins</strong>
-                  </div>
-                  <div>
-                    <small class="text-white-50 text-uppercase d-block" style="font-size: 0.68rem;">Expires</small>
-                    <strong class="text-white" style="font-size: 0.92rem;">11 / 2029</strong>
-                  </div>
-                  <div class="text-end">
-                    <span class="fw-extrabold text-warning fs-5 fst-italic">Mastercard</span>
-                  </div>
-                </div>
-                <div class="d-flex gap-2 mt-3 pt-3 border-top border-white border-opacity-10">
-                  <button class="btn btn-sm btn-light text-dark fw-semibold px-3 py-1 rounded-pill" onclick="window.location.href='404.html'">Make Default</button>
-                  <button class="btn btn-sm btn-outline-danger text-white border-white px-3 py-1 rounded-pill" onclick="window.location.href='404.html'">Remove</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 3: Google Pay / PhonePe UPI -->
-            <div class="col-md-6 col-lg-6">
-              <div class="border rounded-4 p-4 bg-light position-relative h-100">
-                <span class="badge bg-success position-absolute top-0 end-0 m-3">Verified UPI</span>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <div class="rounded-circle d-flex align-items-center justify-content-center bg-white shadow-sm" style="width: 52px; height: 52px; min-width: 52px;">
-                    <i class="bi bi-qr-code text-teal fs-3"></i>
-                  </div>
-                  <div>
-                    <h5 class="fw-bold mb-0 text-dark">Google Pay UPI</h5>
-                    <small class="text-muted font-monospace">sarah.jenkins@okaxis</small>
-                  </div>
-                </div>
-                <p class="text-muted small mb-3">
-                  <i class="bi bi-check-circle-fill text-success me-1"></i> 1-click automatic approval enabled for recurring grocery milk & bread deliveries up to ₹2,500.
-                </p>
-                <div class="d-flex gap-2 mt-auto">
-                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Modify Mandate</button>
-                  <button class="action-btn-sm text-secondary" onclick="window.location.href='404.html'">Unlink</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card 4: Apple Pay / Digital Wallet -->
-            <div class="col-md-6 col-lg-6">
-              <div class="border rounded-4 p-4 bg-light position-relative h-100">
-                <span class="badge bg-dark position-absolute top-0 end-0 m-3">Apple Pay</span>
-                <div class="d-flex align-items-center gap-3 mb-3">
-                  <div class="rounded-circle d-flex align-items-center justify-content-center bg-white shadow-sm" style="width: 52px; height: 52px; min-width: 52px;">
-                    <i class="bi bi-apple text-dark fs-3"></i>
-                  </div>
-                  <div>
-                    <h5 class="fw-bold mb-0 text-dark">Apple Cash & Pay</h5>
-                    <small class="text-muted">Connected to iPhone 15 Pro Max</small>
-                  </div>
-                </div>
-                <p class="text-muted small mb-3">
-                  <i class="bi bi-shield-check text-primary me-1"></i> Biometric FaceID authorization active. Zero numbers stored on merchant servers.
-                </p>
-                <div class="d-flex gap-2 mt-auto">
-                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Device Settings</button>
-                  <button class="action-btn-sm text-secondary" onclick="window.location.href='404.html'">Deactivate</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- STACKLY Fresh Wallet Quick Card -->
-          <div class="p-4 rounded-4 mb-2" style="background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); border: 1.5px dashed #059669;">
-            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center shadow-sm" style="width: 54px; height: 54px; min-width: 54px;">
-                  <i class="bi bi-wallet2 fs-3"></i>
-                </div>
-                <div>
-                  <div class="d-flex align-items-center gap-2">
-                    <h5 class="fw-bold text-dark mb-0">STACKLY Fresh Wallet</h5>
-                    <span class="badge bg-success">Instant Cashback 5%</span>
-                  </div>
-                  <small class="text-muted">Available balance for express zero-gateway grocery orders</small>
-                </div>
-              </div>
-              <div class="d-flex align-items-center gap-4">
-                <div class="text-end">
-                  <small class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.7rem;">Wallet Balance</small>
-                  <span class="fs-3 fw-bolder text-success">₹1,850.00</span>
-                </div>
-                <div class="d-flex gap-2">
-                  <button class="btn btn-teal text-white btn-sm px-3 rounded-pill fw-semibold" onclick="window.location.href='404.html'">
-                    <i class="bi bi-plus-circle me-1"></i> Top Up
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Static Billing & Payment History Table -->
-        <section class="dash-table-card p-4 mb-4" aria-label="Recent Payment Invoices">
-          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
-            <div>
-              <h3 class="table-card-title mb-1">
-                <i class="bi bi-receipt text-teal"></i>
-                <span>Recent Payment Transactions</span>
-              </h3>
-              <small class="text-muted">Verified payment logs and downloaded tax invoices</small>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary" onclick="window.location.href='404.html'">
-              <i class="bi bi-file-earmark-arrow-down me-1"></i> Download All Invoices
-            </button>
-          </div>
-
-          <div class="table-responsive">
-            <table class="dash-custom-table">
-              <thead>
-                <tr>
-                  <th>Transaction ID</th>
-                  <th>Date & Time</th>
-                  <th>Payment Method</th>
-                  <th>Amount</th>
-                  <th>Order Ref</th>
-                  <th>Status</th>
-                  <th>Invoice</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong class="font-monospace text-dark">TXN-894218</strong></td>
-                  <td>Oct 27, 2026, 09:15 AM</td>
-                  <td><i class="bi bi-credit-card-2-front text-primary me-1"></i> Visa •••• 4242</td>
-                  <td><strong class="text-dark">₹1,240.00</strong></td>
-                  <td><a href="#orders" onclick="switchTab(event, 'orders')" class="text-teal text-decoration-none fw-semibold">#STK-9021</a></td>
-                  <td><span class="status-badge status-badge-success"><i class="bi bi-check-circle-fill"></i> Paid</span></td>
-                  <td><button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-file-pdf text-danger me-1"></i> PDF</button></td>
-                </tr>
-                <tr>
-                  <td><strong class="font-monospace text-dark">TXN-873912</strong></td>
-                  <td>Oct 22, 2026, 04:42 PM</td>
-                  <td><i class="bi bi-wallet2 text-success me-1"></i> Fresh Wallet</td>
-                  <td><strong class="text-dark">₹620.00</strong></td>
-                  <td><a href="#orders" onclick="switchTab(event, 'orders')" class="text-teal text-decoration-none fw-semibold">#STK-8942</a></td>
-                  <td><span class="status-badge status-badge-success"><i class="bi bi-check-circle-fill"></i> Paid</span></td>
-                  <td><button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-file-pdf text-danger me-1"></i> PDF</button></td>
-                </tr>
-                <tr>
-                  <td><strong class="font-monospace text-dark">TXN-861054</strong></td>
-                  <td>Oct 15, 2026, 11:20 AM</td>
-                  <td><i class="bi bi-qr-code text-info me-1"></i> Google Pay UPI</td>
-                  <td><strong class="text-dark">₹2,480.00</strong></td>
-                  <td><a href="#orders" onclick="switchTab(event, 'orders')" class="text-teal text-decoration-none fw-semibold">#STK-8815</a></td>
-                  <td><span class="status-badge status-badge-success"><i class="bi bi-check-circle-fill"></i> Paid</span></td>
-                  <td><button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-file-pdf text-danger me-1"></i> PDF</button></td>
-                </tr>
-                <tr>
-                  <td><strong class="font-monospace text-dark">TXN-842991</strong></td>
-                  <td>Oct 04, 2026, 02:10 PM</td>
-                  <td><i class="bi bi-credit-card-fill text-warning me-1"></i> Mastercard •••• 8821</td>
-                  <td><strong class="text-dark">₹1,890.00</strong></td>
-                  <td><a href="#orders" onclick="switchTab(event, 'orders')" class="text-teal text-decoration-none fw-semibold">#STK-8670</a></td>
-                  <td><span class="status-badge status-badge-success"><i class="bi bi-check-circle-fill"></i> Paid</span></td>
-                  <td><button class="action-btn-sm" onclick="window.location.href='404.html'"><i class="bi bi-file-pdf text-danger me-1"></i> PDF</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- Security & Payment Assurance Banner -->
-        <section class="border rounded-4 p-4 bg-white shadow-sm" aria-label="Security & Compliance Guarantee">
-          <div class="row g-4 align-items-center">
-            <div class="col-md-3 text-center text-md-start">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-teal bg-opacity-10 text-teal d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; min-width: 48px;">
-                  <i class="bi bi-shield-lock-fill fs-3"></i>
-                </div>
-                <div>
-                  <h6 class="fw-bold mb-0 text-dark">256-Bit SSL</h6>
-                  <small class="text-muted">End-to-End Encrypted</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 text-center text-md-start">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; min-width: 48px;">
-                  <i class="bi bi-patch-check-fill fs-3"></i>
-                </div>
-                <div>
-                  <h6 class="fw-bold mb-0 text-dark">PCI-DSS Level 1</h6>
-                  <small class="text-muted">Certified Vault Security</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 text-center text-md-start">
-              <div class="d-flex align-items-center gap-3">
-                <div class="rounded-circle bg-success bg-opacity-10 text-success d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; min-width: 48px;">
-                  <i class="bi bi-arrow-counterclockwise fs-3"></i>
-                </div>
-                <div>
-                  <h6 class="fw-bold mb-0 text-dark">Instant Refunds</h6>
-                  <small class="text-muted">Credited to source in 2 hrs</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 text-center text-md-end">
-              <button class="btn btn-sm btn-outline-teal rounded-pill px-3" onclick="window.location.href='404.html'">
-                <i class="bi bi-info-circle me-1"></i> Payment FAQs
-              </button>
-            </div>
-          </div>
-        </section>
-
-      </div>
-
-      <!-- ====================================================================
-           TAB PANE 8: ACCOUNT SETTINGS
+           TAB PANE 7: ACCOUNT SETTINGS
            ==================================================================== -->
       <div class="dash-tab-pane" id="settings-pane">
         <section class="dash-table-card p-4" aria-label="Customer Account Settings">
@@ -1542,6 +1251,61 @@
               <i class="bi bi-check2-circle me-1"></i> Save Changes
             </button>
           </form>
+        </section>
+
+        <!-- Payment Methods Section (Added to Account Settings) -->
+        <section class="dash-table-card p-4 mt-4" aria-label="Customer Payment Methods in Settings">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h3 class="table-card-title mb-1">
+                <i class="bi bi-credit-card-2-front-fill text-teal"></i>
+                <span>Payment Methods</span>
+              </h3>
+              <small class="text-muted">Securely manage your credit cards and digital wallets</small>
+            </div>
+            <button class="btn btn-sm btn-teal text-white" onclick="window.location.href='404.html'">+ Add
+              Card</button>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-light position-relative">
+                <span class="badge bg-teal position-absolute top-0 end-0 m-3">Default</span>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <i class="bi bi-credit-card text-primary fs-1"></i>
+                  <div>
+                    <h5 class="fw-bold mb-0">Visa ending in 4242</h5>
+                    <small class="text-muted">Expires 08/2028</small>
+                  </div>
+                </div>
+                <p class="text-muted small mb-3">Cardholder Name: Sarah Jenkins</p>
+                <div class="d-flex gap-2">
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Manage</button>
+                  <button class="action-btn-sm text-danger"
+                    onclick="window.location.href='404.html'">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="border rounded-4 p-4 bg-white position-relative">
+                <span class="badge bg-secondary position-absolute top-0 end-0 m-3">Backup</span>
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <i class="bi bi-wallet2 text-success fs-1"></i>
+                  <div>
+                    <h5 class="fw-bold mb-0">Apple Pay</h5>
+                    <small class="text-muted">Connected to iPhone 15 Pro</small>
+                  </div>
+                </div>
+                <p class="text-muted small mb-3">Auto-recharge enabled for instant 1-click checkout</p>
+                <div class="d-flex gap-2">
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Configure</button>
+                  <button class="action-btn-sm" onclick="window.location.href='404.html'">Make
+                    Default</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
