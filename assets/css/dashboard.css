@@ -1585,6 +1585,11 @@ body.dashboard-body {
   pointer-events: all;
 }
 
+/* Sidebar close button: hidden completely by default on desktop */
+.sidebar-close-btn {
+  display: none !important;
+}
+
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */

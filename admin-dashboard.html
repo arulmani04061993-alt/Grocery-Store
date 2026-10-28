@@ -45,6 +45,9 @@
         <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="sidebar-brand-img">
       </a>
       <span class="sidebar-badge-tag">Admin</span>
+      <button type="button" class="sidebar-close-btn d-lg-none" onclick="toggleMobileSidebar()" aria-label="Close Sidebar">
+        <i class="bi bi-x-lg"></i>
+      </button>
     </div>
 
     <!-- Sidebar Navigation Links (Full Static Data) -->
@@ -1210,10 +1213,18 @@
         history.pushState(null, null, '#' + tabId.replace('-pane', ''));
       }
 
+      // Close mobile sidebar and completely unlock screen if open
+      closeMobileSidebar();
+    }
+
+    // Helper to close mobile sidebar cleanly
+    function closeMobileSidebar() {
       const sidebar = document.getElementById('dashSidebar');
-      if (sidebar && sidebar.classList.contains('mobile-open')) {
-        sidebar.classList.remove('mobile-open');
-      }
+      const overlay = document.getElementById('dashSidebarOverlay');
+      if (sidebar) sidebar.classList.remove('mobile-open');
+      if (overlay) overlay.classList.remove('active');
+      document.documentElement.classList.remove('sidebar-locked');
+      document.body.classList.remove('sidebar-locked');
     }
 
     // Search filter for admin orders table
