@@ -1088,11 +1088,24 @@
       loadAdminSession();
 
       // Check if URL has a hash and activate that tab
-      if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        if (hash) switchAdminTab(null, hash);
-      }
+      const initialHash = window.location.hash.substring(1) || 'overview';
+      switchAdminTab(null, initialHash);
+
+      // Save admin dashboard URL so 404 Go Back button returns to this exact place
+      saveAdminDashboardLocation();
+
+      window.addEventListener('popstate', () => {
+        const hash = window.location.hash.substring(1) || 'overview';
+        switchAdminTab(null, hash);
+      });
     });
+
+    function saveAdminDashboardLocation() {
+      try {
+        sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
+        sessionStorage.setItem('stackly_dashboard_url', window.location.href);
+      } catch (e) {}
+    }
 
     function loadAdminSession() {
       let user = null;
@@ -1212,6 +1225,8 @@
       if (history.pushState) {
         history.pushState(null, null, '#' + tabId.replace('-pane', ''));
       }
+
+      saveAdminDashboardLocation();
 
       // Close mobile sidebar and completely unlock screen if open
       closeMobileSidebar();

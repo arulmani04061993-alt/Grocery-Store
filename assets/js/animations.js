@@ -320,11 +320,10 @@ window.StacklyAnimations = {
   /**
    * Trigger Wave Loading Screen and Navigate directly to Home Page (top of index.html)
    */
+  /**
+   * Navigate directly to Home Page (top of index.html)
+   */
   triggerGoHome() {
-    if (this._isNavigating) return;
-    this._isNavigating = true;
-
-    // Clear all previous scroll restorations and explicitly set scroll to top
     try {
       sessionStorage.removeItem('stackly_should_restore_scroll');
       sessionStorage.removeItem('stackly_saved_scroll_y');
@@ -332,73 +331,35 @@ window.StacklyAnimations = {
       sessionStorage.setItem('stackly_scroll_to_top', 'true');
     } catch (e) { }
 
-    const preloader = this.ensurePreloaderElement();
-    preloader.classList.remove('preloader-hidden');
-    preloader.classList.add('preloader-visible');
-    preloader.style.display = 'flex';
-    preloader.style.opacity = '1';
-    document.body.classList.add('preloader-active');
-
-    // Force reflow
-    void preloader.offsetWidth;
-
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 320);
-
-    // Failsafe
-    setTimeout(() => {
-      this._isNavigating = false;
-    }, 4000);
+    window.location.href = 'index.html';
   },
 
   /**
-   * Trigger Wave Loading Screen and Navigate Back to Previous Page
+   * Navigate Back to Previous Page / Dashboard Location accurately
    */
   triggerGoBack() {
-    if (this._isNavigating) return;
-    this._isNavigating = true;
-
-    // Ensure restore flag is active
     try {
       sessionStorage.setItem('stackly_should_restore_scroll', 'true');
     } catch (e) { }
 
-    const preloader = this.ensurePreloaderElement();
-    preloader.classList.remove('preloader-hidden');
-    preloader.classList.add('preloader-visible');
-    preloader.style.display = 'flex';
-    preloader.style.opacity = '1';
-    document.body.classList.add('preloader-active');
-
-    // Force reflow
-    void preloader.offsetWidth;
-
-    // Determine exact target URL
+    // Priority 1: Check if coming from a dashboard (User or Admin Dashboard with exact tab)
     let targetDest = '';
     try {
-      targetDest = sessionStorage.getItem('stackly_saved_scroll_url') || '';
+      targetDest = sessionStorage.getItem('stackly_dashboard_url') || sessionStorage.getItem('stackly_saved_scroll_url') || '';
     } catch (e) { }
 
-    if (!targetDest && document.referrer && document.referrer.includes(window.location.host)) {
+    // Priority 2: Check document.referrer if not 404
+    if (!targetDest && document.referrer && document.referrer.includes(window.location.host) && !document.referrer.includes('404.html')) {
       targetDest = document.referrer;
     }
 
-    // Small delay so user immediately sees wave loading on current page before navigation starts
-    setTimeout(() => {
-      if (targetDest && !targetDest.includes('404.html')) {
-        window.location.href = targetDest;
-      } else if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = 'index.html';
-      }
-    }, 250);
-
-    // Failsafe reset
-    setTimeout(() => {
-      this._isNavigating = false;
-    }, 4000);
+    if (targetDest && !targetDest.includes('404.html')) {
+      window.location.href = targetDest;
+    } else if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = 'index.html';
+    }
   },
 
   /**

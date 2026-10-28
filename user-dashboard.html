@@ -1348,11 +1348,24 @@
       loadUserSession();
 
       // Check if URL has a hash and activate that tab
-      if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        if (hash) switchTab(null, hash);
-      }
+      const initialHash = window.location.hash.substring(1) || 'overview';
+      switchTab(null, initialHash);
+
+      // Save dashboard URL so 404 Go Back button returns to this exact place
+      saveDashboardLocation();
+
+      window.addEventListener('popstate', () => {
+        const hash = window.location.hash.substring(1) || 'overview';
+        switchTab(null, hash);
+      });
     });
+
+    function saveDashboardLocation() {
+      try {
+        sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
+        sessionStorage.setItem('stackly_dashboard_url', window.location.href);
+      } catch (e) {}
+    }
 
     function loadUserSession() {
       let user = null;
@@ -1472,6 +1485,8 @@
       if (history.pushState) {
         history.pushState(null, null, '#' + tabId.replace('-pane', ''));
       }
+
+      saveDashboardLocation();
 
       // Close mobile sidebar and completely unlock screen if open
       closeMobileSidebar();
