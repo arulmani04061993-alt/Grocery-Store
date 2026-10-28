@@ -271,13 +271,24 @@
             <div class="contact-map-card">
               <div class="contact-map-viewport"
                 style="position: relative; height: 380px; overflow: hidden; border-radius: 20px;">
-                <!-- Real Google Map iframe for MMR Complex, Maravaneri, Salem (contains native single Info Card) -->
+                <!-- Real Google Map iframe for MMR Complex, Maravaneri, Salem -->
                 <iframe
                   src="https://maps.google.com/maps?q=MMR+Complex,+Maravaneri,+Salem,+Tamil+Nadu+636007&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   width="100%" height="100%" style="border:0; display:block; width:100%; height:100%;"
                   allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                   title="MMR Complex Salem Google Map">
                 </iframe>
+
+                <!-- Mobile Tap to Open Map in New Page Overlay -->
+                <a href="https://maps.google.com/maps?q=MMR+Complex,+Maravaneri,+Salem,+Tamil+Nadu+636007" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="mobile-map-link-overlay" 
+                   aria-label="Open location in Google Maps">
+                   <span class="mobile-map-chip">
+                     <i class="bi bi-box-arrow-up-right"></i> Open in Maps
+                   </span>
+                </a>
               </div>
 
               <!-- Bottom Bar inside Map Card -->
