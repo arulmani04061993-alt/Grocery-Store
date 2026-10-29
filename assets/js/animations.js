@@ -279,12 +279,17 @@ window.StacklyAnimations = {
       this._isRestoringScroll = true;
 
       const performScroll = () => {
-        // Priority 1: target anchor/section element (e.g. #newsletter, #featured-products, #curated-bundles, #siteFooter, etc.)
+        // Priority: Restore exact pixel position first
+        if (savedY !== null && !isNaN(savedY) && savedY >= 0) {
+          window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
+          if (document.documentElement) document.documentElement.scrollTop = savedY;
+          if (document.body) document.body.scrollTop = savedY;
+        }
+
+        // Secondary: Ensure target anchor element is revealed and fully visible
         if (savedAnchor) {
           const targetEl = document.querySelector(savedAnchor);
           if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'instant', block: 'center' });
-            // Ensure target section and all internal animated children are 100% visible
             targetEl.style.opacity = '1';
             targetEl.style.transform = 'none';
             targetEl.style.visibility = 'visible';
@@ -294,113 +299,35 @@ window.StacklyAnimations = {
               el.style.transform = 'none';
               el.style.visibility = 'visible';
             });
-            return;
           }
-        }
-        // Priority 2: exact pixel scroll position
-        if (savedY !== null && !isNaN(savedY) && savedY > 0) {
-          window.scrollTo({ top: savedY, left: 0, behavior: 'instant' });
-          if (document.documentElement) document.documentElement.scrollTop = savedY;
-          if (document.body) document.body.scrollTop = savedY;
         }
       };
 
-      // Perform immediately and repeatedly across progressive layout phases and after preloader finishes
+      // Perform immediately and repeatedly across layout stabilization phases
       performScroll();
       requestAnimationFrame(performScroll);
-      setTimeout(performScroll, 50);
-      setTimeout(performScroll, 200);
+      setTimeout(performScroll, 30);
+      setTimeout(performScroll, 100);
+      setTimeout(performScroll, 250);
       setTimeout(performScroll, 500);
-      setTimeout(performScroll, 1000);
-      setTimeout(performScroll, 2050);
+      setTimeout(performScroll, 800);
+      setTimeout(performScroll, 1200);
+      setTimeout(performScroll, 1600);
       setTimeout(() => {
         performScroll();
         if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-      }, 2100);
-      setTimeout(performScroll, 2300);
+      }, 2000);
       setTimeout(() => {
         performScroll();
         if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
         this._isRestoringScroll = false;
         sessionStorage.removeItem('stackly_should_restore_scroll');
-      }, 2600);
+      }, 2500);
     } catch (e) {
       console.warn('Scroll restore error:', e);
     }
-  },  /**
-   * Trigger Wave Loading Screen before Navigating to Target URL
-   */
-  triggerPageTransition(targetUrl, sourceElement) {
-    if (this._isNavigating) return;
-    this._isNavigating = true;
-
-    // Check if target is explicitly Home page (e.g. from 404 or login)
-    const isExplicitHome = sourceElement && (
-      sourceElement.classList.contains('ref-btn-home') ||
-      sourceElement.classList.contains('brand-logo-link') ||
-      sourceElement.id === 'refBtnHome' ||
-      sourceElement.classList.contains('login-back-store-btn')
-    );
-
-    if (isExplicitHome) {
-      try {
-        sessionStorage.removeItem('stackly_should_restore_scroll');
-        sessionStorage.removeItem('stackly_saved_scroll_y');
-        sessionStorage.removeItem('stackly_saved_anchor');
-        sessionStorage.setItem('stackly_scroll_to_top', 'true');
-      } catch (e) { }
-    } else {
-      // Snapshot exact scroll position and section before leaving
-      const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
-      try {
-        sessionStorage.setItem('stackly_saved_scroll_y', currentY.toString());
-        sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
-        sessionStorage.setItem('stackly_should_restore_scroll', 'true');
-
-        if (sourceElement && typeof sourceElement.closest === 'function') {
-          const footer = sourceElement.closest('#siteFooter, footer');
-          if (footer) {
-            sessionStorage.setItem('stackly_saved_anchor', '#siteFooter');
-          } else {
-            const section = sourceElement.closest('section[id], div[id]');
-            if (section && section.id) {
-              sessionStorage.setItem('stackly_saved_anchor', '#' + section.id);
-            } else {
-              sessionStorage.removeItem('stackly_saved_anchor');
-            }
-          }
-        } else if (currentY > 3500) {
-          sessionStorage.setItem('stackly_saved_anchor', '#siteFooter');
-        }
-      } catch (e) { }
-    }
-
-    const preloader = this.ensurePreloaderElement();
-    preloader.classList.remove('preloader-hidden');
-    preloader.classList.add('preloader-visible');
-    preloader.style.display = 'flex';
-    preloader.style.opacity = '1';
-    document.body.classList.add('preloader-active');
-
-    // Force reflow
-    void preloader.offsetWidth;
-
-    preloader.style.transition = 'opacity 0.2s ease-in';
-    preloader.style.opacity = '1';
-
-    setTimeout(() => {
-      window.location.href = targetUrl;
-    }, 320);
-
-    // Failsafe
-    setTimeout(() => {
-      this._isNavigating = false;
-    }, 4000);
   },
 
-  /**
-   * Trigger Wave Loading Screen and Navigate directly to Home Page (top of index.html)
-   */
   /**
    * Navigate directly to Home Page (top of index.html)
    */

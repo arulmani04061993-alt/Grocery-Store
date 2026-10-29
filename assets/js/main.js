@@ -135,22 +135,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   } catch (err) {}
 
-  // Global click tracker: whenever any button or link pointing to 404.html is clicked, capture exact scroll & page location
+  // Global click tracker: whenever any button, link or card pointing to 404.html is clicked, capture exact scroll, section & element location
   document.addEventListener('click', (e) => {
-    const target = e.target.closest('a, button');
+    const target = e.target.closest('a, button, [onclick]');
     if (!target) return;
-    const href = target.getAttribute('href') || target.getAttribute('onclick') || '';
+    const href = (target.getAttribute('href') || '') + ' ' + (target.getAttribute('onclick') || '');
     if (href.includes('404.html')) {
       try {
         const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
-        sessionStorage.setItem('stackly_saved_scroll_y', currentY.toString());
+        sessionStorage.setItem('stackly_saved_scroll_y', Math.round(currentY).toString());
         sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
         sessionStorage.setItem('stackly_should_restore_scroll', 'true');
         sessionStorage.setItem('stackly_last_valid_page', window.location.href);
 
-        const section = target.closest('section[id], div[id], [data-tab-pane], .dash-tab-pane');
+        // Find nearest unique ID or section
+        const section = target.closest('section[id], div[id], [data-tab-pane], .dash-tab-pane, footer');
         if (section && section.id) {
           sessionStorage.setItem('stackly_saved_anchor', '#' + section.id);
+        } else if (target.closest('footer, #siteFooter')) {
+          sessionStorage.setItem('stackly_saved_anchor', '#siteFooter');
+        } else {
+          sessionStorage.removeItem('stackly_saved_anchor');
         }
       } catch (err) {}
     }
