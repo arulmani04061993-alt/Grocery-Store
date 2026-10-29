@@ -645,6 +645,97 @@ body.dashboard-body {
   border: 1.5px solid #FFFFFF;
 }
 
+/* Topbar Logout Button (Hidden by default on Desktop, visible ONLY on Mobile View) */
+.topbar-logout-btn {
+  display: none;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #DC2626;
+  background: #FEF2F2;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Bottom Tooltip (Appears on hover underneath the icon) */
+.topbar-logout-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  background: #0F172A;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1080;
+}
+
+/* Tooltip small arrow pointing up to the button */
+.topbar-logout-btn::before {
+  content: '';
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 12px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #0F172A transparent;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1080;
+}
+
+.topbar-logout-btn:hover::after,
+.topbar-logout-btn:hover::before,
+.topbar-logout-btn:focus::after,
+.topbar-logout-btn:focus::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.topbar-logout-btn:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+  border-color: #DC2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+  transform: translateY(-1px);
+}
+
+.topbar-logout-btn.admin-logout {
+  color: #DC2626;
+  background: #FFF1F2;
+  border-color: rgba(225, 29, 72, 0.3);
+}
+
+.topbar-logout-btn.admin-logout:hover {
+  background: #E11D48;
+  color: #FFFFFF;
+  border-color: #E11D48;
+  box-shadow: 0 2px 8px rgba(225, 29, 72, 0.3);
+}
+
 .topbar-store-btn {
   display: flex;
   align-items: center;
@@ -1729,6 +1820,23 @@ body.dashboard-body {
     align-items: center;
     justify-content: flex-start;
   }
+
+  /* Show logout icon button only in mobile/tablet navbar */
+  .topbar-logout-btn {
+    display: inline-flex !important;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .topbar-logout-btn .logout-btn-text {
+    display: none !important;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -1769,6 +1877,22 @@ body.dashboard-body {
   }
 
   .topbar-right .topbar-store-btn {
+    display: none;
+  }
+
+  .topbar-logout-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+
+  .topbar-logout-btn .logout-btn-text {
     display: none;
   }
 }
