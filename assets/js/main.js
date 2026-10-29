@@ -161,6 +161,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }, true);
 
+  // 3c. Navbar & Header click handler: Clicking navbar links always opens the page at the very top (scroll to 0)
+  document.addEventListener('click', (e) => {
+    const navLink = e.target.closest('.site-header a, .header-actions a, .dash-topbar a, .sidebar-brand, .brand-logo-link, #mobileMenuDrawer a, .navbar a, nav a, .nav-item a, .dropdown-item');
+    if (!navLink) return;
+    const rawHref = navLink.getAttribute('href') || '';
+    if (rawHref && !rawHref.startsWith('#') && !rawHref.startsWith('javascript:')) {
+      try {
+        sessionStorage.removeItem('stackly_should_restore_scroll');
+        sessionStorage.removeItem('stackly_saved_scroll_y');
+        sessionStorage.removeItem('stackly_saved_anchor');
+        sessionStorage.setItem('stackly_scroll_to_top', 'true');
+      } catch (err) {}
+    }
+  }, true);
+
   // 4. Product Carousel arrow controls
   const prodPrev = document.getElementById('prodPrevBtn');
   const prodNext = document.getElementById('prodNextBtn');

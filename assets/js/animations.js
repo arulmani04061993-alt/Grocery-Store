@@ -384,7 +384,11 @@ window.StacklyAnimations = {
     if (this._isNavigating) return;
     this._isNavigating = true;
 
-    // Check if target is explicitly Home page
+    // Check if link is from navbar/header/sidebar, or explicitly navigating to home/pages
+    const isNavbarOrHeaderLink = sourceElement && (
+      sourceElement.closest('.site-header, .header-actions, .dash-topbar, #mobileMenuDrawer, .brand-logo-link, .sidebar-brand, nav, .navbar, .nav-item, .dropdown-menu, .nav-text-link') !== null
+    );
+
     const isExplicitHome = sourceElement && (
       sourceElement.classList.contains('ref-btn-home') ||
       sourceElement.classList.contains('brand-logo-link') ||
@@ -392,7 +396,9 @@ window.StacklyAnimations = {
       sourceElement.classList.contains('login-back-store-btn')
     );
 
-    if (isExplicitHome) {
+    const isNavigatingTo404 = targetUrl && targetUrl.includes('404.html');
+
+    if (isNavbarOrHeaderLink || isExplicitHome || !isNavigatingTo404) {
       try {
         sessionStorage.removeItem('stackly_should_restore_scroll');
         sessionStorage.removeItem('stackly_saved_scroll_y');
