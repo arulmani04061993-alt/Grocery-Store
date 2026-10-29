@@ -6,10 +6,24 @@
 window.StacklyAnimations = {
   _isNavigating: false,
   _isRestoringScroll: false,
+  _preloaderTimer: null,
+  _safetyTimer: null,
+
+  /**
+   * Helper: Check if screen is Desktop (width >= 992px)
+   */
+  isDesktop() {
+    return window.innerWidth >= 992;
+  },
 
   init() {
-    // Preloader disabled as requested: direct page navigation without delay
-    this.disablePreloader();
+    if (this.isDesktop()) {
+      this.initLogoIntro();
+      this.initPageTransitions();
+    } else {
+      // Mobile / Tablet: Preloader disabled, load directly without delay
+      this.disablePreloader();
+    }
     this.initScrollTracking();
     this.restoreSavedScrollPosition();
     this.initAOS();
@@ -24,11 +38,37 @@ window.StacklyAnimations = {
    * Helper: Ensure preloader element is present in DOM
    */
   ensurePreloaderElement() {
-    return document.getElementById('logoIntroPreloader');
+    let preloader = document.getElementById('logoIntroPreloader');
+    if (!preloader && this.isDesktop()) {
+      preloader = document.createElement('div');
+      preloader.id = 'logoIntroPreloader';
+      preloader.setAttribute('aria-hidden', 'true');
+      preloader.className = 'preloader-hidden';
+      preloader.innerHTML = `
+        <div class="preloader-brand-wrap">
+          <div class="preloader-logo-wrapper">
+            <img src="assets/images/logo.webp" alt="STACKLY Organic Grocery" class="preloader-logo-img" width="280" height="82">
+          </div>
+          <div class="preloader-wave-container" aria-label="Loading...">
+            <div class="wave-bars">
+              <span class="wave-bar bar-1"></span>
+              <span class="wave-bar bar-2"></span>
+              <span class="wave-bar bar-3"></span>
+              <span class="wave-bar bar-4"></span>
+              <span class="wave-bar bar-5"></span>
+              <span class="wave-bar bar-6"></span>
+              <span class="wave-bar bar-7"></span>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.prepend(preloader);
+    }
+    return preloader;
   },
 
   /**
-   * Disabled Preloader: Clean up any preloader elements immediately
+   * Disabled Preloader (Used on mobile/tablet or reduced motion)
    */
   disablePreloader() {
     const preloader = document.getElementById('logoIntroPreloader');
@@ -47,8 +87,49 @@ window.StacklyAnimations = {
     if (typeof AOS !== 'undefined') AOS.refresh();
   },
 
+  /**
+   * Logo Intro & Wave Page Load Animation (Desktop only)
+   */
   initLogoIntro() {
-    this.disablePreloader();
+    if (!this.isDesktop()) {
+      this.disablePreloader();
+      return;
+    }
+
+    const preloader = this.ensurePreloaderElement();
+    if (!preloader) {
+      this.disablePreloader();
+      return;
+    }
+
+    // Check prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      this.disablePreloader();
+      return;
+    }
+
+    // Clean initial visible state
+    preloader.classList.remove('preloader-hidden');
+    preloader.classList.add('preloader-visible');
+    preloader.style.display = 'flex';
+    preloader.style.opacity = '1';
+    document.body.classList.add('preloader-active');
+
+    if (this._preloaderTimer) clearTimeout(this._preloaderTimer);
+    if (this._safetyTimer) clearTimeout(this._safetyTimer);
+
+    // Duration for desktop page load
+    const duration = 1200;
+
+    this._safetyTimer = setTimeout(() => {
+      this.finishPreloader(preloader);
+    }, duration + 600);
+
+    this._preloaderTimer = setTimeout(() => {
+      if (this._safetyTimer) clearTimeout(this._safetyTimer);
+      this.finishPreloader(preloader);
+    }, duration);
   },
 
   finishPreloader(preloader) {
@@ -365,14 +446,74 @@ window.StacklyAnimations = {
   },
 
   /**
+   * Trigger Preloader Transition to another page (Desktop only)
+   */
+  triggerPageTransition(targetUrl, sourceElement) {
+    if (!this.isDesktop()) {
+      window.location.href = targetUrl;
+      return;
+    }
+
+    if (this._isNavigating) return;
+    this._isNavigating = true;
+
+    // Check if target is explicitly Home page
+    const isExplicitHome = sourceElement && (
+      sourceElement.classList.contains('ref-btn-home') ||
+      sourceElement.classList.contains('brand-logo-link') ||
+      sourceElement.id === 'refBtnHome' ||
+      sourceElement.classList.contains('login-back-store-btn')
+    );
+
+    if (isExplicitHome) {
+      try {
+        sessionStorage.removeItem('stackly_should_restore_scroll');
+        sessionStorage.removeItem('stackly_saved_scroll_y');
+        sessionStorage.removeItem('stackly_saved_anchor');
+        sessionStorage.setItem('stackly_scroll_to_top', 'true');
+      } catch (e) { }
+    } else {
+      const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+      try {
+        sessionStorage.setItem('stackly_saved_scroll_y', currentY.toString());
+        sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
+        sessionStorage.setItem('stackly_should_restore_scroll', 'true');
+      } catch (e) { }
+    }
+
+    const preloader = this.ensurePreloaderElement();
+    if (preloader) {
+      preloader.classList.remove('preloader-hidden');
+      preloader.classList.add('preloader-visible');
+      preloader.style.display = 'flex';
+      preloader.style.opacity = '1';
+      document.body.classList.add('preloader-active');
+      void preloader.offsetWidth;
+      preloader.style.transition = 'opacity 0.2s ease-in';
+      preloader.style.opacity = '1';
+    }
+
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 350);
+
+    setTimeout(() => {
+      this._isNavigating = false;
+    }, 3000);
+  },
+
+  /**
    * Page Transitions Event Listeners
    */
   initPageTransitions() {
-    // Direct navigation: close any open drawer immediately when clicking links
+    // Intercept clicks on navigational links (Desktop view only)
     document.addEventListener('click', (e) => {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
       const link = e.target.closest('a');
       if (!link) return;
 
+      // Close mobile drawer if clicking links
       const drawer = link.closest('#mobileMenuDrawer, .offcanvas') || document.getElementById('mobileMenuDrawer');
       if (drawer && (link.closest('#mobileMenuDrawer, .offcanvas') || drawer.classList.contains('show'))) {
         try {
@@ -389,6 +530,12 @@ window.StacklyAnimations = {
         document.body.classList.remove('modal-open', 'mobile-menu-open', 'menu-open', 'nav-open');
         document.body.style.removeProperty('overflow');
         document.body.style.removeProperty('padding-right');
+      }
+
+      // If desktop, trigger preloader on link click
+      if (this.isDesktop() && this.isNavigationalLink(link)) {
+        e.preventDefault();
+        this.triggerPageTransition(link.href, link);
       }
     });
 
