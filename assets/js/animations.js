@@ -294,10 +294,15 @@ window.StacklyAnimations = {
             targetEl.style.transform = 'none';
             targetEl.style.visibility = 'visible';
 
-            targetEl.querySelectorAll('.newsletter-panel, .newsletter-heading, .newsletter-desc, .newsletter-form-wrap, .gsap-text-word, form, input, button, .product-card, .bundle-card, .story-team-card, .story-team-social, .story-value-card, .footer-col-brand, .footer-col-links, .footer-col-contact').forEach(el => {
+            targetEl.querySelectorAll('.newsletter-panel, .newsletter-heading, .newsletter-desc, .newsletter-form-wrap, .gsap-text-word, .product-card, .bundle-card, .story-team-card, .story-team-social, .story-value-card, .footer-col-brand, .footer-col-links, .footer-col-contact').forEach(el => {
               el.style.opacity = '1';
               el.style.transform = 'none';
               el.style.visibility = 'visible';
+            });
+            targetEl.querySelectorAll('form, input, button, select, textarea').forEach(el => {
+              el.style.opacity = '1';
+              el.style.visibility = 'visible';
+              // Do NOT reset transform: none on buttons or inputs that rely on translateY(-50%) for vertical centering!
             });
           }
         }

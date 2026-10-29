@@ -522,15 +522,17 @@
       <aside class="blog-sidebar" aria-label="Blog Sidebar">
 
         <!-- Widget 1: Search Blog -->
-        <div class="sidebar-widget-card">
+        <div class="sidebar-widget-card" id="blogSearchWidget">
           <h4 class="sidebar-widget-title">Search Blog</h4>
-          <form class="sidebar-search-box" onsubmit="window.location.href='404.html'; return false;"
-            style="cursor: pointer;">
+          <form class="sidebar-search-box" id="blogSearchForm" action="404.html" method="GET"
+            onsubmit="window.location.href='404.html'; return false;">
             <input type="text" class="sidebar-search-input" placeholder="Looking for something?"
-              aria-label="Search articles" id="blogSearchInput"
+              aria-label="Search articles" id="blogSearchInput" name="q" autocomplete="off"
               onkeydown="if(event.key==='Enter'){window.location.href='404.html'; return false;}">
-            <i class="bi bi-search sidebar-search-icon" style="cursor: pointer;"
-              onclick="window.location.href='404.html'"></i>
+            <button type="submit" class="sidebar-search-submit-btn" id="blogSearchSubmitBtn"
+              aria-label="Submit search" onclick="window.location.href='404.html';">
+              <i class="bi bi-search sidebar-search-icon"></i>
+            </button>
           </form>
         </div>
 

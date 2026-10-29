@@ -231,6 +231,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // 6b. Blog Search handler: Submitting or clicking search icon in blog search navigates to 404 page
+  const blogSearchForm = document.getElementById('blogSearchForm');
+  const blogSearchInput = document.getElementById('blogSearchInput');
+  const blogSearchSubmitBtn = document.getElementById('blogSearchSubmitBtn');
+
+  const goTo404FromBlogSearch = (e) => {
+    if (e) e.preventDefault();
+    try {
+      const currentY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+      sessionStorage.setItem('stackly_saved_scroll_y', Math.round(currentY).toString());
+      sessionStorage.setItem('stackly_saved_scroll_url', window.location.href);
+      sessionStorage.setItem('stackly_should_restore_scroll', 'true');
+      sessionStorage.setItem('stackly_last_valid_page', window.location.href);
+      sessionStorage.setItem('stackly_saved_anchor', '#blogSearchWidget');
+    } catch (err) {}
+    window.location.href = '404.html';
+  };
+
+  if (blogSearchForm) {
+    blogSearchForm.addEventListener('submit', goTo404FromBlogSearch);
+  }
+  if (blogSearchSubmitBtn) {
+    blogSearchSubmitBtn.addEventListener('click', goTo404FromBlogSearch);
+  }
+  if (blogSearchInput) {
+    blogSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        goTo404FromBlogSearch(e);
+      }
+    });
+  }
+
   // 7. Handle URL parameters from external or 404 navigation (?search=... or ?category=...)
   try {
     const urlParams = new URLSearchParams(window.location.search);

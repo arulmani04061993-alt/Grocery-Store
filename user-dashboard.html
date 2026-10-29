@@ -738,7 +738,18 @@
           </div>
 
           <!-- Real Interactive Map Container -->
-          <div class="live-map-card-container">
+          <div class="live-map-card-container position-relative">
+            <!-- Mobile Tap to Open in New Tab Overlay Link -->
+            <a href="https://maps.google.com/maps?q=Market+Street,+San+Francisco,+CA&t=&z=14"
+               target="_blank" rel="noopener noreferrer"
+               class="live-map-mobile-link"
+               title="Open live tracking map in new tab"
+               aria-label="Open live tracking map in new tab">
+               <span class="live-map-mobile-badge">
+                 <i class="bi bi-box-arrow-up-right me-1"></i> Tap to open map in new tab
+               </span>
+            </a>
+
             <iframe class="live-map-iframe"
               src="https://maps.google.com/maps?q=Market+Street,+San+Francisco,+CA&t=&z=14&ie=UTF8&iwloc=&output=embed"
               loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"
@@ -757,10 +768,12 @@
                 </div>
               </div>
               <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-teal text-white rounded-3 px-3"
-                  onclick="window.location.href='404.html'">
-                  <i class="bi bi-arrow-clockwise me-1"></i> Refresh GPS
-                </button>
+                <a href="https://maps.google.com/maps?q=Market+Street,+San+Francisco,+CA&t=&z=14"
+                   target="_blank" rel="noopener noreferrer"
+                   class="btn btn-sm btn-teal text-white rounded-3 px-3 d-inline-flex align-items-center"
+                   title="Open Google Maps in new tab">
+                  <i class="bi bi-box-arrow-up-right me-1"></i> Open Map
+                </a>
                 <button class="btn btn-sm btn-light rounded-3 px-3 text-dark fw-bold"
                   onclick="window.location.href='404.html'">
                   <i class="bi bi-telephone-fill text-teal me-1"></i> Call Driver
