@@ -31,13 +31,14 @@ window.StacklyAnimations = {
     this.initAOS();
     this.initScrollAnimations();
     this.initSectionHeadingAnimations();
+    this.initFramerMotionEffects();
     this.initLoginAnimations();
     this.initCounterAnimations();
     this.initIframeAnimation();
   },
 
   /**
-   * Lenis Smooth Scroll Animation Initialization
+   * Lenis Smooth Scroll Animation Initialization (Framer-like smooth interpolation)
    */
   initLenis() {
     // If Lenis is not loaded, gracefully fallback
@@ -48,21 +49,22 @@ window.StacklyAnimations = {
       try { this.lenis.destroy(); } catch (e) {}
     }
 
-    // Initialize Lenis with smooth momentum settings
+    // Initialize Lenis with Framer-like fluid physics settings
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential easeOut
+      duration: 1.25,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential decay easeOut
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       smoothTouch: false, // Maintain native responsive touch feel on mobile
-      touchMultiplier: 2
+      touchMultiplier: 1.8,
+      infinite: false
     });
 
     this.lenis = lenis;
     window.lenis = lenis;
 
-    // Connect Lenis to GSAP ScrollTrigger if ScrollTrigger is available
+    // Connect Lenis to GSAP ScrollTrigger
     if (typeof ScrollTrigger !== 'undefined') {
       lenis.on('scroll', ScrollTrigger.update);
 
@@ -72,7 +74,7 @@ window.StacklyAnimations = {
 
       gsap.ticker.lagSmoothing(0);
     } else {
-      // Fallback RAF loop if GSAP ticker is absent
+      // Fallback RAF loop
       function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
@@ -92,6 +94,63 @@ window.StacklyAnimations = {
           }
         }
       });
+    });
+  },
+
+  /**
+   * Framer Motion-style Scroll Reveal & Interactive Physics across all pages
+   * Replicates whileInView, initial, animate, and stagger transitions
+   */
+  initFramerMotionEffects() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // 1. Framer whileInView Scroll Reveal with IntersectionObserver
+    const framerElements = document.querySelectorAll(
+      '.category-card, .product-card, .recipe-card, .bundle-card, .benefit-card, .testimonial-card, .blog-card, .service-card, .stat-card, [data-framer-motion]'
+    );
+
+    if ('IntersectionObserver' in window && framerElements.length > 0) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.12
+      };
+
+      const framerObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target;
+            target.classList.add('framer-visible');
+
+            // Optional GSAP fine-tuning for elements with GSAP available
+            if (typeof gsap !== 'undefined' && !target.hasAttribute('data-aos')) {
+              gsap.to(target, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                overwrite: 'auto'
+              });
+            }
+
+            observer.unobserve(target);
+          }
+        });
+      }, observerOptions);
+
+      framerElements.forEach((el, index) => {
+        // Stagger delay for grid elements
+        const delay = (index % 4) * 0.08;
+        el.style.transitionDelay = `${delay}s`;
+        el.classList.add('framer-motion-card');
+        framerObserver.observe(el);
+      });
+    }
+
+    // 2. Framer-like whileHover and whileTap physics for interactive elements
+    const interactiveButtons = document.querySelectorAll('.btn, .product-btn-add, .filter-pill, .badge-tag');
+    interactiveButtons.forEach((btn) => {
+      btn.classList.add('framer-tap-active');
     });
   },
 

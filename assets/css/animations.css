@@ -25,6 +25,47 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* ==========================================================================
+   Framer-Motion Style Animation Utilities (Spring, Easing & Reveal)
+   ========================================================================== */
+:root {
+  --framer-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --framer-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --framer-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Framer-Motion style initial state: hidden before scroll reveal */
+[data-framer-motion],
+.framer-motion-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s var(--framer-ease-spring),
+              transform 0.75s var(--framer-ease-spring);
+  will-change: opacity, transform;
+}
+
+[data-framer-motion].framer-visible,
+.framer-motion-card.framer-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover Lift Spring Physics (Framer whileHover style) */
+.framer-hover-lift {
+  transition: transform 0.4s var(--framer-bounce), box-shadow 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.framer-hover-lift:hover {
+  transform: translateY(-6px) scale(1.015);
+}
+
+/* Interactive Tap Physics (Framer whileTap style) */
+.framer-tap-active:active {
+  transform: scale(0.96) !important;
+  transition: transform 0.15s ease-out !important;
+}
+
 /* Preloader Aura Pulse */
 @keyframes preloaderPulse {
   0% {
