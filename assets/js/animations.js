@@ -1,9 +1,10 @@
 /**
  * STACKLY — Animations Module
- * GSAP 3, ScrollTrigger, Logo Preloader & Page Transitions
+ * GSAP 3, ScrollTrigger, Lenis Smooth Scroll, Logo Preloader & Page Transitions
  */
 
 window.StacklyAnimations = {
+  lenis: null,
   _isNavigating: false,
   _isRestoringScroll: false,
   _preloaderTimer: null,
@@ -17,6 +18,7 @@ window.StacklyAnimations = {
   },
 
   init() {
+    this.initLenis();
     if (this.isDesktop()) {
       this.initLogoIntro();
       this.initPageTransitions();
@@ -32,6 +34,65 @@ window.StacklyAnimations = {
     this.initLoginAnimations();
     this.initCounterAnimations();
     this.initIframeAnimation();
+  },
+
+  /**
+   * Lenis Smooth Scroll Animation Initialization
+   */
+  initLenis() {
+    // If Lenis is not loaded, gracefully fallback
+    if (typeof Lenis === 'undefined') return;
+
+    // Destroy existing instance if any
+    if (this.lenis) {
+      try { this.lenis.destroy(); } catch (e) {}
+    }
+
+    // Initialize Lenis with smooth momentum settings
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential easeOut
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false, // Maintain native responsive touch feel on mobile
+      touchMultiplier: 2
+    });
+
+    this.lenis = lenis;
+    window.lenis = lenis;
+
+    // Connect Lenis to GSAP ScrollTrigger if ScrollTrigger is available
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      // Fallback RAF loop if GSAP ticker is absent
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    }
+
+    // Bind anchor links with Lenis smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (href && href !== '#' && !href.startsWith('#modal') && !href.startsWith('#collapse') && !href.startsWith('#offcanvas')) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: -70 });
+          }
+        }
+      });
+    });
   },
 
   /**
